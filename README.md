@@ -14,10 +14,14 @@ You can move forward and backward with W and S, respectively. To rotate left or 
 
 To install just download the executable from this git, or download the whole project and run:
 
-  make
+```
+make
+```
 
 to create a new executable. Then, in the same folder run:
 
-  ./scape
+```
+./scape
+```
 
 and the game should start.
