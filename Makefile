@@ -7,7 +7,8 @@ TARGET = scape
 
 OBJS  = $(OBJ_DIR)/main.o\
 		$(OBJ_DIR)/windowDisplay.o\
-		$(OBJ_DIR)/player.o
+		$(OBJ_DIR)/player.o\
+		$(OBJ_DIR)/input.o
 
 CC = cc
 

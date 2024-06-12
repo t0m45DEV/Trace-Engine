@@ -3,12 +3,13 @@
 #include "windowDisplay.h"
 #include "defines.h"
 #include "player.h"
+#include "input.h"
 
 
-void display_me(void)
+void display(void)
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    draw_player(P_INIT_X_POS, P_INIT_Y_POS);
+    draw_player(player_x_pos, player_y_pos);
     glutSwapBuffers();
 }
 
@@ -28,6 +29,7 @@ void window_create(int argc, char** argv)
     glutCreateWindow(WINDOW_TITLE);
     gluOrtho2D(0, WINDOW_WIDTH, 0, WINDOW_HEIGHT);
     glClearColor(0.5, 0.7, 0.5, 0);
-    glutDisplayFunc(display_me);
+    glutDisplayFunc(display);
+    glutKeyboardFunc(buttons);
     glutMainLoop();
 }
