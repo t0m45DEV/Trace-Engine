@@ -1,6 +1,6 @@
-#ifndef _H_DIAG
-#define _H_DIAG
+#ifndef _H_WIN_DISP
+#define _H_WIN_DISP
 
-void windowCreate(int argc, char** argv);
+void window_create(int argc, char** argv);
 
 #endif

@@ -6,7 +6,8 @@ SRC_DIR = ./src
 TARGET = scape
 
 OBJS  = $(OBJ_DIR)/main.o\
-		$(OBJ_DIR)/windowDisplay.o
+		$(OBJ_DIR)/windowDisplay.o\
+		$(OBJ_DIR)/player.o
 
 CC = cc
 

@@ -1,4 +1,4 @@
-obj/windowDisplay.o: src/windowDisplay.c /usr/include/stdc-predef.h \
+obj/player.o: src/player.c /usr/include/stdc-predef.h \
  /usr/include/GL/glut.h /usr/include/GL/freeglut_std.h \
  /usr/include/GL/gl.h /usr/include/GL/glext.h \
  /usr/include/KHR/khrplatform.h \
@@ -43,5 +43,5 @@ obj/windowDisplay.o: src/windowDisplay.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h \
  /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h /usr/include/alloca.h \
- /usr/include/x86_64-linux-gnu/bits/stdlib-float.h inc/windowDisplay.h \
- inc/defines.h inc/player.h
+ /usr/include/x86_64-linux-gnu/bits/stdlib-float.h inc/player.h \
+ inc/defines.h
