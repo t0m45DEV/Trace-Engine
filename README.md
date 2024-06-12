@@ -1,4 +1,4 @@
-## Scape
+# Scape
 
 A 3D Game entirely made with C. More like a "can I do this?" project than a "that's a fun idea for a game" project.
 
