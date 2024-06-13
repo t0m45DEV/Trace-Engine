@@ -6,10 +6,32 @@
 
 void buttons(unsigned char key, int x, int y)
 {
-    if (key == 'a') {player_x_pos -= 5;}
-    if (key == 'd') {player_x_pos += 5;}
-    if (key == 'w') {player_y_pos += 5;}
-    if (key == 's') {player_y_pos -= 5;}
+    if (key == ROTATE_RIGHT) {
+        player_angle -= ROTATE_VELOCITY;
+
+        if (player_angle < 0) {
+            player_angle += 2 * PI;
+        }
+        player_x_delta = CALCULATE_X_DELTA(player_angle);
+        player_y_delta = CALCULATE_Y_DELTA(player_angle);
+    }
+    else if (key == ROTATE_LEFT) {
+        player_angle += ROTATE_VELOCITY;
+
+        if (player_angle > 2 * PI) {
+            player_angle -= 2 * PI;
+        }
+        player_x_delta = CALCULATE_X_DELTA(player_angle);
+        player_y_delta = CALCULATE_Y_DELTA(player_angle);
+    }
+    else if (key == MOVE_FORWARD) {
+        player_x_pos += player_x_delta;
+        player_y_pos += player_y_delta;
+    }
+    else if (key == MOVE_BACKWARD) {
+        player_x_pos -= player_x_delta;
+        player_y_pos -= player_y_delta;
+    }
 
     glutPostRedisplay();
 }

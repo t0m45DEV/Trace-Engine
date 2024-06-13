@@ -14,15 +14,15 @@ CC = cc
 
 CFLAGS = -Wall -I$(INC_DIR)
 
-GLFLAGS = -lglut -lGLU -lGL
+LIBS = -lglut -lGLU -lGL -lm
 
 
 $(TARGET) : $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) -o $(TARGET) $(GLFLAGS)
+	@$(CC) $(CFLAGS) $(OBJS) -o $(TARGET) $(LIBS)
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) -c -MD $(CFLAGS) $< -o $@ $(GLFLAGS)
+	@$(CC) -c -MD $(CFLAGS) $< -o $@ $(LIBS)
 
 -include $(OBJ_DIR)/*.d
 

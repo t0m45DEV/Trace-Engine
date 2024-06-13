@@ -1,11 +1,13 @@
 #include <GL/glut.h>
 
 #include "windowDisplay.h"
-#include "defines.h"
 #include "player.h"
 #include "input.h"
 
 
+/*
+    Draw the objects in the window
+*/
 void display(void)
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -15,7 +17,7 @@ void display(void)
 
 
 /*
-    Creates the windows and manage mainLoop. The size, position and title are defined in the defines.h file.
+    Creates the windows and manage mainLoop. The size, position and title are defined in the windowDisplay.h file.
 
     @param argc Number of arguments
     @param argv Vector of arguments
