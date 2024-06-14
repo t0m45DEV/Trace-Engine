@@ -1,7 +1,7 @@
 #ifndef _H_PLAYER
 #define _H_PLAYER
 
-#include <math.h>
+#include "entity.h"
 
 
 #define PI 3.1415926535
@@ -12,16 +12,14 @@
 #define P_INIT_X_POS  300.0
 #define P_INIT_Y_POS  300.0
 
-#define CALCULATE_X_DELTA(A) (cos(A) * MOVE_VELOCITY)
-#define CALCULATE_Y_DELTA(A) (sin(A) * MOVE_VELOCITY)
 
-extern float player_x_pos;
-extern float player_y_pos;
-extern float player_x_delta;
-extern float player_y_delta;
-extern float player_angle;
+extern entity_t player;
 
+/*
+    Draw the player in the screen in the given position.
 
+    The player is represented as a yellow dot with a line in front of him. This line represent the face of the player.
+*/
 void draw_player(float x_pos, float y_pos);
 
 #endif

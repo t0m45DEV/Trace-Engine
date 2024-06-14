@@ -7,30 +7,30 @@
 void buttons(unsigned char key, int x, int y)
 {
     if (key == ROTATE_RIGHT) {
-        player_angle -= ROTATE_VELOCITY;
+        player.angle -= ROTATE_VELOCITY;
 
-        if (player_angle < 0) {
-            player_angle += 2 * PI;
+        if (player.angle < 0) {
+            player.angle += 2 * PI;
         }
-        player_x_delta = CALCULATE_X_DELTA(player_angle);
-        player_y_delta = CALCULATE_Y_DELTA(player_angle);
+        player.x_delta = CALCULATE_X_DELTA(player.angle) * player.velocity;
+        player.y_delta = CALCULATE_Y_DELTA(player.angle) * player.velocity;
     }
     else if (key == ROTATE_LEFT) {
-        player_angle += ROTATE_VELOCITY;
+        player.angle += ROTATE_VELOCITY;
 
-        if (player_angle > 2 * PI) {
-            player_angle -= 2 * PI;
+        if (player.angle > 2 * PI) {
+            player.angle -= 2 * PI;
         }
-        player_x_delta = CALCULATE_X_DELTA(player_angle);
-        player_y_delta = CALCULATE_Y_DELTA(player_angle);
+        player.x_delta = CALCULATE_X_DELTA(player.angle) * player.velocity;
+        player.y_delta = CALCULATE_Y_DELTA(player.angle) * player.velocity;
     }
     else if (key == MOVE_FORWARD) {
-        player_x_pos += player_x_delta;
-        player_y_pos += player_y_delta;
+        player.x_pos += player.x_delta;
+        player.y_pos += player.y_delta;
     }
     else if (key == MOVE_BACKWARD) {
-        player_x_pos -= player_x_delta;
-        player_y_pos -= player_y_delta;
+        player.x_pos -= player.x_delta;
+        player.y_pos -= player.y_delta;
     }
 
     glutPostRedisplay();
