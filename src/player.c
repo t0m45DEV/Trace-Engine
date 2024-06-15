@@ -4,21 +4,18 @@
 
 
 entity_t player = 
-    {
-        P_INIT_X_POS,  // player.x_pos
-        P_INIT_Y_POS,  // player.y_pos
-        MOVE_VELOCITY, // player.x_delta = CALCULATE_X_DELTA(player.angle)
-        0,             // player.y_delta = CALCULATE_Y_DELTA(player.angle)
-        0,             // player.angle
-        MOVE_VELOCITY  // player.velocity
-    };
-
-
-void draw_player(float x_pos, float y_pos)
 {
-    player.x_pos = x_pos;
-    player.y_pos = y_pos;
+    P_INIT_X_POS,  // player.x_pos
+    P_INIT_Y_POS,  // player.y_pos
+    MOVE_VELOCITY, // player.x_delta = CALCULATE_X_DELTA(player.angle)
+    0,             // player.y_delta = CALCULATE_Y_DELTA(player.angle)
+    0,             // player.angle
+    MOVE_VELOCITY  // player.velocity
+};
 
+
+void draw_player()
+{
     glColor3f(1, 1, 0);
     glPointSize(12);
     glEnable(GL_POINT_SMOOTH);

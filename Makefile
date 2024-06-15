@@ -9,11 +9,12 @@ OBJS  = $(OBJ_DIR)/main.o\
 		$(OBJ_DIR)/windowDisplay.o\
 		$(OBJ_DIR)/player.o\
 		$(OBJ_DIR)/input.o\
-		$(OBJ_DIR)/map.o
+		$(OBJ_DIR)/map.o\
+		$(OBJ_DIR)/raycaster.o
 
 CC = cc
 
-CFLAGS = -Wall -I$(INC_DIR)
+CFLAGS = -Wall -I$(INC_DIR) -g
 
 LIBS = -lglut -lGLU -lGL -lm
 

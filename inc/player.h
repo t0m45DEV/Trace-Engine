@@ -3,7 +3,6 @@
 
 #include "entity.h"
 
-
 #define PI 3.1415926535
 
 #define MOVE_VELOCITY    5
@@ -16,10 +15,10 @@
 extern entity_t player;
 
 /*
-    Draw the player in the screen in the given position.
+    Draw the player in the screen in the actual player position.
 
     The player is represented as a yellow dot with a line in front of him. This line represent the face of the player.
 */
-void draw_player(float x_pos, float y_pos);
+void draw_player();
 
 #endif

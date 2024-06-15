@@ -4,13 +4,15 @@
 #include "player.h"
 #include "input.h"
 #include "map.h"
+#include "raycaster.h"
 
 
 void display(void)
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     draw_map_2D();
-    draw_player(player.x_pos, player.y_pos);
+    draw_player();
+    draw_rays();
     glutSwapBuffers();
 }
 
