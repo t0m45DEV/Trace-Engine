@@ -10,7 +10,8 @@ OBJS  = $(OBJ_DIR)/main.o\
 		$(OBJ_DIR)/player.o\
 		$(OBJ_DIR)/input.o\
 		$(OBJ_DIR)/map.o\
-		$(OBJ_DIR)/raycaster.o
+		$(OBJ_DIR)/raycaster.o\
+		$(OBJ_DIR)/trigonometry.o
 
 CC = cc
 

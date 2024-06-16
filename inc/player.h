@@ -3,8 +3,6 @@
 
 #include "entity.h"
 
-#define PI 3.1415926535
-
 #define MOVE_VELOCITY    5
 #define ROTATE_VELOCITY  0.1
 

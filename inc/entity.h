@@ -1,8 +1,6 @@
 #ifndef _H_ENTITY
 #define _H_ENTITY
 
-#include <math.h>
-
 /*
     An entity is every interactive and moving thing in the game, including the player
 
@@ -21,10 +19,6 @@ typedef struct entity_s {
     float angle;
     float velocity;
 } entity_t;
-
-
-#define CALCULATE_X_DELTA(A) (cos(A))
-#define CALCULATE_Y_DELTA(A) (sin(A))
 
 
 #endif

@@ -51,4 +51,4 @@ obj/raycaster.o: src/raycaster.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls.h inc/raycaster.h \
- inc/player.h inc/entity.h inc/map.h
+ inc/player.h inc/entity.h inc/map.h inc/trigonometry.h
