@@ -4,12 +4,16 @@
 #include <GL/glut.h>
 
 #include "entity.h"
+#include "map.h"
 
 #define MOVE_VELOCITY    5
 #define ROTATE_VELOCITY  0.1
 
-#define P_INIT_X_POS  300.0
-#define P_INIT_Y_POS  300.0
+#define P_X_SPAWN 1
+#define P_Y_SPAWN 6
+
+#define P_INIT_X_POS  GRID_X_POS_TO_REAL_X_POS(P_X_SPAWN)
+#define P_INIT_Y_POS  GRID_Y_POS_TO_REAL_Y_POS(P_Y_SPAWN)
 
 
 extern entity_t player;

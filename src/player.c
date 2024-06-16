@@ -2,12 +2,12 @@
 
 entity_t player = 
 {
-    P_INIT_X_POS,  // player.x_pos
-    P_INIT_Y_POS,  // player.y_pos
-    MOVE_VELOCITY, // player.x_delta = CALCULATE_X_DELTA(player.angle)
-    0,             // player.y_delta = CALCULATE_Y_DELTA(player.angle)
-    0,             // player.angle
-    MOVE_VELOCITY  // player.velocity
+    .x_pos    = P_INIT_X_POS,
+    .y_pos    =  P_INIT_Y_POS,
+    .x_delta  = MOVE_VELOCITY, // CALCULATE_X_DELTA(player.angle)
+    .y_delta  = 0,             // CALCULATE_Y_DELTA(player.angle)
+    .angle    = 0,
+    .velocity = MOVE_VELOCITY
 };
 
 

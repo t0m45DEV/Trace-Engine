@@ -8,6 +8,9 @@
 
 #define MAP_CELL_SIZE  64
 
+#define GRID_X_POS_TO_REAL_X_POS(X) ((X * MAP_CELL_SIZE) + (MAP_CELL_SIZE / 2))
+#define GRID_Y_POS_TO_REAL_Y_POS(Y) ((Y * MAP_CELL_SIZE) + (MAP_CELL_SIZE / 2))
+
 extern int map[];
 
 
