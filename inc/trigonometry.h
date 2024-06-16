@@ -12,6 +12,6 @@
 #define CALCULATE_Y_DELTA(A) (sin(A))
 
 
-float distance_between();
+float distance_between(float p1_x, float p1_y, float p2_x, float p2_y);
 
 #endif

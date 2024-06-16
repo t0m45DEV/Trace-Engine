@@ -24,6 +24,9 @@ void draw_rays(void)
     {
         // Check horizontal lines
 
+        float distance_h = INT32_MAX;
+        float ray_x_h, ray_y_h;
+
         dof = 0;
         float aTan = -1 / tan(ray_angle);
 
@@ -59,6 +62,10 @@ void draw_rays(void)
 
             if ((ray_in_map > 0) && (ray_in_map < (MAP_X_SIZE * MAP_Y_SIZE)) && (map[ray_in_map] == 1)) // Hit a wall
             {
+                ray_x_h = ray_x;
+                ray_y_h = ray_y;
+                distance_h = distance_between(player.x_pos, player.y_pos, ray_x, ray_y);
+
                 dof = MAP_Y_SIZE;
             }
             else // Check the next 
@@ -69,14 +76,10 @@ void draw_rays(void)
             }
         }
 
-        glColor3f(1, 0, 0);
-        glLineWidth(10);
-        glBegin(GL_LINES);
-        glVertex2i(player.x_pos, player.y_pos);
-        glVertex2i(ray_x, ray_y);
-        glEnd();
-
         // Check vertical lines
+
+        float distance_v = INT32_MAX;
+        float ray_x_v, ray_y_v;
 
         dof = 0;
         float nTan = (-1) * tan(ray_angle);
@@ -113,6 +116,10 @@ void draw_rays(void)
 
             if ((ray_in_map > 0) && (ray_in_map < (MAP_X_SIZE * MAP_Y_SIZE)) && (map[ray_in_map] == 1)) // Hit a wall
             {
+                ray_x_v = ray_x;
+                ray_y_v = ray_y;
+                distance_v = distance_between(player.x_pos, player.y_pos, ray_x, ray_y);
+
                 dof = MAP_Y_SIZE;
             }
             else // Check the next 
@@ -121,6 +128,17 @@ void draw_rays(void)
                 ray_y += y_offset;
                 dof += 1;
             }
+        }
+
+        if (distance_h < distance_v)
+        {
+            ray_x = ray_x_h;
+            ray_y = ray_y_h;
+        }
+        else
+        {
+            ray_x = ray_x_v;
+            ray_y = ray_y_v;
         }
 
         glColor3f(0, 1, 0);
