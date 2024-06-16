@@ -1,2 +1,2 @@
-# Direct Swift
-*.* linguist-language=C
+*.d linguist-detectable=false
+
