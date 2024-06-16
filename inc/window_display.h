@@ -8,7 +8,7 @@
 #include "input.h"
 #include "map.h"
 
-#define DEBUG_2D_VIEW true
+extern bool debug_2D_view;
 
 #define WINDOW_TITLE "Scape game"
 

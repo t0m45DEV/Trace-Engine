@@ -149,15 +149,6 @@ void cast_rays(bool debug_view)
             glColor3f(0.7, 0, 0);
         }
 
-        if (debug_view)
-        {
-            glLineWidth(2);
-            glBegin(GL_LINES);
-            glVertex2i(player.x_pos, player.y_pos);
-            glVertex2i(ray_x, ray_y);
-            glEnd();
-        }
-
         angle_cosine = player.angle - ray_angle;
 
         if (angle_cosine < 0)
@@ -171,6 +162,15 @@ void cast_rays(bool debug_view)
 
         distance_from_player = distance_from_player * cos(angle_cosine);
         render_line(distance_from_player, ray);
+
+        if (debug_view)
+        {
+            glLineWidth(2);
+            glBegin(GL_LINES);
+            glVertex2i(player.x_pos, player.y_pos);
+            glVertex2i(ray_x, ray_y);
+            glEnd();
+        }
 
         ray_angle += DEGREE;
 

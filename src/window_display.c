@@ -1,14 +1,16 @@
 #include "window_display.h"
 
+bool debug_2D_view = false;
+
 void display(void)
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
-    if (DEBUG_2D_VIEW) {
+    if (debug_2D_view) {
         draw_map_2D();
         draw_player();
     }
-    cast_rays(DEBUG_2D_VIEW);
+    cast_rays(debug_2D_view);
     
     glutSwapBuffers();
 }

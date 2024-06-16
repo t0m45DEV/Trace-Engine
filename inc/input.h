@@ -1,10 +1,13 @@
 #ifndef _H_INPUT
 #define _H_INPUT
 
+#include "window_display.h"
 #include "trigonometry.h"
 #include "player.h"
 
 // Action keys
+
+#define CHANGE_DEBUG_MODE '|'
 
 #define MOVE_FORWARD  'w'
 #define MOVE_BACKWARD 's'
