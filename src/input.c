@@ -5,6 +5,7 @@ void buttons(unsigned char key, int x, int y)
     if (key == CHANGE_DEBUG_MODE)
     {
         debug_2D_view = !debug_2D_view;
+        show_3D_view = !show_3D_view;
     }
     else if (key == ROTATE_LEFT)
     {

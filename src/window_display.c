@@ -1,16 +1,17 @@
 #include "window_display.h"
 
+int resolution = HIGH_RESOLUTION;
+
 bool debug_2D_view = false;
+bool show_3D_view = true;
 
 void display(void)
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
-    if (debug_2D_view) {
-        draw_map_2D();
-        draw_player();
-    }
+    if (debug_2D_view) draw_map_2D();
     cast_rays(debug_2D_view);
+    if (debug_2D_view) draw_player();
     
     glutSwapBuffers();
 }

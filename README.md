@@ -1,4 +1,4 @@
-# Scape
+# 3D Game Engine using C
 
 A 3D Game Engine entirely made with C. More like a "can I do this?" project than a "that's a fun idea for a game" project.
 

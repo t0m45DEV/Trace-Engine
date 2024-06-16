@@ -10,7 +10,7 @@ void cast_rays(bool debug_view)
     float distance_from_player;
     float angle_cosine;
 
-    float ray_angle = player.angle - DEGREE * ANGLE_OF_VISION;
+    float ray_angle = player.angle - DEGREE * (ANGLE_OF_VISION / 2);
     ray_angle = adjust_angle(ray_angle);
 
     for (int ray = 0; ray < AMMOUNT_OF_RAYS; ray++)
@@ -138,11 +138,14 @@ void cast_rays(bool debug_view)
             glColor3f(0.7, 0, 0);
         }
 
-        angle_cosine = player.angle - ray_angle;
-        angle_cosine = adjust_angle(angle_cosine);
+        if (show_3D_view)
+        {
+            angle_cosine = player.angle - ray_angle;
+            angle_cosine = adjust_angle(angle_cosine);
 
-        distance_from_player = distance_from_player * cos(angle_cosine);
-        render_line(distance_from_player, ray);
+            distance_from_player = distance_from_player * cos(angle_cosine);
+            render_line(distance_from_player, ray);
+        }
 
         if (debug_view)
         {
@@ -153,7 +156,7 @@ void cast_rays(bool debug_view)
             glEnd();
         }
 
-        ray_angle += DEGREE;
+        ray_angle += (DEGREE / RATIO_ANGLE_RAYS);
         ray_angle = adjust_angle(ray_angle);
     }
 }

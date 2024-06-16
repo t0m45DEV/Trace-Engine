@@ -8,7 +8,14 @@
 #include "input.h"
 #include "map.h"
 
+#define HIGH_RESOLUTION 4
+#define MID_RESOLUTION 2
+#define LOW_RESOLUTION 1
+
+extern int resolution;
+
 extern bool debug_2D_view;
+extern bool show_3D_view;
 
 #define WINDOW_TITLE "Tom's 3D Engine"
 

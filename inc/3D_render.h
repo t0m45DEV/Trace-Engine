@@ -5,9 +5,9 @@
 #include "raycaster.h"
 #include "map.h"
 
-#define CENTER_CORRECTION (WINDOW_WIDTH / 2)
 #define MAX_WALL_HEIGHT (WINDOW_HEIGHT / 2)
 #define LINES_WIDTH ((int) (WINDOW_WIDTH / AMMOUNT_OF_RAYS))
+#define CENTER_CORRECTION ((WINDOW_WIDTH / 2) - (LINES_WIDTH / 2))
 
 
 /*

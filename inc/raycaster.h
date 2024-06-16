@@ -9,8 +9,9 @@
 #include "trigonometry.h"
 #include "3D_render.h"
 
-#define ANGLE_OF_VISION 30
-#define AMMOUNT_OF_RAYS (ANGLE_OF_VISION * 2)
+#define ANGLE_OF_VISION 60
+#define AMMOUNT_OF_RAYS ((WINDOW_WIDTH / 8) * resolution)
+#define RATIO_ANGLE_RAYS (AMMOUNT_OF_RAYS / ANGLE_OF_VISION)
 
 #define PRECISION 0.0001
 
