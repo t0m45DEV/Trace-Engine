@@ -19,7 +19,7 @@ void display(void)
 }
 
 
-void resize()
+void resize(int x, int y)
 {
     glutReshapeWindow(WINDOW_WIDTH, WINDOW_HEIGHT);
 }

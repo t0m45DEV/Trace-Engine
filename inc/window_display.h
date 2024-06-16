@@ -32,6 +32,12 @@ void display(void);
 
 
 /*
+    Resize the window to the fixed value WINDOW_WIDTH x WINDOW_HEIGHT
+*/
+void resize(int x, int y);
+
+
+/*
     Creates the windows and manage mainLoop
 
     @param argc Number of arguments
