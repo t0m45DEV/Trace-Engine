@@ -10,7 +10,7 @@
 
 extern bool debug_2D_view;
 
-#define WINDOW_TITLE "Scape game"
+#define WINDOW_TITLE "Tom's 3D Engine"
 
 #define WINDOW_WIDTH 1024
 #define WINDOW_HEIGHT 512

@@ -2,14 +2,14 @@
 
 void render_line(float distance_from_player, int ray)
 {
-    float line_h = (MAP_CELL_SIZE * 320) / distance_from_player;
-    float offset = 300 - line_h / 2;
+    float line_h = (MAP_CELL_SIZE * MAX_WALL_HEIGHT) / distance_from_player;
+    float offset = MAX_WALL_HEIGHT - line_h / 2;
 
-    if (line_h > 320) line_h = 320;
+    if (line_h > MAX_WALL_HEIGHT) line_h = MAX_WALL_HEIGHT;
 
-    glLineWidth(8);
+    glLineWidth(LINES_WIDTH);
     glBegin(GL_LINES);
-    glVertex2i(ray * 8 + 530, offset);
-    glVertex2i(ray * 8 + 530, line_h + offset);
+    glVertex2i(ray * LINES_WIDTH + WINDOW_HEIGHT - CENTER_CORRECTION, offset);
+    glVertex2i(ray * LINES_WIDTH + WINDOW_HEIGHT - CENTER_CORRECTION, line_h + offset);
     glEnd();
 }
