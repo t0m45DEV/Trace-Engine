@@ -1,4 +1,4 @@
-obj/main.o: src/main.c /usr/include/stdc-predef.h inc/windowDisplay.h \
+obj/main.o: src/main.c /usr/include/stdc-predef.h inc/window_display.h \
  /usr/include/GL/glut.h /usr/include/GL/freeglut_std.h \
  /usr/include/GL/gl.h /usr/include/GL/glext.h \
  /usr/include/KHR/khrplatform.h \

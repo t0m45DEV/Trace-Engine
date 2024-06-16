@@ -3,6 +3,8 @@
 
 #include <math.h>
 
+#define DEGREE 0.0174533 // One degree in radians
+
 #define PI 3.1415926535
 #define UP_DIR   (PI / 2)
 #define DOWN_DIR (3 * (UP_DIR))

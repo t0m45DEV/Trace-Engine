@@ -1,7 +1,7 @@
-obj/windowDisplay.o: src/windowDisplay.c /usr/include/stdc-predef.h \
- /usr/include/GL/glut.h /usr/include/GL/freeglut_std.h \
- /usr/include/GL/gl.h /usr/include/GL/glext.h \
- /usr/include/KHR/khrplatform.h \
+obj/3D_render.o: src/3D_render.c /usr/include/stdc-predef.h \
+ inc/3D_render.h inc/window_display.h /usr/include/GL/glut.h \
+ /usr/include/GL/freeglut_std.h /usr/include/GL/gl.h \
+ /usr/include/GL/glext.h /usr/include/KHR/khrplatform.h \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -43,5 +43,4 @@ obj/windowDisplay.o: src/windowDisplay.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h \
  /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h /usr/include/alloca.h \
- /usr/include/x86_64-linux-gnu/bits/stdlib-float.h inc/windowDisplay.h \
- inc/player.h inc/entity.h inc/input.h inc/map.h inc/raycaster.h
+ /usr/include/x86_64-linux-gnu/bits/stdlib-float.h inc/map.h

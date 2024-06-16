@@ -5,9 +5,10 @@
 #include "player.h"
 #include "map.h"
 #include "trigonometry.h"
+#include "3D_render.h"
 
 
-void draw_rays(void)
+void cast_rays(bool debug_view)
 {
     int dof;
     int ray_map_x;
@@ -17,8 +18,19 @@ void draw_rays(void)
     float ray_y;
     float x_offset;
     float y_offset;
+    float distance_from_player;
+    float angle_cosine;
 
-    float ray_angle = player.angle;
+    float ray_angle = player.angle - DEGREE * ANGLE_OF_VISION;
+
+    if (ray_angle < 0)
+    {
+        ray_angle += 2 * PI;
+    }
+    else if (ray_angle > (2 * PI))
+    {
+        ray_angle -= 2 * PI;
+    }
 
     for (int ray = 0; ray < AMMOUNT_OF_RAYS; ray++)
     {
@@ -134,18 +146,49 @@ void draw_rays(void)
         {
             ray_x = ray_x_h;
             ray_y = ray_y_h;
+            distance_from_player = distance_h;
+            glColor3f(0.9, 0, 0);
         }
         else
         {
             ray_x = ray_x_v;
             ray_y = ray_y_v;
+            distance_from_player = distance_v;
+            glColor3f(0.7, 0, 0);
         }
 
-        glColor3f(0, 1, 0);
-        glLineWidth(1);
-        glBegin(GL_LINES);
-        glVertex2i(player.x_pos, player.y_pos);
-        glVertex2i(ray_x, ray_y);
-        glEnd();
+        if (debug_view)
+        {
+            glLineWidth(2);
+            glBegin(GL_LINES);
+            glVertex2i(player.x_pos, player.y_pos);
+            glVertex2i(ray_x, ray_y);
+            glEnd();
+        }
+
+        angle_cosine = player.angle - ray_angle;
+
+        if (angle_cosine < 0)
+        {
+            angle_cosine += 2 * PI;
+        }
+        else if (angle_cosine > (2 * PI))
+        {
+            angle_cosine -= 2 * PI;
+        }
+
+        distance_from_player = distance_from_player * cos(angle_cosine);
+        render_line(distance_from_player, ray);
+
+        ray_angle += DEGREE;
+
+        if (ray_angle < 0)
+        {
+            ray_angle += 2 * PI;
+        }
+        else if (ray_angle > (2 * PI))
+        {
+            ray_angle -= 2 * PI;
+        }
     }
 }

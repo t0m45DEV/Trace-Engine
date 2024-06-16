@@ -3,10 +3,12 @@
 
 #include <GL/glut.h>
 
+#define DEBUG_2D_VIEW true
+
 #define WINDOW_TITLE "Scape game"
 
-#define WINDOW_WIDTH 1280
-#define WINDOW_HEIGHT 720
+#define WINDOW_WIDTH 1024
+#define WINDOW_HEIGHT 512
 
 #define X_CENTER_POS ((glutGet(GLUT_SCREEN_WIDTH) - WINDOW_WIDTH) / 2)
 #define Y_CENTER_POS ((glutGet(GLUT_SCREEN_HEIGHT) - WINDOW_HEIGHT) / 2)

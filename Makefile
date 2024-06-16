@@ -6,12 +6,13 @@ SRC_DIR = ./src
 TARGET = scape
 
 OBJS  = $(OBJ_DIR)/main.o\
-		$(OBJ_DIR)/windowDisplay.o\
+		$(OBJ_DIR)/window_display.o\
 		$(OBJ_DIR)/player.o\
 		$(OBJ_DIR)/input.o\
 		$(OBJ_DIR)/map.o\
 		$(OBJ_DIR)/raycaster.o\
-		$(OBJ_DIR)/trigonometry.o
+		$(OBJ_DIR)/trigonometry.o\
+		$(OBJ_DIR)/3D_render.o
 
 CC = cc
 

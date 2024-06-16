@@ -1,4 +1,4 @@
-#include "windowDisplay.h"
+#include "window_display.h"
 
 int main(int argc, char** argv)
 {

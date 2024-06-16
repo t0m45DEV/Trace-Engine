@@ -1,6 +1,4 @@
-#include <GL/glut.h>
-
-#include "windowDisplay.h"
+#include "window_display.h"
 #include "player.h"
 #include "input.h"
 #include "map.h"
@@ -10,9 +8,13 @@
 void display(void)
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    draw_map_2D();
-    draw_player();
-    draw_rays();
+    
+    if (DEBUG_2D_VIEW) {
+        draw_map_2D();
+        draw_player();
+    }
+    cast_rays(DEBUG_2D_VIEW);
+    
     glutSwapBuffers();
 }
 
