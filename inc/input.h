@@ -15,6 +15,18 @@
 #define ROTATE_RIGHT  'd'
 
 
+typedef struct {
+    int move_forward;
+    int move_backward;
+    int rotate_left;
+    int rotate_right;
+} keys_state_t;
+
+extern keys_state_t action_keys_state;
+
+
+void move_player(void);
+
 /*
     If the key being pressed is an action key, we update the game state to respond
 
@@ -22,6 +34,7 @@
     @param x
     @param y
 */
-void buttons(unsigned char key, int x, int y);
+void buttons_down(unsigned char key, int x, int y);
+void buttons_up(unsigned char key, int x, int y);
 
 #endif

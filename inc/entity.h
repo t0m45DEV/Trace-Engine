@@ -11,7 +11,7 @@
     @param angle Float
     @param velocity Float
 */
-typedef struct entity_s {
+typedef struct {
     float x_pos;
     float y_pos;
     float x_delta;
