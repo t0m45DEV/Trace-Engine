@@ -3,26 +3,15 @@
 void cast_rays(bool debug_view)
 {
     int dof;
-    int ray_map_x;
-    int ray_map_y;
+    int ray_map_x, ray_map_y;
     int ray_in_map;
-    float ray_x;
-    float ray_y;
-    float x_offset;
-    float y_offset;
+    float ray_x, ray_y;
+    float x_offset, y_offset;
     float distance_from_player;
     float angle_cosine;
 
     float ray_angle = player.angle - DEGREE * ANGLE_OF_VISION;
-
-    if (ray_angle < 0)
-    {
-        ray_angle += 2 * PI;
-    }
-    else if (ray_angle > (2 * PI))
-    {
-        ray_angle -= 2 * PI;
-    }
+    ray_angle = adjust_angle(ray_angle);
 
     for (int ray = 0; ray < AMMOUNT_OF_RAYS; ray++)
     {
@@ -150,15 +139,7 @@ void cast_rays(bool debug_view)
         }
 
         angle_cosine = player.angle - ray_angle;
-
-        if (angle_cosine < 0)
-        {
-            angle_cosine += 2 * PI;
-        }
-        else if (angle_cosine > (2 * PI))
-        {
-            angle_cosine -= 2 * PI;
-        }
+        angle_cosine = adjust_angle(angle_cosine);
 
         distance_from_player = distance_from_player * cos(angle_cosine);
         render_line(distance_from_player, ray);
@@ -173,14 +154,6 @@ void cast_rays(bool debug_view)
         }
 
         ray_angle += DEGREE;
-
-        if (ray_angle < 0)
-        {
-            ray_angle += 2 * PI;
-        }
-        else if (ray_angle > (2 * PI))
-        {
-            ray_angle -= 2 * PI;
-        }
+        ray_angle = adjust_angle(ray_angle);
     }
 }

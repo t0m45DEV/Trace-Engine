@@ -9,21 +9,16 @@ void buttons(unsigned char key, int x, int y)
     else if (key == ROTATE_LEFT)
     {
         player.angle -= ROTATE_VELOCITY;
-
-        if (player.angle < 0) {
-            player.angle += 2 * PI;
-        }
+        player.angle = adjust_angle(player.angle);
+        
         player.x_delta = CALCULATE_X_DELTA(player.angle) * player.velocity;
         player.y_delta = CALCULATE_Y_DELTA(player.angle) * player.velocity;
     }
     else if (key == ROTATE_RIGHT)
     {
         player.angle += ROTATE_VELOCITY;
+        player.angle = adjust_angle(player.angle);
 
-        if (player.angle > 2 * PI)
-        {
-            player.angle -= 2 * PI;
-        }
         player.x_delta = CALCULATE_X_DELTA(player.angle) * player.velocity;
         player.y_delta = CALCULATE_Y_DELTA(player.angle) * player.velocity;
     }

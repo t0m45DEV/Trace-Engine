@@ -1,10 +1,8 @@
 # Scape
 
-A 3D Game entirely made with C. More like a "can I do this?" project than a "that's a fun idea for a game" project.
+A 3D Game Engine entirely made with C. More like a "can I do this?" project than a "that's a fun idea for a game" project.
 
-The game is similar to Wolfenstein, using raytracing to fake a 3D environment, but it's really just a 2D plane.
-
-The idea for the game itself it's pretty simple: you are in a labyrinth, and there is a monster trying to catch you. If it does, you loose, if you scape, you win.
+The games it can make are similar to Wolfenstein, using raycasting to fake a 3D environment, but it's really just a 2D plane.
 
 ## Controls
 

@@ -14,6 +14,14 @@
 #define CALCULATE_Y_DELTA(A) (sin(A))
 
 
+/*
+    Returns the distance between (p1_x, p1_y) and (p2_x, p2_y)
+*/
 float distance_between(float p1_x, float p1_y, float p2_x, float p2_y);
+
+/*
+    Returns the angle so it's in the range of 0 to 2*PI
+*/
+float adjust_angle(float angle);
 
 #endif
