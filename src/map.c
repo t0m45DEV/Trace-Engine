@@ -1,7 +1,4 @@
-#include <GL/glut.h>
-
 #include "map.h"
-
 
 int map[] =
 {

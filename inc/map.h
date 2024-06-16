@@ -1,6 +1,8 @@
 #ifndef _H_MAP
 #define _H_MAP
 
+#include <GL/glut.h>
+
 #define MAP_X_SIZE  8
 #define MAP_Y_SIZE  8
 

@@ -1,7 +1,4 @@
-#include <GL/glut.h>
-
 #include "player.h"
-
 
 entity_t player = 
 {

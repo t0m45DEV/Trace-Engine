@@ -1,6 +1,8 @@
 #ifndef _H_PLAYER
 #define _H_PLAYER
 
+#include <GL/glut.h>
+
 #include "entity.h"
 
 #define MOVE_VELOCITY    5

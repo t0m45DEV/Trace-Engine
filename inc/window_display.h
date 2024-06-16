@@ -3,6 +3,11 @@
 
 #include <GL/glut.h>
 
+#include "raycaster.h"
+#include "player.h"
+#include "input.h"
+#include "map.h"
+
 #define DEBUG_2D_VIEW true
 
 #define WINDOW_TITLE "Scape game"

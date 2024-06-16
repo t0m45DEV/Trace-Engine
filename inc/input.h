@@ -1,6 +1,8 @@
 #ifndef _H_INPUT
 #define _H_INPUT
 
+#include "trigonometry.h"
+#include "player.h"
 
 // Action keys
 

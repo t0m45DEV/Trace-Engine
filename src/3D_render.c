@@ -1,6 +1,5 @@
 #include "3D_render.h"
 
-
 void render_line(float distance_from_player, int ray)
 {
     float line_h = (MAP_CELL_SIZE * 320) / distance_from_player;

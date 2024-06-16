@@ -1,9 +1,4 @@
-#include <GL/glut.h>
-
 #include "input.h"
-#include "player.h"
-#include "trigonometry.h"
-
 
 void buttons(unsigned char key, int x, int y)
 {

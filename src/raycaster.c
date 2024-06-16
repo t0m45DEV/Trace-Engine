@@ -1,12 +1,4 @@
-#include <GL/glut.h>
-#include <math.h>
-
 #include "raycaster.h"
-#include "player.h"
-#include "map.h"
-#include "trigonometry.h"
-#include "3D_render.h"
-
 
 void cast_rays(bool debug_view)
 {
