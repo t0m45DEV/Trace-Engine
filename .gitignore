@@ -1,2 +1,4 @@
-./scape
-./obj/*
+scape
+obj/*
+.gdb_history
+.vscode/*
