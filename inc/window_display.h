@@ -25,6 +25,20 @@ extern bool show_3D_view;
 #define X_CENTER_POS ((glutGet(GLUT_SCREEN_WIDTH) - WINDOW_WIDTH) / 2)
 #define Y_CENTER_POS ((glutGet(GLUT_SCREEN_HEIGHT) - WINDOW_HEIGHT) / 2)
 
+
+#define MAX_FPS 60
+
+extern float fps;
+
+#define FPS_CORRECTION (0.02 * fps)
+
+
+/*
+    Update fps by substracting the actual frame from the previous
+*/
+void update_fps(void);
+
+
 /*
     Draw the objects in the window
 */

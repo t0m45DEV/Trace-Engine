@@ -5,8 +5,24 @@ int resolution = LOW_RESOLUTION;
 bool debug_2D_view = false;
 bool show_3D_view = true;
 
+float fps = MAX_FPS;
+
+float previous_frame = 0;
+float actual_frame;
+
+void update_fps(void)
+{
+    actual_frame = glutGet(GLUT_ELAPSED_TIME);
+    fps = (actual_frame - previous_frame);
+    previous_frame = glutGet(GLUT_ELAPSED_TIME);
+
+    if (fps > MAX_FPS) fps = MAX_FPS;
+}
+
+
 void display(void)
 {
+    update_fps();
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     move_player();
