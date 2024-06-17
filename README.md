@@ -10,7 +10,7 @@ You can move forward and backward with W and S, respectively. To rotate left or 
 
 ## Instalation
 
-To install just download the executable from this git, or download the whole project and run:
+Download the whole project and run:
 
 ```
 make
