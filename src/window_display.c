@@ -3,7 +3,6 @@
 int resolution = LOW_RESOLUTION;
 
 bool debug_2D_view = false;
-bool show_3D_view = true;
 
 float fps = MAX_FPS;
 

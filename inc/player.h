@@ -6,7 +6,7 @@
 #include "entity.h"
 #include "map.h"
 
-#define MOVE_VELOCITY    1.7
+#define MOVE_VELOCITY    2
 #define ROTATE_VELOCITY  0.08
 
 #define P_X_SPAWN 1

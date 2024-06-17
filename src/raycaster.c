@@ -2,7 +2,7 @@
 
 void cast_rays(bool debug_view)
 {
-    int dof;
+    int count_of_hits;
     int ray_map_x, ray_map_y;
     int ray_in_map;
     float ray_x, ray_y;
@@ -20,7 +20,7 @@ void cast_rays(bool debug_view)
         float distance_h = INT32_MAX;
         float ray_x_h, ray_y_h;
 
-        dof = 0;
+        count_of_hits = 0;
         float aTan = -1 / tan(ray_angle);
 
         if ((ray_angle == 0) || (ray_angle == PI)) // If looking straight left or right
@@ -28,7 +28,7 @@ void cast_rays(bool debug_view)
             ray_x = player.x_pos;
             ray_y = player.y_pos;
 
-            dof = MAP_Y_SIZE;
+            count_of_hits = MAP_Y_SIZE;
         }
         else if (ray_angle > PI) // If looking down
         {
@@ -47,7 +47,7 @@ void cast_rays(bool debug_view)
             x_offset = (-1) * y_offset * aTan;
         }
 
-        while (dof < MAP_Y_SIZE)
+        while (count_of_hits < MAP_Y_SIZE)
         {
             ray_map_x = (int) (ray_x / MAP_CELL_SIZE);
             ray_map_y = (int) (ray_y / MAP_CELL_SIZE);
@@ -59,13 +59,13 @@ void cast_rays(bool debug_view)
                 ray_y_h = ray_y;
                 distance_h = distance_between(player.x_pos, player.y_pos, ray_x, ray_y);
 
-                dof = MAP_Y_SIZE;
+                count_of_hits = MAP_Y_SIZE;
             }
             else // Check the next 
             {
                 ray_x += x_offset;
                 ray_y += y_offset;
-                dof += 1;
+                count_of_hits += 1;
             }
         }
 
@@ -74,7 +74,7 @@ void cast_rays(bool debug_view)
         float distance_v = INT32_MAX;
         float ray_x_v, ray_y_v;
 
-        dof = 0;
+        count_of_hits = 0;
         float nTan = (-1) * tan(ray_angle);
 
         if ((ray_angle == UP_DIR) || (ray_angle == DOWN_DIR)) // If looking straight up or down
@@ -82,7 +82,7 @@ void cast_rays(bool debug_view)
             ray_x = player.x_pos;
             ray_y = player.y_pos;
 
-            dof = MAP_X_SIZE;
+            count_of_hits = MAP_X_SIZE;
         }
         else if ((ray_angle > UP_DIR) && (ray_angle < DOWN_DIR)) // If looking left
         {
@@ -101,7 +101,7 @@ void cast_rays(bool debug_view)
             y_offset = (-1) * x_offset * nTan;
         }
 
-        while (dof < MAP_X_SIZE)
+        while (count_of_hits < MAP_X_SIZE)
         {
             ray_map_x = (int) (ray_x / MAP_CELL_SIZE);
             ray_map_y = (int) (ray_y / MAP_CELL_SIZE);
@@ -113,13 +113,13 @@ void cast_rays(bool debug_view)
                 ray_y_v = ray_y;
                 distance_v = distance_between(player.x_pos, player.y_pos, ray_x, ray_y);
 
-                dof = MAP_Y_SIZE;
+                count_of_hits = MAP_Y_SIZE;
             }
             else // Check the next 
             {
                 ray_x += x_offset;
                 ray_y += y_offset;
-                dof += 1;
+                count_of_hits += 1;
             }
         }
 
@@ -138,12 +138,12 @@ void cast_rays(bool debug_view)
             glColor3f(0.7, 0, 0);
         }
 
-        if (show_3D_view)
+        if (!debug_view)
         {
             angle_cosine = player.angle - ray_angle;
             angle_cosine = adjust_angle(angle_cosine);
 
-            distance_from_player = distance_from_player * cos(angle_cosine);
+            distance_from_player = distance_from_player * cos(angle_cosine); // Fix fisheye
             render_line(distance_from_player, ray);
         }
 

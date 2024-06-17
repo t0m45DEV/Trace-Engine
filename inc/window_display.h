@@ -15,7 +15,6 @@
 extern int resolution;
 
 extern bool debug_2D_view;
-extern bool show_3D_view;
 
 #define WINDOW_TITLE "Tom's 3D Engine"
 
