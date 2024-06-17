@@ -7,6 +7,7 @@ TARGET = Tom_3D_game_engine
 
 OBJS  = $(OBJ_DIR)/main.o\
 		$(OBJ_DIR)/window_display.o\
+		$(OBJ_DIR)/entity.o\
 		$(OBJ_DIR)/player.o\
 		$(OBJ_DIR)/input.o\
 		$(OBJ_DIR)/map.o\
