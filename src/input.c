@@ -65,7 +65,7 @@ void move_player(void)
         player.x_delta = CALCULATE_X_DELTA(player.angle) * player.velocity;
         player.y_delta = CALCULATE_Y_DELTA(player.angle) * player.velocity;
     }
-    else if (action_keys_state.rotate_right)
+    if (action_keys_state.rotate_right)
     {
         player.angle += ROTATE_VELOCITY * FPS_CORRECTION;
         player.angle = adjust_angle(player.angle);
@@ -73,12 +73,12 @@ void move_player(void)
         player.x_delta = CALCULATE_X_DELTA(player.angle) * player.velocity;
         player.y_delta = CALCULATE_Y_DELTA(player.angle) * player.velocity;
     }
-    else if (action_keys_state.move_forward)
+    if (action_keys_state.move_forward)
     {
         player.x_pos += player.x_delta * FPS_CORRECTION;
         player.y_pos += player.y_delta * FPS_CORRECTION;
     }
-    else if (action_keys_state.move_backward)
+    if (action_keys_state.move_backward)
     {
         player.x_pos -= player.x_delta * FPS_CORRECTION;
         player.y_pos -= player.y_delta * FPS_CORRECTION;
