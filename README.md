@@ -19,7 +19,7 @@ make
 to create a new executable. Then, in the same folder run:
 
 ```
-./scape
+./Tom_3D_game_engine
 ```
 
 and the game should start.
