@@ -25,8 +25,6 @@ void draw_player(void)
     float look_x_dir = player.x_pos + player.x_delta * MOVE_VELOCITY;
     float look_y_dir = player.y_pos + player.y_delta * MOVE_VELOCITY;
 
-    player = calculate_offset(player);
-
     glLineWidth(4);
     glBegin(GL_LINES);
     glVertex2i(player.x_pos, player.y_pos);

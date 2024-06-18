@@ -38,15 +38,15 @@ typedef struct entity_s {
 entity_t calculate_offset(entity_t entity);
 
 
-#define FRONT_RIGHT_COLLISION 1
-#define FRONT_LEFT_COLLISION 2
-#define BACK_RIGHT_COLLISION -1
-#define BACK_LEFT_COLLISION -2
+#define FRONT_X_AXIS_COLLISION 1
+#define FRONT_Y_AXIS_COLLISION 2
+#define BACK_X_AXIS_COLLISION -1
+#define BACK_Y_AXIS_COLLISION -2
 #define NO_COLLISION 0
 
 /*
     Given an entity and a collision position indicator, returns 0 if there is no collision in that direction, or another number of there is a collision
 */
-int is_colliding(entity_t entity, int col_pos);
+int is_colliding_in_axis(entity_t entity, int axis);
 
 #endif
