@@ -55,11 +55,5 @@ int is_colliding(entity_t entity, int col_pos)
         return (map[y_idx_sub_offset * MAP_X_SIZE + x_idx] != AIR);
     }
 
-    //if (map[y_idx * MAP_X_SIZE + x_idx_add_offset] != AIR) return FRONT_RIGHT_COLLISION;
-    //if (map[y_idx_add_offset * MAP_X_SIZE + x_idx] != AIR) return FRONT_LEFT_COLLISION;
-
-    //if (map[y_idx * MAP_X_SIZE + x_idx_sub_offset] != AIR) return BACK_RIGHT_COLLISION;
-    //if (map[y_idx_sub_offset * MAP_X_SIZE + x_idx] != AIR) return BACK_LEFT_COLLISION;
-
     return NO_COLLISION;
 }
