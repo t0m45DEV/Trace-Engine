@@ -22,7 +22,7 @@ void draw_map_2D(void)
     {
         for (int x = 0; x < MAP_X_SIZE; x++)
         {
-            if (map[(y * MAP_X_SIZE) + x] == 1)
+            if (map[(y * MAP_X_SIZE) + x] == WALL)
             {
                 glColor3f(1, 1, 1);
             }

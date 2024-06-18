@@ -75,13 +75,13 @@ void move_player(void)
     }
     if (action_keys_state.move_forward)
     {
-        player.x_pos += player.x_delta * FPS_CORRECTION;
-        player.y_pos += player.y_delta * FPS_CORRECTION;
+        if (!is_colliding(player, FRONT_RIGHT_COLLISION)) player.x_pos += player.x_delta * FPS_CORRECTION;
+        if (!is_colliding(player, FRONT_LEFT_COLLISION))  player.y_pos += player.y_delta * FPS_CORRECTION;
     }
     if (action_keys_state.move_backward)
     {
-        player.x_pos -= player.x_delta * FPS_CORRECTION;
-        player.y_pos -= player.y_delta * FPS_CORRECTION;
+        if (!is_colliding(player, BACK_RIGHT_COLLISION)) player.x_pos -= player.x_delta * FPS_CORRECTION;
+        if (!is_colliding(player, BACK_LEFT_COLLISION))  player.y_pos -= player.y_delta * FPS_CORRECTION;
     }
 
     glutPostRedisplay();

@@ -13,6 +13,10 @@
 
 extern int map[];
 
+extern enum structures_t {
+    AIR,
+    WALL
+} structures;
 
 /*
     Draw in the screen a 2D matrix of squares, white being wall and blakc being floor

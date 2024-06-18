@@ -4,11 +4,10 @@
 #include <GL/glut.h>
 
 #include "entity.h"
-#include "map.h"
 
 #define P_COLLISION_SIZE 20
 
-#define MOVE_VELOCITY    2
+#define MOVE_VELOCITY    3
 #define ROTATE_VELOCITY  0.08
 
 #define P_X_SPAWN 1
@@ -18,7 +17,7 @@
 #define P_INIT_Y_POS  GRID_Y_POS_TO_REAL_Y_POS(P_Y_SPAWN)
 
 
-extern entity_t player; // The player info, like the position and angle of vision
+extern entity_t player; // The player info, like the position and actual direction of movement
 
 /*
     Draw the player in the screen in the actual player position.

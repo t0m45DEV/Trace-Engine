@@ -1,6 +1,9 @@
 #ifndef _H_ENTITY
 #define _H_ENTITY
 
+#include <stdbool.h>
+#include "map.h"
+
 /*
     An entity is every interactive and moving thing in the game, including the player
 
@@ -11,6 +14,8 @@
     @param angle Float
     @param velocity Float
     @param collision_size Int
+    @param x_offset Float
+    @param y_offset Float
 */
 typedef struct entity_s {
     float x_pos;
@@ -31,5 +36,17 @@ typedef struct entity_s {
     @param entity An entity type, the engine asumes that x_delta and y_delta have correct values
 */
 entity_t calculate_offset(entity_t entity);
+
+
+#define FRONT_RIGHT_COLLISION 1
+#define FRONT_LEFT_COLLISION 2
+#define BACK_RIGHT_COLLISION -1
+#define BACK_LEFT_COLLISION -2
+#define NO_COLLISION 0
+
+/*
+    Given an entity and a collision position indicator, returns 0 if there is no collision in that direction, or another number of there is a collision
+*/
+int is_colliding(entity_t entity, int col_pos);
 
 #endif
