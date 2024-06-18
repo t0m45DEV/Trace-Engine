@@ -3,7 +3,7 @@
 
 #include <GL/glut.h>
 
-#define MAP_X_SIZE  8
+#define MAP_X_SIZE  16
 #define MAP_Y_SIZE  8
 
 #define MAP_CELL_SIZE  64

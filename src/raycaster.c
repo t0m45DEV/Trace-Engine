@@ -28,7 +28,7 @@ void cast_rays(bool debug_view)
             ray_x = player.x_pos;
             ray_y = player.y_pos;
 
-            count_of_hits = MAP_Y_SIZE;
+            count_of_hits = MAP_X_SIZE;
         }
         else if (ray_angle > PI) // If looking down
         {
@@ -47,7 +47,7 @@ void cast_rays(bool debug_view)
             x_offset = (-1) * y_offset * aTan;
         }
 
-        while (count_of_hits < MAP_Y_SIZE)
+        while (count_of_hits < MAP_X_SIZE)
         {
             ray_map_x = (int) (ray_x / MAP_CELL_SIZE);
             ray_map_y = (int) (ray_y / MAP_CELL_SIZE);
@@ -59,7 +59,7 @@ void cast_rays(bool debug_view)
                 ray_y_h = ray_y;
                 distance_h = distance_between(player.x_pos, player.y_pos, ray_x, ray_y);
 
-                count_of_hits = MAP_Y_SIZE;
+                count_of_hits = MAP_X_SIZE;
             }
             else // Check the next 
             {
@@ -82,7 +82,7 @@ void cast_rays(bool debug_view)
             ray_x = player.x_pos;
             ray_y = player.y_pos;
 
-            count_of_hits = MAP_X_SIZE;
+            count_of_hits = MAP_Y_SIZE;
         }
         else if ((ray_angle > UP_DIR) && (ray_angle < DOWN_DIR)) // If looking left
         {
@@ -101,7 +101,7 @@ void cast_rays(bool debug_view)
             y_offset = (-1) * x_offset * nTan;
         }
 
-        while (count_of_hits < MAP_X_SIZE)
+        while (count_of_hits < MAP_Y_SIZE)
         {
             ray_map_x = (int) (ray_x / MAP_CELL_SIZE);
             ray_map_y = (int) (ray_y / MAP_CELL_SIZE);
