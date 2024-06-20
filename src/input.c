@@ -62,26 +62,26 @@ void move_player(void)
         player.angle -= ROTATE_VELOCITY * FPS_CORRECTION;
         player.angle = adjust_angle(player.angle);
         
-        player.x_delta = CALCULATE_X_DELTA(player.angle) * player.velocity;
-        player.y_delta = CALCULATE_Y_DELTA(player.angle) * player.velocity;
+        player.delta.x = CALCULATE_X_DELTA(player.angle) * player.velocity;
+        player.delta.y = CALCULATE_Y_DELTA(player.angle) * player.velocity;
     }
     if (action_keys_state.rotate_right)
     {
         player.angle += ROTATE_VELOCITY * FPS_CORRECTION;
         player.angle = adjust_angle(player.angle);
 
-        player.x_delta = CALCULATE_X_DELTA(player.angle) * player.velocity;
-        player.y_delta = CALCULATE_Y_DELTA(player.angle) * player.velocity;
+        player.delta.x = CALCULATE_X_DELTA(player.angle) * player.velocity;
+        player.delta.y = CALCULATE_Y_DELTA(player.angle) * player.velocity;
     }
     if (action_keys_state.move_forward)
     {
-        if (!is_colliding_in_axis(player, FRONT_X_AXIS_COLLISION)) player.x_pos += player.x_delta * FPS_CORRECTION;
-        if (!is_colliding_in_axis(player, FRONT_Y_AXIS_COLLISION))  player.y_pos += player.y_delta * FPS_CORRECTION;
+        if (!is_colliding_in_axis(player, FRONT_X_AXIS_COLLISION)) player.pos.x += player.delta.x * FPS_CORRECTION;
+        if (!is_colliding_in_axis(player, FRONT_Y_AXIS_COLLISION)) player.pos.y += player.delta.y * FPS_CORRECTION;
     }
     if (action_keys_state.move_backward)
     {
-        if (!is_colliding_in_axis(player, BACK_X_AXIS_COLLISION)) player.x_pos -= player.x_delta * FPS_CORRECTION;
-        if (!is_colliding_in_axis(player, BACK_Y_AXIS_COLLISION))  player.y_pos -= player.y_delta * FPS_CORRECTION;
+        if (!is_colliding_in_axis(player, BACK_X_AXIS_COLLISION)) player.pos.x -= player.delta.x * FPS_CORRECTION;
+        if (!is_colliding_in_axis(player, BACK_Y_AXIS_COLLISION)) player.pos.y -= player.delta.y * FPS_CORRECTION;
     }
 
     glutPostRedisplay();

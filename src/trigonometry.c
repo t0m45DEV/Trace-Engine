@@ -1,8 +1,8 @@
 #include "trigonometry.h"
 
-float distance_between(float p1_x, float p1_y, float p2_x, float p2_y)
+float distance_between(position_2D p1, position_2D p2)
 {
-    return sqrt(((p1_x - p2_x) * (p1_x - p2_x)) + ((p1_y - p2_y) * (p1_y - p2_y)));
+    return sqrt(((p1.x - p2.x) * (p1.x - p2.x)) + ((p1.y - p2.y) * (p1.y - p2.y)));
 }
 
 float adjust_angle(float angle)

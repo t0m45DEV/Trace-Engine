@@ -11,6 +11,8 @@
 #define GRID_X_POS_TO_REAL_X_POS(X) ((X * MAP_CELL_SIZE) + (MAP_CELL_SIZE / 2))
 #define GRID_Y_POS_TO_REAL_Y_POS(Y) ((Y * MAP_CELL_SIZE) + (MAP_CELL_SIZE / 2))
 
+#define REAL_POS_TO_GRID_POS(X, Y) (((int) (Y)) * MAP_X_SIZE + ((int) (X)))
+
 extern int map[];
 
 extern enum structures_t {

@@ -14,10 +14,16 @@
 #define CALCULATE_Y_DELTA(A) (sin(A))
 
 
+typedef struct position_2D_s {
+    float x;
+    float y;
+} position_2D;
+
+
 /*
-    Returns the distance between (p1_x, p1_y) and (p2_x, p2_y)
+    Returns the distance between p1 and p2
 */
-float distance_between(float p1_x, float p1_y, float p2_x, float p2_y);
+float distance_between(position_2D p1, position_2D p2);
 
 /*
     Returns the angle so it's in the range of 0 to 2*PI

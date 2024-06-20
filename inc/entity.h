@@ -3,6 +3,7 @@
 
 #include <stdbool.h>
 #include "map.h"
+#include "trigonometry.h"
 
 /*
     An entity is every interactive and moving thing in the game, including the player
@@ -18,15 +19,12 @@
     @param y_offset Float
 */
 typedef struct entity_s {
-    float x_pos;
-    float y_pos;
-    float x_delta;
-    float y_delta;
+    position_2D pos;
+    position_2D delta;
     float angle;
     float velocity;
     int collision_size;
-    float x_offset;
-    float y_offset;
+    position_2D offset;
 } entity_t;
 
 
