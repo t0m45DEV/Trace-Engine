@@ -1,8 +1,6 @@
 #include "entity.h"
 
 
-#include <stdio.h>
-
 entity_t calculate_offset(entity_t entity)
 {
     if (entity.delta.x < 0) {entity.offset.x = (-1) * entity.collision_size;}
@@ -43,7 +41,6 @@ int is_colliding_in_axis(entity_t entity, int axis)
 
     if (axis == FRONT_X_AXIS_COLLISION)
     {
-        printf("(%f, %f)\n", idx.x, idx.y);
         if (can_move(idx, add_offset))
         {
             return (map[REAL_POS_TO_GRID_POS(add_offset.x, idx.y)] != AIR);

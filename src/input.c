@@ -5,8 +5,8 @@ keys_state_t action_keys_state =
 {
     .move_forward  = 0,
     .move_backward = 0,
-    .rotate_left   = 0,
-    .rotate_right  = 0,
+    .rotate_anti_clockwise   = 0,
+    .rotate_clockwise  = 0,
 };
 
 
@@ -24,13 +24,13 @@ void buttons_down(unsigned char key, int x, int y)
     {
         action_keys_state.move_backward = 1;
     }
-    else if (key == ROTATE_LEFT)
+    else if (key == ROTATE_ANTI_CLOCKWISE)
     {
-        action_keys_state.rotate_left = 1;
+        action_keys_state.rotate_anti_clockwise = 1;
     }
-    else if (key == ROTATE_RIGHT)
+    else if (key == ROTATE_CLOCKWISE)
     {
-        action_keys_state.rotate_right = 1;
+        action_keys_state.rotate_clockwise = 1;
     }
 }
 
@@ -44,20 +44,20 @@ void buttons_up(unsigned char key, int x, int y)
     {
         action_keys_state.move_backward = 0;
     }
-    else if (key == ROTATE_LEFT)
+    else if (key == ROTATE_ANTI_CLOCKWISE)
     {
-        action_keys_state.rotate_left = 0;
+        action_keys_state.rotate_anti_clockwise = 0;
     }
-    else if (key == ROTATE_RIGHT)
+    else if (key == ROTATE_CLOCKWISE)
     {
-        action_keys_state.rotate_right = 0;
+        action_keys_state.rotate_clockwise = 0;
     }
 }
 
 
 void move_player(void)
 {
-    if (action_keys_state.rotate_left)
+    if (action_keys_state.rotate_anti_clockwise)
     {
         player.angle -= ROTATE_VELOCITY * FPS_CORRECTION;
         player.angle = adjust_angle(player.angle);
@@ -65,7 +65,7 @@ void move_player(void)
         player.delta.x = CALCULATE_X_DELTA(player.angle) * player.velocity;
         player.delta.y = CALCULATE_Y_DELTA(player.angle) * player.velocity;
     }
-    if (action_keys_state.rotate_right)
+    if (action_keys_state.rotate_clockwise)
     {
         player.angle += ROTATE_VELOCITY * FPS_CORRECTION;
         player.angle = adjust_angle(player.angle);

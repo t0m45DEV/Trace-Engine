@@ -11,8 +11,8 @@
 
 #define MOVE_FORWARD  'w'
 #define MOVE_BACKWARD 's'
-#define ROTATE_LEFT   'a'
-#define ROTATE_RIGHT  'd'
+#define ROTATE_ANTI_CLOCKWISE 'a'
+#define ROTATE_CLOCKWISE      'd'
 
 
 /*
@@ -23,8 +23,8 @@
 typedef struct keys_state_s {
     int move_forward;
     int move_backward;
-    int rotate_left;
-    int rotate_right;
+    int rotate_anti_clockwise;
+    int rotate_clockwise;
 } keys_state_t;
 
 extern keys_state_t action_keys_state;
