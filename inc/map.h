@@ -3,6 +3,7 @@
 
 #include <GL/glut.h>
 #include "trigonometry.h"
+#include "world.h"
 
 #define MAP_X_SIZE  16
 #define MAP_Y_SIZE  8

@@ -17,9 +17,9 @@ void draw_map_2D(void)
 {
     position_2D grid_pos;
 
-    for (int y = 0; y < MAP_Y_SIZE; y++)
+    for (int y = 0; y < levels[current_level].map_size.y; y++)
     {
-        for (int x = 0; x < MAP_X_SIZE; x++)
+        for (int x = 0; x < levels[current_level].map_size.x; x++)
         {
             if (map[REAL_POS_TO_GRID_POS(x, y)] == AIR)
             {
