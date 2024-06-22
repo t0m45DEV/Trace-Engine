@@ -39,38 +39,27 @@ int is_colliding_in_axis(entity_t entity, int axis)
     sub_offset.x = (entity.pos.x - entity.offset.x) / (float) MAP_CELL_SIZE;
     sub_offset.y = (entity.pos.y - entity.offset.y) / (float) MAP_CELL_SIZE;
 
-    if (axis == FRONT_X_AXIS_COLLISION)
+    if (can_move(idx, add_offset)) // If can move forward
     {
-        if (can_move(idx, add_offset))
+        if (axis == FRONT_X_AXIS_COLLISION)
         {
             return (map[REAL_POS_TO_GRID_POS(add_offset.x, idx.y)] != AIR);
         }
-        else {return true;}
-    }
-    else if (axis == FRONT_Y_AXIS_COLLISION)
-    {
-        if (can_move(idx, add_offset))
+        else if (axis == FRONT_Y_AXIS_COLLISION)
         {
             return (map[REAL_POS_TO_GRID_POS(idx.x, add_offset.y)] != AIR);
         }
-        else {return true;}
     }
-    else if (axis == BACK_X_AXIS_COLLISION)
+    else if (can_move(idx, sub_offset)) // If can move backward
     {
-        if (can_move(idx, sub_offset))
+        if (axis == BACK_X_AXIS_COLLISION)
         {
             return (map[REAL_POS_TO_GRID_POS(sub_offset.x, idx.y)] != AIR);
         }
-        else {return true;}
-    }
-    else if (axis == BACK_Y_AXIS_COLLISION)
-    {
-        if (can_move(idx, sub_offset))
+        else if (axis == BACK_Y_AXIS_COLLISION)
         {
             return (map[REAL_POS_TO_GRID_POS(idx.x, sub_offset.y)] != AIR);
         }
-        else {return true;}
     }
-
     return true;
 }
