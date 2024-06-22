@@ -2,6 +2,7 @@
 #define _H_MAP
 
 #include <GL/glut.h>
+#include "trigonometry.h"
 
 #define MAP_X_SIZE  16
 #define MAP_Y_SIZE  8
@@ -13,12 +14,12 @@
 
 #define REAL_POS_TO_GRID_POS(X, Y) (((int) (Y)) * MAP_X_SIZE + ((int) (X)))
 
-extern int map[];
-
-extern enum structures_t {
+typedef enum structures_t {
     AIR,
     WALL
 } structures;
+
+extern structures map[];
 
 /*
     Draw in the screen a 2D matrix of squares, white being wall and blakc being floor
