@@ -47,7 +47,7 @@ void window_create(int argc, char** argv)
     glutInitWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
     glutInitWindowPosition(X_CENTER_POS, Y_CENTER_POS);
     glutCreateWindow(WINDOW_TITLE);
-    gluOrtho2D(0, WINDOW_WIDTH, 0, WINDOW_HEIGHT);
+    gluOrtho2D(0, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
     glClearColor(0.5, 0.5, 0.5, 0);
     glutReshapeFunc(resize);
     glutDisplayFunc(display);
