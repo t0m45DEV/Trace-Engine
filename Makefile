@@ -22,6 +22,7 @@ CFLAGS = -Wall -I$(INC_DIR) -g
 
 LIBS = -lglut -lGLU -lGL -lm
 
+VALGRIND_FLAGS = --leak-check=full
 
 $(TARGET) : $(OBJS)
 	@echo ':: Creating executable for $(TARGET)...'
@@ -51,3 +52,7 @@ play: $(TARGET)
 debug: $(TARGET)
 	@echo '>> Creating debug sesion for $(TARGET)'
 	@gdb ./$(TARGET)
+
+mem_check: $(TARGET)
+	@echo '>> Creating memory check sesion for $(TARGET)'
+	@valgrind $(VALGRIND_FLAGS) ./$(TARGET)
