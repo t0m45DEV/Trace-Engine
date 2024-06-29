@@ -25,6 +25,8 @@ extern position_2D player_spawns[LEVEL_COUNT];
 
 /*
     Check if the given index is in range of the current level map
+
+    curr_lev_info.mapp_offset <= idx < (curr_lev_info.mapp_offset + MAP_SIZE)
 */
 int is_valid_map_index(int idx);
 
