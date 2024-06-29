@@ -16,8 +16,17 @@
 
 typedef enum structures_s {
     AIR,
-    WALL
+    WALL,
+    DOOR
 } structures_t;
+
+typedef struct rgb_s {
+    float r;
+    float g;
+    float b;
+} rgb_t;
+
+extern rgb_t structures_colors[];
 
 extern structures_t map[];
 extern position_2D maps_sizes[LEVEL_COUNT];

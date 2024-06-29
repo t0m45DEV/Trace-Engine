@@ -20,6 +20,7 @@ void cast_rays(bool debug_view)
 
         float distance_h = INT32_MAX;
         position_2D ray_H;
+        structures_t surface_H;
 
         count_of_hits = 0;
         float aTan = -1 / tan(ray_angle);
@@ -59,6 +60,7 @@ void cast_rays(bool debug_view)
                 ray_H.x = ray_pos.x;
                 ray_H.y = ray_pos.y;
                 distance_h = distance_between(player.pos, ray_pos);
+                surface_H = map[ray_in_map];
 
                 count_of_hits = curr_lev_info.map_size.y; // End the loop
             }
@@ -73,6 +75,7 @@ void cast_rays(bool debug_view)
 
         float distance_v = INT32_MAX;
         position_2D ray_V;
+        structures_t surface_V;
 
         count_of_hits = 0;
         float nTan = (-1) * tan(ray_angle);
@@ -112,6 +115,7 @@ void cast_rays(bool debug_view)
                 ray_V.x = ray_pos.x;
                 ray_V.y = ray_pos.y;
                 distance_v = distance_between(player.pos, ray_pos);
+                surface_V = map[ray_in_map];
 
                 count_of_hits = curr_lev_info.map_size.x; // End the loop
             }
@@ -128,14 +132,16 @@ void cast_rays(bool debug_view)
             ray_pos.x = ray_H.x;
             ray_pos.y = ray_H.y;
             distance_from_player = distance_h;
-            glColor3f(0.9, 0, 0);
+            
+            set_wall_color(surface_H, LIGHT_SHADE);
         }
         else
         {
             ray_pos.x = ray_V.x;
             ray_pos.y = ray_V.y;
             distance_from_player = distance_v;
-            glColor3f(0.7, 0, 0);
+
+            set_wall_color(surface_V, DARK_SHADE);
         }
 
         if (!debug_view)

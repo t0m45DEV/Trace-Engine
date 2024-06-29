@@ -15,6 +15,8 @@
 
 #define PRECISION 0.0001
 
+#define LIGHT_SHADE 0.9
+#define DARK_SHADE 0.7
 
 /*
     Cast the 2D top-down vision rays for the player and calls the 3D render
