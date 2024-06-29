@@ -1,17 +1,19 @@
 #include "player.h"
 
-entity_t player = 
+entity_t player = {0};
+
+void reset_player_info(void)
 {
-    .pos.x    = P_INIT_X_POS,
-    .pos.y    =  P_INIT_Y_POS,
-    .delta.x  = MOVE_VELOCITY, // CALCULATE_X_DELTA(player.angle)
-    .delta.y  = 0,             // CALCULATE_Y_DELTA(player.angle)
-    .angle    = 0,
-    .velocity = MOVE_VELOCITY,
-    .collision_size = P_COLLISION_SIZE,
-    .offset.x = 0,
-    .offset.y = 0
-};
+    player.pos.x = GRID_X_POS_TO_REAL_X_POS(curr_lev_info.player_spawn.x);
+    player.pos.y = GRID_Y_POS_TO_REAL_Y_POS(curr_lev_info.player_spawn.y);
+    player.angle = P_INIT_ANGLE;
+    player.velocity = MOVE_VELOCITY;
+    player.delta.x = CALCULATE_X_DELTA(player.angle) * player.velocity;
+    player.delta.y = CALCULATE_Y_DELTA(player.angle) * player.velocity;
+    player.collision_size = P_COLLISION_SIZE;
+    player = calculate_offset(player);
+}
+
 
 void draw_player(void)
 {

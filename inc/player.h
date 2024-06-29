@@ -10,14 +10,16 @@
 #define MOVE_VELOCITY    3
 #define ROTATE_VELOCITY  0.08
 
-#define P_X_SPAWN 1
-#define P_Y_SPAWN 6
-
-#define P_INIT_X_POS  GRID_X_POS_TO_REAL_X_POS(P_X_SPAWN)
-#define P_INIT_Y_POS  GRID_Y_POS_TO_REAL_Y_POS(P_Y_SPAWN)
+#define P_INIT_ANGLE 0
 
 
 extern entity_t player; // The player info, like the position and actual direction of movement
+
+
+/*
+
+*/
+void reset_player_info(void);
 
 /*
     Draw the player in the screen in the actual player position.

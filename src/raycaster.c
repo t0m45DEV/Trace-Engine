@@ -1,5 +1,12 @@
 #include "raycaster.h"
 
+
+int is_valid_index(int idx)
+{
+    return ((idx > curr_lev_info.map_offset) && (idx < (curr_lev_info.map_offset + MAP_SIZE)));
+}
+
+
 void cast_rays(bool debug_view)
 {
     int count_of_hits;
@@ -28,7 +35,7 @@ void cast_rays(bool debug_view)
             ray_pos.x = player.pos.x;
             ray_pos.y = player.pos.y;
 
-            count_of_hits = MAP_Y_SIZE;
+            count_of_hits = curr_lev_info.map_size.y;
         }
         else if (ray_angle > PI) // If looking down
         {
@@ -47,19 +54,19 @@ void cast_rays(bool debug_view)
             ray_offset.x = (-1) * ray_offset.y * aTan;
         }
 
-        while (count_of_hits < MAP_Y_SIZE)
+        while (count_of_hits < curr_lev_info.map_size.y)
         {
             map_ray.x = (int) (ray_pos.x / MAP_CELL_SIZE);
             map_ray.y = (int) (ray_pos.y / MAP_CELL_SIZE);
             ray_in_map = REAL_POS_TO_GRID_POS(map_ray.x, map_ray.y);
 
-            if ((ray_in_map > 0) && (ray_in_map < (MAP_X_SIZE * MAP_Y_SIZE)) && (map[ray_in_map] != AIR)) // Hit a wall
+            if ((is_valid_index(ray_in_map)) && (map[ray_in_map] != AIR)) // Hit a wall
             {
                 ray_H.x = ray_pos.x;
                 ray_H.y = ray_pos.y;
                 distance_h = distance_between(player.pos, ray_pos);
 
-                count_of_hits = MAP_Y_SIZE;
+                count_of_hits = curr_lev_info.map_size.y; // End the loop
             }
             else // Check the next 
             {
@@ -68,7 +75,6 @@ void cast_rays(bool debug_view)
                 count_of_hits += 1;
             }
         }
-
         // Check vertical lines
 
         float distance_v = INT32_MAX;
@@ -82,7 +88,7 @@ void cast_rays(bool debug_view)
             ray_pos.x = player.pos.x;
             ray_pos.y = player.pos.y;
 
-            count_of_hits = MAP_X_SIZE;
+            count_of_hits = curr_lev_info.map_size.x;
         }
         else if ((ray_angle > UP_DIR) && (ray_angle < DOWN_DIR)) // If looking left
         {
@@ -101,19 +107,19 @@ void cast_rays(bool debug_view)
             ray_offset.y = (-1) * ray_offset.x * nTan;
         }
 
-        while (count_of_hits < MAP_X_SIZE)
+        while (count_of_hits < curr_lev_info.map_size.x)
         {
             map_ray.x = (int) (ray_pos.x / MAP_CELL_SIZE);
             map_ray.y = (int) (ray_pos.y / MAP_CELL_SIZE);
             ray_in_map = REAL_POS_TO_GRID_POS(map_ray.x, map_ray.y);
 
-            if ((ray_in_map > 0) && (ray_in_map < (MAP_X_SIZE * MAP_Y_SIZE)) && (map[ray_in_map] != AIR)) // Hit a wall
+            if ((is_valid_index(ray_in_map)) && (map[ray_in_map] != AIR)) // Hit a wall
             {
                 ray_V.x = ray_pos.x;
                 ray_V.y = ray_pos.y;
                 distance_v = distance_between(player.pos, ray_pos);
 
-                count_of_hits = MAP_X_SIZE;
+                count_of_hits = curr_lev_info.map_size.x; // End the loop
             }
             else // Check the next 
             {

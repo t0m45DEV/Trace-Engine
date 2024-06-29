@@ -1,41 +1,23 @@
-#include "world.h"
+#include "map.h"
 
+int current_level = 0;
+level_t curr_lev_info = {0};
 
-structures map1 = {
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1,
-    1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1,
-    1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1,
-    1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1,
-    1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1,
-    1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-};
+int get_map_offset(int level_idx)
+{
+    int ret = 0;
 
-structures map2 = {
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-};
-
-const int LEVELS_COUNT = 2;
-
-level levels[] = {
+    for (int i = 0; i < level_idx; i++)
     {
-        .player_spawn = {1,1},
-        .map_size = {16, 8},
-        .map = &map1
-    },
-    {
-        .player_spawn = {1,1},
-        .map_size = {16, 8},
-        .map = &map2
+        ret += (maps_sizes[i].x * maps_sizes[i].y);
     }
-};
+    return ret;
+}
 
-current_level = 0;
+
+void set_level_info(int level_idx)
+{
+    curr_lev_info.map_offset = get_map_offset(level_idx);
+    curr_lev_info.map_size = maps_sizes[level_idx];
+    curr_lev_info.player_spawn = player_spawns[level_idx];
+}

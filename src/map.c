@@ -1,7 +1,16 @@
 #include "map.h"
 
-structures map[] =
+structures_t map[] =
 {
+    1, 1, 1, 1, 1, 1, 1, 1,
+    1, 0, 0, 0, 0, 1, 0, 1,
+    1, 0, 1, 0, 0, 0, 0, 1,
+    1, 0, 1, 0, 1, 0, 1, 1,
+    1, 0, 1, 0, 1, 0, 0, 1,
+    1, 0, 1, 0, 1, 1, 0, 1,
+    1, 0, 0, 0, 0, 1, 0, 1,
+    1, 1, 1, 1, 1, 1, 1, 1,
+
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
     1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1,
     1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1,
@@ -12,14 +21,26 @@ structures map[] =
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 };
 
+position_2D maps_sizes[LEVEL_COUNT] =
+{
+    (position_2D) {8, 8},
+    (position_2D) {16, 8}
+};
+
+position_2D player_spawns[LEVEL_COUNT] =
+{
+    (position_2D) {1, 6},
+    (position_2D) {1, 1}
+};
+
 
 void draw_map_2D(void)
 {
     position_2D grid_pos;
 
-    for (int y = 0; y < levels[current_level].map_size.y; y++)
+    for (int y = 0; y < curr_lev_info.map_size.y; y++)
     {
-        for (int x = 0; x < levels[current_level].map_size.x; x++)
+        for (int x = 0; x < curr_lev_info.map_size.x; x++)
         {
             if (map[REAL_POS_TO_GRID_POS(x, y)] == AIR)
             {
