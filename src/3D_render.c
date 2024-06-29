@@ -3,9 +3,8 @@
 void render_line(float distance_from_player, int ray)
 {
     float line_h = (MAP_CELL_SIZE * WINDOW_HEIGHT) / distance_from_player;
-    float offset = (Y_CORRECTION) - line_h / 2;
-
     if (line_h > MAX_WALL_HEIGHT) line_h = MAX_WALL_HEIGHT;
+    float offset = (Y_CORRECTION) - line_h / 2;
 
     glLineWidth(LINES_WIDTH);
     glBegin(GL_LINES);
