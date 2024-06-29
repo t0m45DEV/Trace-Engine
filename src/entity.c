@@ -50,7 +50,7 @@ int is_colliding_in_axis(entity_t entity, int axis)
             return (map[REAL_POS_TO_GRID_POS(idx.x, add_offset.y)] != AIR);
         }
     }
-    else if (can_move(idx, sub_offset)) // If can move backward
+    if (can_move(idx, sub_offset)) // If can move backward
     {
         if (axis == BACK_X_AXIS_COLLISION)
         {
