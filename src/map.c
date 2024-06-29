@@ -34,6 +34,11 @@ position_2D player_spawns[LEVEL_COUNT] =
 };
 
 
+int is_valid_map_index(int idx)
+{
+    return ((idx > curr_lev_info.map_offset) && (idx < (curr_lev_info.map_offset + MAP_SIZE)));
+}
+
 void draw_map_2D(void)
 {
     position_2D grid_pos;

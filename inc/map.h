@@ -5,8 +5,6 @@
 #include "trigonometry.h"
 #include "world.h"
 
-#define LEVEL_COUNT 2
-
 #define MAP_CELL_SIZE  64
 
 #define MAP_SIZE ((int) curr_lev_info.map_size.x * (int) curr_lev_info.map_size.y)
@@ -24,6 +22,11 @@ typedef enum structures_s {
 extern structures_t map[];
 extern position_2D maps_sizes[LEVEL_COUNT];
 extern position_2D player_spawns[LEVEL_COUNT];
+
+/*
+    Check if the given index is in range of the current level map
+*/
+int is_valid_map_index(int idx);
 
 /*
     Draw in the screen a 2D matrix of squares, white being wall and blakc being floor

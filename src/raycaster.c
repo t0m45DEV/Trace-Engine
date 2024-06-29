@@ -1,12 +1,6 @@
 #include "raycaster.h"
 
 
-int is_valid_index(int idx)
-{
-    return ((idx > curr_lev_info.map_offset) && (idx < (curr_lev_info.map_offset + MAP_SIZE)));
-}
-
-
 void cast_rays(bool debug_view)
 {
     int count_of_hits;
@@ -17,7 +11,7 @@ void cast_rays(bool debug_view)
     float distance_from_player;
     float angle_cosine;
 
-    float ray_angle = player.angle - DEGREE * (ANGLE_OF_VISION / 2);
+    float ray_angle = player.angle - DEGREE * (FOV / 2);
     ray_angle = adjust_angle(ray_angle);
 
     for (int ray = 0; ray < AMMOUNT_OF_RAYS; ray++)
@@ -60,7 +54,7 @@ void cast_rays(bool debug_view)
             map_ray.y = (int) (ray_pos.y / MAP_CELL_SIZE);
             ray_in_map = REAL_POS_TO_GRID_POS(map_ray.x, map_ray.y);
 
-            if ((is_valid_index(ray_in_map)) && (map[ray_in_map] != AIR)) // Hit a wall
+            if ((is_valid_map_index(ray_in_map)) && (map[ray_in_map] != AIR)) // Hit a wall
             {
                 ray_H.x = ray_pos.x;
                 ray_H.y = ray_pos.y;
@@ -113,7 +107,7 @@ void cast_rays(bool debug_view)
             map_ray.y = (int) (ray_pos.y / MAP_CELL_SIZE);
             ray_in_map = REAL_POS_TO_GRID_POS(map_ray.x, map_ray.y);
 
-            if ((is_valid_index(ray_in_map)) && (map[ray_in_map] != AIR)) // Hit a wall
+            if ((is_valid_map_index(ray_in_map)) && (map[ray_in_map] != AIR)) // Hit a wall
             {
                 ray_V.x = ray_pos.x;
                 ray_V.y = ray_pos.y;
@@ -152,8 +146,7 @@ void cast_rays(bool debug_view)
             distance_from_player = distance_from_player * cos(angle_cosine); // Fix fisheye
             render_line(distance_from_player, ray);
         }
-
-        if (debug_view)
+        else
         {
             glLineWidth(2);
             glBegin(GL_LINES);
