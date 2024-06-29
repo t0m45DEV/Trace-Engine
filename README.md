@@ -13,13 +13,21 @@ You can move forward and backward with W and S, respectively. To rotate left or 
 Download the whole project and run:
 
 ```
+make play
+```
+
+If you want to make the project and see all the objects files and the executable, just type:
+
+```
 make
 ```
 
-to create a new executable. Then, in the same folder run:
+There are other options from the make file, like:
 
 ```
-./Tom_3D_game_engine
-```
+make clean # To delete all the object files and the executable
 
-and the game should start.
+make debug # To make the project, and start a GDB session for debugging
+
+make mem_check # To make the project and start a valgrind session for memory leaks check
+```
