@@ -10,6 +10,7 @@
 #define X_CORRECTION (LINES_WIDTH / 2)
 #define Y_CORRECTION (WINDOW_HEIGHT / 2)
 
+#define DISTANCE_CORRECTION (((float) WINDOW_WIDTH) / ((float) WINDOW_HEIGHT)) // To see the walls square
 
 /*
     Calculates the color of the surface given the surface and a shade,

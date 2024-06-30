@@ -10,7 +10,7 @@
 #include "3D_render.h"
 
 #define FOV 60
-#define AMMOUNT_OF_RAYS ((WINDOW_WIDTH / 8) * resolution)
+#define AMMOUNT_OF_RAYS ((FOV * 2) * resolution)
 #define RATIO_ANGLE_RAYS (AMMOUNT_OF_RAYS / FOV)
 
 #define PRECISION 0.0001

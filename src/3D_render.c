@@ -12,7 +12,7 @@ void set_wall_color(structures_t surface, float shade)
 
 void render_line(float distance_from_player, int ray)
 {
-    float line_h = (MAP_CELL_SIZE * WINDOW_HEIGHT) / distance_from_player;
+    float line_h = ((MAP_CELL_SIZE * WINDOW_HEIGHT) / distance_from_player) * DISTANCE_CORRECTION;
     if (line_h > MAX_WALL_HEIGHT) line_h = MAX_WALL_HEIGHT;
     float offset = (Y_CORRECTION) - line_h / 2;
 

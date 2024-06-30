@@ -18,8 +18,8 @@ extern bool debug_2D_view;
 
 #define WINDOW_TITLE "Tom's 3D Engine"
 
-#define WINDOW_WIDTH 1024
-#define WINDOW_HEIGHT 512
+#define WINDOW_WIDTH 960
+#define WINDOW_HEIGHT 640
 
 #define X_CENTER_POS ((glutGet(GLUT_SCREEN_WIDTH) - WINDOW_WIDTH) / 2)
 #define Y_CENTER_POS ((glutGet(GLUT_SCREEN_HEIGHT) - WINDOW_HEIGHT) / 2)
@@ -29,7 +29,7 @@ extern bool debug_2D_view;
 
 extern float fps;
 
-#define FPS_CORRECTION (0.02 * fps)
+#define FPS_CORRECTION (0.03 * fps)
 
 
 /*
