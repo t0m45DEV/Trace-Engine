@@ -17,7 +17,9 @@ extern entity_t player; // The player info, like the position and actual directi
 
 
 /*
-
+    Sets the player info to the current level 
+    
+    If you change or reset the level, call this function to update the player position, velocity, etc
 */
 void reset_player_info(void);
 
