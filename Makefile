@@ -24,35 +24,37 @@ LIBS = -lglut -lGLU -lGL -lm
 
 VALGRIND_FLAGS = --leak-check=full
 
+MESSAGE = echo '>> $(1)'
+
 $(TARGET) : $(OBJS)
-	@echo ':: Creating executable for $(TARGET)...'
+	@$(call MESSAGE,Creating executable for $(TARGET)...)
 	@$(CC) $(CFLAGS) $(OBJS) -o $(TARGET) $(LIBS)
-	@echo '>> Executable for $(TARGET) created'
-	@echo '>> Have fun!'
+	@$(call MESSAGE,Executable for $(TARGET) created)
+	@$(call MESSAGE,Have fun!)
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
-	@echo ':: Creating $@...'
+	@$(call MESSAGE,Creating $@...)
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) -c -MD $(CFLAGS) $< -o $@ $(LIBS)
-	@echo '>> $@ succesfully created'
+	@$(call MESSAGE,$@ succesfully created)
 
 -include $(OBJ_DIR)/*.d
 
 
 .PHONY: clean
 clean:
-	@echo ':: Deleting previous version...'
+	@$(call MESSAGE,Deleting previous version...)
 	@rm -r $(TARGET) $(OBJ_DIR)
-	@echo '>> Every object file and the executable no longer exists'
+	@$(call MESSAGE,Every object file and the executable no longer exists)
 
 play: $(TARGET)
-	@echo '>> Running game...'
+	@$(call MESSAGE,Running game...)
 	@./$(TARGET)
 
 debug: $(TARGET)
-	@echo '>> Creating debug sesion for $(TARGET)'
+	@$(call MESSAGE,Creating debug sesion for $(TARGET))
 	@gdb ./$(TARGET)
 
 mem_check: $(TARGET)
-	@echo '>> Creating memory check sesion for $(TARGET)'
+	@$(call MESSAGE,Creating memory check sesion for $(TARGET))
 	@valgrind $(VALGRIND_FLAGS) ./$(TARGET)
