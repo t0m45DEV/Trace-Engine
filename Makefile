@@ -16,7 +16,7 @@ OBJS  = $(OBJ_DIR)/main.o\
 		$(OBJ_DIR)/3D_render.o\
 		$(OBJ_DIR)/world.o
 
-CC = cc
+CC = gcc
 
 CFLAGS = -Wall -I$(INC_DIR) -g
 
