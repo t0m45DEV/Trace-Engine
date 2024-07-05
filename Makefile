@@ -48,13 +48,13 @@ clean:
 	@$(call MESSAGE,Every object file and the executable no longer exists)
 
 play: $(TARGET)
-	@$(call MESSAGE,Running game...)
+	@$(call MESSAGE,Running $(TARGET)...)
 	@./$(TARGET)
 
 debug: $(TARGET)
-	@$(call MESSAGE,Creating debug sesion for $(TARGET))
+	@$(call MESSAGE,Creating debug sesion for $(TARGET)...)
 	@gdb ./$(TARGET)
 
 mem_check: $(TARGET)
-	@$(call MESSAGE,Creating memory check sesion for $(TARGET))
+	@$(call MESSAGE,Creating memory check sesion for $(TARGET)...)
 	@valgrind $(VALGRIND_FLAGS) ./$(TARGET)
