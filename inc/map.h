@@ -3,9 +3,8 @@
 
 #include <GL/glut.h>
 #include "trigonometry.h"
-//#include "world.h"
 
-// Size of the squares that forms the map, usually is good to have it 3 times the player collision size
+// Size of the squares that forms the map, usually is good to have it (aprox) 3 times the player collision size
 #define MAP_CELL_SIZE  64
 
 // Returns the size of the current map
