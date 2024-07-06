@@ -1,20 +1,20 @@
 #include "input.h"
 
 
-keys_state_t action_keys_state =
-{
-    .move_forward  = 0,
-    .move_backward = 0,
-    .rotate_anti_clockwise   = 0,
-    .rotate_clockwise  = 0,
-};
+keys_state_t action_keys_state = {0};
 
 
 void buttons_down(unsigned char key, int x, int y)
 {
     if (key == CHANGE_DEBUG_MODE)
     {
-        debug_2D_view = !debug_2D_view;
+        //debug_2D_view = !debug_2D_view;
+
+        //if (resolution == HIGH_RESOLUTION) resolution = LOW_RESOLUTION;
+        //else resolution = HIGH_RESOLUTION;
+
+        if (current_level == 0) change_to_level(1);
+        else change_to_level(0);
     }
     else if (key == MOVE_FORWARD)
     {

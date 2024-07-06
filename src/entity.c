@@ -63,5 +63,5 @@ int is_colliding_in_axis(entity_t entity, int axis)
             return (map[REAL_POS_TO_GRID_POS(idx.x, sub_offset.y)] != AIR);
         }
     }
-    return true; // Entity can't move at any direction
+    return 1; // Entity can't move at any direction
 }

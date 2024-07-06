@@ -4,8 +4,8 @@ entity_t player = {0};
 
 void reset_player_info(void)
 {
-    player.pos.x = GRID_X_POS_TO_REAL_X_POS(curr_lev_info.player_spawn.x);
-    player.pos.y = GRID_Y_POS_TO_REAL_Y_POS(curr_lev_info.player_spawn.y);
+    player.pos.x = GRID_POS_TO_REAL_POS(curr_lev_info.player_spawn.x);
+    player.pos.y = GRID_POS_TO_REAL_POS(curr_lev_info.player_spawn.y);
     player.angle = P_INIT_ANGLE;
     player.velocity = MOVE_VELOCITY;
     player.delta.x = CALCULATE_X_DELTA(player.angle) * player.velocity;

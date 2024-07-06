@@ -1,4 +1,5 @@
-#include "map.h"
+#include "world.h"
+
 
 int current_level = 0;
 level_t curr_lev_info = {0};
@@ -20,4 +21,12 @@ void set_level_info(int level_idx)
     curr_lev_info.map_offset = get_map_offset(level_idx);
     curr_lev_info.map_size = maps_sizes[level_idx];
     curr_lev_info.player_spawn = player_spawns[level_idx];
+}
+
+
+void change_to_level(int level_idx)
+{
+    current_level = level_idx;
+    set_level_info(level_idx);
+    reset_player_info();
 }

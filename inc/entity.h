@@ -1,7 +1,6 @@
 #ifndef _H_ENTITY
 #define _H_ENTITY
 
-#include <stdbool.h>
 #include "map.h"
 #include "trigonometry.h"
 
@@ -33,8 +32,7 @@ typedef struct entity_s {
 
 
 /*
-    Returns the same entity with the x_offset and y_offset calculated
-    using the entity angle
+    Returns the same entity with the x_offset and y_offset calculated using the entity angle
 
     @param entity An entity type, the engine asumes that delta have correct values
 */
@@ -42,8 +40,7 @@ entity_t calculate_offset(entity_t entity);
 
 
 /*
-    Returns true (not zero) if the thing at the position idx
-    can move towards the offset position
+    Returns true (not zero) if the thing at the position idx can move towards the offset position
 */
 int can_move(position_2D idx, position_2D offset);
 

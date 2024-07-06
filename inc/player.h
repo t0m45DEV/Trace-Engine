@@ -12,9 +12,8 @@
 
 #define P_INIT_ANGLE 0
 
-
-extern entity_t player; // The player info, like the position and actual direction of movement
-
+// The player info, like the position and actual direction of movement
+extern entity_t player;
 
 /*
     Sets the player info to the current level 
