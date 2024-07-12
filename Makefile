@@ -2,8 +2,11 @@
 OBJ_DIR = ./obj
 INC_DIR = ./inc
 SRC_DIR = ./src
+EXP_DIR = ./exports
 
 TARGET = Tom_3D_game_engine
+
+EXPORT_NAME = $(EXP_DIR)/GameName
 
 OBJS  = $(OBJ_DIR)/main.o\
 		$(OBJ_DIR)/window_display.o\
@@ -19,6 +22,8 @@ OBJS  = $(OBJ_DIR)/main.o\
 CC = gcc
 
 CFLAGS = -Wall -I$(INC_DIR) -g
+
+EXPORTFLAGS = $(CFLAGS) -no-pie
 
 LIBS = -lglut -lGLU -lGL -lm
 
@@ -40,11 +45,18 @@ $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
 
 -include $(OBJ_DIR)/*.d
 
+$(EXPORT_NAME) : $(OBJS)
+	@mkdir -p $(EXP_DIR)
+	@$(call MESSAGE,Creating executable for $(EXPORT_NAME)...)
+	@$(CC) $(EXPORTFLAGS) $(OBJS) -o $(EXPORT_NAME) $(LIBS)
+	@$(call MESSAGE,Executable for $(EXPORT_NAME) created)
+	@$(call MESSAGE,Have fun!)
+
 
 .PHONY: clean
 clean:
 	@$(call MESSAGE,Deleting previous version...)
-	@rm -r $(TARGET) $(OBJ_DIR)
+	@rm -r $(TARGET) $(OBJ_DIR) $(EXP_DIR)
 	@$(call MESSAGE,Every object file and the executable no longer exists)
 
 play: $(TARGET)
@@ -58,3 +70,7 @@ debug: $(TARGET)
 mem_check: $(TARGET)
 	@$(call MESSAGE,Creating memory check sesion for $(TARGET)...)
 	@valgrind $(VALGRIND_FLAGS) ./$(TARGET)
+
+export_lin: $(EXPORT_NAME)
+	@strip $(EXPORT_NAME)
+	@$(call MESSAGE,Linux executable $(EXPORT_NAME) created!)
