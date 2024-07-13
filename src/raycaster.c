@@ -18,7 +18,7 @@ void cast_rays(bool debug_view)
     {
         // Check horizontal lines
 
-        float distance_h = INT32_MAX;
+        float distance_h = INFINITY;
         position_2D ray_H;
         structures_t surface_H;
 
@@ -73,7 +73,7 @@ void cast_rays(bool debug_view)
         }
         // Check vertical lines
 
-        float distance_v = INT32_MAX;
+        float distance_v = INFINITY;
         position_2D ray_V;
         structures_t surface_V;
 
