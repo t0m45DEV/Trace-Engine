@@ -91,6 +91,6 @@ mem_check: $(ENGINE)
 	@valgrind $(VALGRIND_FLAGS) ./$(ENGINE)
 
 # Exports the game for Linux
-export_lin: $(GAME)
+linux_export: $(GAME)
 	@$(call MESSAGE,Portable Linux version for $(EXPORT_NAME) created!)
 	@$(call MESSAGE,Have fun!)

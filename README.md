@@ -25,9 +25,11 @@ make
 There are other options from the make file, like:
 
 ```
-make clean # To delete all the object files and the executable
+make clean        # To delete all the object files and the executable
 
-make debug # To make the project, and start a GDB session for debugging
+make debug        # To make the project, and start a GDB session for debugging
 
-make mem_check # To make the project and start a valgrind session for memory leaks check
+make mem_check    # To make the project and start a valgrind session for memory leaks check
+
+make linux_export # To make a release and portable Linux version
 ```
