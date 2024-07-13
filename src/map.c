@@ -9,23 +9,23 @@ rgb_t structures_colors[] =
 
 structures_t map[] =
 {
-    1, 1, 1, 1, 1, 1, 1, 1,
-    1, 0, 0, 0, 0, 1, 0, 1,
-    1, 0, 1, 0, 0, 0, 0, 1,
-    1, 0, 1, 0, 1, 0, 1, 1,
-    1, 0, 1, 0, 1, 0, 0, 1,
-    1, 0, 1, 0, 1, 1, 0, 1,
-    1, 0, 0, 0, 0, 1, 0, 1,
-    1, 1, 1, 1, 1, 1, 1, 1,
+    WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL,
+    WALL, AIR,  AIR,  AIR,  AIR,  WALL, AIR,  WALL,
+    WALL, AIR,  WALL, AIR,  AIR,  AIR,  AIR,  WALL,
+    WALL, AIR,  WALL, AIR,  WALL, AIR,  WALL, WALL,
+    WALL, AIR,  WALL, AIR,  WALL, AIR,  AIR,  WALL,
+    WALL, AIR,  WALL, AIR,  WALL, WALL, AIR,  WALL,
+    WALL, AIR,  AIR,  AIR,  AIR,  WALL, AIR,  WALL,
+    WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL,
 
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1,
-    1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1,
-    1, 0, 0, 2, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1,
-    1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1,
-    1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL,
+    WALL, AIR,  AIR,  AIR,  AIR,  AIR,  AIR,  AIR,  AIR,  WALL, AIR,  AIR,  AIR,  AIR,  AIR,  WALL,
+    WALL, AIR,  AIR,  AIR,  AIR,  AIR,  AIR,  WALL, AIR,  AIR,  AIR,  WALL, WALL, WALL, AIR,  WALL,
+    WALL, AIR,  AIR,  AIR,  AIR,  AIR,  WALL, WALL, AIR,  WALL, WALL, WALL, AIR,  AIR,  AIR,  WALL,
+    WALL, AIR,  AIR,  DOOR, AIR,  AIR,  AIR,  WALL, AIR,  WALL, AIR,  AIR,  AIR,  WALL, WALL, WALL,
+    WALL, AIR,  AIR,  AIR,  AIR,  WALL, AIR,  AIR,  AIR,  WALL, WALL, WALL, AIR,  WALL, AIR,  WALL,
+    WALL, AIR,  AIR,  AIR,  AIR,  WALL, AIR,  WALL, AIR,  AIR,  AIR,  AIR,  AIR,  AIR,  AIR,  WALL,
+    WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL,
 };
 
 position_2D maps_sizes[LEVEL_COUNT] =
