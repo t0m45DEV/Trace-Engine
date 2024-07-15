@@ -6,9 +6,9 @@
 #include "player.h"
 #include "world.h"
 
-// Action keys
+/* Action keys */
 
-#define CHANGE_DEBUG_MODE '|' // To test new mechanics
+#define CHANGE_DEBUG_MODE '|' /* To test new mechanics */
 
 #define MOVE_FORWARD  'w'
 #define MOVE_BACKWARD 's'
@@ -28,7 +28,7 @@ typedef struct keys_state_s {
     int rotate_clockwise;
 } keys_state_t;
 
-// The current state of the keyboard
+/* The current state of the keyboard */
 extern keys_state_t action_keys_state;
 
 

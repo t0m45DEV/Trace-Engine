@@ -16,7 +16,7 @@ void cast_rays(bool debug_view)
 
     for (int ray = 0; ray < AMMOUNT_OF_RAYS; ray++)
     {
-        // Check horizontal lines
+        /* Check horizontal lines */
 
         float distance_h = INFINITY;
         position_2D ray_H;
@@ -25,14 +25,14 @@ void cast_rays(bool debug_view)
         count_of_hits = 0;
         float aTan = -1 / tan(ray_angle);
 
-        if ((ray_angle == 0) || (ray_angle == PI)) // If looking straight left or right
+        if ((ray_angle == 0) || (ray_angle == PI)) /* If looking straight left or right */
         {
             ray_pos.x = player.pos.x;
             ray_pos.y = player.pos.y;
 
             count_of_hits = curr_lev_info.map_size.y;
         }
-        else if (ray_angle > PI) // If looking down
+        else if (ray_angle > PI) /* If looking down */
         {
             ray_pos.y = (((int) player.pos.y / MAP_CELL_SIZE) * MAP_CELL_SIZE) - PRECISION;
             ray_pos.x = (player.pos.y - ray_pos.y) * aTan + player.pos.x;
@@ -40,7 +40,7 @@ void cast_rays(bool debug_view)
             ray_offset.y = (-1) * MAP_CELL_SIZE;
             ray_offset.x = (-1) * ray_offset.y * aTan;
         }
-        else if (ray_angle < PI) // If looking up
+        else if (ray_angle < PI) /* If looking up */
         {
             ray_pos.y = (((int) player.pos.y / MAP_CELL_SIZE) * MAP_CELL_SIZE) + MAP_CELL_SIZE;
             ray_pos.x = (player.pos.y - ray_pos.y) * aTan + player.pos.x;
@@ -55,23 +55,23 @@ void cast_rays(bool debug_view)
             map_ray.y = (int) (ray_pos.y / MAP_CELL_SIZE);
             ray_in_map = REAL_POS_TO_GRID_POS(map_ray.x, map_ray.y);
 
-            if ((is_valid_map_index(ray_in_map)) && (map[ray_in_map] != AIR)) // Hit a wall
+            if ((is_valid_map_index(ray_in_map)) && (map[ray_in_map] != AIR)) /* Hit a wall */
             {
                 ray_H.x = ray_pos.x;
                 ray_H.y = ray_pos.y;
                 distance_h = distance_between(player.pos, ray_pos);
                 surface_H = map[ray_in_map];
 
-                count_of_hits = curr_lev_info.map_size.y; // End the loop
+                count_of_hits = curr_lev_info.map_size.y; /* End the loop */
             }
-            else // Check the next 
+            else /* Check the next */
             {
                 ray_pos.x += ray_offset.x;
                 ray_pos.y += ray_offset.y;
                 count_of_hits += 1;
             }
         }
-        // Check vertical lines
+        /* Check vertical lines */
 
         float distance_v = INFINITY;
         position_2D ray_V;
@@ -80,14 +80,14 @@ void cast_rays(bool debug_view)
         count_of_hits = 0;
         float nTan = (-1) * tan(ray_angle);
 
-        if ((ray_angle == UP_DIR) || (ray_angle == DOWN_DIR)) // If looking straight up or down
+        if ((ray_angle == UP_DIR) || (ray_angle == DOWN_DIR)) /* If looking straight up or down */
         {
             ray_pos.x = player.pos.x;
             ray_pos.y = player.pos.y;
 
             count_of_hits = curr_lev_info.map_size.x;
         }
-        else if ((ray_angle > UP_DIR) && (ray_angle < DOWN_DIR)) // If looking left
+        else if ((ray_angle > UP_DIR) && (ray_angle < DOWN_DIR)) /* If looking left */
         {
             ray_pos.x = (((int) player.pos.x / MAP_CELL_SIZE) * MAP_CELL_SIZE) - PRECISION;
             ray_pos.y = (player.pos.x - ray_pos.x) * nTan + player.pos.y;
@@ -95,7 +95,7 @@ void cast_rays(bool debug_view)
             ray_offset.x = (-1) * MAP_CELL_SIZE;
             ray_offset.y = (-1) * ray_offset.x * nTan;
         }
-        else if ((ray_angle < UP_DIR) || (ray_angle > DOWN_DIR)) // If looking right
+        else if ((ray_angle < UP_DIR) || (ray_angle > DOWN_DIR)) /* If looking right */
         {
             ray_pos.x = (((int) player.pos.x / MAP_CELL_SIZE) * MAP_CELL_SIZE) + MAP_CELL_SIZE;
             ray_pos.y = (player.pos.x - ray_pos.x) * nTan + player.pos.y;
@@ -110,16 +110,16 @@ void cast_rays(bool debug_view)
             map_ray.y = (int) (ray_pos.y / MAP_CELL_SIZE);
             ray_in_map = REAL_POS_TO_GRID_POS(map_ray.x, map_ray.y);
 
-            if ((is_valid_map_index(ray_in_map)) && (map[ray_in_map] != AIR)) // Hit a wall
+            if ((is_valid_map_index(ray_in_map)) && (map[ray_in_map] != AIR)) /* Hit a wall */
             {
                 ray_V.x = ray_pos.x;
                 ray_V.y = ray_pos.y;
                 distance_v = distance_between(player.pos, ray_pos);
                 surface_V = map[ray_in_map];
 
-                count_of_hits = curr_lev_info.map_size.x; // End the loop
+                count_of_hits = curr_lev_info.map_size.x; /* End the loop */
             }
-            else // Check the next 
+            else /* Check the next */
             {
                 ray_pos.x += ray_offset.x;
                 ray_pos.y += ray_offset.y;
@@ -149,7 +149,7 @@ void cast_rays(bool debug_view)
             angle_cosine = player.angle - ray_angle;
             angle_cosine = adjust_angle(angle_cosine);
 
-            distance_from_player = distance_from_player * cos(angle_cosine); // Fix fisheye
+            distance_from_player = distance_from_player * cos(angle_cosine); /* Fix fisheye */
             render_line(distance_from_player, ray);
         }
         else

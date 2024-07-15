@@ -4,14 +4,14 @@
 #include <GL/glut.h>
 #include "entity.h"
 
-#define P_COLLISION_SIZE 20     // Initial collision size for player (check inc/map.h:MAP_CELL_SIZE for size relation)
+#define P_COLLISION_SIZE 20     /* Initial collision size for player (check inc/map.h:MAP_CELL_SIZE for size relation) */
 
-#define MOVE_VELOCITY    3      // Initial player movement velocity
-#define ROTATE_VELOCITY  0.08   // Initial player rotation velocity
+#define MOVE_VELOCITY    3      /* Initial player movement velocity */
+#define ROTATE_VELOCITY  0.08   /* Initial player rotation velocity */
 
-#define P_INIT_ANGLE 0          // Initial player vision angle (0 means bro is seeing right)
+#define P_INIT_ANGLE 0          /* Initial player vision angle (0 means bro is seeing right) */
 
-// The player info, like the position and actual direction of movement
+/* The player info, like the position and actual direction of movement */
 extern entity_t player;
 
 /*
