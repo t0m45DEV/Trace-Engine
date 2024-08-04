@@ -5,9 +5,11 @@
 
 #define DEGREE 0.0174533 /* One degree in radians */
 
-#define PI 3.1415926535          /* An aproximation to pi */
-#define UP_DIR   (PI / 2)        /* 90 degrees, or the angle in radians for ↑  */
-#define DOWN_DIR (3 * (UP_DIR))  /* 270 degrees, or the angle in radians for ↓ */
+#define PI 3.1415926535           /* An aproximation to pi */
+#define UP_DIR    (PI / 2)        /* 90 degrees, or the angle in radians for ↑  */
+#define DOWN_DIR  (3 * (UP_DIR))  /* 270 degrees, or the angle in radians for ↓ */
+#define LEFT_DIR  (PI)            /*180 degrees, or the angle in radians for ← */
+#define RIGHT_DIR (PI * 0)        /*0 degrees, or the angle in radians for → */
 
 #define CALCULATE_X_DELTA(A) (cos(A))
 #define CALCULATE_Y_DELTA(A) (sin(A))

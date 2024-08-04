@@ -25,14 +25,14 @@ void cast_rays(bool debug_view)
         count_of_hits = 0;
         float aTan = -1 / tan(ray_angle);
 
-        if ((ray_angle == 0) || (ray_angle == PI)) /* If looking straight left or right */
+        if ((ray_angle == RIGHT_DIR) || (ray_angle == LEFT_DIR)) /* If looking straight left or right */
         {
             ray_pos.x = player.pos.x;
             ray_pos.y = player.pos.y;
 
             count_of_hits = curr_lev_info.map_size.y;
         }
-        else if (ray_angle > PI) /* If looking down */
+        else if (ray_angle > LEFT_DIR) /* If looking down */
         {
             ray_pos.y = (((int) player.pos.y / MAP_CELL_SIZE) * MAP_CELL_SIZE) - PRECISION;
             ray_pos.x = (player.pos.y - ray_pos.y) * aTan + player.pos.x;
@@ -40,7 +40,7 @@ void cast_rays(bool debug_view)
             ray_offset.y = (-1) * MAP_CELL_SIZE;
             ray_offset.x = (-1) * ray_offset.y * aTan;
         }
-        else if (ray_angle < PI) /* If looking up */
+        else if (ray_angle < LEFT_DIR) /* If looking up */
         {
             ray_pos.y = (((int) player.pos.y / MAP_CELL_SIZE) * MAP_CELL_SIZE) + MAP_CELL_SIZE;
             ray_pos.x = (player.pos.y - ray_pos.y) * aTan + player.pos.x;
@@ -127,13 +127,18 @@ void cast_rays(bool debug_view)
             }
         }
 
+        float actual_shade;
+        structures_t actual_surface;
+
         if (distance_h < distance_v)
         {
             ray_pos.x = ray_H.x;
             ray_pos.y = ray_H.y;
             distance_from_player = distance_h;
             
-            set_wall_color(surface_H, LIGHT_SHADE);
+            actual_shade = LIGHT_SHADE;
+            actual_surface = surface_H;
+            //set_wall_color(surface_H, LIGHT_SHADE);
         }
         else
         {
@@ -141,7 +146,9 @@ void cast_rays(bool debug_view)
             ray_pos.y = ray_V.y;
             distance_from_player = distance_v;
 
-            set_wall_color(surface_V, DARK_SHADE);
+            actual_shade = DARK_SHADE;
+            actual_surface = surface_V;
+            //set_wall_color(surface_V, DARK_SHADE);
         }
 
         if (!debug_view)
@@ -150,7 +157,7 @@ void cast_rays(bool debug_view)
             angle_cosine = adjust_angle(angle_cosine);
 
             distance_from_player = distance_from_player * cos(angle_cosine); /* Fix fisheye */
-            render_line(distance_from_player, ray);
+            render_line(distance_from_player, ray, actual_shade, ray_pos, ray_angle, actual_surface);
         }
         else
         {

@@ -16,7 +16,7 @@
 #define PRECISION 0.0001   /* To pass from int to float and don't loose precision */
 
 #define LIGHT_SHADE 0.9    /* The shade of the "lighted" objects (in reality there no such a thing as light in this engine)  */
-#define DARK_SHADE 0.7     /* The shade of the "darkened" objects (in reality there no such a thing as light in this engine) */
+#define DARK_SHADE 0.6     /* The shade of the "darkened" objects (in reality there no such a thing as light in this engine) */
 
 /*
     Cast the 2D top-down vision rays for the player and calls the 3D render
