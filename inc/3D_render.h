@@ -12,11 +12,8 @@
 
 #define DISTANCE_CORRECTION (((float) WINDOW_WIDTH) / ((float) WINDOW_HEIGHT)) /* To see the walls square */
 
-/*
-    Calculates the color of the surface given the surface and a shade,
-    it access the structures_colors[] array from map.h
-*/
-void set_wall_color(structures_t surface, float shade);
+#define FLOOR_CORRECTION (WINDOW_WIDTH / 2) /* The floor (and also the ceiling) stops sliding with this one */
+#define CEILEING_CORRECTION (8 / resolution) /* The ceiling stops covering the walls */
 
 /*
     Render a wall, off height (distance_from_player / MAX_WALL_HEIGHT) and draws it in the given ray position

@@ -15,6 +15,5 @@ float adjust_angle(float angle)
     {
         angle -= 2 * PI;
     }
-
     return angle;
 }
