@@ -13,23 +13,6 @@ You can move forward and backward with W and S, respectively. To rotate left or 
 Download the whole project and run:
 
 ```bash
-make play
-```
-
-If you want to make the project and see all the objects files and the executable, just type:
-
-```bash
-make
-```
-
-There are other options from the make file, like:
-
-```bash
-make clean        # To delete all the object files and the executable
-
-make debug        # To make the project, and start a GDB session for debugging
-
-make mem_check    # To make the project and start a valgrind session for memory leaks check
-
-make linux_export # To make a release and portable Linux version
+./create.sh
+./build/videoGame
 ```
