@@ -1,5 +1,3 @@
-obj/*
 .gdb_history
 .vscode/*
-exports/*
 build/*
