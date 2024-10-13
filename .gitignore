@@ -1,5 +1,5 @@
-Tom_3D_game_engine
 obj/*
 .gdb_history
 .vscode/*
 exports/*
+build/*
