@@ -15,9 +15,9 @@ entity_t calculate_offset(entity_t entity)
 
 int can_move(position_2D idx, position_2D offset)
 {
-    int front  = map[REAL_POS_TO_GRID_POS(offset.x, offset.y)];
-    int x_axis = map[REAL_POS_TO_GRID_POS(offset.x, idx.y)];
-    int y_axis = map[REAL_POS_TO_GRID_POS(idx.x, offset.y)];
+    int front  = map_w[REAL_POS_TO_GRID_POS(offset.x, offset.y)];
+    int x_axis = map_w[REAL_POS_TO_GRID_POS(offset.x, idx.y)];
+    int y_axis = map_w[REAL_POS_TO_GRID_POS(idx.x, offset.y)];
 
     /* Thing at idx don't have a wall directly on front
         and can slide in some axis X or Y */
@@ -45,22 +45,22 @@ int is_colliding_in_axis(entity_t entity, int axis)
     {
         if (axis == FRONT_X_AXIS_COLLISION) /* If can slide forward along X axis */
         {
-            return (map[REAL_POS_TO_GRID_POS(add_offset.x, idx.y)] != AIR);
+            return (map_w[REAL_POS_TO_GRID_POS(add_offset.x, idx.y)] != AIR);
         }
         else if (axis == FRONT_Y_AXIS_COLLISION) /* If can slide forward along Y axis */
         {
-            return (map[REAL_POS_TO_GRID_POS(idx.x, add_offset.y)] != AIR);
+            return (map_w[REAL_POS_TO_GRID_POS(idx.x, add_offset.y)] != AIR);
         }
     }
     if (can_move(idx, sub_offset)) /* If can move backward */
     {
         if (axis == BACK_X_AXIS_COLLISION) /* If can slide backward along X axis */
         {
-            return (map[REAL_POS_TO_GRID_POS(sub_offset.x, idx.y)] != AIR);
+            return (map_w[REAL_POS_TO_GRID_POS(sub_offset.x, idx.y)] != AIR);
         }
         else if (axis == BACK_Y_AXIS_COLLISION) /* If can slide backward along Y axis */
         {
-            return (map[REAL_POS_TO_GRID_POS(idx.x, sub_offset.y)] != AIR);
+            return (map_w[REAL_POS_TO_GRID_POS(idx.x, sub_offset.y)] != AIR);
         }
     }
     return 1; /* Entity can't move at any direction */

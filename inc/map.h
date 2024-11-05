@@ -39,7 +39,9 @@ typedef struct rgb_s {
 
 extern rgb_t structures_colors[]; /* A list of color per structure (AIR will be set to white, but it'll not be painted) */
 
-extern structures_t map[];           /* The maps for ALL the levels in one array */
+extern structures_t map_w[];         /* The wall maps for ALL the levels in one array */
+extern structures_t map_f[];         /* The floor maps for ALL the levels in one array */
+extern structures_t map_c[];         /* The ceiling maps for ALL the levels in one array */
 extern position_2D maps_sizes[];     /* The map sizes for each level */
 extern position_2D player_spawns[];  /* The player spawns for each level, saved in grid position style */
 

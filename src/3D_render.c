@@ -128,24 +128,38 @@ void render_line(float distance_from_player, int ray, float shade, position_2D r
 
     for (y = line_h + line_offset; y < WINDOW_HEIGHT; y++)
     {
+        float color;
         float delta_y = y - (WINDOW_HEIGHT / 2.0);
 
-        texture_x = (player.pos.x / 2) + cos(ray_angle) * FLOOR_CORRECTION * P_HEIGHT / delta_y / ray_angle_fix;
-        texture_y = (player.pos.y / 2) + sin(ray_angle) * FLOOR_CORRECTION * P_HEIGHT / delta_y / ray_angle_fix;
+        texture_x = (player.pos.x / 2) + cos(ray_angle) * FLOOR_CORRECTION * TEXTURE_SIZE / delta_y / ray_angle_fix;
+        texture_y = (player.pos.y / 2) + sin(ray_angle) * FLOOR_CORRECTION * TEXTURE_SIZE / delta_y / ray_angle_fix;
 
         int color_index = ((int) (texture_y) & (TEXTURE_SIZE - 1)) * TEXTURE_SIZE + ((int) (texture_x) & (TEXTURE_SIZE - 1));
-        float color = all_textures[color_index] * DARK_SHADE;
 
-        glColor3f(color, color, color);
-        glPointSize(LINES_WIDTH);
-        glBegin(GL_POINTS);
-        glVertex2i(ray * LINES_WIDTH + X_CORRECTION, y);
-        glEnd();
+        int map_value = map_f[REAL_POS_TO_GRID_POS(texture_x / (float) MAP_SIZE, texture_y / (float) MAP_SIZE)];
 
-        glColor3f(color, color, color);
-        glPointSize(LINES_WIDTH);
-        glBegin(GL_POINTS);
-        glVertex2i(ray * LINES_WIDTH + X_CORRECTION, WINDOW_HEIGHT - CEILEING_CORRECTION - y);
-        glEnd();
+        if (map_value > 0)
+        {
+            color = all_textures[color_index + (map_value - 1) * (TEXTURE_SIZE * TEXTURE_SIZE)];
+
+            glColor3f(color * structures_colors[map_value].r, color * structures_colors[map_value].g, color * structures_colors[map_value].b);
+            glPointSize(LINES_WIDTH);
+            glBegin(GL_POINTS);
+            glVertex2i(ray * LINES_WIDTH + X_CORRECTION, y);
+            glEnd();
+        }
+
+        map_value = map_c[REAL_POS_TO_GRID_POS(texture_x / MAP_SIZE, texture_y / MAP_SIZE)];
+
+        if (map_value > 0)
+        {
+            color = all_textures[color_index + (map_value - 1) * (TEXTURE_SIZE * TEXTURE_SIZE)];
+            
+            glColor3f(color * structures_colors[map_value].r, color * structures_colors[map_value].g, color * structures_colors[map_value].b);
+            glPointSize(LINES_WIDTH);
+            glBegin(GL_POINTS);
+            glVertex2i(ray * LINES_WIDTH + X_CORRECTION, WINDOW_HEIGHT - CEILEING_CORRECTION - y);
+            glEnd();
+        }
     }
 }

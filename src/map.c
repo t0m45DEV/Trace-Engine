@@ -3,29 +3,71 @@
 rgb_t structures_colors[] =
 {
     (rgb_t) {0},
-    (rgb_t) {1, 0, 0},
-    (rgb_t) {0, 0, 1}
+    (rgb_t) {0.9, 0.2, 0.1},
+    (rgb_t) {0.2, 0.3, 0.9}
 };
 
-structures_t map[] =
+structures_t map_w[] =
 {
-    WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL,
-    WALL, AIR,  AIR,  AIR,  AIR,  WALL, AIR,  WALL,
-    WALL, AIR,  WALL, AIR,  AIR,  AIR,  AIR,  WALL,
-    WALL, AIR,  WALL, AIR,  WALL, AIR,  WALL, WALL,
-    WALL, AIR,  WALL, AIR,  WALL, AIR,  AIR,  WALL,
-    WALL, AIR,  WALL, AIR,  WALL, WALL, AIR,  WALL,
-    WALL, AIR,  AIR,  AIR,  AIR,  WALL, AIR,  WALL,
-    WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL,
+    1, 1, 1, 1, 1, 1, 1, 1,
+    1, 0, 0, 0, 0, 1, 0, 1,
+    1, 0, 1, 0, 0, 0, 0, 1,
+    1, 0, 1, 0, 1, 0, 1, 1,
+    1, 0, 1, 0, 1, 0, 0, 1,
+    1, 0, 1, 0, 1, 1, 0, 1,
+    1, 0, 0, 0, 0, 1, 0, 1,
+    1, 1, 1, 1, 1, 1, 1, 1,
 
-    WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL,
-    WALL, AIR,  AIR,  AIR,  AIR,  AIR,  AIR,  AIR,  AIR,  WALL, AIR,  AIR,  AIR,  AIR,  AIR,  WALL,
-    WALL, AIR,  AIR,  AIR,  AIR,  AIR,  AIR,  WALL, AIR,  AIR,  AIR,  WALL, WALL, WALL, AIR,  WALL,
-    WALL, AIR,  AIR,  AIR,  AIR,  AIR,  WALL, WALL, AIR,  WALL, WALL, WALL, AIR,  AIR,  AIR,  WALL,
-    WALL, AIR,  AIR,  DOOR, AIR,  AIR,  AIR,  WALL, AIR,  WALL, AIR,  AIR,  AIR,  WALL, WALL, WALL,
-    WALL, AIR,  AIR,  AIR,  AIR,  WALL, AIR,  AIR,  AIR,  WALL, WALL, WALL, AIR,  WALL, AIR,  WALL,
-    WALL, AIR,  AIR,  AIR,  AIR,  WALL, AIR,  WALL, AIR,  AIR,  AIR,  AIR,  AIR,  AIR,  AIR,  WALL,
-    WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL, WALL,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1,
+    1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1,
+    1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1,
+    2, 0, 0, 2, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1,
+    2, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1,
+    2, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,
+    2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+};
+
+structures_t map_f[] =
+{
+    2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2,
+
+    1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+};
+
+structures_t map_c[] =
+{
+    1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1,
+
+    1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    2, 2, 0, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 0, 0, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 0, 0, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 2, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 };
 
 position_2D maps_sizes[LEVEL_COUNT] =
@@ -54,7 +96,7 @@ void draw_map_2D(void)
     {
         for (int x = 0; x < curr_lev_info.map_size.x; x++)
         {
-            if (map[REAL_POS_TO_GRID_POS(x, y)] == AIR)
+            if (map_w[REAL_POS_TO_GRID_POS(x, y)] == AIR)
             {
                 glColor3f(0, 0, 0);
             }

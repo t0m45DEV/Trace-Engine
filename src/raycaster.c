@@ -11,7 +11,7 @@ void cast_rays(bool debug_view)
     float distance_from_player;
     float angle_cosine;
 
-    float ray_angle = player.angle - (DEGREE * (FOV / 2));
+    float ray_angle = player.angle - (DEG_TO_RAD(FOV / 2));
     ray_angle = adjust_angle(ray_angle);
 
     for (int ray = 0; ray < AMMOUNT_OF_RAYS; ray++)
@@ -55,12 +55,12 @@ void cast_rays(bool debug_view)
             map_ray.y = (int) (ray_pos.y / MAP_CELL_SIZE);
             ray_in_map = REAL_POS_TO_GRID_POS(map_ray.x, map_ray.y);
 
-            if ((is_valid_map_index(ray_in_map)) && (map[ray_in_map] != AIR)) /* Hit a wall */
+            if ((is_valid_map_index(ray_in_map)) && (map_w[ray_in_map] != AIR)) /* Hit a wall */
             {
                 ray_H.x = ray_pos.x;
                 ray_H.y = ray_pos.y;
                 distance_h = distance_between(player.pos, ray_pos);
-                surface_H = map[ray_in_map];
+                surface_H = map_w[ray_in_map];
 
                 count_of_hits = curr_lev_info.map_size.y; /* End the loop */
             }
@@ -110,12 +110,12 @@ void cast_rays(bool debug_view)
             map_ray.y = (int) (ray_pos.y / MAP_CELL_SIZE);
             ray_in_map = REAL_POS_TO_GRID_POS(map_ray.x, map_ray.y);
 
-            if ((is_valid_map_index(ray_in_map)) && (map[ray_in_map] != AIR)) /* Hit a wall */
+            if ((is_valid_map_index(ray_in_map)) && (map_w[ray_in_map] != AIR)) /* Hit a wall */
             {
                 ray_V.x = ray_pos.x;
                 ray_V.y = ray_pos.y;
                 distance_v = distance_between(player.pos, ray_pos);
-                surface_V = map[ray_in_map];
+                surface_V = map_w[ray_in_map];
 
                 count_of_hits = curr_lev_info.map_size.x; /* End the loop */
             }
@@ -138,7 +138,6 @@ void cast_rays(bool debug_view)
             
             actual_shade = LIGHT_SHADE;
             actual_surface = surface_H;
-            //set_wall_color(surface_H, LIGHT_SHADE);
         }
         else
         {
@@ -148,7 +147,6 @@ void cast_rays(bool debug_view)
 
             actual_shade = DARK_SHADE;
             actual_surface = surface_V;
-            //set_wall_color(surface_V, DARK_SHADE);
         }
 
         if (!debug_view)
