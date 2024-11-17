@@ -136,9 +136,9 @@ void render_line(float distance_from_player, int ray, float shade, position_2D r
 
         int color_index = ((int) (texture_y) & (TEXTURE_SIZE - 1)) * TEXTURE_SIZE + ((int) (texture_x) & (TEXTURE_SIZE - 1));
 
-        int map_value = map_f[REAL_POS_TO_GRID_POS(texture_x / (float) MAP_SIZE, texture_y / (float) MAP_SIZE)];
+        int map_value = map_f[REAL_POS_TO_GRID_POS(texture_x / TEXTURE_SIZE, texture_y / TEXTURE_SIZE)];
 
-        if (map_value > 0)
+        if (map_value != AIR)
         {
             color = all_textures[color_index + (map_value - 1) * (TEXTURE_SIZE * TEXTURE_SIZE)];
 
@@ -149,7 +149,7 @@ void render_line(float distance_from_player, int ray, float shade, position_2D r
             glEnd();
         }
 
-        map_value = map_c[REAL_POS_TO_GRID_POS(texture_x / MAP_SIZE, texture_y / MAP_SIZE)];
+        map_value = map_c[REAL_POS_TO_GRID_POS(texture_x / TEXTURE_SIZE, texture_y / TEXTURE_SIZE)];
 
         if (map_value > 0)
         {

@@ -11,8 +11,6 @@
 
 #define P_INIT_ANGLE 0          /* Initial player vision angle (0 means bro is seeing right) */
 
-#define P_HEIGHT 32             /* Player height, used to calculate the floor and ceiling casting */
-
 /* The player info, like the position and actual direction of movement */
 extern entity_t player;
 
