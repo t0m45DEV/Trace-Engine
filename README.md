@@ -14,5 +14,10 @@ Download the whole project and run:
 
 ```bash
 ./create.sh
-./build/videoGame
 ```
+
+## Rendering textures
+
+The textures must be a png file named `textures.png` found in the `images` folder. The code asumes that the textures are in a vertical strip style, and that all have the same size. Also, they have to be square.
+
+Textures of 32x32 pixels works and looks fine.
