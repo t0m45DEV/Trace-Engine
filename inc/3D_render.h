@@ -2,6 +2,7 @@
 #define _H_RENDER
 
 #include "window_display.h"
+#include "all_textures.h"
 #include "raycaster.h"
 #include "map.h"
 

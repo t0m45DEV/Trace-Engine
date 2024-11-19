@@ -1,8 +1,6 @@
 #include "input.h"
 
-
 keys_state_t action_keys_state = {0};
-
 
 void buttons_down(unsigned char key, int x, int y)
 {
