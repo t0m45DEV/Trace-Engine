@@ -37,8 +37,6 @@ typedef struct rgb_s {
     float b;
 } rgb_t;
 
-extern rgb_t structures_colors[]; /* A list of color per structure (AIR will be set to white, but it'll not be painted) */
-
 extern structures_t map_w[];         /* The wall maps for ALL the levels in one array */
 extern structures_t map_f[];         /* The floor maps for ALL the levels in one array */
 extern structures_t map_c[];         /* The ceiling maps for ALL the levels in one array */

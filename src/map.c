@@ -1,12 +1,5 @@
 #include "map.h"
 
-rgb_t structures_colors[] =
-{
-    (rgb_t) {0},
-    (rgb_t) {0.9, 0.2, 0.1},
-    (rgb_t) {0.2, 0.3, 0.9}
-};
-
 structures_t map_w[] =
 {
     1, 1, 1, 1, 1, 1, 1, 1,
