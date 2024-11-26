@@ -4,7 +4,7 @@
 #define DEBUG_INT(x) printf("%s: %i\n", #x, (x));
 
 #define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
+#include "stb_lib/stb_image.h"
 
 #define WRITE_MODE "wb"
 
