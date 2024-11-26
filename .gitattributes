@@ -1,2 +1,2 @@
-imageParser/stb_image.h -linguist-vendored
+imageParser/stb_image.h linguist-vendored
 *.png filter=lfs diff=lfs merge=lfs -text
