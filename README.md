@@ -2,7 +2,7 @@
 
 A 3D Game Engine entirely made with C. More like a "can I do this?" project than a "that's a fun idea for a game" project.
 
-The games it can make are similar to Wolfenstein, using raycasting to fake a 3D environment, but it's really just a 2D plane. The executable we create only works for Linux.
+The games it can make are similar to Wolfenstein, using raycasting to fake a 3D environment, but it's really just a 2D plane. The executable only works for Linux.
 
 ## Controls
 
