@@ -11,7 +11,7 @@ TEXTURE_SIZE_NAME="TEXTURE_SIZE"
 TEXTURE_MATRIX_NAME="ALL_TEXTURES"
 
 NC='\033[0m' # No Color
-RED='\033[0;30m'
+RED='\033[0;31m'
 GREEN='\033[0;32m'
 CYAN='\033[0;36m'
 
@@ -25,6 +25,12 @@ message ${GREEN} "Welcome to the Tom's 3D engine instalation process!"
 
 message ${NC} "Parsing textures..."
 gcc ${IMG_PARSER_CODE} -o ${IMG_PARSER} -lm
+
+if [ $? -ne 0 ]; then
+	message ${RED} "There was an error compiling the image parser!"
+	exit 1
+fi
+
 ./${IMG_PARSER} ${TEXTURE_IMG} ${TEXTURE_HEADER_DEST} ${TEXTURE_CODE_DEST} ${TEXTURE_SIZE_NAME} ${TEXTURE_MATRIX_NAME}
 rm ${IMG_PARSER}
 message ${CYAN} "All textures had been succesfully added!"
@@ -36,6 +42,13 @@ cd build
 
 message ${NC} "Running CMake..."
 cmake ..
+
+
+if [ $? -ne 0 ]; then
+	message ${RED} "There was an error running CMake!"
+	exit 1
+fi
+
 message ${CYAN} "CMake succesfully did all it's stuff!"
 
 message ${NC} "Creating executable..."
@@ -44,3 +57,5 @@ message ${GREEN} "Executable created!"
 
 message ${CYAN} "Check the build folder, there's the game executable"
 message ${GREEN} "Have fun!"
+
+exit 0
