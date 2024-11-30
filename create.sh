@@ -1,5 +1,7 @@
 #!/bin/bash
 
+OPENGL_LIB="glut"
+
 IMG_PARSER_CODE="./imageParser/imageParser.c"
 IMG_PARSER="image_parser"
 
@@ -21,19 +23,32 @@ message() {
     echo -e "${COLOR}>> $2 ${NC}"
 }
 
+checkForErrors() {
+	
+	if [ $? -ne 0 ]; then
+		message ${RED} "$1"
+		exit 1
+	else
+		message ${CYAN} "$2"
+	fi
+}
+
 message ${GREEN} "Welcome to the Tom's 3D engine instalation process!"
+
+CONFIG_OUTPUT="config.log"
+
+message ${NC} "Checking dependencies..."
+pkg-config --libs ${OPENGL_LIB} > ${CONFIG_OUTPUT}
+checkForErrors "You need the ${OPENGL_LIB} library!" "OpenGL library is installed!"
+rm ${CONFIG_OUTPUT}
 
 message ${NC} "Parsing textures..."
 gcc ${IMG_PARSER_CODE} -o ${IMG_PARSER} -lm
-
-if [ $? -ne 0 ]; then
-	message ${RED} "There was an error compiling the image parser!"
-	exit 1
-fi
+checkForErrors "There was an error compiling the image parser!" "The texture parser has been compiled!"
 
 ./${IMG_PARSER} ${TEXTURE_IMG} ${TEXTURE_HEADER_DEST} ${TEXTURE_CODE_DEST} ${TEXTURE_SIZE_NAME} ${TEXTURE_MATRIX_NAME}
 rm ${IMG_PARSER}
-message ${CYAN} "All textures had been succesfully added!"
+checkForErrors "There was an error parsing the textures!" "All textures had been succesfully added!"
 
 message ${NC} "Creating build folder..."
 mkdir -p build
@@ -42,23 +57,11 @@ cd build
 
 message ${NC} "Running CMake..."
 cmake ..
-
-if [ $? -ne 0 ]; then
-	message ${RED} "There was an error running CMake!"
-	exit 1
-fi
-
-message ${CYAN} "CMake succesfully did all it's stuff!"
+checkForErrors "There was an error running CMake!" "CMake succesfully did all it's stuff!"
 
 message ${NC} "Creating executable..."
 make all
-
-if [ $? -ne 0 ]; then
-	message ${RED} "There was an error compiling the project!"
-	exit 1
-fi
-
-message ${GREEN} "Executable created!"
+checkForErrors "There was an error compiling the project!" "Executable created!"
 
 message ${CYAN} "Check the build folder, there's the game executable"
 message ${GREEN} "Have fun!"
