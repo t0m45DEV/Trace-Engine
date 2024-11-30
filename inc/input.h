@@ -41,11 +41,11 @@ void move_player(void);
 /*
     If the key being pressed is an action key, we set the corresponding state of action_keys_state to 1
 */
-void buttons_down(unsigned char key, int x, int y);
+void buttons_down(unsigned char key, int, int);
 
 /*
     If the key being pressed is an action key, we set the corresponding state of action_keys_state to 0
 */
-void buttons_up(unsigned char key, int x, int y);
+void buttons_up(unsigned char key, int, int);
 
 #endif

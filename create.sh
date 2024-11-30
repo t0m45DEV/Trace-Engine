@@ -43,7 +43,6 @@ cd build
 message ${NC} "Running CMake..."
 cmake ..
 
-
 if [ $? -ne 0 ]; then
 	message ${RED} "There was an error running CMake!"
 	exit 1

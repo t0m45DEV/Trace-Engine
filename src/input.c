@@ -2,7 +2,7 @@
 
 keys_state_t action_keys_state = {0};
 
-void buttons_down(unsigned char key, int x, int y)
+void buttons_down(unsigned char key, int, int)
 {
     if (key == CHANGE_DEBUG_MODE)
     {
@@ -33,7 +33,7 @@ void buttons_down(unsigned char key, int x, int y)
     }
 }
 
-void buttons_up(unsigned char key, int x, int y)
+void buttons_up(unsigned char key, int, int)
 {
     if (key == MOVE_FORWARD)
     {

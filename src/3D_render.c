@@ -54,7 +54,6 @@ void render_line(float distance_from_player, int ray, float shade, position_2D r
 
     for (int y = line_h + line_offset; y < WINDOW_HEIGHT; y++)
     {
-        float color;
         float delta_y = y - (WINDOW_HEIGHT / 2.0);
 
         texture_x = (player.pos.x / 2) + cos(ray_angle) * FLOOR_CORRECTION * TEXTURE_SIZE / delta_y / ray_angle_fix;
