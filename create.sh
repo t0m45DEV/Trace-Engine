@@ -52,6 +52,12 @@ message ${CYAN} "CMake succesfully did all it's stuff!"
 
 message ${NC} "Creating executable..."
 make all
+
+if [ $? -ne 0 ]; then
+	message ${RED} "There was an error compiling the project!"
+	exit 1
+fi
+
 message ${GREEN} "Executable created!"
 
 message ${CYAN} "Check the build folder, there's the game executable"
