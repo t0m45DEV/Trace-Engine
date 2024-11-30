@@ -1,7 +1,6 @@
 #ifndef _H_PLAYER
 #define _H_PLAYER
 
-#include <GL/glut.h>
 #include "entity.h"
 
 #define P_COLLISION_SIZE 20     /* Initial collision size for player (check inc/map.h:MAP_CELL_SIZE for size relation) */

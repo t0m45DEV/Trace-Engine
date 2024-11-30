@@ -1,7 +1,6 @@
 #ifndef _H_RAYCASTER
 #define _H_RAYCASTER
 
-#include <GL/glut.h>
 #include <stdbool.h>
 
 #include "player.h"
