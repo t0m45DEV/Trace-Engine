@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define DEBUG_INT(x) printf("%s: %i\n", #x, (x));
-
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_lib/stb_image.h"
 
