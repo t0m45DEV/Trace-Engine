@@ -1,7 +1,7 @@
 #include "raycaster.h"
 
 
-void cast_rays(bool debug_view)
+void cast_rays()
 {
     int count_of_hits;
     position_2D map_ray;
@@ -149,7 +149,7 @@ void cast_rays(bool debug_view)
             actual_surface = surface_V;
         }
 
-        if (!debug_view)
+        if (!debug_2D_view)
         {
             angle_cosine = player.angle - ray_angle;
             angle_cosine = adjust_angle(angle_cosine);
