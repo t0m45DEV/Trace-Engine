@@ -19,6 +19,6 @@ void set_level_info(int level_idx);
 /*
     Loads the idx-th level, seting the player stats and the map
 */
-void change_to_level(int level_idx);
+void load_level(int level_idx);
 
 #endif

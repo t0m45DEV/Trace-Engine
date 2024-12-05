@@ -24,7 +24,7 @@ void set_level_info(int level_idx)
 }
 
 
-void change_to_level(int level_idx)
+void load_level(int level_idx)
 {
     current_level = level_idx;
     set_level_info(level_idx);
