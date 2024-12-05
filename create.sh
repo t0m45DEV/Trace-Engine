@@ -42,10 +42,11 @@ pkg-config --libs ${OPENGL_LIB} > ${CONFIG_OUTPUT}
 checkForErrors "You need the ${OPENGL_LIB} library!" "OpenGL library is installed!"
 rm ${CONFIG_OUTPUT}
 
-message ${NC} "Parsing textures..."
+message ${NC} "Compiling texture parser..."
 gcc ${IMG_PARSER_CODE} -o ${IMG_PARSER} -lm
 checkForErrors "There was an error compiling the image parser!" "The texture parser has been compiled!"
 
+message ${NC} "Parsing images to the game..."
 ./${IMG_PARSER} ${TEXTURE_IMG} ${TEXTURE_HEADER_DEST} ${TEXTURE_CODE_DEST} ${TEXTURE_SIZE_NAME} ${TEXTURE_MATRIX_NAME}
 rm ${IMG_PARSER}
 checkForErrors "There was an error parsing the textures!" "All textures had been succesfully added!"
