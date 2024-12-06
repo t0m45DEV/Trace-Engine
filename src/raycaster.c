@@ -1,7 +1,7 @@
 #include "raycaster.h"
 
 
-void cast_rays()
+void cast_rays(void)
 {
     int count_of_hits;
     position_2D map_ray;

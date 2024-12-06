@@ -20,6 +20,6 @@
 /*
     Cast the 2D top-down vision rays for the player and calls the 3D render
 */
-void cast_rays();
+void cast_rays(void);
 
 #endif

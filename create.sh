@@ -20,7 +20,7 @@ CYAN='\033[0;36m'
 # To print my shit
 message() {
     COLOR=$1
-    echo -e "${COLOR}>> $2 ${NC}"
+    echo -e ">>${COLOR} $2 ${NC}"
 }
 
 checkForErrors() {

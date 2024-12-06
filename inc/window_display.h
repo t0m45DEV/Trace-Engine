@@ -1,7 +1,7 @@
 #ifndef _H_WIN_DISP
 #define _H_WIN_DISP
 
-#include <GL/glut.h>
+#include <SDL2/SDL.h>
 
 #include "raycaster.h"
 #include "player.h"
@@ -27,31 +27,18 @@ extern bool debug_2D_view;
 #define WINDOW_WIDTH 960
 #define WINDOW_HEIGHT 640
 
-#define X_CENTER_POS ((glutGet(GLUT_SCREEN_WIDTH) - WINDOW_WIDTH) / 2)    /* To center the window in relation with the screen X axis */
-#define Y_CENTER_POS ((glutGet(GLUT_SCREEN_HEIGHT) - WINDOW_HEIGHT) / 2)  /* To center the window in relation with the screen Y axis */
-
-
 #define MAX_FPS 60  /* It is what it says */
 
 extern float fps;   /* Current FPS, never should exceeds MAX_FPS */
 
 #define FPS_CORRECTION (0.03 * fps) /* A time correction, this could change in relation of player stats */
 
+#define BACKGROUND_COLOR (rgb_t) {0, 0, 0}
 
 /*
     Update fps by substracting the actual frame from the previous
 */
 void update_fps(void);
-
-/*
-    Draw the objects in the window
-*/
-void display(void);
-
-/*
-    Resize the window to the fixed value WINDOW_WIDTH x WINDOW_HEIGHT
-*/
-void resize(int, int);
 
 /*
     Creates the windows and manage mainLoop
@@ -60,5 +47,20 @@ void resize(int, int);
     @param argv Vector of arguments
 */
 void window_create(int argc, char** argv);
+
+/*
+    Creates the window and the context for OpenGL
+*/
+SDL_Window* create_window(const char* title, int width, int height);
+
+/*
+    Change the color of the screen when called glClear()
+*/
+void set_background_color(rgb_t color);
+
+/*
+    Draw the objects in the window
+*/
+void render_screen(void);
 
 #endif

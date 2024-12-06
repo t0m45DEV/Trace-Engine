@@ -37,15 +37,24 @@ extern keys_state_t action_keys_state;
 */
 void move_player(void);
 
-
 /*
     If the key being pressed is an action key, we set the corresponding state of action_keys_state to 1
 */
-void buttons_down(unsigned char key, int, int);
+void button_down(char key);
 
 /*
     If the key being pressed is an action key, we set the corresponding state of action_keys_state to 0
 */
-void buttons_up(unsigned char key, int, int);
+void button_up(char key);
+
+/*
+    Check if event is a key pressed type event and, if it is, do what that input does
+*/
+void handle_input(SDL_Event event);
+
+/*
+    Given an event, return the char of the key assign to it
+*/
+char get_key(SDL_Event event);
 
 #endif

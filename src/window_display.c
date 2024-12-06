@@ -11,47 +11,46 @@ float actual_frame;
 
 void update_fps(void)
 {
-    actual_frame = glutGet(GLUT_ELAPSED_TIME);
-    fps = (actual_frame - previous_frame);
-    previous_frame = glutGet(GLUT_ELAPSED_TIME);
+    //actual_frame = glutGet(GLUT_ELAPSED_TIME);
+    //fps = (actual_frame - previous_frame);
+    //previous_frame = glutGet(GLUT_ELAPSED_TIME);
 
     if (fps > MAX_FPS) fps = MAX_FPS;
 }
 
-
-void display(void)
+SDL_Window* create_window(const char* title, int width, int height)
 {
-    update_fps();
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    SDL_Window* window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
 
-    move_player();
-    
+    if (window == NULL)
+    {
+        printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
+        exit(EXIT_FAILURE);
+    }
+    SDL_GLContext* context = SDL_GL_CreateContext(window);
+  
+    if (!context)
+    {
+        printf("Context could not be created! SDL Error: %s\n", SDL_GetError());
+        exit(EXIT_FAILURE);
+    }
+  
+    if (SDL_GL_SetSwapInterval(1) < 0)
+    {
+        printf("Unable to set VSync! SDL Error: %s\n", SDL_GetError());
+        exit(EXIT_FAILURE);
+    }
+    return window;
+}
+
+void set_background_color(rgb_t color)
+{
+    glClearColor(color.r, color.g, color.b, 1);
+}
+
+void render_screen(void)
+{
     if (debug_2D_view) draw_map_2D();
-    cast_rays(debug_2D_view);
+    cast_rays();
     if (debug_2D_view) draw_player();
-    
-    glutSwapBuffers();
-}
-
-
-void resize(int, int)
-{
-    glutReshapeWindow(WINDOW_WIDTH, WINDOW_HEIGHT);
-}
-
-
-void window_create(int argc, char** argv)
-{
-    glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
-    glutInitWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-    glutInitWindowPosition(X_CENTER_POS, Y_CENTER_POS);
-    glutCreateWindow(WINDOW_TITLE);
-    gluOrtho2D(0, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
-    glClearColor(0.5, 0.5, 0.5, 0);
-    glutReshapeFunc(resize);
-    glutDisplayFunc(display);
-    glutKeyboardFunc(buttons_down);
-    glutKeyboardUpFunc(buttons_up);
-    glutMainLoop();
 }
