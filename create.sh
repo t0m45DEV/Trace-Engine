@@ -1,6 +1,6 @@
 #!/bin/bash
 
-OPENGL_LIB="glut"
+OPENGL_LIB="sdl2 gl"
 
 IMG_PARSER_CODE="./imageParser/imageParser.c"
 IMG_PARSER="image_parser"
