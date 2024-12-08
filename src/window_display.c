@@ -4,19 +4,7 @@ int resolution = LOW_RESOLUTION;
 
 bool debug_2D_view = false;
 
-float fps = MAX_FPS;
-
-float previous_frame = 0;
-float actual_frame;
-
-void update_fps(void)
-{
-    //actual_frame = glutGet(GLUT_ELAPSED_TIME);
-    //fps = (actual_frame - previous_frame);
-    //previous_frame = glutGet(GLUT_ELAPSED_TIME);
-
-    if (fps > MAX_FPS) fps = MAX_FPS;
-}
+float delta_time = 0;
 
 SDL_Window* create_window(const char* title, int width, int height)
 {

@@ -29,9 +29,8 @@ extern bool debug_2D_view;
 
 #define MAX_FPS 60  /* It is what it says */
 
-extern float fps;   /* Current FPS, never should exceeds MAX_FPS */
+extern float delta_time;   /* Current FPS, never should exceeds MAX_FPS */
 
-#define FPS_CORRECTION (0.03 * fps) /* A time correction, this could change in relation of player stats */
 
 #define BACKGROUND_COLOR (rgb_t) {0, 0, 0}
 

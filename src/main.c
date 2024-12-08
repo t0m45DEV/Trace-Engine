@@ -57,8 +57,15 @@ int main()
     }
     set_background_color(BACKGROUND_COLOR);
 
+    // The division is to the get the time in seconds, not in miliseconds
+    float actual_frame = SDL_GetTicks() / 1000.0;
+
     while (true)
     {
+        float previous_frame = actual_frame;
+        actual_frame = SDL_GetTicks() / 1000.0;
+        delta_time = actual_frame - previous_frame;
+
         SDL_Event event;
         SDL_PollEvent(&event);
 
