@@ -33,7 +33,6 @@ bool is_timer_up(engine_timer_t* timer)
     {
         return true;
     }
-
     float actual_time = SDL_GetTicks();
 
     if ((actual_time - timer->initial_time) >= timer->duration)
@@ -41,8 +40,5 @@ bool is_timer_up(engine_timer_t* timer)
         reset_timer(timer);
         return true;
     }
-    else
-    {
-        return false;
-    }
+    return false;
 }

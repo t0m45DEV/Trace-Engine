@@ -1,5 +1,15 @@
 #include "entity.h"
 
+void print_entity(entity_t entity)
+{
+    printf("Position: (%f, %f)\n", entity.pos.x, entity.pos.y);
+    printf("Delta: (%f, %f)\n", entity.delta.x, entity.delta.y);
+    printf("Angle: %f\n", entity.angle);
+    printf("Velocity: %f\n", entity.velocity);
+    printf("Collision size: %i\n", entity.collision_size);
+    printf("Velocity: (%f, %f)\n", entity.offset.x, entity.offset.y);
+}
+
 
 entity_t calculate_offset(entity_t entity)
 {

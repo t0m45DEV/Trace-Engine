@@ -1,6 +1,8 @@
 #ifndef _H_ENTITY
 #define _H_ENTITY
 
+#include <stdio.h>
+
 #include "map.h"
 #include "trigonometry.h"
 
@@ -14,12 +16,12 @@
 /*
     An entity is every interactive and moving thing in the game, including the player
 
-    @param pos position_2D
-    @param delta position_2D
-    @param angle Float
-    @param velocity Float
-    @param collision_size Int
-    @param offset position_2D
+    @param pos position_2D, where the entity is in the top view map
+    @param delta position_2D, where the entity is looking at
+    @param angle Float, the angle between pos and delta, in radians
+    @param velocity Float, how fast the entity moves
+    @param collision_size Int, radious of the collision shape (it's always a circle)
+    @param offset position_2D, the offset is a point at distance collision_size from pos, we use this point to detect collisions
 */
 typedef struct entity_s {
     position_2D pos;
@@ -30,6 +32,11 @@ typedef struct entity_s {
     position_2D offset;
 } entity_t;
 
+
+/*
+    Only for debug, it shows the entity info
+*/
+void print_entity(entity_t entity);
 
 /*
     Returns the same entity with the x_offset and y_offset calculated using the entity angle
