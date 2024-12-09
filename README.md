@@ -18,6 +18,6 @@ Download the whole project and run:
 
 ## Rendering textures
 
-The textures must be a png file named `textures.png` found in the `images` folder. The code asumes that the textures are in a vertical strip style, and that all have the same size. Also, they have to be square.
+The textures for the walls, ceilings and floors must be a png file located in the same root as the variable `TEXTURE_IMG` from the `create.sh` file. In the standar repo the png is call `structures.png` and the folder is `textures`. The code asumes that the textures are in a vertical strip style, and that all have the same size. Also, they have to be square.
 
 Textures of 32x32 pixels works and looks fine.

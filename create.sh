@@ -5,7 +5,7 @@ OPENGL_LIB="sdl2 gl"
 IMG_PARSER_CODE="./imageParser/imageParser.c"
 IMG_PARSER="image_parser"
 
-TEXTURE_IMG="./images/textures.png"
+TEXTURE_IMG="./textures/structures.png"
 TEXTURE_HEADER_DEST="./inc/all_textures.h"
 TEXTURE_CODE_DEST="./src/all_textures.c"
 
@@ -48,8 +48,8 @@ checkForErrors "There was an error compiling the image parser!" "The texture par
 
 message ${NC} "Parsing images to the game..."
 ./${IMG_PARSER} ${TEXTURE_IMG} ${TEXTURE_HEADER_DEST} ${TEXTURE_CODE_DEST} ${TEXTURE_SIZE_NAME} ${TEXTURE_MATRIX_NAME}
-rm ${IMG_PARSER}
 checkForErrors "There was an error parsing the textures!" "All textures had been succesfully added!"
+rm ${IMG_PARSER}
 
 message ${NC} "Creating build folder..."
 mkdir -p build

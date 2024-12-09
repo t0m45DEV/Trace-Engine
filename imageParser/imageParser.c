@@ -18,7 +18,7 @@ int main(int argc, char* argv[])
     {
         printf("Error 01: Need arguments.\n");
     	printf("Example: %s path/to/image.png path/to/dest.h path/to/dest.c TEXTURE_SIZE_NAME TEXTURE_MATRIX_NAME\n", argv[0]);
-    	return EXIT_FAILURE;
+    	exit(EXIT_FAILURE);
   	}
 
 	char* img_path = argv[IMG_PATH_ARG];
@@ -29,7 +29,7 @@ int main(int argc, char* argv[])
 	if (img == NULL)
 	{
 	    printf("Error 02: Couldn't load the image.\n");
-    	return EXIT_FAILURE;
+    	exit(EXIT_FAILURE);
 	}
 
 	char* dest_header_path = argv[DEST_HEADER_PATH_ARG];
@@ -65,5 +65,5 @@ int main(int argc, char* argv[])
 	fclose(dest_code_file);
 
 	stbi_image_free(img);
-	return EXIT_SUCCESS;
+	exit(EXIT_SUCCESS);
 }

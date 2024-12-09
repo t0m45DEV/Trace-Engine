@@ -66,7 +66,7 @@ int main()
         actual_frame = SDL_GetTicks() / 1000.0;
         delta_time = actual_frame - previous_frame;
 
-        if (!handle_input())
+        if (!handle_input()) // The window is closed
         {
             break;
         }
