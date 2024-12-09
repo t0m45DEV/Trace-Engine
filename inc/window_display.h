@@ -27,9 +27,9 @@ extern bool debug_2D_view;
 #define WINDOW_WIDTH 960
 #define WINDOW_HEIGHT 640
 
-#define MAX_FPS 60  /* It is what it says */
+extern int fps;     /* Frame per second counter */
 
-extern float delta_time;   /* Current FPS, never should exceeds MAX_FPS */
+extern float delta_time;   /* The time elapsed between last frame and the actual one */
 
 
 #define BACKGROUND_COLOR (rgb_t) {0, 0, 0}

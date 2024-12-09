@@ -7,6 +7,7 @@
 #include "window_display.h"
 #include "world.h"
 #include "player.h"
+#include "timer.h"
 
 bool initGL()
 {
@@ -57,14 +58,26 @@ int main()
     }
     set_background_color(BACKGROUND_COLOR);
 
+    engine_timer_t fps_timer = create_timer(1);
+    start_timer(&fps_timer);
+
     // The division is to the get the time in seconds, not in miliseconds
-    float actual_frame = SDL_GetTicks() / 1000.0;
+    float actual_frame = SDL_GetTicks() / SECONDS_TO_MILISECONDS(1);
 
     while (true)
     {
         float previous_frame = actual_frame;
-        actual_frame = SDL_GetTicks() / 1000.0;
+        actual_frame = SDL_GetTicks() / SECONDS_TO_MILISECONDS(1);
         delta_time = actual_frame - previous_frame;
+
+        fps++;
+
+        if (is_timer_up(&fps_timer))
+        {
+            printf("FPS: %i\n", fps);
+            fps = 0;
+            start_timer(&fps_timer);
+        }
 
         if (!handle_input()) // The window is closed
         {

@@ -4,6 +4,8 @@ int resolution = LOW_RESOLUTION;
 
 bool debug_2D_view = false;
 
+int fps = 0;
+
 float delta_time = 0;
 
 SDL_Window* create_window(const char* title, int width, int height)
