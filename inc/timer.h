@@ -45,6 +45,8 @@ void reset_timer(engine_timer_t* timer);
 
 /*
     Returns true if the timer stops, returns false if not
+
+    Important note: if the timer is inactive, the function will always return true (inactive is equal to stopped)
 */
 bool is_timer_up(engine_timer_t* timer);
 

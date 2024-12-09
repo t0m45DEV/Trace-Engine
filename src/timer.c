@@ -29,6 +29,11 @@ void reset_timer(engine_timer_t* timer)
 
 bool is_timer_up(engine_timer_t* timer)
 {
+    if (!timer->is_active)
+    {
+        return true;
+    }
+
     float actual_time = SDL_GetTicks();
 
     if ((actual_time - timer->initial_time) >= timer->duration)
