@@ -8,12 +8,12 @@
 
 /* Action keys */
 
-#define CHANGE_DEBUG_MODE '|' /* To test new mechanics */
+#define CHANGE_DEBUG_MODE SDL_GetScancodeFromKey('|') /* To test new mechanics */
 
-#define MOVE_FORWARD  'w'
-#define MOVE_BACKWARD 's'
-#define ROTATE_ANTI_CLOCKWISE 'a'
-#define ROTATE_CLOCKWISE      'd'
+#define MOVE_FORWARD  SDL_GetScancodeFromKey('w')
+#define MOVE_BACKWARD SDL_GetScancodeFromKey('s')
+#define ROTATE_ANTI_CLOCKWISE SDL_GetScancodeFromKey('a')
+#define ROTATE_CLOCKWISE      SDL_GetScancodeFromKey('d')
 
 
 /*
@@ -31,30 +31,19 @@ typedef struct keys_state_s {
 /* The current state of the keyboard */
 extern keys_state_t action_keys_state;
 
-
 /*
     Move the player using the info in the player struct from player.h and the action_key_state struct from input.h
 */
 void move_player(void);
 
 /*
-    If the key being pressed is an action key, we set the corresponding state of action_keys_state to 1
+    Handle user input, return 0 if the detected event is closing the window, 1 otherwise
 */
-void button_down(char key);
+bool handle_input(void);
 
 /*
-    If the key being pressed is an action key, we set the corresponding state of action_keys_state to 0
+    Given an SDL_Event, it returns the keyboard key scancode that matches that event
 */
-void button_up(char key);
-
-/*
-    Check if event is a key pressed type event and, if it is, do what that input does
-*/
-void handle_input(SDL_Event event);
-
-/*
-    Given an event, return the char of the key assign to it
-*/
-char get_key(SDL_Event event);
+SDL_Scancode get_scancode(SDL_Event event);
 
 #endif

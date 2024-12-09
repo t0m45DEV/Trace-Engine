@@ -66,14 +66,10 @@ int main()
         actual_frame = SDL_GetTicks() / 1000.0;
         delta_time = actual_frame - previous_frame;
 
-        SDL_Event event;
-        SDL_PollEvent(&event);
-
-        if (event.type == SDL_QUIT) // If the window closes
+        if (!handle_input())
         {
             break;
         }
-        handle_input(event);
         move_player();
 
         glClear(GL_COLOR_BUFFER_BIT);
