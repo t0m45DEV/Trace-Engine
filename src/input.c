@@ -52,7 +52,7 @@ bool handle_input(void)
     action_keys_state.rotate_clockwise = (keyboard_state[ROTATE_CLOCKWISE] != 0);
 
     // Simple input
-    if (event.type == SDL_KEYDOWN)
+    if (event.type == SDL_KEYUP)
     {
         if (get_scancode(event) == CHANGE_DEBUG_MODE)
         {
