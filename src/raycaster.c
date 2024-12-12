@@ -7,7 +7,7 @@ void cast_rays(void)
     position_2D map_ray;
     int ray_in_map;
     position_2D ray_pos;
-    position_2D ray_offset;
+    position_2D ray_offset = {0, 0};
     float distance_from_player;
     float angle_cosine;
 
@@ -19,8 +19,8 @@ void cast_rays(void)
         /* Check horizontal lines */
 
         float distance_h = INFINITY;
-        position_2D ray_H;
-        structures_t surface_H;
+        position_2D ray_H = {0, 0};
+        structures_t surface_H = AIR;
 
         count_of_hits = 0;
         float aTan = -1 / tan(ray_angle);
@@ -74,8 +74,8 @@ void cast_rays(void)
         /* Check vertical lines */
 
         float distance_v = INFINITY;
-        position_2D ray_V;
-        structures_t surface_V;
+        position_2D ray_V = {0, 0};
+        structures_t surface_V = AIR;
 
         count_of_hits = 0;
         float nTan = (-1) * tan(ray_angle);
