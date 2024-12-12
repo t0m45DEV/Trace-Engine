@@ -19,13 +19,12 @@ void draw_player(void)
 {
     glColor3f(1, 1, 0);
     glPointSize(12);
-    glEnable(GL_POINT_SMOOTH);
     glBegin(GL_POINTS);
     glVertex2i(player.pos.x, player.pos.y);
     glEnd();
 
-    float look_x_dir = player.pos.x + player.delta.x * MOVE_VELOCITY;
-    float look_y_dir = player.pos.y + player.delta.y * MOVE_VELOCITY;
+    float look_x_dir = player.pos.x + (player.delta.x / 5);
+    float look_y_dir = player.pos.y + (player.delta.y / 5);
 
     glLineWidth(4);
     glBegin(GL_LINES);
