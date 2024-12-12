@@ -18,11 +18,9 @@
 
 /*
     Structures that can form the map
-
-    AIR (0) is nothing, the squares where the entities can move
 */
 typedef enum structures_s {
-    AIR,
+    AIR,  /* Nothing, the squares where the entities can move */
     WALL,
     DOOR
 } structures_t;
@@ -32,9 +30,9 @@ typedef enum structures_s {
     A color struct, having 3 variables: r, g and b
 */
 typedef struct rgb_s {
-    float r;
-    float g;
-    float b;
+    float r; /* Red component from RGB */
+    float g; /* Green component from RGB */
+    float b; /* Blue component from RGB */
 } rgb_t;
 
 extern structures_t map_w[];         /* The wall maps for ALL the levels in one array */
@@ -46,7 +44,7 @@ extern position_2D player_spawns[];  /* The player spawns for each level, saved 
 /*
     Check if the given index is in range of the current level map
 
-    curr_lev_info.mapp_offset <= idx < (curr_lev_info.mapp_offset + MAP_SIZE)
+    @note curr_lev_info.mapp_offset <= idx < (curr_lev_info.mapp_offset + MAP_SIZE)
 */
 int is_valid_map_index(int idx);
 
@@ -61,15 +59,11 @@ void draw_map_2D(void);
 
 /*
     Holds all the info of a level
-
-    @param map_offset Location in the maps array
-    @param map_size Size of the map of the level, in the form of position_2D
-    @param player_spawn Location of the player when the level is loaded, in the form of position_2D
 */
 typedef struct level_s {
-    int map_offset;
-    position_2D map_size;
-    position_2D player_spawn;
+    int map_offset;           /* Location in the maps array */
+    position_2D map_size;     /* Size of the map of the level, in the form of position_2D */
+    position_2D player_spawn; /* Location of the player when the level is loaded, in the form of position_2D */
 } level_t;
 
 extern level_t curr_lev_info; /* Info of the current level  */

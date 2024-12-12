@@ -15,26 +15,21 @@
 
 /*
     An entity is every interactive and moving thing in the game, including the player
-
-    @param pos position_2D, where the entity is in the top view map
-    @param delta position_2D, where the entity is looking at
-    @param angle Float, the angle between pos and delta, in radians
-    @param velocity Float, how fast the entity moves
-    @param collision_size Int, radious of the collision shape (it's always a circle)
-    @param offset position_2D, the offset is a point at distance collision_size from pos, we use this point to detect collisions
 */
 typedef struct entity_s {
-    position_2D pos;
-    position_2D delta;
-    float angle;
-    float velocity;
-    int collision_size;
-    position_2D offset;
+    position_2D pos;    /* Where the entity is in the top view map */
+    position_2D delta;  /* Where the entity is looking at */
+    float angle;        /* The angle between pos and delta, in radians */
+    float velocity;     /* How fast the entity moves */
+    int collision_size; /* Radious of the collision shape (it's always a circle) */
+    position_2D offset; /* The offset is a point at distance collision_size from pos, we use this point to detect collisions */
 } entity_t;
 
 
 /*
-    Only for debug, it shows the entity info
+    Only for debug, it shows the entity info 
+    
+    @param entity entity_t, the entity to print
 */
 void print_entity(entity_t entity);
 

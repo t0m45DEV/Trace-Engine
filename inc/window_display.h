@@ -35,19 +35,6 @@ extern float delta_time;   /* The time elapsed between last frame and the actual
 #define BACKGROUND_COLOR (rgb_t) {0, 0, 0}
 
 /*
-    Update fps by substracting the actual frame from the previous
-*/
-void update_fps(void);
-
-/*
-    Creates the windows and manage mainLoop
-
-    @param argc Number of arguments
-    @param argv Vector of arguments
-*/
-void window_create(int argc, char** argv);
-
-/*
     Creates the window and the context for OpenGL
 */
 SDL_Window* create_window(const char* title, int width, int height);

@@ -10,15 +10,11 @@
 
 /*
     A timer struct, can init and check when is stopped
-
-    @param is_active int, false means the timer is stopped, true means the timer is running
-    @param duration float, the timer duration in miliseconds
-    @param initial_time, the timer activation time, in miliseconds
 */
 typedef struct timer_s {
-    bool is_active;
-    float duration;
-    float initial_time;
+    bool is_active;     /* False means the timer is stopped, true means the timer is running */
+    float duration;     /* The timer duration in miliseconds */
+    float initial_time; /* The timer activation time, in miliseconds */
 } engine_timer_t;
 
 /*
@@ -29,7 +25,7 @@ void print_timer(engine_timer_t* timer);
 /*
     Creates a timer object with the duration (in seconds) passed by argument
 
-    It does not start running!
+    @note It does NOT start running!
 */
 engine_timer_t create_timer(float duration);
 
@@ -46,7 +42,7 @@ void reset_timer(engine_timer_t* timer);
 /*
     Returns true if the timer stops, returns false if not
 
-    Important note: if the timer is inactive, the function will always return true (inactive is equal to stopped)
+    @note If the timer is inactive, the function will always return true (inactive is equal to stopped)
 */
 bool is_timer_up(engine_timer_t* timer);
 

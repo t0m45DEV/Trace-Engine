@@ -17,8 +17,8 @@
 
 
 /*
-    State of the keys being pressed
-
+    State of the keys being pressed, used to press distinct keys simultaneously
+    
     1 means pressed, 0 means not
 */
 typedef struct keys_state_s {
@@ -38,6 +38,8 @@ bool handle_input(void);
 
 /*
     Given an SDL_Event, it returns the keyboard key scancode that matches that event
+
+    @param event SDL_Event, an event type from SDL
 */
 SDL_Scancode get_scancode(SDL_Event event);
 
