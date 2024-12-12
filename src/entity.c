@@ -7,7 +7,7 @@ void print_entity(entity_t entity)
     printf("Angle: %f\n", entity.angle);
     printf("Velocity: %f\n", entity.velocity);
     printf("Collision size: %i\n", entity.collision_size);
-    printf("Velocity: (%f, %f)\n", entity.offset.x, entity.offset.y);
+    printf("Offset: (%f, %f)\n", entity.offset.x, entity.offset.y);
 }
 
 
