@@ -15,6 +15,37 @@ void reset_player_info(void)
 }
 
 
+void move_player(void)
+{
+    if (action_keys_state.rotate_anti_clockwise)
+    {
+        player.angle -= ROTATE_VELOCITY * delta_time;
+        player.angle = adjust_angle(player.angle);
+        
+        player.delta.x = CALCULATE_X_DELTA(player.angle) * player.velocity;
+        player.delta.y = CALCULATE_Y_DELTA(player.angle) * player.velocity;
+    }
+    if (action_keys_state.rotate_clockwise)
+    {
+        player.angle += ROTATE_VELOCITY * delta_time;
+        player.angle = adjust_angle(player.angle);
+
+        player.delta.x = CALCULATE_X_DELTA(player.angle) * player.velocity;
+        player.delta.y = CALCULATE_Y_DELTA(player.angle) * player.velocity;
+    }
+    if (action_keys_state.move_forward)
+    {
+        if (!is_colliding_in_axis(player, FRONT_X_AXIS_COLLISION)) player.pos.x += player.delta.x * delta_time;
+        if (!is_colliding_in_axis(player, FRONT_Y_AXIS_COLLISION)) player.pos.y += player.delta.y * delta_time;
+    }
+    if (action_keys_state.move_backward)
+    {
+        if (!is_colliding_in_axis(player, BACK_X_AXIS_COLLISION)) player.pos.x -= player.delta.x * delta_time;
+        if (!is_colliding_in_axis(player, BACK_Y_AXIS_COLLISION)) player.pos.y -= player.delta.y * delta_time;
+    }
+}
+
+
 void draw_player(void)
 {
     glColor3f(1, 1, 0);

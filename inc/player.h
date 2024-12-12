@@ -2,6 +2,7 @@
 #define _H_PLAYER
 
 #include "entity.h"
+#include "input.h"
 
 #define P_COLLISION_SIZE 20     /* Initial collision size for player (check inc/map.h:MAP_CELL_SIZE for size relation) */
 
@@ -19,6 +20,11 @@ extern entity_t player;
     If you change or reset the level, call this function to update the player position, velocity, etc
 */
 void reset_player_info(void);
+
+/*
+    Move the player using the info in the player struct from player.h and the action_key_state struct from input.h
+*/
+void move_player(void);
 
 /*
     Draw the player in the screen in the actual player position.

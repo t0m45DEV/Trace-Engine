@@ -32,11 +32,6 @@ typedef struct keys_state_s {
 extern keys_state_t action_keys_state;
 
 /*
-    Move the player using the info in the player struct from player.h and the action_key_state struct from input.h
-*/
-void move_player(void);
-
-/*
     Handle user input, return 0 if the detected event is closing the window, 1 otherwise
 */
 bool handle_input(void);
