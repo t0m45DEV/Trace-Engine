@@ -21,7 +21,8 @@
 */
 typedef enum structures_s {
     AIR,  /* Nothing, the squares where the entities can move */
-    WALL,
+    STONE,
+    WOOD,
     DOOR
 } structures_t;
 
