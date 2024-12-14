@@ -27,11 +27,16 @@ typedef struct {
 
 /**
  * Returns the distance between p1 and p2
+ * 
+ * @param p1 First point
+ * @param p2 Second point
  */
 float distance_between(position_2D p1, position_2D p2);
 
 /**
  * Returns the angle so it's in the range of 0 to 2*PI
+ * 
+ * @param angle The angle to adjust, in radians
  */
 float adjust_angle(float angle);
 

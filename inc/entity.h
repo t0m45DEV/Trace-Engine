@@ -43,13 +43,19 @@ void update_offset(entity_t* entity);
 
 /**
  * Returns true (not zero) if the thing at the position idx can move towards the offset position
+ * 
+ * @param idx The actual position of the object
+ * @param offset The direction in whichc the object wants to move
  */
 int can_move(position_2D idx, position_2D offset);
 
 
 /**
  * Given an entity and a collision position indicator, returns 0 if there is no collision in that direction, or another number of there is a collision
-*/
+ * 
+ * @param entity The entity that the function will check
+ * @param axis The axis of collision to check (X and Y axis, collision from front and the back)
+ */
 int is_colliding_in_axis(entity_t entity, int axis);
 
 #endif

@@ -24,10 +24,10 @@
  * 1 means pressed, 0 means not
  */
 typedef struct {
-    int move_forward;
-    int move_backward;
-    int rotate_anti_clockwise;
-    int rotate_clockwise;
+    int move_forward;          /**< The state of the key to move forward */
+    int move_backward;         /**< The state of the key to move backward */
+    int rotate_anti_clockwise; /**< The state of the key to rotate anti clockwise */
+    int rotate_clockwise;      /**< The state of the key to rotate clockwise */
 } keys_state_t;
 
 /** The current state of the keyboard */
