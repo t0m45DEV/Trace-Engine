@@ -38,7 +38,7 @@ void print_entity(entity_t entity);
 
     @param entity An entity type, the engine asumes that delta have correct values
 */
-entity_t calculate_offset(entity_t entity);
+void update_offset(entity_t* entity);
 
 
 /*

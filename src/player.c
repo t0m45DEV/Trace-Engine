@@ -11,7 +11,7 @@ void reset_player_info(void)
     player.delta.x = CALCULATE_X_DELTA(player.angle) * player.velocity;
     player.delta.y = CALCULATE_Y_DELTA(player.angle) * player.velocity;
     player.collision_size = P_COLLISION_SIZE;
-    player = calculate_offset(player);
+    update_offset(&player);
 }
 
 

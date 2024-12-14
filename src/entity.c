@@ -2,6 +2,7 @@
 
 void print_entity(entity_t entity)
 {
+    printf("=== Entity ===\n");
     printf("Position: (%f, %f)\n", entity.pos.x, entity.pos.y);
     printf("Delta: (%f, %f)\n", entity.delta.x, entity.delta.y);
     printf("Angle: %f\n", entity.angle);
@@ -11,15 +12,25 @@ void print_entity(entity_t entity)
 }
 
 
-entity_t calculate_offset(entity_t entity)
+void update_offset(entity_t* entity)
 {
-    if (entity.delta.x < 0) {entity.offset.x = (-1) * entity.collision_size;}
-    else {entity.offset.x = entity.collision_size;}
+    if (entity->delta.x < 0)
+    {
+        entity->offset.x = (-1) * entity->collision_size;
+    }
+    else
+    {
+        entity->offset.x = entity->collision_size;
+    }
 
-    if (entity.delta.y < 0) {entity.offset.y = (-1) * entity.collision_size;}
-    else {entity.offset.y = entity.collision_size;}
-
-    return entity;
+    if (entity->delta.y < 0)
+    {
+        entity->offset.y = (-1) * entity->collision_size;
+    }
+    else
+    {
+        entity->offset.y = entity->collision_size;
+    }
 }
 
 
@@ -37,7 +48,7 @@ int can_move(position_2D idx, position_2D offset)
 
 int is_colliding_in_axis(entity_t entity, int axis)
 {
-    entity = calculate_offset(entity);
+    update_offset(&entity);
 
     position_2D idx;
     idx.x = entity.pos.x / (float) MAP_CELL_SIZE;
