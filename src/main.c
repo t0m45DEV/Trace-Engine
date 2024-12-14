@@ -58,6 +58,9 @@ int main()
     }
     set_background_color(BACKGROUND_COLOR);
 
+    engine_timer_t animation_timer = create_timer(0.3);
+    start_timer(&animation_timer);
+
     engine_timer_t fps_timer = create_timer(1);
     start_timer(&fps_timer);
 
@@ -77,6 +80,12 @@ int main()
             printf("FPS: %i\n", fps);
             fps = 0;
             start_timer(&fps_timer);
+        }
+
+        if (is_timer_up(&animation_timer))
+        {
+            map_w[REAL_POS_TO_GRID_POS(3, 2)] = ((map_w[REAL_POS_TO_GRID_POS(3, 2)] + 1) % 3) + 1;
+            start_timer(&animation_timer);
         }
 
         if (!handle_input()) // The window is closed
