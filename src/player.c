@@ -7,9 +7,10 @@ void reset_player_info(void)
     player.pos.x = GRID_POS_TO_REAL_POS(curr_lev_info.player_spawn.x);
     player.pos.y = GRID_POS_TO_REAL_POS(curr_lev_info.player_spawn.y);
     player.angle = P_INIT_ANGLE;
-    player.velocity = MOVE_VELOCITY;
-    player.delta.x = CALCULATE_X_DELTA(player.angle) * player.velocity;
-    player.delta.y = CALCULATE_Y_DELTA(player.angle) * player.velocity;
+    player.movement_velocity = MOVEMENT_VELOCITY;
+    player.rotation_velocity = ROTATION_VELOCITY;
+    player.delta.x = CALCULATE_X_DELTA(player.angle) * player.movement_velocity;
+    player.delta.y = CALCULATE_Y_DELTA(player.angle) * player.movement_velocity;
     player.collision_size = P_COLLISION_SIZE;
     update_offset(&player);
 }
@@ -17,21 +18,23 @@ void reset_player_info(void)
 
 void move_player(void)
 {
+    update_offset(&player);
+
     if (action_keys_state.rotate_anti_clockwise)
     {
-        player.angle -= ROTATE_VELOCITY * delta_time;
+        player.angle -= player.rotation_velocity * delta_time;
         player.angle = adjust_angle(player.angle);
         
-        player.delta.x = CALCULATE_X_DELTA(player.angle) * player.velocity;
-        player.delta.y = CALCULATE_Y_DELTA(player.angle) * player.velocity;
+        player.delta.x = CALCULATE_X_DELTA(player.angle) * player.movement_velocity;
+        player.delta.y = CALCULATE_Y_DELTA(player.angle) * player.movement_velocity;
     }
     if (action_keys_state.rotate_clockwise)
     {
-        player.angle += ROTATE_VELOCITY * delta_time;
+        player.angle += player.rotation_velocity * delta_time;
         player.angle = adjust_angle(player.angle);
 
-        player.delta.x = CALCULATE_X_DELTA(player.angle) * player.velocity;
-        player.delta.y = CALCULATE_Y_DELTA(player.angle) * player.velocity;
+        player.delta.x = CALCULATE_X_DELTA(player.angle) * player.movement_velocity;
+        player.delta.y = CALCULATE_Y_DELTA(player.angle) * player.movement_velocity;
     }
     if (action_keys_state.move_forward)
     {
@@ -67,8 +70,6 @@ void draw_player(void)
 
 void open_door(void)
 {
-    update_offset(&player);
-
     position_2D_t front_offset;
     front_offset.x = (player.pos.x + player.offset.x) / (float) MAP_CELL_SIZE;
     front_offset.y = (player.pos.y + player.offset.y) / (float) MAP_CELL_SIZE;

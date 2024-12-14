@@ -19,6 +19,6 @@
 /**
  *  Render a wall, off height (distance_from_player / MAX_WALL_HEIGHT) and draws it in the given ray position
  */
-void render_line(float distance_from_player, int ray, float shade, position_2D ray_pos, float ray_angle, structures_t surface);
+void render_line(float distance_from_player, int ray, float shade, position_2D_t ray_pos, float ray_angle, structures_t surface);
 
 #endif

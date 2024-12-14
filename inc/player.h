@@ -6,8 +6,8 @@
 
 #define P_COLLISION_SIZE 20     /**< Initial collision size for player (check MAP_CELL_SIZE for size relation) */
 
-#define MOVE_VELOCITY    100    /**< Initial player movement velocity */
-#define ROTATE_VELOCITY  2      /**< Initial player rotation velocity */
+#define MOVEMENT_VELOCITY  100    /**< Initial player movement velocity */
+#define ROTATION_VELOCITY  2      /**< Initial player rotation velocity */
 
 #define P_INIT_ANGLE 0          /**< Initial player vision angle (0 means bro is seeing right) */
 
