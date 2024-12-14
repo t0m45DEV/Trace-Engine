@@ -33,4 +33,9 @@ void move_player(void);
 */
 void draw_player(void);
 
+/*
+    Check if is a door infront of the player. If that's true, opens the door
+*/
+void open_door(void);
+
 #endif

@@ -63,3 +63,20 @@ void draw_player(void)
     glVertex2i(look_x_dir, look_y_dir);
     glEnd();
 }
+
+
+void open_door(void)
+{
+    update_offset(&player);
+
+    position_2D front_offset;
+    front_offset.x = (player.pos.x + player.offset.x) / (float) MAP_CELL_SIZE;
+    front_offset.y = (player.pos.y + player.offset.y) / (float) MAP_CELL_SIZE;
+
+    structures_t block_in_front = map_w[REAL_POS_TO_GRID_POS(front_offset.x, front_offset.y)];
+
+    if (block_in_front == DOOR)
+    {
+        map_w[REAL_POS_TO_GRID_POS(front_offset.x, front_offset.y)] = AIR;
+    }
+}

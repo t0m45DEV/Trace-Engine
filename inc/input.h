@@ -8,12 +8,14 @@
 
 /* Action keys */
 
-#define CHANGE_DEBUG_MODE SDL_GetScancodeFromKey('|') /* To test new mechanics */
+#define CHANGE_DEBUG_MODE_BUTTON SDL_GetScancodeFromKey('|') /* To test new mechanics */
 
-#define MOVE_FORWARD  SDL_GetScancodeFromKey('w')
-#define MOVE_BACKWARD SDL_GetScancodeFromKey('s')
-#define ROTATE_ANTI_CLOCKWISE SDL_GetScancodeFromKey('a')
-#define ROTATE_CLOCKWISE      SDL_GetScancodeFromKey('d')
+#define MOVE_FORWARD_BUTTON  SDL_GetScancodeFromKey('w')
+#define MOVE_BACKWARD_BUTTON SDL_GetScancodeFromKey('s')
+#define ROTATE_ANTI_CLOCKWISE_BUTTON SDL_GetScancodeFromKey('a')
+#define ROTATE_CLOCKWISE_BUTTON      SDL_GetScancodeFromKey('d')
+
+#define OPEN_DOOR_BUTTON SDL_GetScancodeFromKey('e')
 
 
 /*
