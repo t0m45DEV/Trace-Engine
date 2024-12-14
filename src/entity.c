@@ -34,7 +34,7 @@ void update_offset(entity_t* entity)
 }
 
 
-int can_move(position_2D idx, position_2D offset)
+int can_move(position_2D_t idx, position_2D_t offset)
 {
     int front  = map_w[REAL_POS_TO_GRID_POS(offset.x, offset.y)];
     int x_axis = map_w[REAL_POS_TO_GRID_POS(offset.x, idx.y)];
@@ -50,15 +50,15 @@ int is_colliding_in_axis(entity_t entity, int axis)
 {
     update_offset(&entity);
 
-    position_2D idx;
+    position_2D_t idx;
     idx.x = entity.pos.x / (float) MAP_CELL_SIZE;
     idx.y = entity.pos.y / (float) MAP_CELL_SIZE;
 
-    position_2D add_offset;
+    position_2D_t add_offset;
     add_offset.x = (entity.pos.x + entity.offset.x) / (float) MAP_CELL_SIZE;
     add_offset.y = (entity.pos.y + entity.offset.y) / (float) MAP_CELL_SIZE;
 
-    position_2D sub_offset;
+    position_2D_t sub_offset;
     sub_offset.x = (entity.pos.x - entity.offset.x) / (float) MAP_CELL_SIZE;
     sub_offset.y = (entity.pos.y - entity.offset.y) / (float) MAP_CELL_SIZE;
 

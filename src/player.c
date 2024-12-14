@@ -69,7 +69,7 @@ void open_door(void)
 {
     update_offset(&player);
 
-    position_2D front_offset;
+    position_2D_t front_offset;
     front_offset.x = (player.pos.x + player.offset.x) / (float) MAP_CELL_SIZE;
     front_offset.y = (player.pos.y + player.offset.y) / (float) MAP_CELL_SIZE;
 

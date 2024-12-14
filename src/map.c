@@ -63,16 +63,16 @@ structures_t map_c[] =
     2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
 };
 
-position_2D maps_sizes[LEVEL_COUNT] =
+position_2D_t maps_sizes[LEVEL_COUNT] =
 {
-    (position_2D) {8, 8},
-    (position_2D) {16, 8}
+    (position_2D_t) {8, 8},
+    (position_2D_t) {16, 8}
 };
 
-position_2D player_spawns[LEVEL_COUNT] =
+position_2D_t player_spawns[LEVEL_COUNT] =
 {
-    (position_2D) {1, 6},
-    (position_2D) {1, 1}
+    (position_2D_t) {1, 6},
+    (position_2D_t) {1, 1}
 };
 
 
@@ -83,7 +83,7 @@ int is_valid_map_index(int idx)
 
 void draw_map_2D(void)
 {
-    position_2D grid_pos;
+    position_2D_t grid_pos;
 
     for (int y = 0; y < curr_lev_info.map_size.y; y++)
     {

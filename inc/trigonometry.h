@@ -23,7 +23,7 @@
 typedef struct {
     float x;  /**< X component of the (x, y) vector */
     float y;  /**< Y component of the (x, y) vector */
-} position_2D;
+} position_2D_t;
 
 /**
  * Returns the distance between p1 and p2
@@ -31,7 +31,7 @@ typedef struct {
  * @param p1 First point
  * @param p2 Second point
  */
-float distance_between(position_2D p1, position_2D p2);
+float distance_between(position_2D_t p1, position_2D_t p2);
 
 /**
  * Returns the angle so it's in the range of 0 to 2*PI

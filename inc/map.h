@@ -39,8 +39,8 @@ typedef struct {
 extern structures_t map_w[];         /**< The wall maps for ALL the levels in one array */
 extern structures_t map_f[];         /**< The floor maps for ALL the levels in one array */
 extern structures_t map_c[];         /**< The ceiling maps for ALL the levels in one array */
-extern position_2D maps_sizes[];     /**< The map sizes for each level */
-extern position_2D player_spawns[];  /**< The player spawns for each level, saved in grid position style */
+extern position_2D_t maps_sizes[];     /**< The map sizes for each level */
+extern position_2D_t player_spawns[];  /**< The player spawns for each level, saved in grid position style */
 
 /**
  * Check if the given index is in range of the current level map
@@ -63,8 +63,8 @@ void draw_map_2D(void);
  */
 typedef struct {
     int map_offset;           /**< Location in the maps array */
-    position_2D map_size;     /**< Size of the map of the level, in the form of position_2D */
-    position_2D player_spawn; /**< Location of the player when the level is loaded, in the form of position_2D */
+    position_2D_t map_size;     /**< Size of the map of the level, in the form of position_2D */
+    position_2D_t player_spawn; /**< Location of the player when the level is loaded, in the form of position_2D */
 } level_t;
 
 extern level_t curr_lev_info; /**< Info of the current level  */

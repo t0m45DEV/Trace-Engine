@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 
-void render_line(float distance_from_player, int ray, float shade, position_2D ray_pos, float ray_angle, structures_t surface)
+void render_line(float distance_from_player, int ray, float shade, position_2D_t ray_pos, float ray_angle, structures_t surface)
 {
     float line_h = ((MAP_CELL_SIZE * WINDOW_HEIGHT) / distance_from_player) * DISTANCE_CORRECTION;
     
