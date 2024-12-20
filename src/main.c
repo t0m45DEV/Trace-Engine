@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-#include <SDL2/SDL.h>
+#define SDL_MAIN_HANDLED
+#include <SDL.h>
 #include <GL/gl.h>
 
 #include "window_display.h"
@@ -9,7 +10,7 @@
 #include "player.h"
 #include "timer.h"
 
-bool initGL()
+bool initGL(void)
 {
     // Initialize projection matrix
     glMatrixMode(GL_PROJECTION);
@@ -36,7 +37,7 @@ bool initGL()
     return true;
 }
 
-int main()
+int main(void)
 {
     load_level(FIRST_LEVEL);
 

@@ -1,7 +1,7 @@
 #ifndef _H_WIN_DISP
 #define _H_WIN_DISP
 
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 #include "raycaster.h"
 #include "player.h"
