@@ -27,6 +27,12 @@ extern bool debug_2D_view;
 #define WINDOW_WIDTH 960
 #define WINDOW_HEIGHT 640
 
+/** V-sync modes */
+
+#define V_SYNC_OFF    0  /**< Immediate update from frame to frame */
+#define V_SYNC_ON     1  /**< Updates synchronized with the vertical retrace */
+#define V_SYNC_ADAPT -1  /**< Adaptive V-sync */
+
 extern int fps;     /**< Frame per second counter */
 
 extern float delta_time;   /**< The time elapsed between last frame and the actual one */

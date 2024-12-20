@@ -25,7 +25,7 @@ SDL_Window* create_window(const char* title, int width, int height)
         exit(EXIT_FAILURE);
     }
   
-    if (SDL_GL_SetSwapInterval(1) < 0)
+    if (SDL_GL_SetSwapInterval(V_SYNC_OFF) != 0)
     {
         printf("Unable to set VSync! SDL Error: %s\n", SDL_GetError());
         exit(EXIT_FAILURE);
