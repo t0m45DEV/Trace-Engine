@@ -66,12 +66,12 @@ int main(void)
     start_timer(&fps_timer);
 
     // The division is to the get the time in seconds, not in miliseconds
-    float actual_frame = SDL_GetTicks() / SECONDS_TO_MILISECONDS(1);
+    float actual_frame = SDL_GetTicks() / SECONDS_TO_MILLISECONDS(1);
 
     while (true)
     {
         float previous_frame = actual_frame;
-        actual_frame = SDL_GetTicks() / SECONDS_TO_MILISECONDS(1);
+        actual_frame = SDL_GetTicks() / SECONDS_TO_MILLISECONDS(1);
         delta_time = actual_frame - previous_frame;
 
         fps++;

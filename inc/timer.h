@@ -5,8 +5,8 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-#define SECONDS_TO_MILISECONDS(X) ((X) * 1000.0)
-#define MILISECONDS_TO_SECONDS(X) ((X) / 1000.0)
+#define SECONDS_TO_MILLISECONDS(X) ((X) * 1000.0)
+#define MILLISECONDS_TO_SECONDS(X) ((X) / 1000.0)
 
 /**
  * A timer struct, can init and check when is stopped

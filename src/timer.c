@@ -11,7 +11,7 @@ engine_timer_t create_timer(float duration)
 {
     engine_timer_t timer;
     timer.is_active = false;
-    timer.duration = SECONDS_TO_MILISECONDS(duration);
+    timer.duration = SECONDS_TO_MILLISECONDS(duration);
     timer.initial_time = 0;
     return timer;
 }
@@ -24,7 +24,7 @@ void start_timer(engine_timer_t* timer)
 
 void reset_timer(engine_timer_t* timer)
 {
-    *timer = create_timer(MILISECONDS_TO_SECONDS(timer->duration));
+    *timer = create_timer(MILLISECONDS_TO_SECONDS(timer->duration));
 }
 
 bool is_timer_up(engine_timer_t* timer)
