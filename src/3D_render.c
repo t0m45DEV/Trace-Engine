@@ -2,9 +2,9 @@
 
 #include <stdio.h>
 
-void render_line(float distance_from_player, int ray, float shade, position_2D_t ray_pos, float ray_angle, structures_t surface)
+void render_line(const ray_t ray)
 {
-    float line_h = ((MAP_CELL_SIZE * WINDOW_HEIGHT) / distance_from_player) * DISTANCE_CORRECTION;
+    float line_h = ((MAP_CELL_SIZE * WINDOW_HEIGHT) / ray.distance) * DISTANCE_CORRECTION;
     
     float texture_y_step = TEXTURE_SIZE / (float) line_h;
     float texture_y_offset = 0;
@@ -19,45 +19,45 @@ void render_line(float distance_from_player, int ray, float shade, position_2D_t
     float texture_y = texture_y_offset * texture_y_step;
     float texture_x;
 
-    if (fabs(shade - LIGHT_SHADE) < PRECISION)
+    if (fabs(ray.shade - LIGHT_SHADE) < PRECISION)
     {
-        texture_x = (int) (ray_pos.x / 2.0) % TEXTURE_SIZE;
-        if (ray_angle < LEFT_DIR) texture_x = (TEXTURE_SIZE - 1) - texture_x;
+        texture_x = (int) (ray.pos.x / 2.0) % TEXTURE_SIZE;
+        if (ray.angle < LEFT_DIR) texture_x = (TEXTURE_SIZE - 1) - texture_x;
     }
     else
     {
-        texture_x = (int) (ray_pos.y / 2.0) % TEXTURE_SIZE;
-        if (ray_angle > UP_DIR && ray_angle < DOWN_DIR) texture_x = (TEXTURE_SIZE - 1) - texture_x;
+        texture_x = (int) (ray.pos.y / 2.0) % TEXTURE_SIZE;
+        if (ray.angle > UP_DIR && ray.angle < DOWN_DIR) texture_x = (TEXTURE_SIZE - 1) - texture_x;
     }
 
     // Draw walls
     for (int y = 0; y < line_h; y++)
     {
         int pixel_idx = ((int) (texture_y) * TEXTURE_SIZE + (int) texture_x) * 3;
-        pixel_idx += ((surface - 1) * TEXTURE_SIZE * TEXTURE_SIZE * 3);
+        pixel_idx += ((ray.surface - 1) * TEXTURE_SIZE * TEXTURE_SIZE * 3);
 
         int red = ALL_TEXTURES[pixel_idx];
         int green = ALL_TEXTURES[pixel_idx + 1];
         int blue = ALL_TEXTURES[pixel_idx + 2];
 
         glPointSize(LINES_WIDTH);
-        glColor3ub(red * shade, green * shade, blue * shade);
+        glColor3ub(red * ray.shade, green * ray.shade, blue * ray.shade);
         glBegin(GL_POINTS);
-        glVertex2i(ray * LINES_WIDTH + X_CORRECTION, y + line_offset);
+        glVertex2i(ray.index * LINES_WIDTH + X_CORRECTION, y + line_offset);
         glEnd();
         texture_y += texture_y_step;
     }
 
     // Draw floors and ceilings
 
-    float ray_angle_fix = cos(adjust_angle(player.angle - ray_angle));
+    float ray_angle_fix = cos(adjust_angle(player.angle - ray.angle));
 
     for (int y = line_h + line_offset; y < WINDOW_HEIGHT; y++)
     {
         float delta_y = y - (WINDOW_HEIGHT / 2.0);
 
-        texture_x = (player.pos.x / 2) + cos(ray_angle) * FLOOR_CORRECTION * TEXTURE_SIZE / delta_y / ray_angle_fix;
-        texture_y = (player.pos.y / 2) + sin(ray_angle) * FLOOR_CORRECTION * TEXTURE_SIZE / delta_y / ray_angle_fix;
+        texture_x = (player.pos.x / 2) + cos(ray.angle) * FLOOR_CORRECTION * TEXTURE_SIZE / delta_y / ray_angle_fix;
+        texture_y = (player.pos.y / 2) + sin(ray.angle) * FLOOR_CORRECTION * TEXTURE_SIZE / delta_y / ray_angle_fix;
 
         int pixel_idx = (((int) (texture_y) & (TEXTURE_SIZE - 1)) * TEXTURE_SIZE + ((int) (texture_x) & (TEXTURE_SIZE - 1))) * 3;
 
@@ -74,7 +74,7 @@ void render_line(float distance_from_player, int ray, float shade, position_2D_t
             glPointSize(LINES_WIDTH);
             glColor3ub(red, green, blue);
             glBegin(GL_POINTS);
-            glVertex2i(ray * LINES_WIDTH + X_CORRECTION, y);
+            glVertex2i(ray.index * LINES_WIDTH + X_CORRECTION, y);
             glEnd();
         }
 
@@ -91,7 +91,7 @@ void render_line(float distance_from_player, int ray, float shade, position_2D_t
             glColor3ub(red, green, blue);
             glPointSize(LINES_WIDTH);
             glBegin(GL_POINTS);
-            glVertex2i(ray * LINES_WIDTH + X_CORRECTION, WINDOW_HEIGHT - CEILEING_CORRECTION - y);
+            glVertex2i(ray.index * LINES_WIDTH + X_CORRECTION, WINDOW_HEIGHT - CEILEING_CORRECTION - y);
             glEnd();
         }
     }

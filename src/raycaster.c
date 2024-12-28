@@ -14,7 +14,7 @@ void cast_rays(void)
     float ray_angle = player.angle - (DEG_TO_RAD(FOV / 2));
     ray_angle = adjust_angle(ray_angle);
 
-    for (int ray = 0; ray < AMMOUNT_OF_RAYS; ray++)
+    for (int ray_idx = 0; ray_idx < AMMOUNT_OF_RAYS; ray_idx++)
     {
         /* Check horizontal lines */
 
@@ -155,10 +155,11 @@ void cast_rays(void)
             angle_cosine = adjust_angle(angle_cosine);
 
             distance_from_player = distance_from_player * cos(angle_cosine); /* Fix fisheye */
-            render_line(distance_from_player, ray, actual_shade, ray_pos, ray_angle, actual_surface);
+            render_line((ray_t) {ray_idx, ray_pos, ray_angle, distance_from_player, actual_surface, actual_shade});
         }
         else
         {
+            glColor3f(RAY_COLOR.r, RAY_COLOR.g, RAY_COLOR.b);
             glLineWidth(2);
             glBegin(GL_LINES);
             glVertex2i(player.pos.x, player.pos.y);

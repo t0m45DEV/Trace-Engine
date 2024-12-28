@@ -17,8 +17,23 @@
 #define CEILEING_CORRECTION (8 / resolution)       /**< The ceiling stops covering the walls */
 
 /**
- *  Render a wall, off height (distance_from_player / MAX_WALL_HEIGHT) and draws it in the given ray position
+ * A ray is a line between the player and the closest wall in a certain angle
  */
-void render_line(float distance_from_player, int ray, float shade, position_2D_t ray_pos, float ray_angle, structures_t surface);
+typedef struct
+{
+    int index;             /**< Index of the ray, from 0 to AMMOUNT_OF_RAYS */
+    position_2D_t pos;     /**< Position of the hit between the ray and the wall */
+    float angle;             /**< Angle between the X axis and the ray, from the player position */
+    float distance;        /**< Distance between the player and the wall that got hit by this ray */
+    structures_t surface;  /**< The surface of the wall that got hit */
+    float shade;           /**< The shade that the render will apply to the wall that got hit */
+} ray_t;
+
+/**
+ *  Render a vertical line in the window, using the info from ray
+ * 
+ * @param ray A ray_t type, with the info of the wall, floor and ceiling to render
+ */
+void render_line(const ray_t ray);
 
 #endif

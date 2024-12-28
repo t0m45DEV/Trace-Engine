@@ -17,6 +17,8 @@
 #define LIGHT_SHADE 0.9    /**< The shade of the "lighted" objects (in reality there no such a thing as light in this engine)  */
 #define DARK_SHADE 0.6     /**< The shade of the "darkened" objects (in reality there no such a thing as light in this engine) */
 
+#define RAY_COLOR (rgb_t) {0.3, 0.3, 0.3} /**< Color of the rays represented as a line */
+
 /**
  * Cast the 2D top-down vision rays for the player and calls the 3D render
  */
