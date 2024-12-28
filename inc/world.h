@@ -9,7 +9,7 @@
  * 
  * @param level_idx The index of the level to get (from 0 to LEVEL_COUNT)
  */
-int get_map_offset(int level_idx);
+int get_map_offset(const int level_idx);
 
 
 /**
@@ -17,7 +17,7 @@ int get_map_offset(int level_idx);
  * 
  * @param level_idx The index of the level to get the info from (from 0 to LEVEL_COUNT)
  */
-void set_level_info(int level_idx);
+void set_level_info(const int level_idx);
 
 
 /**
@@ -25,6 +25,6 @@ void set_level_info(int level_idx);
  * 
  * @param level_idx The index of the level to load
  */
-void load_level(int level_idx);
+void load_level(const int level_idx);
 
 #endif

@@ -8,7 +8,7 @@ int fps = 0;
 
 float delta_time = 0;
 
-SDL_Window* create_window(const char* title, int width, int height)
+SDL_Window* create_window(const char* title, const int width, const int height)
 {
     SDL_Window* window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
 
@@ -33,7 +33,7 @@ SDL_Window* create_window(const char* title, int width, int height)
     return window;
 }
 
-void set_background_color(rgb_t color)
+void set_background_color(const rgb_t color)
 {
     glClearColor(color.r, color.g, color.b, 1);
 }

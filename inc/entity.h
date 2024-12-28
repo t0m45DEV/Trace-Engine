@@ -32,7 +32,7 @@ typedef struct {
  * 
  * @param entity entity_t, the entity to print
  */
-void print_entity(entity_t entity);
+void print_entity(const entity_t entity);
 
 /**
  * Returns the same entity with the x_offset and y_offset calculated using the entity angle
@@ -48,7 +48,7 @@ void update_offset(entity_t* entity);
  * @param idx The actual position of the object
  * @param offset The direction in whichc the object wants to move
  */
-int can_move(position_2D_t idx, position_2D_t offset);
+int can_move(const position_2D_t idx, const position_2D_t offset);
 
 
 /**
@@ -57,6 +57,6 @@ int can_move(position_2D_t idx, position_2D_t offset);
  * @param entity The entity that the function will check
  * @param axis The axis of collision to check (X and Y axis, collision from front and the back)
  */
-int is_colliding_in_axis(entity_t entity, int axis);
+int is_colliding_in_axis(const entity_t entity, const int axis);
 
 #endif

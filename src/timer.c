@@ -1,13 +1,13 @@
 #include "timer.h"
 
-void print_timer(engine_timer_t* timer)
+void print_timer(const engine_timer_t* timer)
 {
     printf("Is active: %i\n", timer->is_active);
     printf("Duration: %f\n", timer->duration);
     printf("Initial time: %f\n", timer->initial_time);
 }
 
-engine_timer_t create_timer(float duration)
+engine_timer_t create_timer(const float duration)
 {
     engine_timer_t timer;
     timer.is_active = false;

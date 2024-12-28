@@ -22,7 +22,7 @@ typedef struct {
  * 
  * @param timer A pointer to the timer to print
  */
-void print_timer(engine_timer_t* timer);
+void print_timer(const engine_timer_t* timer);
 
 /**
  * Creates a timer object with the duration (in seconds) passed by argument
@@ -31,7 +31,7 @@ void print_timer(engine_timer_t* timer);
  * 
  * @param duration The duration (in seconds) that the timer will save
  */
-engine_timer_t create_timer(float duration);
+engine_timer_t create_timer(const float duration);
 
 /**
  * Starts the given timer
@@ -48,7 +48,7 @@ void start_timer(engine_timer_t* timer);
 void reset_timer(engine_timer_t* timer);
 
 /**
- * Returns true if the timer stops, returns false if not
+ * Returns true if the timer stops and call reset_timer with the given timer; returns false if the timer has yet not finished
  *
  * @note If the timer is inactive, the function will always return true (inactive is equal to stopped)
  * 

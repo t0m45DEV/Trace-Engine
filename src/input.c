@@ -42,7 +42,7 @@ bool handle_input(void)
     return true;
 }
 
-SDL_Scancode get_scancode(SDL_Event event)
+SDL_Scancode get_scancode(const SDL_Event event)
 {
     return event.key.keysym.scancode;
 }

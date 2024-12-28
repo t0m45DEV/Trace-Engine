@@ -43,6 +43,6 @@ bool handle_input(void);
  *
  * @param event SDL_Event, an event type from SDL
  */
-SDL_Scancode get_scancode(SDL_Event event);
+SDL_Scancode get_scancode(const SDL_Event event);
 
 #endif

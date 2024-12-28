@@ -1,6 +1,6 @@
 #include "entity.h"
 
-void print_entity(entity_t entity)
+void print_entity(const entity_t entity)
 {
     printf("=== Entity ===\n");
     printf("Position: (%f, %f)\n", entity.pos.x, entity.pos.y);
@@ -35,7 +35,7 @@ void update_offset(entity_t* entity)
 }
 
 
-int can_move(position_2D_t idx, position_2D_t offset)
+int can_move(const position_2D_t idx, const position_2D_t offset)
 {
     int front  = map_w[REAL_POS_TO_GRID_POS(offset.x, offset.y)];
     int x_axis = map_w[REAL_POS_TO_GRID_POS(offset.x, idx.y)];
@@ -47,7 +47,7 @@ int can_move(position_2D_t idx, position_2D_t offset)
 }
 
 
-int is_colliding_in_axis(entity_t entity, int axis)
+int is_colliding_in_axis(entity_t entity, const int axis)
 {
     update_offset(&entity);
 

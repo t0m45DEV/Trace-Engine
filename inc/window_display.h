@@ -48,14 +48,14 @@ extern float delta_time;   /**< The time elapsed between last frame and the actu
  * @param width The window width in pixels
  * @param height The window height in pixels
  */
-SDL_Window* create_window(const char* title, int width, int height);
+SDL_Window* create_window(const char* title, const int width, const int height);
 
 /**
  * Change the color of the screen when called glClear()
  * 
  * @param color The color to change to
  */
-void set_background_color(rgb_t color);
+void set_background_color(const rgb_t color);
 
 /**
  * Draw the objects in the window

@@ -71,8 +71,16 @@ void draw_player(void)
 void open_door(void)
 {
     position_2D_t front_offset;
-    front_offset.x = (player.pos.x + player.offset.x) / (float) MAP_CELL_SIZE;
-    front_offset.y = (player.pos.y + player.offset.y) / (float) MAP_CELL_SIZE;
+    front_offset.x = ((player.pos.x + player.offset.x) / (float) MAP_CELL_SIZE);
+    front_offset.y = ((player.pos.y + player.offset.y) / (float) MAP_CELL_SIZE);
+
+    /*
+    int player_pos_grid = REAL_POS_TO_GRID_POS(player.pos.x / MAP_CELL_SIZE, player.pos.y / MAP_CELL_SIZE);
+    int front_pos_grid = REAL_POS_TO_GRID_POS((player.pos.x / MAP_CELL_SIZE) + (player.offset.x / player.offset.x), (player.pos.y / MAP_CELL_SIZE) + (player.offset.y / player.offset.y));
+
+    printf("Player block: %i\n", player_pos_grid);
+    printf("Block in front: %i\n", front_pos_grid);
+    */
 
     structures_t block_in_front = map_w[REAL_POS_TO_GRID_POS(front_offset.x, front_offset.y)];
 
