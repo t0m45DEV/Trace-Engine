@@ -1,6 +1,7 @@
 #ifndef _H_INPUT
 #define _H_INPUT
 
+#include "defines.h"
 #include "window_display.h"
 #include "trigonometry.h"
 #include "player.h"
@@ -34,9 +35,9 @@ typedef struct {
 extern keys_state_t action_keys_state;
 
 /**
- * Handle user input, return 0 if the detected event is closing the window, 1 otherwise
+ * Handle user input
  */
-bool handle_input(void);
+void handle_input(void);
 
 /**
  * Given an SDL_Event, it returns the keyboard key scancode that matches that event

@@ -5,10 +5,13 @@
 #include <SDL.h>
 #include <GL/gl.h>
 
+#include "defines.h"
 #include "window_display.h"
 #include "world.h"
 #include "player.h"
 #include "timer.h"
+
+game_state_t game_state = {0};
 
 bool initGL(void)
 {
@@ -39,6 +42,8 @@ bool initGL(void)
 
 int main(void)
 {
+    game_state.is_game_running = true;
+
     load_level(FIRST_LEVEL);
 
     /* Try to initialize SDL */
@@ -68,7 +73,7 @@ int main(void)
     // The division is to the get the time in seconds, not in miliseconds
     float actual_frame = SDL_GetTicks() / SECONDS_TO_MILLISECONDS(1);
 
-    while (true)
+    while (game_state.is_game_running)
     {
         float previous_frame = actual_frame;
         actual_frame = SDL_GetTicks() / SECONDS_TO_MILLISECONDS(1);
@@ -89,10 +94,7 @@ int main(void)
             start_timer(&animation_timer);
         }
 
-        if (!handle_input()) // The window is closed
-        {
-            break;
-        }
+        handle_input();
         move_player();
 
         glClear(GL_COLOR_BUFFER_BIT);

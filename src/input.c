@@ -2,14 +2,14 @@
 
 keys_state_t action_keys_state = {0};
 
-bool handle_input(void)
+void handle_input(void)
 {
     SDL_Event event;
     SDL_PollEvent(&event);
 
     if (event.type == SDL_QUIT) // If the window closes
     {
-        return false;
+        game_state.is_game_running = false;
     }
     // Simultaneous input
     SDL_PumpEvents();
@@ -39,7 +39,6 @@ bool handle_input(void)
             open_door();
         }
     }
-    return true;
 }
 
 SDL_Scancode get_scancode(const SDL_Event event)
