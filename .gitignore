@@ -3,4 +3,5 @@
 .idea/*
 build/*
 cmake-build-debug/*
+!cmake-build-debug/SDL2.dll
 docs/*
