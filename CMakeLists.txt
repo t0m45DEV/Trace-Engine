@@ -9,7 +9,7 @@ add_executable(${PROJECT_NAME} ${src})
 
 if (WIN32)
     set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake_modules)
-    set(SDL2_PATH "C:/Users/Tomas/Documents/c_libs/SDL2-2.30.10/x86_64-w64-mingw32")
+    set(SDL2_PATH "c_libs/win/SDL2-2.30.10")
 endif (WIN32)
 
 set(OpenGL_GL_PREFERENCE LEGACY)

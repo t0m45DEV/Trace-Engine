@@ -1,3 +1,4 @@
 imageParser/stb_lib/* linguist-vendored
 cmake_modules/* linguist-vendored
+c_libs/* linguist-vendored
 *.png filter=lfs diff=lfs merge=lfs -text
