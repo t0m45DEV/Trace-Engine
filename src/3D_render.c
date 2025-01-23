@@ -16,7 +16,7 @@ void render_line(const ray_t ray)
     }
 
     float line_offset = (Y_CORRECTION) - line_h / 2;
-    float texture_y = texture_y_offset * texture_y_step;
+    float texture_y = (texture_y_offset * texture_y_step) - 1;
     float texture_x;
 
     if (fabs(ray.shade - LIGHT_SHADE) < PRECISION)
