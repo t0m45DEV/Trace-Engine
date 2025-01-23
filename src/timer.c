@@ -31,7 +31,7 @@ bool is_timer_up(engine_timer_t* timer)
 {
     if (!timer->is_active)
     {
-        return true;
+        return false;
     }
     float actual_time = SDL_GetTicks();
 

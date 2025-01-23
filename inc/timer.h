@@ -50,7 +50,7 @@ void reset_timer(engine_timer_t* timer);
 /**
  * Returns true if the timer stops and call reset_timer with the given timer; returns false if the timer has yet not finished
  *
- * @note If the timer is inactive, the function will always return true (inactive is equal to stopped)
+ * @note If the timer is inactive, the function will always return false (inactive is equal to running)
  * 
  * @param timer A pointer to the timer to check
  */
