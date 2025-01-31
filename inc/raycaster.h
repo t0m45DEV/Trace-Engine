@@ -6,7 +6,7 @@
 #include "player.h"
 #include "map.h"
 #include "trigonometry.h"
-#include "3D_render.h"
+#include "render.h"
 
 #define FOV 60                                     /**< Field of view (between 60 and 90 is okay, more than 90 warps the image)                */
 #define AMMOUNT_OF_RAYS ((FOV * 2) * resolution)   /**< Ammount of rays per degree of FOV (more rays means more image quality, normal is 2)    */
