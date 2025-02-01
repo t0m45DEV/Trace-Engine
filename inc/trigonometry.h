@@ -1,6 +1,8 @@
 #ifndef _H_TRIGONOMETRY
 #define _H_TRIGONOMETRY
 
+#include <stdio.h>
+
 #include <math.h>
 
 #define DEGREE 0.0174533 /**< One degree in radians */
@@ -24,6 +26,13 @@ typedef struct {
     float x;  /**< X component of the (x, y) vector */
     float y;  /**< Y component of the (x, y) vector */
 } position_2D_t;
+
+/**
+ * Only for debug, it prints the position in a readable way
+ * 
+ * @param pos position_2D_t, the position to print
+ */
+void print_position(const position_2D_t pos);
 
 /**
  * Returns the distance between p1 and p2
