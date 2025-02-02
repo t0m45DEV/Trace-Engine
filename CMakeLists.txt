@@ -9,8 +9,8 @@ file(GLOB src src/*.c)
 add_executable(${PROJECT_NAME} ${src})
 
 if (WIN32)
-    set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/c_libs/win)
-    set(SDL2_PATH ${CMAKE_SOURCE_DIR}c_libs/win/SDL2-2.30.10)
+    set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/libs/win)
+    set(SDL2_PATH ${CMAKE_SOURCE_DIR}libs/win/SDL2-2.30.10)
 endif (WIN32)
 
 set(OpenGL_GL_PREFERENCE LEGACY)
