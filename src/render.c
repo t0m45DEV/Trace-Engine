@@ -19,7 +19,7 @@ void render_line(const ray_t ray)
     float texture_y = (texture_y_offset * texture_y_step) - 1;
     float texture_x;
 
-    if (fabs(ray.shade - LIGHT_SHADE) < PRECISION)
+    if (fabs(ray.wall_orientation - NORTH_SOUTH_WALL) < PRECISION)
     {
         texture_x = (int) (ray.pos.x / 2.0) % TEXTURE_SIZE;
         if (ray.angle < LEFT_DIR) texture_x = (TEXTURE_SIZE - 1) - texture_x;
@@ -30,22 +30,27 @@ void render_line(const ray_t ray)
         if (ray.angle > UP_DIR && ray.angle < DOWN_DIR) texture_x = (TEXTURE_SIZE - 1) - texture_x;
     }
 
-    // Draw walls
-    for (int y = 0; y < line_h; y++)
+    if (ray.distance < RENDER_DISTANCE)
     {
-        int pixel_idx = ((int) (texture_y) * TEXTURE_SIZE + (int) texture_x) * 3;
-        pixel_idx += ((ray.surface - 1) * TEXTURE_SIZE * TEXTURE_SIZE * 3);
+        float shade = 1 - (ray.distance / RENDER_DISTANCE);
 
-        int red = ALL_TEXTURES[pixel_idx];
-        int green = ALL_TEXTURES[pixel_idx + 1];
-        int blue = ALL_TEXTURES[pixel_idx + 2];
+        // Draw walls
+        for (int y = 0; y < line_h; y++)
+        {
+            int pixel_idx = ((int) (texture_y) * TEXTURE_SIZE + (int) texture_x) * 3;
+            pixel_idx += ((ray.surface - 1) * TEXTURE_SIZE * TEXTURE_SIZE * 3);
 
-        glPointSize(LINES_WIDTH);
-        glColor3ub(red * ray.shade, green * ray.shade, blue * ray.shade);
-        glBegin(GL_POINTS);
-        glVertex2i(ray.index * LINES_WIDTH + X_CORRECTION, y + line_offset);
-        glEnd();
-        texture_y += texture_y_step;
+            int red = ALL_TEXTURES[pixel_idx];
+            int green = ALL_TEXTURES[pixel_idx + 1];
+            int blue = ALL_TEXTURES[pixel_idx + 2];
+
+            glPointSize(LINES_WIDTH);
+            glColor3ub(red * shade, green * shade, blue * shade);
+            glBegin(GL_POINTS);
+            glVertex2i(ray.index * LINES_WIDTH + X_CORRECTION, y + line_offset);
+            glEnd();
+            texture_y += texture_y_step;
+        }
     }
 
     // Draw floors and ceilings
@@ -59,40 +64,47 @@ void render_line(const ray_t ray)
         texture_x = (player.pos.x / 2) + cos(ray.angle) * FLOOR_CORRECTION * TEXTURE_SIZE / delta_y / ray_angle_fix;
         texture_y = (player.pos.y / 2) + sin(ray.angle) * FLOOR_CORRECTION * TEXTURE_SIZE / delta_y / ray_angle_fix;
 
-        int pixel_idx = (((int) (texture_y) & (TEXTURE_SIZE - 1)) * TEXTURE_SIZE + ((int) (texture_x) & (TEXTURE_SIZE - 1))) * 3;
+        float distance = ((WINDOW_HEIGHT / 2.0) - delta_y) * (RENDER_CHUNK_SIZE / 3.5);
 
-        int map_value = map_f[REAL_POS_TO_GRID_POS(texture_x / TEXTURE_SIZE, texture_y / TEXTURE_SIZE)];
-
-        if (map_value != AIR)
+        if (distance < RENDER_DISTANCE)
         {
-            int floor_pixel_idx = pixel_idx + (map_value - 1) * TEXTURE_SIZE * TEXTURE_SIZE * 3;
+            float shade = 1 - distance / RENDER_DISTANCE;
 
-            int red = ALL_TEXTURES[floor_pixel_idx];
-            int green = ALL_TEXTURES[floor_pixel_idx + 1];
-            int blue = ALL_TEXTURES[floor_pixel_idx + 2];
+            int pixel_idx = (((int) (texture_y) & (TEXTURE_SIZE - 1)) * TEXTURE_SIZE + ((int) (texture_x) & (TEXTURE_SIZE - 1))) * 3;
 
-            glPointSize(LINES_WIDTH);
-            glColor3ub(red, green, blue);
-            glBegin(GL_POINTS);
-            glVertex2i(ray.index * LINES_WIDTH + X_CORRECTION, y);
-            glEnd();
-        }
+            int map_value = map_f[REAL_POS_TO_GRID_POS(texture_x / TEXTURE_SIZE, texture_y / TEXTURE_SIZE)];
 
-        map_value = map_c[REAL_POS_TO_GRID_POS(texture_x / TEXTURE_SIZE, texture_y / TEXTURE_SIZE)];
+            if (map_value != AIR)
+            {
+                int floor_pixel_idx = pixel_idx + (map_value - 1) * TEXTURE_SIZE * TEXTURE_SIZE * 3;
 
-        if (map_value != AIR)
-        {
-            int ceiling_pixel_idx = pixel_idx + (map_value - 1) * TEXTURE_SIZE * TEXTURE_SIZE * 3;
+                int red = ALL_TEXTURES[floor_pixel_idx];
+                int green = ALL_TEXTURES[floor_pixel_idx + 1];
+                int blue = ALL_TEXTURES[floor_pixel_idx + 2];
 
-            int red = ALL_TEXTURES[ceiling_pixel_idx];
-            int green = ALL_TEXTURES[ceiling_pixel_idx + 1];
-            int blue = ALL_TEXTURES[ceiling_pixel_idx + 2];
-            
-            glColor3ub(red, green, blue);
-            glPointSize(LINES_WIDTH);
-            glBegin(GL_POINTS);
-            glVertex2i(ray.index * LINES_WIDTH + X_CORRECTION, WINDOW_HEIGHT - CEILEING_CORRECTION - y);
-            glEnd();
+                glPointSize(LINES_WIDTH);
+                glColor3ub(red * shade, green * shade, blue * shade);
+                glBegin(GL_POINTS);
+                glVertex2i(ray.index * LINES_WIDTH + X_CORRECTION, y);
+                glEnd();
+            }
+
+            map_value = map_c[REAL_POS_TO_GRID_POS(texture_x / TEXTURE_SIZE, texture_y / TEXTURE_SIZE)];
+
+            if (map_value != AIR)
+            {
+                int ceiling_pixel_idx = pixel_idx + (map_value - 1) * TEXTURE_SIZE * TEXTURE_SIZE * 3;
+
+                int red = ALL_TEXTURES[ceiling_pixel_idx];
+                int green = ALL_TEXTURES[ceiling_pixel_idx + 1];
+                int blue = ALL_TEXTURES[ceiling_pixel_idx + 2];
+                
+                glColor3ub(red * shade, green * shade, blue * shade);
+                glPointSize(LINES_WIDTH);
+                glBegin(GL_POINTS);
+                glVertex2i(ray.index * LINES_WIDTH + X_CORRECTION, WINDOW_HEIGHT - CEILEING_CORRECTION - y);
+                glEnd();
+            }
         }
     }
 }

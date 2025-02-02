@@ -14,8 +14,8 @@
 
 #define PRECISION 0.0001   /**< To pass from int to float and don't loose precision */
 
-#define LIGHT_SHADE 0.9    /**< The shade of the "lighted" objects (in reality there no such a thing as light in this engine)  */
-#define DARK_SHADE 0.6     /**< The shade of the "darkened" objects (in reality there no such a thing as light in this engine) */
+#define NORTH_SOUTH_WALL 0     /**< The North / South orientation of the wall  */
+#define WEAST_EAST_WALL  1     /**< The Weast / East orientation of the wall */
 
 #define RAY_COLOR (rgb_t) {0.3, 0.3, 0.3} /**< Color of the rays represented as a line */
 

@@ -127,7 +127,7 @@ void cast_rays(void)
             }
         }
 
-        float actual_shade;
+        float actual_orientation;
         structures_t actual_surface;
 
         if (distance_h < distance_v)
@@ -136,7 +136,7 @@ void cast_rays(void)
             ray_pos.y = ray_H.y;
             distance_from_player = distance_h;
             
-            actual_shade = LIGHT_SHADE;
+            actual_orientation = NORTH_SOUTH_WALL;
             actual_surface = surface_H;
         }
         else
@@ -145,7 +145,7 @@ void cast_rays(void)
             ray_pos.y = ray_V.y;
             distance_from_player = distance_v;
 
-            actual_shade = DARK_SHADE;
+            actual_orientation = WEAST_EAST_WALL;
             actual_surface = surface_V;
         }
 
@@ -155,7 +155,7 @@ void cast_rays(void)
             angle_cosine = adjust_angle(angle_cosine);
 
             distance_from_player = distance_from_player * cos(angle_cosine); /* Fix fisheye */
-            render_line((ray_t) {ray_idx, ray_pos, ray_angle, distance_from_player, actual_surface, actual_shade});
+            render_line((ray_t) {ray_idx, ray_pos, ray_angle, distance_from_player, actual_surface, actual_orientation});
         }
         else
         {

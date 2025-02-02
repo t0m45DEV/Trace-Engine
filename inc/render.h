@@ -6,6 +6,9 @@
 #include "raycaster.h"
 #include "map.h"
 
+#define RENDER_CHUNK_SIZE (4)                                 /**< How many blocks away can the player see */
+#define RENDER_DISTANCE (MAP_CELL_SIZE * RENDER_CHUNK_SIZE)   /**< Distance between the player and the further object visible */
+
 #define MAX_WALL_HEIGHT (WINDOW_HEIGHT)                       /**< A rename for WINDOW_HEIGHT, for easier code reading */
 #define LINES_WIDTH ((int) (WINDOW_WIDTH / AMMOUNT_OF_RAYS))  /**< Ammount of pixels each ray will draw on screen      */
 #define X_CORRECTION (LINES_WIDTH / 2)                        /**< Correction for X axis to get the screen centered    */
@@ -21,12 +24,12 @@
  */
 typedef struct
 {
-    int index;             /**< Index of the ray, from 0 to AMMOUNT_OF_RAYS */
-    position_2D_t pos;     /**< Position of the hit between the ray and the wall */
-    float angle;             /**< Angle between the X axis and the ray, from the player position */
-    float distance;        /**< Distance between the player and the wall that got hit by this ray */
-    structures_t surface;  /**< The surface of the wall that got hit */
-    float shade;           /**< The shade that the render will apply to the wall that got hit */
+    int index;              /**< Index of the ray, from 0 to AMMOUNT_OF_RAYS */
+    position_2D_t pos;      /**< Position of the hit between the ray and the wall */
+    float angle;            /**< Angle between the X axis and the ray, from the player position */
+    float distance;         /**< Distance between the player and the wall that got hit by this ray */
+    structures_t surface;   /**< The surface of the wall that got hit */
+    float wall_orientation; /**< The orientation of the wall (north-south or west-east) */
 } ray_t;
 
 /**
