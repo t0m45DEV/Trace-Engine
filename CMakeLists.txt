@@ -21,7 +21,7 @@ include_directories(${SDL2_INCLUDE_DIR} ${OPENGL_INCLUDE_DIRS} ${PROJECT_SOURCE_
 
 if (WIN32)
     target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARY} ${OPENGL_LIBRARIES} m)
-    file(COPY ${CMAKE_SOURCE_DIR}/c_libs/win/SDL2.dll DESTINATION ${CMAKE_SOURCE_DIR}/cmake-build-debug)
+    file(COPY ${CMAKE_SOURCE_DIR}/libs/win/SDL2.dll DESTINATION ${CMAKE_SOURCE_DIR}/cmake-build-debug)
 else ()
     target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${OPENGL_LIBRARIES} m)
 endif (WIN32)
