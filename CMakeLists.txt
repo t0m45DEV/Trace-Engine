@@ -9,8 +9,8 @@ file(GLOB src src/*.c)
 add_executable(${PROJECT_NAME} ${src})
 
 if (WIN32)
-    set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/libs/win)
-    set(SDL2_PATH ${CMAKE_SOURCE_DIR}libs/win/SDL2-2.30.10)
+    set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/libs)
+    set(SDL2_PATH ${CMAKE_SOURCE_DIR}libs/SDL2-2.30.10)
 endif (WIN32)
 
 set(OpenGL_GL_PREFERENCE LEGACY)
@@ -21,7 +21,7 @@ include_directories(${SDL2_INCLUDE_DIR} ${OPENGL_INCLUDE_DIRS} ${PROJECT_SOURCE_
 
 if (WIN32)
     target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARY} ${OPENGL_LIBRARIES} m)
-    file(COPY ${CMAKE_SOURCE_DIR}/libs/win/SDL2.dll DESTINATION ${CMAKE_SOURCE_DIR}/cmake-build-debug)
+    file(COPY ${CMAKE_SOURCE_DIR}/libs/SDL2.dll DESTINATION ${CMAKE_SOURCE_DIR}/cmake-build-debug)
 else ()
     target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${OPENGL_LIBRARIES} m)
 endif (WIN32)
