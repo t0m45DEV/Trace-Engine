@@ -30,9 +30,14 @@ void render_line(const ray_t ray)
         if (ray.angle > UP_DIR && ray.angle < DOWN_DIR) texture_x = (TEXTURE_SIZE - 1) - texture_x;
     }
 
-    if (ray.distance < RENDER_DISTANCE)
+    float distance_x_to_wall = fabs(ray.distance * cos(ray.angle));
+    float distance_y_to_wall = fabs(ray.distance * sin(ray.angle));
+
+    float distance_to_wall = fmax(distance_x_to_wall, distance_y_to_wall);
+
+    if (distance_to_wall < RENDER_DISTANCE)
     {
-        float shade = 1 - (ray.distance / RENDER_DISTANCE);
+        float shade = 1 - (distance_to_wall / RENDER_DISTANCE);
 
         // Draw walls
         for (int y = 0; y < line_h; y++)
@@ -64,7 +69,7 @@ void render_line(const ray_t ray)
         texture_x = (player.pos.x / 2) + cos(ray.angle) * FLOOR_CORRECTION * TEXTURE_SIZE / delta_y / ray_angle_fix;
         texture_y = (player.pos.y / 2) + sin(ray.angle) * FLOOR_CORRECTION * TEXTURE_SIZE / delta_y / ray_angle_fix;
 
-        float distance = ((WINDOW_HEIGHT / 2.0) - delta_y) * (RENDER_CHUNK_SIZE / 3.5);
+        float distance = ((WINDOW_HEIGHT / 2.0) - delta_y) * (RENDER_CHUNK_SIZE / 3.75);
 
         if (distance < RENDER_DISTANCE)
         {
