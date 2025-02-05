@@ -24,3 +24,8 @@ float adjust_angle(const float angle)
     }
     return new_angle;
 }
+
+bool are_equals(const float f1, const float f2)
+{
+    return ((bool) (fabs(f1 - f2) < PRECISION));
+}

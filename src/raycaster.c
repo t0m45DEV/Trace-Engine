@@ -25,7 +25,7 @@ void cast_rays(void)
         count_of_hits = 0;
         float aTan = -1 / tan(ray_angle);
 
-        if ((ray_angle == RIGHT_DIR) || (ray_angle == LEFT_DIR)) /* If looking straight left or right */
+        if (are_equals(ray_angle, RIGHT_DIR) || are_equals(ray_angle, LEFT_DIR)) /* If looking straight left or right */
         {
             ray_pos.x = player.pos.x;
             ray_pos.y = player.pos.y;
@@ -80,7 +80,7 @@ void cast_rays(void)
         count_of_hits = 0;
         float nTan = (-1) * tan(ray_angle);
 
-        if ((ray_angle == UP_DIR) || (ray_angle == DOWN_DIR)) /* If looking straight up or down */
+        if (are_equals(ray_angle, UP_DIR) || are_equals(ray_angle, DOWN_DIR)) /* If looking straight up or down */
         {
             ray_pos.x = player.pos.x;
             ray_pos.y = player.pos.y;

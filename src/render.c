@@ -19,7 +19,7 @@ void render_line(const ray_t ray)
     float texture_y = (texture_y_offset * texture_y_step) - 1;
     float texture_x;
 
-    if (fabs(ray.wall_orientation - NORTH_SOUTH_WALL) < PRECISION)
+    if (are_equals(ray.wall_orientation, NORTH_SOUTH_WALL))
     {
         texture_x = (int) (ray.pos.x / 2.0) % TEXTURE_SIZE;
         if (ray.angle < LEFT_DIR) texture_x = (TEXTURE_SIZE - 1) - texture_x;

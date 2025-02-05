@@ -12,8 +12,6 @@
 #define AMMOUNT_OF_RAYS ((FOV * 2) * resolution)   /**< Ammount of rays per degree of FOV (more rays means more image quality, normal is 2)    */
 #define RATIO_ANGLE_RAYS (AMMOUNT_OF_RAYS / FOV)   /**< Relation between AMMOUNT_OF_RAYS and FOV, for making the right steps between every ray */
 
-#define PRECISION 0.0001   /**< To pass from int to float and don't loose precision */
-
 #define NORTH_SOUTH_WALL 0     /**< The North / South orientation of the wall  */
 #define WEAST_EAST_WALL  1     /**< The Weast / East orientation of the wall */
 

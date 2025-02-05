@@ -2,8 +2,10 @@
 #define _H_TRIGONOMETRY
 
 #include <stdio.h>
-
+#include <stdbool.h>
 #include <math.h>
+
+#define PRECISION 0.0001   /**< To compare doubles and floats */
 
 #define DEGREE 0.0174533 /**< One degree in radians */
 
@@ -47,6 +49,14 @@ float distance_between(const position_2D_t p1, const position_2D_t p2);
  * 
  * @param angle The angle to adjust, in radians
  */
-float adjust_angle(float angle);
+float adjust_angle(const float angle);
+
+/**
+ * Returns if the first float is equal to the second
+ * 
+ * @param f1 First float
+ * @param f2 Second float
+ */
+bool are_equals(const float f1, const float f2);
 
 #endif
