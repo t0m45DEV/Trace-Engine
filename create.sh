@@ -64,6 +64,10 @@ message ${NC} "Creating executable..."
 make all
 checkForErrors "There was an error compiling the project!" "Executable created!"
 
+message ${NC} "Running tests..."
+./run_tests
+checkForErrors "It appears we have some bugs to catch!" "Every test passed!"
+
 message ${CYAN} "Check the build folder, there's the game executable"
 message ${GREEN} "Have fun!"
 

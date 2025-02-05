@@ -19,6 +19,19 @@ find_package(SDL2 REQUIRED)
 
 include_directories(${SDL2_INCLUDE_DIR} ${OPENGL_INCLUDE_DIRS} ${PROJECT_SOURCE_DIR}/inc ${PROJECT_SOURCE_DIR}/src)
 
+# Testing
+
+set(TESTS_FILE_NAME run_tests)
+
+file(GLOB tests tests/testing.c src/trigonometry.c)
+add_executable(${TESTS_FILE_NAME} ${tests})
+target_link_libraries(${TESTS_FILE_NAME} cunit m)
+
+add_test(NAME test_instatiator
+        COMMAND test_instatiator)
+
+# End testing
+
 if (WIN32)
     target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARY} ${OPENGL_LIBRARIES} m)
     file(COPY ${CMAKE_SOURCE_DIR}/libs/SDL2.dll DESTINATION ${CMAKE_SOURCE_DIR}/cmake-build-debug)
