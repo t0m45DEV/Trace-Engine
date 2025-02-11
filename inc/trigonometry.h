@@ -18,8 +18,8 @@
 #define CALCULATE_X_DELTA(A) (cos(A))
 #define CALCULATE_Y_DELTA(A) (sin(A))
 
-#define DEG_TO_RAD(angleInDegrees) ((angleInDegrees) * PI / 180.0) /**< Angle in degrees to angle in radians */
-#define RAD_TO_DEG(angleInRadians) ((angleInRadians) * 180.0 / PI) /**< Angle in radians to angle in degrees */
+#define DEG_TO_RAD(angleInDegrees) (adjust_angle((angleInDegrees) * PI / 180.0)) /**< Angle in degrees to angle in radians */
+#define RAD_TO_DEG(angleInRadians) (adjust_angle(angleInRadians) * 180.0 / PI)   /**< Angle in radians to angle in degrees */
 
 /**
  * A vector of 2 dimensions, the values x and y are floats
