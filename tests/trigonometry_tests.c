@@ -1,6 +1,7 @@
 #include <CUnit/CUnit.h>
 #include "trigonometry.h"
 
+#define DEBUG_TEST_PRINT_FLOAT(C, E) (printf("DEBUG: Calculated: %f | Expected: %f\n", (float) C, (float) E))
 
 void test_are_equals_trully_equal_numbers(void)
 {
@@ -23,6 +24,66 @@ void test_adjust_angle_same_angle(void)
     CU_ASSERT(are_equals(adjust_angle(PI / 2.0), (float) (PI / 2.0)));
     CU_ASSERT(are_equals(adjust_angle(3 * PI / 2.0), (float) (3 * PI / 2.0)));
 }
+
+void test_adjust_angle_less_than_0(void)
+{
+    CU_ASSERT(are_equals(adjust_angle(-PI), (float) PI));
+    CU_ASSERT(are_equals(adjust_angle(-PI / 2.0), (float) (3 * PI / 2.0)));
+    CU_ASSERT(are_equals(adjust_angle(-3 * PI / 2.0), (float) PI / 2.0));
+}
+
+void test_adjust_angle_more_than_2pi(void)
+{
+    CU_ASSERT(are_equals(adjust_angle(2 * PI), (float) 0));
+    CU_ASSERT(are_equals(adjust_angle(5 * PI / 2.0), (float) PI / 2.0));
+    CU_ASSERT(are_equals(adjust_angle(3 * PI), (float) PI));
+    CU_ASSERT(are_equals(adjust_angle(7 * PI / 2.0), (float) (3 * PI / 2.0)));
+}
+
+
+void test_deg_to_rad_unit_circle(void)
+{
+    CU_ASSERT(are_equals(DEG_TO_RAD(0), 0));
+    CU_ASSERT(are_equals(DEG_TO_RAD(90.0), (float) PI / 2.0));
+    CU_ASSERT(are_equals(DEG_TO_RAD(180.0), (float) PI));
+    CU_ASSERT(are_equals(DEG_TO_RAD(270.0), (float) 3 * PI / 2.0));
+    CU_ASSERT(are_equals(DEG_TO_RAD(360.0), 0));
+}
+
+void test_deg_to_rad_more_than_360(void)
+{
+    CU_ASSERT(are_equals(DEG_TO_RAD(450.0), (float) PI / 2.0));
+    CU_ASSERT(are_equals(DEG_TO_RAD(540.0), (float) PI));
+}
+
+void test_deg_to_rad_less_than_0(void)
+{
+    CU_ASSERT(are_equals(DEG_TO_RAD(-90.0), (float) 3 * PI / 2.0));
+    CU_ASSERT(are_equals(DEG_TO_RAD(-180.0), (float) PI));
+}
+
+
+void test_rad_to_deg_unit_circle(void)
+{
+    CU_ASSERT(are_equals(RAD_TO_DEG(0), 0));
+    CU_ASSERT(are_equals(RAD_TO_DEG((float) PI / 2.0), 90.0));
+    CU_ASSERT(are_equals(RAD_TO_DEG((float) PI), 180.0));
+    CU_ASSERT(are_equals(RAD_TO_DEG((float) 3 * PI / 2.0), 270.0));
+    CU_ASSERT(are_equals(RAD_TO_DEG(2 * PI), 0));
+}
+
+void test_rad_to_deg_more_than_2pi(void)
+{
+    CU_ASSERT(are_equals(RAD_TO_DEG((float) 5 * PI / 2), 90.0));
+    CU_ASSERT(are_equals(RAD_TO_DEG((float) 3 * PI), 180.0));
+}
+
+void test_rad_to_deg_less_than_0(void)
+{
+    CU_ASSERT(are_equals(RAD_TO_DEG(-PI / 2), 270.0));
+    CU_ASSERT(are_equals(RAD_TO_DEG(-PI), 180.0));
+}
+
 
 void test_distance_between_same_point(void)
 {
@@ -92,6 +153,18 @@ void init_trigonometry_suites(void)
 
     CU_pSuite adjust_angle_suite = CU_add_suite("Test Suite for adjust_angle()", 0, 0);
     CU_add_test(adjust_angle_suite, "Same angle", test_adjust_angle_same_angle);
+    CU_add_test(adjust_angle_suite, "Angle more than 2 * PI", test_adjust_angle_more_than_2pi);
+    CU_add_test(adjust_angle_suite, "Angle less than 0", test_adjust_angle_less_than_0);
+
+    CU_pSuite deg_to_rad_suite = CU_add_suite("Test Suite for DEG_TO_RAD()", 0, 0);
+    CU_add_test(deg_to_rad_suite, "Degrees in unit circle", test_deg_to_rad_unit_circle);
+    CU_add_test(deg_to_rad_suite, "Degrees more than 360", test_deg_to_rad_more_than_360);
+    CU_add_test(deg_to_rad_suite, "Degrees less than 0", test_deg_to_rad_less_than_0);
+
+    CU_pSuite rad_to_deg_suite = CU_add_suite("Test Suite for RAD_TO_DEG()", 0, 0);
+    CU_add_test(rad_to_deg_suite, "Radians in unit circle", test_rad_to_deg_unit_circle);
+    CU_add_test(rad_to_deg_suite, "Radians more than 2 * PI", test_rad_to_deg_more_than_2pi);
+    CU_add_test(rad_to_deg_suite, "Radians less than 0", test_rad_to_deg_less_than_0);
 
     CU_pSuite distance_between_suite = CU_add_suite("Test Suite for distance_between()", 0, 0);
     CU_add_test(distance_between_suite, "Same point", test_distance_between_same_point);
