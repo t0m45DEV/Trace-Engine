@@ -147,26 +147,26 @@ void test_distance_between_ugly_numbers(void)
 
 void init_trigonometry_suites(void)
 {
-    CU_pSuite are_equals_suite = CU_add_suite("Test Suite for are_equals()", 0, 0);
+    CU_pSuite are_equals_suite = CU_add_suite("are_equals()", 0, 0);
     CU_add_test(are_equals_suite, "Equals numbers", test_are_equals_trully_equal_numbers);
     CU_add_test(are_equals_suite, "Different numbers", test_are_equals_different_numbers);
 
-    CU_pSuite adjust_angle_suite = CU_add_suite("Test Suite for adjust_angle()", 0, 0);
+    CU_pSuite adjust_angle_suite = CU_add_suite("adjust_angle()", 0, 0);
     CU_add_test(adjust_angle_suite, "Same angle", test_adjust_angle_same_angle);
     CU_add_test(adjust_angle_suite, "Angle more than 2 * PI", test_adjust_angle_more_than_2pi);
     CU_add_test(adjust_angle_suite, "Angle less than 0", test_adjust_angle_less_than_0);
 
-    CU_pSuite deg_to_rad_suite = CU_add_suite("Test Suite for DEG_TO_RAD()", 0, 0);
+    CU_pSuite deg_to_rad_suite = CU_add_suite("DEG_TO_RAD()", 0, 0);
     CU_add_test(deg_to_rad_suite, "Degrees in unit circle", test_deg_to_rad_unit_circle);
     CU_add_test(deg_to_rad_suite, "Degrees more than 360", test_deg_to_rad_more_than_360);
     CU_add_test(deg_to_rad_suite, "Degrees less than 0", test_deg_to_rad_less_than_0);
 
-    CU_pSuite rad_to_deg_suite = CU_add_suite("Test Suite for RAD_TO_DEG()", 0, 0);
+    CU_pSuite rad_to_deg_suite = CU_add_suite("RAD_TO_DEG()", 0, 0);
     CU_add_test(rad_to_deg_suite, "Radians in unit circle", test_rad_to_deg_unit_circle);
     CU_add_test(rad_to_deg_suite, "Radians more than 2 * PI", test_rad_to_deg_more_than_2pi);
     CU_add_test(rad_to_deg_suite, "Radians less than 0", test_rad_to_deg_less_than_0);
 
-    CU_pSuite distance_between_suite = CU_add_suite("Test Suite for distance_between()", 0, 0);
+    CU_pSuite distance_between_suite = CU_add_suite("distance_between()", 0, 0);
     CU_add_test(distance_between_suite, "Same point", test_distance_between_same_point);
     CU_add_test(distance_between_suite, "Unit Circle", test_distance_between_origin_unit_circle);
     CU_add_test(distance_between_suite, "Pythagorean triple (3, 4, 5)", test_distance_between_pythagorean_triple);
