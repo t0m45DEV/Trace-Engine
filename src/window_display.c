@@ -4,9 +4,7 @@ int resolution = LOW_RESOLUTION;
 
 bool debug_2D_view = false;
 
-int fps = 0;
-
-float delta_time = 0;
+SDL_Window* window = NULL;
 
 SDL_Window* create_window(const char* title, const int width, const int height)
 {
@@ -25,7 +23,7 @@ SDL_Window* create_window(const char* title, const int width, const int height)
         exit(EXIT_FAILURE);
     }
   
-    if (SDL_GL_SetSwapInterval(V_SYNC_OFF) != 0)
+    if (SDL_GL_SetSwapInterval(V_SYNC_ON) != 0)
     {
         printf("Unable to set VSync! SDL Error: %s\n", SDL_GetError());
         exit(EXIT_FAILURE);

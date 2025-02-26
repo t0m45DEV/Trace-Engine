@@ -33,10 +33,7 @@ extern bool debug_2D_view;
 #define V_SYNC_ON     1  /**< Updates synchronized with the vertical retrace */
 #define V_SYNC_ADAPT -1  /**< Adaptive V-sync */
 
-extern int fps;     /**< Frame per second counter */
-
-extern float delta_time;   /**< The time elapsed between last frame and the actual one */
-
+extern SDL_Window* window; /**< SDL context for the actual window */
 
 /** Color of the background (it's always block by the walls, anyway) */
 #define BACKGROUND_COLOR (rgb_t) {0, 0, 0}

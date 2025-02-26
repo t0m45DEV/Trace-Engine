@@ -6,10 +6,7 @@
 #include <GL/gl.h>
 
 #include "defines.h"
-#include "window_display.h"
-#include "world.h"
-#include "physics.h"
-#include "timer.h"
+#include "loop.h"
 
 game_state_t game_state = {0};
 
@@ -55,8 +52,8 @@ int main(void)
     /* To use OpenGL legacy functions */
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
 
-    SDL_Window* window = create_window(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT);
-
+    window = create_window(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT);
+    
     if (!init_GL())
     {
         printf("Unable to initialize OpenGL\n");
@@ -64,42 +61,20 @@ int main(void)
     }
     set_background_color(BACKGROUND_COLOR);
 
-    engine_timer_t animation_timer = create_timer(0.3);
+    //engine_timer_t animation_timer = create_timer(0.3);
     //start_timer(&animation_timer);
 
     engine_timer_t fps_timer = create_timer(1);
+    FPS_counter.timer = &fps_timer;
     start_timer(&fps_timer);
 
     // The division is to the get the time in seconds, not in miliseconds
     float actual_frame = SDL_GetTicks() / SECONDS_TO_MILLISECONDS(1);
+    FPS_counter.actual_frame = actual_frame;
 
     while (game_state.is_game_running)
     {
-        float previous_frame = actual_frame;
-        actual_frame = SDL_GetTicks() / SECONDS_TO_MILLISECONDS(1);
-        delta_time = actual_frame - previous_frame;
-
-        fps++;
-
-        if (is_timer_up(&fps_timer))
-        {
-            printf("FPS: %i\n", fps);
-            fps = 0;
-            start_timer(&fps_timer);
-        }
-
-        if (is_timer_up(&animation_timer))
-        {
-            map_w[REAL_POS_TO_GRID_POS(3, 2)] = ((map_w[REAL_POS_TO_GRID_POS(3, 2)] + 1) % 3) + 1;
-            start_timer(&animation_timer);
-        }
-
-        handle_input();
-        handle_physics();
-
-        glClear(GL_COLOR_BUFFER_BIT);
-        render_screen();
-        SDL_GL_SwapWindow(window);
+        main_loop();
     }
     SDL_DestroyWindow(window);
     SDL_Quit();

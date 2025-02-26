@@ -16,7 +16,7 @@ void reset_player_info(void)
 }
 
 
-void move_player(void)
+void move_player(float delta_time)
 {
     update_offset(&player);
 
