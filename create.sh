@@ -37,6 +37,17 @@ checkForErrors() {
 	fi
 }
 
+#
+# To run this function use this template:
+#
+# declare -a FUNCTION_TO_RUN=(
+#     "Wait message"
+#     "bash command"
+#     "Error message"
+#     "Good message"
+# )
+# runFunction "${FUNCTION_TO_RUN}"
+#
 runFunction() {
 	local arr=("$@")
 
