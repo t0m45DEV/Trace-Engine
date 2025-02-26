@@ -103,11 +103,19 @@ runFunction "${RUN_CMAKE[@]}"
 
 declare -a COMPILE_PROJECT=(
 	"Compiling project..."
-	"make all"
+	"make videoGame"
 	"There was an error compiling the project!"
 	"Executable created!"
 )
 runFunction "${COMPILE_PROJECT[@]}"
+
+declare -a COMPILE_TESTS=(
+	"Compiling tests runner..."
+	"make run_tests"
+	"Ironic, there's something wrong in the tests program..."
+	"Tests program succesfully created!"
+)
+runFunction "${COMPILE_TESTS[@]}"
 
 declare -a RUN_TESTS=(
 	"Running tests..."
