@@ -1,5 +1,7 @@
 #!/bin/bash
 
+BUILD_FOLDER="build"
+
 OPENGL_LIB="sdl2 gl"
 
 IMG_PARSER_CODE="./imageParser/imageParser.c"
@@ -17,6 +19,8 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 CYAN='\033[0;36m'
 
+CONFIG_OUTPUT="config.log" # To put programs output
+
 # To print my shit
 message() {
     COLOR=$1
@@ -33,40 +37,74 @@ checkForErrors() {
 	fi
 }
 
+runFunction() {
+	local arr=("$@")
+
+	message ${NC} "${arr[0]}"
+	eval "${arr[1]}"
+	checkForErrors "${arr[2]}" "${arr[3]}"
+}
+
 message ${GREEN} "Welcome to the Tom's 3D engine instalation process!"
 
-CONFIG_OUTPUT="config.log"
-
-message ${NC} "Checking dependencies..."
-pkg-config --libs ${OPENGL_LIB} > ${CONFIG_OUTPUT}
-checkForErrors "You need the ${OPENGL_LIB} library!" "OpenGL library is installed!"
+declare -a CHECK_DEPENDENCIES=(
+	"Checking dependencies..."
+	"pkg-config --libs ${OPENGL_LIB} > ${CONFIG_OUTPUT}"
+	"You need the ${OPENGL_LIB} library!"
+	"OpenGL library is installed!"
+)
+runFunction "${CHECK_DEPENDENCIES[@]}"
 rm ${CONFIG_OUTPUT}
 
-message ${NC} "Compiling texture parser..."
-gcc ${IMG_PARSER_CODE} -o ${IMG_PARSER} -lm
-checkForErrors "There was an error compiling the image parser!" "The texture parser has been compiled!"
+declare -a COMPILE_TEXTURE_PARSER=(
+	"Compiling texture parser..."
+	"gcc ${IMG_PARSER_CODE} -o ${IMG_PARSER} -lm"
+	"There was an error compiling the image parser!"
+	"The texture parser has been compiled!"
+)
+runFunction "${COMPILE_TEXTURE_PARSER[@]}"
 
-message ${NC} "Parsing images to the game..."
-./${IMG_PARSER} ${TEXTURE_IMG} ${TEXTURE_HEADER_DEST} ${TEXTURE_CODE_DEST} ${TEXTURE_SIZE_NAME} ${TEXTURE_MATRIX_NAME}
-checkForErrors "There was an error parsing the textures!" "All textures had been succesfully added!"
+declare -a RUN_TEXTURE_PARSER=(
+	"Parsing images to the game..."
+	"./${IMG_PARSER} ${TEXTURE_IMG} ${TEXTURE_HEADER_DEST} ${TEXTURE_CODE_DEST} ${TEXTURE_SIZE_NAME} ${TEXTURE_MATRIX_NAME}"
+	"There was an error parsing the textures!"
+	"All textures had been succesfully added!"
+)
+runFunction "${RUN_TEXTURE_PARSER[@]}"
 rm ${IMG_PARSER}
 
-message ${NC} "Creating build folder..."
-mkdir -p build
-message ${CYAN} "Build folder created!"
-cd build
+declare -a CREATE_BUILD_FOLDER=(
+	"Creating build folder..."
+	"mkdir -p ${BUILD_FOLDER}"
+	"There was an error creating the build folder!"
+	"Build folder created!"
+)
+runFunction "${CREATE_BUILD_FOLDER[@]}"
+cd ${BUILD_FOLDER}
 
-message ${NC} "Running CMake..."
-cmake ..
-checkForErrors "There was an error running CMake!" "CMake succesfully did all it's stuff!"
+declare -a RUN_CMAKE=(
+	"Running CMake..."
+	"cmake .."
+	"There was an error running CMake!"
+	"CMake succesfully did all it's stuff!"
+)
+runFunction "${RUN_CMAKE[@]}"
 
-message ${NC} "Creating executable..."
-make all
-checkForErrors "There was an error compiling the project!" "Executable created!"
+declare -a COMPILE_PROJECT=(
+	"Compiling project..."
+	"make all"
+	"There was an error compiling the project!"
+	"Executable created!"
+)
+runFunction "${COMPILE_PROJECT[@]}"
 
-message ${NC} "Running tests..."
-./run_tests
-checkForErrors "It appears we have some bugs to catch!" "Every test passed!"
+declare -a RUN_TESTS=(
+	"Running tests..."
+	"./run_tests"
+	"It appears we have some bugs to catch!"
+	"Every test passed!"
+)
+runFunction "${RUN_TESTS[@]}"
 
 message ${CYAN} "Check the build folder, there's the game executable"
 message ${GREEN} "Have fun!"
