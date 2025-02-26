@@ -8,12 +8,12 @@
 #include "defines.h"
 #include "window_display.h"
 #include "world.h"
-#include "player.h"
+#include "physics.h"
 #include "timer.h"
 
 game_state_t game_state = {0};
 
-bool initGL(void)
+bool init_GL(void)
 {
     // Initialize projection matrix
     glMatrixMode(GL_PROJECTION);
@@ -57,7 +57,7 @@ int main(void)
 
     SDL_Window* window = create_window(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT);
 
-    if (!initGL())
+    if (!init_GL())
     {
         printf("Unable to initialize OpenGL\n");
         exit(EXIT_FAILURE);
@@ -65,7 +65,7 @@ int main(void)
     set_background_color(BACKGROUND_COLOR);
 
     engine_timer_t animation_timer = create_timer(0.3);
-    start_timer(&animation_timer);
+    //start_timer(&animation_timer);
 
     engine_timer_t fps_timer = create_timer(1);
     start_timer(&fps_timer);
@@ -95,7 +95,7 @@ int main(void)
         }
 
         handle_input();
-        move_player();
+        handle_physics();
 
         glClear(GL_COLOR_BUFFER_BIT);
         render_screen();
