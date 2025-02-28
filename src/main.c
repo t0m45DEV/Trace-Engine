@@ -53,8 +53,13 @@ int main(void)
         printf("Error initializing SDL Error: %s\n", SDL_GetError());
         exit(EXIT_FAILURE);
     }
-    /* To use OpenGL legacy functions */
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
+
+    #if defined(__EMSCRIPTEN__)
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_ES);
+    #else
+        /* To use OpenGL legacy functions */
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
+    #endif
 
     window = create_window(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT);
     
@@ -76,10 +81,18 @@ int main(void)
     float actual_frame = SDL_GetTicks() / SECONDS_TO_MILLISECONDS(1);
     FPS_counter.actual_frame = actual_frame;
 
-    while (game_state.is_game_running)
+    #if defined(__EMSCRIPTEN__) // If the game will run in the web
     {
-        main_loop();
+        #include <emscripten.h>
+        #define USE_MAX_FPS_FOR_WEB -1
+        emscripten_set_main_loop(main_loop, USE_MAX_FPS_FOR_WEB, true);
     }
+    #else // If the game will run locally
+    {
+        while (game_state.is_game_running) main_loop();
+    }
+    #endif
+
     SDL_DestroyWindow(window);
     SDL_Quit();
     

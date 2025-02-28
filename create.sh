@@ -5,6 +5,7 @@ TESTS_RUNNER="run_tests"
 
 BUILD_FOLDER="build"
 LOCAL_BUILD_FOLDER="local"
+WEB_FOLDER="web"
 
 EXPORT_FOLDER="export"
 
@@ -134,7 +135,35 @@ runFunction "${RUN_TESTS[@]}"
 mkdir -p ../${EXPORT_FOLDER}
 mv ./${OUTPUT_FILE} ../../${EXPORT_FOLDER}/${OUTPUT_FILE}
 
-message ${CYAN} "Check the export folder, there's the game executable!"
+cd ..
+mkdir -p ${WEB_FOLDER}
+cd ${WEB_FOLDER}
+
+declare -a RUN_EMCMAKE=(
+	"Running EMCMake for web..."
+	"emcmake cmake ../.. -DJS_ONLY=ON"
+	"There was an error running EMCMake!"
+	"EMCMake succesfully did all it's stuff!"
+)
+runFunction "${RUN_EMCMAKE[@]}"
+
+declare -a COMPILE_WEB_PROJECT=(
+	"Compiling web project..."
+	"make ${OUTPUT_FILE}"
+	"There was an error compiling the web project!"
+	"Web files created!"
+)
+runFunction "${COMPILE_WEB_PROJECT[@]}"
+
+mv ./${OUTPUT_FILE}.js ../../${EXPORT_FOLDER}/${WEB_FOLDER}/${OUTPUT_FILE}.js
+mv ./${OUTPUT_FILE}.wasm ../../${EXPORT_FOLDER}/${WEB_FOLDER}/${OUTPUT_FILE}.wasm
+
+cd ../../${EXPORT_FOLDER}/${WEB_FOLDER}
+
+rm ${OUTPUT_FILE}.zip
+zip ${OUTPUT_FILE}.zip ./*
+
+message ${CYAN} "Check the export folder, there's the game executable and web files!"
 message ${GREEN} "Have fun!"
 
 exit 0
