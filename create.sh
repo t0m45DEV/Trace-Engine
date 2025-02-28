@@ -1,8 +1,14 @@
 #!/bin/bash
 
-BUILD_FOLDER="build"
+OUTPUT_FILE="videoGame"
+TESTS_RUNNER="run_tests"
 
-OPENGL_LIB="sdl2 gl"
+BUILD_FOLDER="build"
+LOCAL_BUILD_FOLDER="local"
+
+EXPORT_FOLDER="export"
+
+OPENGL_LIB="sdl2 gl cunit"
 
 IMG_PARSER_CODE="./imageParser/imageParser.c"
 IMG_PARSER="image_parser"
@@ -84,18 +90,18 @@ declare -a RUN_TEXTURE_PARSER=(
 runFunction "${RUN_TEXTURE_PARSER[@]}"
 rm ${IMG_PARSER}
 
-declare -a CREATE_BUILD_FOLDER=(
+declare -a CREATE_BUILD_FOLDERS=(
 	"Creating build folder..."
-	"mkdir -p ${BUILD_FOLDER}"
+	"mkdir -p ${BUILD_FOLDER} && mkdir -p ${BUILD_FOLDER}/${LOCAL_BUILD_FOLDER} && mkdir -p ${BUILD_FOLDER}/${WEB_FOLDER}"
 	"There was an error creating the build folder!"
 	"Build folder created!"
 )
-runFunction "${CREATE_BUILD_FOLDER[@]}"
-cd ${BUILD_FOLDER}
+runFunction "${CREATE_BUILD_FOLDERS[@]}"
+cd ${BUILD_FOLDER}/${LOCAL_BUILD_FOLDER}
 
 declare -a RUN_CMAKE=(
 	"Running CMake..."
-	"cmake .."
+	"cmake ../.."
 	"There was an error running CMake!"
 	"CMake succesfully did all it's stuff!"
 )
@@ -103,7 +109,7 @@ runFunction "${RUN_CMAKE[@]}"
 
 declare -a COMPILE_PROJECT=(
 	"Compiling project..."
-	"make videoGame"
+	"make ${OUTPUT_FILE}"
 	"There was an error compiling the project!"
 	"Executable created!"
 )
@@ -111,7 +117,7 @@ runFunction "${COMPILE_PROJECT[@]}"
 
 declare -a COMPILE_TESTS=(
 	"Compiling tests runner..."
-	"make run_tests"
+	"make ${TESTS_RUNNER}"
 	"Ironic, there's something wrong in the tests program..."
 	"Tests program succesfully created!"
 )
@@ -119,13 +125,16 @@ runFunction "${COMPILE_TESTS[@]}"
 
 declare -a RUN_TESTS=(
 	"Running tests..."
-	"./run_tests"
+	"./${TESTS_RUNNER}"
 	"It appears we have some bugs to catch!"
 	"Every test passed!"
 )
 runFunction "${RUN_TESTS[@]}"
 
-message ${CYAN} "Check the build folder, there's the game executable"
+mkdir -p ../${EXPORT_FOLDER}
+mv ./${OUTPUT_FILE} ../../${EXPORT_FOLDER}/${OUTPUT_FILE}
+
+message ${CYAN} "Check the export folder, there's the game executable!"
 message ${GREEN} "Have fun!"
 
 exit 0
