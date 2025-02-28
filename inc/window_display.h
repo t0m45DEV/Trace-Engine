@@ -17,9 +17,7 @@
 /** The current resolution of the game, more resolution means more rays, so a big value could compromise performance, use fixed values */
 extern int resolution;
 
-/** To draw the top-down 2D view of the levels, only for debug, or maybe make a map for the player */
-extern bool debug_2D_view;
-
+/** The title to be shown on the top of the window */
 #define WINDOW_TITLE "Tom's 3D Engine"
 
 /** Is good for the window size to satisfy WIDTH = HEIGHT * 1.5, and also for the numbers to be divisible by powers of 2 */

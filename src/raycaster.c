@@ -149,7 +149,7 @@ void cast_rays(void)
             actual_surface = surface_V;
         }
 
-        if (!debug_2D_view)
+        if (!game_state.is_on_debug_view_mode)
         {
             angle_cosine = player.angle - ray_angle;
             angle_cosine = adjust_angle(angle_cosine);

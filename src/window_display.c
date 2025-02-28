@@ -2,8 +2,6 @@
 
 int resolution = LOW_RESOLUTION;
 
-bool debug_2D_view = false;
-
 SDL_Window* window = NULL;
 
 SDL_Window* create_window(const char* title, const int width, const int height)
@@ -38,7 +36,18 @@ void set_background_color(const rgb_t color)
 
 void render_screen(void)
 {
-    if (debug_2D_view) draw_map_2D();
-    cast_rays();
-    if (debug_2D_view) draw_player();
+    switch (game_state.current_scene)
+    {
+        case MAIN_MENU_SCENE:
+            break;
+        
+        case GAME_SCENE:
+            if (game_state.is_on_debug_view_mode) draw_map_2D();
+            cast_rays();
+            if (game_state.is_on_debug_view_mode) draw_player();
+            break;
+
+        default:
+            break;
+    }
 }

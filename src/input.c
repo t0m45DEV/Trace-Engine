@@ -25,7 +25,7 @@ void handle_input(void)
     {
         if (get_scancode(event) == CHANGE_DEBUG_MODE_BUTTON)
         {
-            debug_2D_view = !debug_2D_view;
+            game_state.is_on_debug_view_mode = !game_state.is_on_debug_view_mode;
 
             //if (resolution == HIGH_RESOLUTION) resolution = LOW_RESOLUTION;
             //else
