@@ -11,12 +11,12 @@
 #define NK_INCLUDE_VERTEX_BUFFER_OUTPUT
 #define NK_INCLUDE_FONT_BAKING
 #define NK_INCLUDE_DEFAULT_FONT
-#include "nuklear.h"
+#include "nuklear/nuklear.h"
 
 #if defined(__EMSCRIPTEN__) // If the game will run in the web
-    #include "nuklear_sdl_gles2.h"
+    #include "nuklear/nuklear_sdl_gles2.h"
 #else // If the game will run locally
-    #include "nuklear_sdl_gl2.h"
+    #include "nuklear/nuklear_sdl_gl2.h"
 #endif
 
 #include "defines.h"
