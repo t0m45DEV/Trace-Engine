@@ -21,7 +21,7 @@
  * Structures that can form the map
  */
 typedef enum {
-    AIR,  /**< Nothing, the squares where the entities can move */
+    AIR,  /** Nothing, the squares where the entities can move */
     STONE,
     WOOD,
     DOOR
@@ -32,16 +32,16 @@ typedef enum {
  * A color struct, having 3 variables: r, g and b
  */
 typedef struct {
-    float r; /**< Red component from RGB */
-    float g; /**< Green component from RGB */
-    float b; /**< Blue component from RGB */
+    float r; /** Red component from RGB */
+    float g; /** Green component from RGB */
+    float b; /** Blue component from RGB */
 } rgb_t;
 
-extern structures_t map_w[];         /**< The wall maps for ALL the levels in one array */
-extern structures_t map_f[];         /**< The floor maps for ALL the levels in one array */
-extern structures_t map_c[];         /**< The ceiling maps for ALL the levels in one array */
-extern position_2D_t maps_sizes[];     /**< The map sizes for each level */
-extern position_2D_t player_spawns[];  /**< The player spawns for each level, saved in grid position style */
+extern structures_t map_w[];         /** The wall maps for ALL the levels in one array */
+extern structures_t map_f[];         /** The floor maps for ALL the levels in one array */
+extern structures_t map_c[];         /** The ceiling maps for ALL the levels in one array */
+extern position_2D_t maps_sizes[];     /** The map sizes for each level */
+extern position_2D_t player_spawns[];  /** The player spawns for each level, saved in grid position style */
 
 /**
  * Check if the given index is in range of the current level map
@@ -56,7 +56,7 @@ int is_valid_map_index(int idx);
 void draw_map_2D(void);
 
 
-#define FIRST_LEVEL 1 /**< Index of the level loaded when the game starts (0 <= index < LEVEL_COUNT) */
-#define LEVEL_COUNT 2 /**< Total number of levels */
+#define FIRST_LEVEL 1 /** Index of the level loaded when the game starts (0 <= index < LEVEL_COUNT) */
+#define LEVEL_COUNT 2 /** Total number of levels */
 
 #endif

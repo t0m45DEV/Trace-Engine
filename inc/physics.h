@@ -3,7 +3,7 @@
 
 #include "player.h"
 
-extern float delta_time;   /**< The time elapsed between last frame and the actual one */
+extern float delta_time;   /** The time elapsed between last frame and the actual one */
 
 /**
  * Handle the world physics: player movement, collision detection, pathfinding, etc

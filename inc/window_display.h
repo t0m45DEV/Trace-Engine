@@ -27,11 +27,11 @@ extern int resolution;
 
 /** V-sync modes */
 
-#define V_SYNC_OFF    0  /**< Immediate update from frame to frame */
-#define V_SYNC_ON     1  /**< Updates synchronized with the vertical retrace */
-#define V_SYNC_ADAPT -1  /**< Adaptive V-sync */
+#define V_SYNC_OFF    0  /** Immediate update from frame to frame */
+#define V_SYNC_ON     1  /** Updates synchronized with the vertical retrace */
+#define V_SYNC_ADAPT -1  /** Adaptive V-sync */
 
-extern SDL_Window* window; /**< SDL context for the actual window */
+extern SDL_Window* window; /** SDL context for the actual window */
 
 /** Color of the background (it's always block by the walls, anyway) */
 #define BACKGROUND_COLOR (rgb_t) {0, 0, 0}

@@ -10,7 +10,7 @@
 
 /* Action keys */
 
-#define CHANGE_DEBUG_MODE_BUTTON SDL_GetScancodeFromKey('|') /**< To test new mechanics */
+#define CHANGE_DEBUG_MODE_BUTTON SDL_GetScancodeFromKey('|') /** To test new mechanics */
 
 #define MOVE_FORWARD_BUTTON  SDL_GetScancodeFromKey('w')
 #define MOVE_BACKWARD_BUTTON SDL_GetScancodeFromKey('s')
@@ -26,10 +26,10 @@
  * 1 means pressed, 0 means not
  */
 typedef struct {
-    int move_forward;          /**< The state of the key to move forward */
-    int move_backward;         /**< The state of the key to move backward */
-    int rotate_anti_clockwise; /**< The state of the key to rotate anti clockwise */
-    int rotate_clockwise;      /**< The state of the key to rotate clockwise */
+    int move_forward;          /** The state of the key to move forward */
+    int move_backward;         /** The state of the key to move backward */
+    int rotate_anti_clockwise; /** The state of the key to rotate anti clockwise */
+    int rotate_clockwise;      /** The state of the key to rotate clockwise */
 } keys_state_t;
 
 /** The current state of the keyboard */

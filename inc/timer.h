@@ -12,9 +12,9 @@
  * A timer struct, can init and check when is stopped
  */
 typedef struct {
-    bool is_active;     /**< False means the timer is stopped, true means the timer is running */
-    float duration;     /**< The timer duration in miliseconds */
-    float initial_time; /**< The timer activation time, in miliseconds */
+    bool is_active;     /** False means the timer is stopped, true means the timer is running */
+    float duration;     /** The timer duration in miliseconds */
+    float initial_time; /** The timer activation time, in miliseconds */
 } engine_timer_t;
 
 /**
