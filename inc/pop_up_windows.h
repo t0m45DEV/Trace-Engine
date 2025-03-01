@@ -1,0 +1,28 @@
+#ifndef _H_POP_UP_WIN
+#define _H_POP_UP_WIN
+
+#include <SDL.h>
+#include <SDL_opengl.h>
+
+#define NK_INCLUDE_FIXED_TYPES
+#define NK_INCLUDE_STANDARD_IO
+#define NK_INCLUDE_STANDARD_VARARGS
+#define NK_INCLUDE_DEFAULT_ALLOCATOR
+#define NK_INCLUDE_VERTEX_BUFFER_OUTPUT
+#define NK_INCLUDE_FONT_BAKING
+#define NK_INCLUDE_DEFAULT_FONT
+#include "nuklear.h"
+
+#if defined(__EMSCRIPTEN__) // If the game will run in the web
+    #include "nuklear_sdl_gles2.h"
+#else // If the game will run locally
+    #include "nuklear_sdl_gl2.h"
+#endif
+
+#include "defines.h"
+
+extern struct nk_context* nk_ctx;
+
+void test_nk(void);
+
+#endif

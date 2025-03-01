@@ -4,6 +4,8 @@ keys_state_t action_keys_state = {0};
 
 void handle_input(void)
 {
+    if (game_state.shows_debug_pop_up) nk_input_begin(nk_ctx);
+
     SDL_Event event;
     SDL_PollEvent(&event);
 
@@ -11,6 +13,8 @@ void handle_input(void)
     {
         game_state.is_game_running = false;
     }
+    if (game_state.shows_debug_pop_up) nk_sdl_handle_event(&event);
+
     // Simultaneous input
     SDL_PumpEvents();
     const Uint8* keyboard_state = SDL_GetKeyboardState(NULL);
@@ -25,20 +29,14 @@ void handle_input(void)
     {
         if (get_scancode(event) == CHANGE_DEBUG_MODE_BUTTON)
         {
-            game_state.is_on_debug_view_mode = !game_state.is_on_debug_view_mode;
-
-            //if (resolution == HIGH_RESOLUTION) resolution = LOW_RESOLUTION;
-            //else
-            //resolution = HIGH_RESOLUTION;
-
-            //if (current_level == 0) change_to_level(1);
-            //else change_to_level(0);
+            game_state.shows_debug_pop_up = !game_state.shows_debug_pop_up;
         }
         if (get_scancode(event) == OPEN_DOOR_BUTTON)
         {
             open_door();
         }
     }
+    if (game_state.shows_debug_pop_up) nk_input_end(nk_ctx);
 }
 
 SDL_Scancode get_scancode(const SDL_Event event)

@@ -6,6 +6,7 @@
 #include "trigonometry.h"
 #include "player.h"
 #include "world.h"
+#include "pop_up_windows.h"
 
 /* Action keys */
 

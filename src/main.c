@@ -5,6 +5,8 @@
 #include <SDL.h>
 #include <GL/gl.h>
 
+#include "pop_up_windows.h"
+
 #include "defines.h"
 #include "loop.h"
 
@@ -44,6 +46,7 @@ int main(void)
     game_state.is_game_running = true;
     game_state.current_scene = GAME_SCENE;
     game_state.is_on_debug_view_mode = false;
+    game_state.shows_debug_pop_up = false;
 
     load_level(FIRST_LEVEL);
 
@@ -62,13 +65,20 @@ int main(void)
     #endif
 
     window = create_window(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT);
-    
+
     if (!init_GL())
     {
         printf("Unable to initialize OpenGL\n");
         exit(EXIT_FAILURE);
     }
     set_background_color(BACKGROUND_COLOR);
+
+    nk_ctx = nk_sdl_init(window);
+
+    // Load the default font for Nuklear
+    struct nk_font_atlas *atlas;
+    nk_sdl_font_stash_begin(&atlas);
+    nk_sdl_font_stash_end();
 
     //engine_timer_t animation_timer = create_timer(0.3);
     //start_timer(&animation_timer);
@@ -93,6 +103,7 @@ int main(void)
     }
     #endif
 
+    nk_sdl_shutdown();
     SDL_DestroyWindow(window);
     SDL_Quit();
     

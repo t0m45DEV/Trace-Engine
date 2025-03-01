@@ -4,6 +4,11 @@
 #include <stdbool.h>
 #include "trigonometry.h"
 
+#if defined(__EMSCRIPTEN__) // If the game will run in the web
+    #define MAX_VERTEX_MEMORY  (512 * 1024)
+    #define MAX_ELEMENT_MEMORY (128 * 1024)
+#endif
+
 /**
  * A scene represents a state for the game (like the main
  * menu, options menu, specific level, boos fight, etc)
@@ -33,6 +38,7 @@ typedef struct {
     int current_level_idx;      /**< The index of the current level */
     level_t current_level_info; /**< The info of the current level */
     bool is_on_debug_view_mode; /**< A debug top-down view of the current */
+    bool shows_debug_pop_up;    /**< Shows the debug pop-up windows */
 } game_state_t;
 
 extern game_state_t game_state; /**< The current state of ALL the program */
