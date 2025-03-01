@@ -34,6 +34,7 @@ typedef struct {
  */
 typedef struct {
     bool is_game_running;       /** Self explanatory */
+    int fps;                    /** FPS of the current run */
     int current_scene;          /** The current scene to be showed */
     int current_level_idx;      /** The index of the current level */
     level_t current_level_info; /** The info of the current level */

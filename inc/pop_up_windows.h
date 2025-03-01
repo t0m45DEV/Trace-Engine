@@ -19,6 +19,7 @@
     #include "nuklear/nuklear_sdl_gl2.h"
 #endif
 
+#include "loop.h"
 #include "defines.h"
 
 extern struct nk_context* nk_ctx;

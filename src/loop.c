@@ -12,7 +12,7 @@ void main_loop(void)
 
     if (is_timer_up(FPS_counter.timer))
     {
-        printf("FPS: %i\n", FPS_counter.fps);
+        game_state.fps = FPS_counter.fps;
         FPS_counter.fps = 0;
         start_timer(FPS_counter.timer);
     }
