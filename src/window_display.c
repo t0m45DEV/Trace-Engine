@@ -52,7 +52,8 @@ void render_screen(void)
     }
     if (game_state.shows_debug_pop_up)
     {
-        test_nk();
+        show_debug_console();
+
         #if defined(__EMSCRIPTEN__) // If the game will run in the web
         {
             nk_sdl_render(NK_ANTI_ALIASING_ON, MAX_VERTEX_MEMORY, MAX_ELEMENT_MEMORY);

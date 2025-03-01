@@ -10,7 +10,7 @@
 
 struct nk_context* nk_ctx = NULL;
 
-void test_nk(void)
+void show_debug_console(void)
 {
     /* GUI */
     if (nk_begin(nk_ctx, "Debug Console", nk_rect(50, 50, 200, 80),
