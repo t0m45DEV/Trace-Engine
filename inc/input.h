@@ -21,7 +21,7 @@
 /**
  * Returns the current state of the action keys
  */
-keys_state_t get_key_state(void);
+keys_state_t get_keys_state(void);
 
 /**
  * Handle user input

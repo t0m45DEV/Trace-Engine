@@ -3,7 +3,7 @@
 /** The current state of the keyboard */
 keys_state_t action_keys_state = {0};
 
-keys_state_t get_key_state(void)
+keys_state_t get_keys_state(void)
 {
     return action_keys_state;
 }
