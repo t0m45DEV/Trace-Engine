@@ -1,6 +1,12 @@
 #include "player.h"
 
+/** The player info, like the position and actual direction of movement */
 entity_t player = {0};
+
+entity_t get_player_info(void)
+{
+    return player;
+}
 
 void reset_player_info(void)
 {

@@ -11,8 +11,10 @@
 
 #define P_INIT_ANGLE 0          /** Initial player vision angle (0 means bro is seeing right) */
 
-/** The player info, like the position and actual direction of movement */
-extern entity_t player;
+/**
+ * Returns the player current info in form of an entity
+ */
+entity_t get_player_info(void);
 
 /**
  * Sets the player info to the current level 
