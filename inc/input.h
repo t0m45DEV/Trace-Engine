@@ -19,7 +19,7 @@
 #define OPEN_DOOR_BUTTON SDL_GetScancodeFromKey('e')
 
 /**
- * TO DO
+ * Returns the current state of the action keys
  */
 keys_state_t get_key_state(void);
 
