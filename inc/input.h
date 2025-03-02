@@ -4,7 +4,6 @@
 #include "defines.h"
 #include "window_display.h"
 #include "trigonometry.h"
-#include "player.h"
 #include "world.h"
 #include "pop_up_windows.h"
 
@@ -19,21 +18,10 @@
 
 #define OPEN_DOOR_BUTTON SDL_GetScancodeFromKey('e')
 
-
 /**
- * State of the keys being pressed, used to press distinct keys simultaneously
- *
- * 1 means pressed, 0 means not
+ * TO DO
  */
-typedef struct {
-    int move_forward;          /** The state of the key to move forward */
-    int move_backward;         /** The state of the key to move backward */
-    int rotate_anti_clockwise; /** The state of the key to rotate anti clockwise */
-    int rotate_clockwise;      /** The state of the key to rotate clockwise */
-} keys_state_t;
-
-/** The current state of the keyboard */
-extern keys_state_t action_keys_state;
+keys_state_t get_key_state(void);
 
 /**
  * Handle user input

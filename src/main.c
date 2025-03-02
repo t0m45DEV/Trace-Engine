@@ -84,6 +84,7 @@ int main(void)
     //engine_timer_t animation_timer = create_timer(0.3);
     //start_timer(&animation_timer);
 
+    init_delta_time_counter();
     init_fps_counter();
 
     #if defined(__EMSCRIPTEN__) // If the game will run in the web

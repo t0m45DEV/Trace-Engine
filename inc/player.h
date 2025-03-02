@@ -2,7 +2,7 @@
 #define _H_PLAYER
 
 #include "entity.h"
-#include "input.h"
+#include "defines.h"
 
 #define P_COLLISION_SIZE 20     /** Initial collision size for player (check MAP_CELL_SIZE for size relation) */
 
@@ -24,7 +24,7 @@ void reset_player_info(void);
 /**
  * Move the player using the info in the player struct from player.h and the action_key_state struct from input.h
  */
-void move_player(float delta_time);
+void move_player(keys_state_t key_state, float delta_time);
 
 /**
  * Draw the player in the screen in the actual player position.

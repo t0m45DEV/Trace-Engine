@@ -23,15 +23,13 @@ void init_fps_counter(void)
     start_timer(&FPS_counter.timer);
 
     // The division is to the get the time in seconds, not in miliseconds
-    float actual_frame = SDL_GetTicks() / SECONDS_TO_MILLISECONDS(1);
-    FPS_counter.actual_frame = actual_frame;
+    FPS_counter.actual_frame = SDL_GetTicks() / SECONDS_TO_MILLISECONDS(1);
 }
 
 void update_fps_counter(void)
 {
     FPS_counter.last_frame = FPS_counter.actual_frame;
     FPS_counter.actual_frame = SDL_GetTicks() / SECONDS_TO_MILLISECONDS(1);
-    delta_time = FPS_counter.actual_frame - FPS_counter.last_frame;
 
     FPS_counter.fps++;
 
