@@ -1,5 +1,6 @@
 #include "delta_time.h"
 
+// The counter for delta_time
 delta_time_counter_t delta_t_ctr = {0};
 
 void init_delta_time_counter(void)
