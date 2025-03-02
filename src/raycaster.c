@@ -11,6 +11,8 @@ void cast_rays(void)
     float distance_from_player;
     float angle_cosine;
 
+    entity_t player = get_player_info();
+
     float ray_angle = player.angle - (DEG_TO_RAD(FOV / 2));
     ray_angle = adjust_angle(ray_angle);
 

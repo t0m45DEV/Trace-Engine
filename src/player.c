@@ -1,6 +1,12 @@
 #include "player.h"
 
+/** The player info, like the position and actual direction of movement */
 entity_t player = {0};
+
+entity_t get_player_info(void)
+{
+    return player;
+}
 
 void reset_player_info(void)
 {
@@ -16,11 +22,11 @@ void reset_player_info(void)
 }
 
 
-void move_player(float delta_time)
+void move_player(keys_state_t keys_state, float delta_time)
 {
     update_offset(&player);
 
-    if (action_keys_state.rotate_anti_clockwise)
+    if (keys_state.rotate_anti_clockwise)
     {
         player.angle -= player.rotation_velocity * delta_time;
         player.angle = adjust_angle(player.angle);
@@ -28,7 +34,7 @@ void move_player(float delta_time)
         player.delta.x = CALCULATE_X_DELTA(player.angle) * player.movement_velocity;
         player.delta.y = CALCULATE_Y_DELTA(player.angle) * player.movement_velocity;
     }
-    if (action_keys_state.rotate_clockwise)
+    if (keys_state.rotate_clockwise)
     {
         player.angle += player.rotation_velocity * delta_time;
         player.angle = adjust_angle(player.angle);
@@ -36,12 +42,12 @@ void move_player(float delta_time)
         player.delta.x = CALCULATE_X_DELTA(player.angle) * player.movement_velocity;
         player.delta.y = CALCULATE_Y_DELTA(player.angle) * player.movement_velocity;
     }
-    if (action_keys_state.move_forward)
+    if (keys_state.move_forward)
     {
         if (!is_colliding_in_axis(player, FRONT_X_AXIS_COLLISION)) player.pos.x += player.delta.x * delta_time;
         if (!is_colliding_in_axis(player, FRONT_Y_AXIS_COLLISION)) player.pos.y += player.delta.y * delta_time;
     }
-    if (action_keys_state.move_backward)
+    if (keys_state.move_backward)
     {
         if (!is_colliding_in_axis(player, BACK_X_AXIS_COLLISION)) player.pos.x -= player.delta.x * delta_time;
         if (!is_colliding_in_axis(player, BACK_Y_AXIS_COLLISION)) player.pos.y -= player.delta.y * delta_time;

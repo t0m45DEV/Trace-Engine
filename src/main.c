@@ -5,8 +5,11 @@
 #include <SDL.h>
 #include <GL/gl.h>
 
+#include "pop_up_windows.h"
+
 #include "defines.h"
 #include "loop.h"
+#include "fps_counter.h"
 
 #define SDL_INIT_ENGINE (SDL_INIT_TIMER | SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_EVENTS)
 
@@ -44,6 +47,7 @@ int main(void)
     game_state.is_game_running = true;
     game_state.current_scene = GAME_SCENE;
     game_state.is_on_debug_view_mode = false;
+    game_state.shows_debug_pop_up = false;
 
     load_level(FIRST_LEVEL);
 
@@ -62,7 +66,7 @@ int main(void)
     #endif
 
     window = create_window(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT);
-    
+
     if (!init_GL())
     {
         printf("Unable to initialize OpenGL\n");
@@ -70,16 +74,18 @@ int main(void)
     }
     set_background_color(BACKGROUND_COLOR);
 
+    nk_ctx = nk_sdl_init(window);
+
+    // Load the default font for Nuklear
+    struct nk_font_atlas *atlas;
+    nk_sdl_font_stash_begin(&atlas);
+    nk_sdl_font_stash_end();
+
     //engine_timer_t animation_timer = create_timer(0.3);
     //start_timer(&animation_timer);
 
-    engine_timer_t fps_timer = create_timer(1);
-    FPS_counter.timer = &fps_timer;
-    start_timer(&fps_timer);
-
-    // The division is to the get the time in seconds, not in miliseconds
-    float actual_frame = SDL_GetTicks() / SECONDS_TO_MILLISECONDS(1);
-    FPS_counter.actual_frame = actual_frame;
+    init_delta_time_counter();
+    init_fps_counter();
 
     #if defined(__EMSCRIPTEN__) // If the game will run in the web
     {
@@ -93,6 +99,7 @@ int main(void)
     }
     #endif
 
+    nk_sdl_shutdown();
     SDL_DestroyWindow(window);
     SDL_Quit();
     

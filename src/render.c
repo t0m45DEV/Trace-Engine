@@ -4,6 +4,8 @@
 
 void render_line(const ray_t ray)
 {
+    entity_t player = get_player_info();
+
     float line_h = ((MAP_CELL_SIZE * WINDOW_HEIGHT) / ray.distance) * DISTANCE_CORRECTION;
     
     float texture_y_step = TEXTURE_SIZE / (float) line_h;

@@ -5,18 +5,13 @@
 
 #include "window_display.h"
 #include "world.h"
+#include "delta_time.h"
 #include "physics.h"
-#include "timer.h"
+#include "fps_counter.h"
 
-typedef struct {
-    float actual_frame;
-    float last_frame;
-    int fps;
-    engine_timer_t* timer;
-} FPS_counter_t;
-
-extern FPS_counter_t FPS_counter;
-
+/**
+ * Main loop of the game, here we make magic!
+ */
 void main_loop(void);
 
 #endif

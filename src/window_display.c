@@ -50,4 +50,18 @@ void render_screen(void)
         default:
             break;
     }
+    if (game_state.shows_debug_pop_up)
+    {
+        show_debug_console();
+
+        #if defined(__EMSCRIPTEN__) // If the game will run in the web
+        {
+            nk_sdl_render(NK_ANTI_ALIASING_ON, MAX_VERTEX_MEMORY, MAX_ELEMENT_MEMORY);
+        }
+        #else // If the game will run locally
+        {
+            nk_sdl_render(NK_ANTI_ALIASING_ON);
+        }
+        #endif
+    }
 }
