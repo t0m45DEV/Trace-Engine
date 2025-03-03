@@ -36,21 +36,21 @@ void set_background_color(const rgb_t color)
 
 void render_screen(void)
 {
-    switch (game_state.current_scene)
+    switch (get_current_scene())
     {
         case MAIN_MENU_SCENE:
             break;
         
         case GAME_SCENE:
-            if (game_state.is_on_debug_view_mode) draw_map_2D();
+            if (is_top_down_view_on()) draw_map_2D();
             cast_rays();
-            if (game_state.is_on_debug_view_mode) draw_player();
+            if (is_top_down_view_on()) draw_player();
             break;
 
         default:
             break;
     }
-    if (game_state.shows_debug_pop_up)
+    if (is_debug_console_on())
     {
         show_debug_console();
 

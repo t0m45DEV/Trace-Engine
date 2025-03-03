@@ -10,16 +10,16 @@ keys_state_t get_keys_state(void)
 
 void handle_input(void)
 {
-    if (game_state.shows_debug_pop_up) nk_input_begin(nk_ctx);
+    if (is_debug_console_on()) nk_input_begin(nk_ctx);
 
     SDL_Event event;
     SDL_PollEvent(&event);
 
     if (event.type == SDL_QUIT) // If the window closes
     {
-        game_state.is_game_running = false;
+        stop_game();
     }
-    if (game_state.shows_debug_pop_up) nk_sdl_handle_event(&event);
+    if (is_debug_console_on()) nk_sdl_handle_event(&event);
 
     // Simultaneous input
     SDL_PumpEvents();
@@ -35,14 +35,14 @@ void handle_input(void)
     {
         if (get_scancode(event) == CHANGE_DEBUG_MODE_BUTTON)
         {
-            game_state.shows_debug_pop_up = !game_state.shows_debug_pop_up;
+            update_debug_console_state();
         }
         if (get_scancode(event) == OPEN_DOOR_BUTTON)
         {
             open_door();
         }
     }
-    if (game_state.shows_debug_pop_up) nk_input_end(nk_ctx);
+    if (is_debug_console_on()) nk_input_end(nk_ctx);
 }
 
 SDL_Scancode get_scancode(const SDL_Event event)

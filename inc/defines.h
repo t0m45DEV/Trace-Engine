@@ -42,8 +42,6 @@ typedef struct {
     bool shows_debug_pop_up;    /** Shows the debug pop-up windows */
 } game_state_t;
 
-extern game_state_t game_state; /** The current state of ALL the program */
-
 /**
  * State of the keys being pressed, used to press distinct keys simultaneously
  *

@@ -10,8 +10,8 @@ entity_t get_player_info(void)
 
 void reset_player_info(void)
 {
-    player.pos.x = GRID_POS_TO_REAL_POS(game_state.current_level_info.player_spawn.x);
-    player.pos.y = GRID_POS_TO_REAL_POS(game_state.current_level_info.player_spawn.y);
+    player.pos.x = GRID_POS_TO_REAL_POS(get_current_player_spawn().x);
+    player.pos.y = GRID_POS_TO_REAL_POS(get_current_player_spawn().y);
     player.angle = P_INIT_ANGLE;
     player.movement_velocity = MOVEMENT_VELOCITY;
     player.rotation_velocity = ROTATION_VELOCITY;

@@ -32,7 +32,7 @@ void cast_rays(void)
             ray_pos.x = player.pos.x;
             ray_pos.y = player.pos.y;
 
-            count_of_hits = game_state.current_level_info.map_size.y;
+            count_of_hits = get_current_map_size().y;
         }
         else if (ray_angle > LEFT_DIR) /* If looking down */
         {
@@ -51,7 +51,7 @@ void cast_rays(void)
             ray_offset.x = (-1) * ray_offset.y * aTan;
         }
 
-        while (count_of_hits < game_state.current_level_info.map_size.y)
+        while (count_of_hits < get_current_map_size().y)
         {
             map_ray.x = (int) (ray_pos.x / MAP_CELL_SIZE);
             map_ray.y = (int) (ray_pos.y / MAP_CELL_SIZE);
@@ -64,7 +64,7 @@ void cast_rays(void)
                 distance_h = distance_between(player.pos, ray_pos);
                 surface_H = map_w[ray_in_map];
 
-                count_of_hits = game_state.current_level_info.map_size.y; /* End the loop */
+                count_of_hits = get_current_map_size().y; /* End the loop */
             }
             else /* Check the next */
             {
@@ -87,7 +87,7 @@ void cast_rays(void)
             ray_pos.x = player.pos.x;
             ray_pos.y = player.pos.y;
 
-            count_of_hits = game_state.current_level_info.map_size.x;
+            count_of_hits = get_current_map_size().x;
         }
         else if ((ray_angle > UP_DIR) && (ray_angle < DOWN_DIR)) /* If looking left */
         {
@@ -106,7 +106,7 @@ void cast_rays(void)
             ray_offset.y = (-1) * ray_offset.x * nTan;
         }
 
-        while (count_of_hits < game_state.current_level_info.map_size.x)
+        while (count_of_hits < get_current_map_size().x)
         {
             map_ray.x = (int) (ray_pos.x / MAP_CELL_SIZE);
             map_ray.y = (int) (ray_pos.y / MAP_CELL_SIZE);
@@ -119,7 +119,7 @@ void cast_rays(void)
                 distance_v = distance_between(player.pos, ray_pos);
                 surface_V = map_w[ray_in_map];
 
-                count_of_hits = game_state.current_level_info.map_size.x; /* End the loop */
+                count_of_hits = get_current_map_size().x; /* End the loop */
             }
             else /* Check the next */
             {
@@ -151,7 +151,7 @@ void cast_rays(void)
             actual_surface = surface_V;
         }
 
-        if (!game_state.is_on_debug_view_mode)
+        if (!is_top_down_view_on())
         {
             angle_cosine = player.angle - ray_angle;
             angle_cosine = adjust_angle(angle_cosine);

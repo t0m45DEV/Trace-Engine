@@ -19,7 +19,7 @@ void show_debug_console(void)
     {
         {
             char fps_text[10];
-            snprintf(fps_text, 10, "FPS: %i", game_state.fps);
+            snprintf(fps_text, 10, "FPS: %i", get_fps());
 
             nk_layout_row_dynamic(nk_ctx, 20, 1);
             nk_label(nk_ctx, fps_text, NK_TEXT_LEFT);

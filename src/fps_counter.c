@@ -35,7 +35,7 @@ void update_fps_counter(void)
 
     if (is_timer_up(&FPS_counter.timer))
     {
-        game_state.fps = FPS_counter.fps;
+        update_game_state_fps(FPS_counter.fps);
         FPS_counter.fps = 0;
         start_timer(&FPS_counter.timer);
     }

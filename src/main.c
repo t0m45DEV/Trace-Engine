@@ -7,13 +7,12 @@
 
 #include "pop_up_windows.h"
 
+#include "game_state.h"
 #include "defines.h"
 #include "loop.h"
 #include "fps_counter.h"
 
 #define SDL_INIT_ENGINE (SDL_INIT_TIMER | SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_EVENTS)
-
-game_state_t game_state = {0};
 
 bool init_GL(void)
 {
@@ -44,12 +43,10 @@ bool init_GL(void)
 
 int main(void)
 {
-    game_state.is_game_running = true;
-    game_state.current_scene = GAME_SCENE;
-    game_state.is_on_debug_view_mode = false;
-    game_state.shows_debug_pop_up = false;
+    init_game_state();
 
-    load_level(FIRST_LEVEL);
+    set_level_info(FIRST_LEVEL);
+    reset_player_info();
 
     /* Try to initialize SDL */
     if (SDL_Init(SDL_INIT_ENGINE) != 0)
@@ -95,7 +92,7 @@ int main(void)
     }
     #else // If the game will run locally
     {
-        while (game_state.is_game_running) main_loop();
+        while (is_game_running()) main_loop();
     }
     #endif
 

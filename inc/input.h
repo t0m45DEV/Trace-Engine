@@ -4,7 +4,6 @@
 #include "defines.h"
 #include "window_display.h"
 #include "trigonometry.h"
-#include "world.h"
 #include "pop_up_windows.h"
 
 /* Action keys */

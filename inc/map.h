@@ -4,18 +4,19 @@
 #include <GL/gl.h>
 #include "trigonometry.h"
 #include "defines.h"
+#include "game_state.h"
 
 /** Size of the squares that forms the map, usually is good to have it (aprox) 3 times the player collision size */
 #define MAP_CELL_SIZE  64
 
 /** Returns the size of the current map */
-#define MAP_SIZE ((int) game_state.current_level_info.map_size.x * (int) game_state.current_level_info.map_size.y)
+#define MAP_SIZE ((int) get_current_map_size().x * (int) get_current_map_size().y)
 
 /** Returns the value in the middle of the square (you use first in one axis, then for the other) */
 #define GRID_POS_TO_REAL_POS(X) ((X * MAP_CELL_SIZE) + (MAP_CELL_SIZE / 2))
 
 /** Returns the index mapped from (X, Y) for map[] */
-#define REAL_POS_TO_GRID_POS(X, Y) (((int) game_state.current_level_info.map_offset) + ((int) (Y)) * ((int) game_state.current_level_info.map_size.x) + ((int) (X)))
+#define REAL_POS_TO_GRID_POS(X, Y) (((int) get_current_level_info().map_offset) + ((int) (Y)) * ((int) get_current_map_size().x) + ((int) (X)))
 
 /**
  * Structures that can form the map
@@ -42,6 +43,13 @@ extern structures_t map_f[];         /** The floor maps for ALL the levels in on
 extern structures_t map_c[];         /** The ceiling maps for ALL the levels in one array */
 extern position_2D_t maps_sizes[];     /** The map sizes for each level */
 extern position_2D_t player_spawns[];  /** The player spawns for each level, saved in grid position style */
+
+/**
+ * Returns the level offset for the maps list, to get the map of that level
+ * 
+ * @param level_idx The index of the level to get (from 0 to LEVEL_COUNT)
+ */
+int get_map_offset(const int level_idx);
 
 /**
  * Check if the given index is in range of the current level map

@@ -75,19 +75,29 @@ position_2D_t player_spawns[LEVEL_COUNT] =
     (position_2D_t) {1, 1}
 };
 
+int get_map_offset(const int level_idx)
+{
+    int ret = 0;
+
+    for (int i = 0; i < level_idx; i++)
+    {
+        ret += (maps_sizes[i].x * maps_sizes[i].y);
+    }
+    return ret;
+}
 
 int is_valid_map_index(int idx)
 {
-    return ((idx > game_state.current_level_info.map_offset) && (idx < (game_state.current_level_info.map_offset + MAP_SIZE)));
+    return ((idx > get_current_level_info().map_offset) && (idx < (get_current_level_info().map_offset + MAP_SIZE)));
 }
 
 void draw_map_2D(void)
 {
     position_2D_t grid_pos;
 
-    for (int y = 0; y < game_state.current_level_info.map_size.y; y++)
+    for (int y = 0; y < get_current_map_size().y; y++)
     {
-        for (int x = 0; x < game_state.current_level_info.map_size.x; x++)
+        for (int x = 0; x < get_current_map_size().x; x++)
         {
             if (map_w[REAL_POS_TO_GRID_POS(x, y)] == AIR)
             {
