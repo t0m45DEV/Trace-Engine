@@ -75,7 +75,7 @@ position_2D_t player_spawns[LEVEL_COUNT] =
     (position_2D_t) {1, 1}
 };
 
-int get_map_offset(const int level_idx)
+int get_map_offset_from_id(const int level_idx)
 {
     int ret = 0;
 
@@ -88,7 +88,7 @@ int get_map_offset(const int level_idx)
 
 int is_valid_map_index(int idx)
 {
-    return ((idx > get_current_level_info().map_offset) && (idx < (get_current_level_info().map_offset + MAP_SIZE)));
+    return ((idx > get_current_map_offset()) && (idx < (get_current_map_offset() + MAP_SIZE)));
 }
 
 void draw_map_2D(void)

@@ -45,6 +45,11 @@ level_t get_current_level_info(void);
 position_2D_t get_current_map_size(void);
 
 /**
+ * Returns the current map offset for the levels map array
+ */
+int get_current_map_offset(void);
+
+/**
  * Returns the player spawn of the current level
  */
 position_2D_t get_current_player_spawn(void);

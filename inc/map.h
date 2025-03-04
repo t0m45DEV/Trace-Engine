@@ -16,7 +16,7 @@
 #define GRID_POS_TO_REAL_POS(X) ((X * MAP_CELL_SIZE) + (MAP_CELL_SIZE / 2))
 
 /** Returns the index mapped from (X, Y) for map[] */
-#define REAL_POS_TO_GRID_POS(X, Y) (((int) get_current_level_info().map_offset) + ((int) (Y)) * ((int) get_current_map_size().x) + ((int) (X)))
+#define REAL_POS_TO_GRID_POS(X, Y) (((int) get_current_map_offset()) + ((int) (Y)) * ((int) get_current_map_size().x) + ((int) (X)))
 
 /**
  * Structures that can form the map
@@ -49,7 +49,7 @@ extern position_2D_t player_spawns[];  /** The player spawns for each level, sav
  * 
  * @param level_idx The index of the level to get (from 0 to LEVEL_COUNT)
  */
-int get_map_offset(const int level_idx);
+int get_map_offset_from_id(const int level_idx);
 
 /**
  * Check if the given index is in range of the current level map

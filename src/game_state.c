@@ -45,6 +45,11 @@ position_2D_t get_current_map_size(void)
     return game_state.current_level_info.map_size;
 }
 
+int get_current_map_offset(void)
+{
+    return game_state.current_level_info.map_offset;
+}
+
 position_2D_t get_current_player_spawn(void)
 {
     return game_state.current_level_info.player_spawn;
@@ -73,7 +78,7 @@ void update_debug_console_state(void)
 void set_level_info(const int level_idx)
 {
     game_state.current_level_idx = level_idx;
-    game_state.current_level_info.map_offset = get_map_offset(level_idx);
+    game_state.current_level_info.map_offset = get_map_offset_from_id(level_idx);
     game_state.current_level_info.map_size = maps_sizes[level_idx];
     game_state.current_level_info.player_spawn = player_spawns[level_idx];
 }
