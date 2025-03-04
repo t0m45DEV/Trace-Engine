@@ -19,7 +19,7 @@ position_2D_t get_player_position(void);
 /**
  * Returns the current player angle of vision (in radians)
  */
-float get_player_angle(void);
+angle_t get_player_angle(void);
 
 /**
  * Sets the player info to the current level 

@@ -21,6 +21,9 @@
 #define DEG_TO_RAD(angleInDegrees) (adjust_angle((angleInDegrees) * PI / 180.0)) /** Angle in degrees to angle in radians */
 #define RAD_TO_DEG(angleInRadians) (adjust_angle(angleInRadians) * 180.0 / PI)   /** Angle in radians to angle in degrees */
 
+// A float rename, for better reading
+typedef float angle_t;
+
 /**
  * A vector of 2 dimensions, the values x and y are floats
  */
@@ -49,7 +52,7 @@ float distance_between(const position_2D_t p1, const position_2D_t p2);
  * 
  * @param angle The angle to adjust, in radians
  */
-float adjust_angle(const float angle);
+angle_t adjust_angle(const angle_t angle);
 
 /**
  * Returns if the first float is equal to the second

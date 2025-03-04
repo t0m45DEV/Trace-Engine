@@ -10,9 +10,9 @@ float distance_between(const position_2D_t p1, const position_2D_t p2)
     return sqrt(((p1.x - p2.x) * (p1.x - p2.x)) + ((p1.y - p2.y) * (p1.y - p2.y)));
 }
 
-float adjust_angle(const float angle)
+angle_t adjust_angle(const angle_t angle)
 {
-    float new_angle = angle;
+    angle_t new_angle = angle;
 
     if (angle < 0)
     {

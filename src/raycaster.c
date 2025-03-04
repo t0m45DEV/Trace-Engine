@@ -12,9 +12,9 @@ void cast_rays(void)
     float angle_cosine;
 
     position_2D_t player_pos = get_player_position();
-    float player_angle = get_player_angle();
+    angle_t player_angle = get_player_angle();
 
-    float ray_angle = player_angle - (DEG_TO_RAD(FOV / 2));
+    angle_t ray_angle = player_angle - (DEG_TO_RAD(FOV / 2));
     ray_angle = adjust_angle(ray_angle);
 
     for (int ray_idx = 0; ray_idx < AMMOUNT_OF_RAYS; ray_idx++)

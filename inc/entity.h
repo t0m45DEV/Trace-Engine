@@ -19,7 +19,7 @@
 typedef struct {
     position_2D_t pos;       /** Where the entity is in the top view map */
     position_2D_t delta;     /** Where the entity is looking at */
-    float angle;             /** The angle between pos and delta, in radians */
+    angle_t angle;             /** The angle between pos and delta, in radians */
     float movement_velocity; /** How fast the entity moves */
     float rotation_velocity; /** How fast the entity rotates */
     int collision_size;      /** Radious of the collision shape (it's always a circle) */

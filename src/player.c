@@ -8,7 +8,7 @@ position_2D_t get_player_position(void)
     return player.pos;
 }
 
-float get_player_angle(void)
+angle_t get_player_angle(void)
 {
     return player.angle;
 }

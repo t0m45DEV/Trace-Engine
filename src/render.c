@@ -5,7 +5,7 @@
 void render_line(const ray_t ray)
 {
     position_2D_t player_pos = get_player_position();
-    float player_angle = get_player_angle();
+    angle_t player_angle = get_player_angle();
 
     float line_h = ((MAP_CELL_SIZE * WINDOW_HEIGHT) / ray.distance) * DISTANCE_CORRECTION;
     
