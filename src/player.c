@@ -3,9 +3,14 @@
 /** The player info, like the position and actual direction of movement */
 entity_t player = {0};
 
-entity_t get_player_info(void)
+position_2D_t get_player_position(void)
 {
-    return player;
+    return player.pos;
+}
+
+float get_player_angle(void)
+{
+    return player.angle;
 }
 
 void reset_player_info(void)

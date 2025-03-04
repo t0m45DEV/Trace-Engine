@@ -4,7 +4,8 @@
 
 void render_line(const ray_t ray)
 {
-    entity_t player = get_player_info();
+    position_2D_t player_pos = get_player_position();
+    float player_angle = get_player_angle();
 
     float line_h = ((MAP_CELL_SIZE * WINDOW_HEIGHT) / ray.distance) * DISTANCE_CORRECTION;
     
@@ -62,14 +63,14 @@ void render_line(const ray_t ray)
 
     // Draw floors and ceilings
 
-    float ray_angle_fix = cos(adjust_angle(player.angle - ray.angle));
+    float ray_angle_fix = cos(adjust_angle(player_angle - ray.angle));
 
     for (int y = line_h + line_offset; y < WINDOW_HEIGHT; y++)
     {
         float delta_y = y - (WINDOW_HEIGHT / 2.0);
 
-        texture_x = (player.pos.x / 2) + cos(ray.angle) * FLOOR_CORRECTION * TEXTURE_SIZE / delta_y / ray_angle_fix;
-        texture_y = (player.pos.y / 2) + sin(ray.angle) * FLOOR_CORRECTION * TEXTURE_SIZE / delta_y / ray_angle_fix;
+        texture_x = (player_pos.x / 2) + cos(ray.angle) * FLOOR_CORRECTION * TEXTURE_SIZE / delta_y / ray_angle_fix;
+        texture_y = (player_pos.y / 2) + sin(ray.angle) * FLOOR_CORRECTION * TEXTURE_SIZE / delta_y / ray_angle_fix;
 
         float distance = ((WINDOW_HEIGHT / 2.0) - delta_y) * (RENDER_CHUNK_SIZE / 3.75);
 

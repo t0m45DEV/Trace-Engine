@@ -12,9 +12,14 @@
 #define P_INIT_ANGLE 0          /** Initial player vision angle (0 means bro is seeing right) */
 
 /**
- * Returns the player current info in form of an entity
+ * Returns the current player position
  */
-entity_t get_player_info(void);
+position_2D_t get_player_position(void);
+
+/**
+ * Returns the current player angle of vision (in radians)
+ */
+float get_player_angle(void);
 
 /**
  * Sets the player info to the current level 

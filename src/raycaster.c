@@ -11,9 +11,10 @@ void cast_rays(void)
     float distance_from_player;
     float angle_cosine;
 
-    entity_t player = get_player_info();
+    position_2D_t player_pos = get_player_position();
+    float player_angle = get_player_angle();
 
-    float ray_angle = player.angle - (DEG_TO_RAD(FOV / 2));
+    float ray_angle = player_angle - (DEG_TO_RAD(FOV / 2));
     ray_angle = adjust_angle(ray_angle);
 
     for (int ray_idx = 0; ray_idx < AMMOUNT_OF_RAYS; ray_idx++)
@@ -29,23 +30,23 @@ void cast_rays(void)
 
         if (are_equals(ray_angle, RIGHT_DIR) || are_equals(ray_angle, LEFT_DIR)) /* If looking straight left or right */
         {
-            ray_pos.x = player.pos.x;
-            ray_pos.y = player.pos.y;
+            ray_pos.x = player_pos.x;
+            ray_pos.y = player_pos.y;
 
             count_of_hits = get_current_map_size().y;
         }
         else if (ray_angle > LEFT_DIR) /* If looking down */
         {
-            ray_pos.y = (((int) player.pos.y / MAP_CELL_SIZE) * MAP_CELL_SIZE) - PRECISION;
-            ray_pos.x = (player.pos.y - ray_pos.y) * aTan + player.pos.x;
+            ray_pos.y = (((int) player_pos.y / MAP_CELL_SIZE) * MAP_CELL_SIZE) - PRECISION;
+            ray_pos.x = (player_pos.y - ray_pos.y) * aTan + player_pos.x;
 
             ray_offset.y = (-1) * MAP_CELL_SIZE;
             ray_offset.x = (-1) * ray_offset.y * aTan;
         }
         else if (ray_angle < LEFT_DIR) /* If looking up */
         {
-            ray_pos.y = (((int) player.pos.y / MAP_CELL_SIZE) * MAP_CELL_SIZE) + MAP_CELL_SIZE;
-            ray_pos.x = (player.pos.y - ray_pos.y) * aTan + player.pos.x;
+            ray_pos.y = (((int) player_pos.y / MAP_CELL_SIZE) * MAP_CELL_SIZE) + MAP_CELL_SIZE;
+            ray_pos.x = (player_pos.y - ray_pos.y) * aTan + player_pos.x;
 
             ray_offset.y = MAP_CELL_SIZE;
             ray_offset.x = (-1) * ray_offset.y * aTan;
@@ -61,7 +62,7 @@ void cast_rays(void)
             {
                 ray_H.x = ray_pos.x;
                 ray_H.y = ray_pos.y;
-                distance_h = distance_between(player.pos, ray_pos);
+                distance_h = distance_between(player_pos, ray_pos);
                 surface_H = map_w[ray_in_map];
 
                 count_of_hits = get_current_map_size().y; /* End the loop */
@@ -84,23 +85,23 @@ void cast_rays(void)
 
         if (are_equals(ray_angle, UP_DIR) || are_equals(ray_angle, DOWN_DIR)) /* If looking straight up or down */
         {
-            ray_pos.x = player.pos.x;
-            ray_pos.y = player.pos.y;
+            ray_pos.x = player_pos.x;
+            ray_pos.y = player_pos.y;
 
             count_of_hits = get_current_map_size().x;
         }
         else if ((ray_angle > UP_DIR) && (ray_angle < DOWN_DIR)) /* If looking left */
         {
-            ray_pos.x = (((int) player.pos.x / MAP_CELL_SIZE) * MAP_CELL_SIZE) - PRECISION;
-            ray_pos.y = (player.pos.x - ray_pos.x) * nTan + player.pos.y;
+            ray_pos.x = (((int) player_pos.x / MAP_CELL_SIZE) * MAP_CELL_SIZE) - PRECISION;
+            ray_pos.y = (player_pos.x - ray_pos.x) * nTan + player_pos.y;
 
             ray_offset.x = (-1) * MAP_CELL_SIZE;
             ray_offset.y = (-1) * ray_offset.x * nTan;
         }
         else if ((ray_angle < UP_DIR) || (ray_angle > DOWN_DIR)) /* If looking right */
         {
-            ray_pos.x = (((int) player.pos.x / MAP_CELL_SIZE) * MAP_CELL_SIZE) + MAP_CELL_SIZE;
-            ray_pos.y = (player.pos.x - ray_pos.x) * nTan + player.pos.y;
+            ray_pos.x = (((int) player_pos.x / MAP_CELL_SIZE) * MAP_CELL_SIZE) + MAP_CELL_SIZE;
+            ray_pos.y = (player_pos.x - ray_pos.x) * nTan + player_pos.y;
 
             ray_offset.x = MAP_CELL_SIZE;
             ray_offset.y = (-1) * ray_offset.x * nTan;
@@ -116,7 +117,7 @@ void cast_rays(void)
             {
                 ray_V.x = ray_pos.x;
                 ray_V.y = ray_pos.y;
-                distance_v = distance_between(player.pos, ray_pos);
+                distance_v = distance_between(player_pos, ray_pos);
                 surface_V = map_w[ray_in_map];
 
                 count_of_hits = get_current_map_size().x; /* End the loop */
@@ -153,7 +154,7 @@ void cast_rays(void)
 
         if (!is_top_down_view_on())
         {
-            angle_cosine = player.angle - ray_angle;
+            angle_cosine = player_angle - ray_angle;
             angle_cosine = adjust_angle(angle_cosine);
 
             distance_from_player = distance_from_player * cos(angle_cosine); /* Fix fisheye */
@@ -164,7 +165,7 @@ void cast_rays(void)
             glColor3f(RAY_COLOR.r, RAY_COLOR.g, RAY_COLOR.b);
             glLineWidth(2);
             glBegin(GL_LINES);
-            glVertex2i(player.pos.x, player.pos.y);
+            glVertex2i(player_pos.x, player_pos.y);
             glVertex2i(ray_pos.x, ray_pos.y);
             glEnd();
         }
