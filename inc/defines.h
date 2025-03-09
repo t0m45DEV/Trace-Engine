@@ -38,7 +38,7 @@ typedef struct {
     int current_scene;          /** The current scene to be showed */
     int current_level_idx;      /** The index of the current level */
     level_t current_level_info; /** The info of the current level */
-    bool is_on_debug_view_mode; /** A debug top-down view of the current */
+    int is_on_debug_view_mode;  /** A debug top-down view of the current */
     bool shows_debug_pop_up;    /** Shows the debug pop-up windows */
 } game_state_t;
 

@@ -27,7 +27,7 @@ bool is_top_down_view_on(void);
 /**
  * Returns the current game state
  */
-game_state_t get_game_state(void);
+game_state_t* get_game_state(void);
 
 /**
  * Returns the current scene being played

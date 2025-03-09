@@ -25,9 +25,9 @@ bool is_top_down_view_on(void)
     return game_state.is_on_debug_view_mode;
 }
 
-game_state_t get_game_state(void)
+game_state_t* get_game_state(void)
 {
-    return game_state;
+    return &game_state;
 }
 
 scenes_t get_current_scene(void)
