@@ -29,8 +29,6 @@ typedef enum {
     DOOR
 } structures_t;
 
-extern position_2D_t player_spawns[];  /** The player spawns for each level, saved in grid position style */
-
 /**
  * Replaces the wall structure of the current map at the given position with the given new_wall
  */
@@ -65,6 +63,14 @@ int get_map_offset_from_id(const int level_idx);
  * @param level_idx The index of the level to get (from 0 to LEVEL_COUNT)
  */
 position_2D_t get_map_size_from_id(const int level_idx);
+
+/**
+ * Returns the player spawn point of the level_idx level, in the form of
+ * a position_2D_t
+ * 
+ * @param level_idx The index of the level to get (from 0 to LEVEL_COUNT)
+ */
+position_2D_t get_player_spwan_from_id(const int level_idx);
 
 /**
  * Draw in the screen a 2D matrix of squares, white being wall and blakc being floor
