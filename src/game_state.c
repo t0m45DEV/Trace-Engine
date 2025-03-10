@@ -35,6 +35,11 @@ scenes_t get_current_scene(void)
     return game_state.current_scene;
 }
 
+int get_current_level_index(void)
+{
+    return game_state.current_level_idx;
+}
+
 level_t get_current_level_info(void)
 {
     return game_state.current_level_info;
@@ -75,10 +80,16 @@ void update_debug_console_state(void)
     game_state.shows_debug_pop_up = !game_state.shows_debug_pop_up;
 }
 
-void set_level_info(const int level_idx)
+void load_level(const int level_idx)
 {
     game_state.current_level_idx = level_idx;
     game_state.current_level_info.map_offset = get_map_offset_from_id(level_idx);
     game_state.current_level_info.map_size = get_map_size_from_id(level_idx);
     game_state.current_level_info.player_spawn = get_player_spwan_from_id(level_idx);
+    reset_player_info();
+}
+
+void reload_level(void)
+{
+    load_level(get_current_level_index());
 }

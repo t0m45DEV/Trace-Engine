@@ -44,9 +44,7 @@ bool init_GL(void)
 int main(void)
 {
     init_game_state();
-
-    set_level_info(FIRST_LEVEL);
-    reset_player_info();
+    load_level(FIRST_LEVEL);
 
     /* Try to initialize SDL */
     if (SDL_Init(SDL_INIT_ENGINE) != 0)

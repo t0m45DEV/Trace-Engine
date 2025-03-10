@@ -2,6 +2,7 @@
 #define _H_GAME_STATE
 
 #include "defines.h"
+#include "player.h"
 #include "map.h"
 
 /**
@@ -33,6 +34,11 @@ game_state_t* get_game_state(void);
  * Returns the current scene being played
  */
 scenes_t get_current_scene(void);
+
+/**
+ * Returns the current level id
+ */
+int get_current_level_index(void);
 
 /**
  * Returns the info of the current level
@@ -77,10 +83,18 @@ void stop_game(void);
 void update_debug_console_state(void);
 
 /**
- * Update the global variable curr_lev_info, to the info of the given level_idx
+ * Update the current map and player info to be the level_idx level 
  * 
  * @param level_idx The index of the level to get the info from (from 0 to LEVEL_COUNT)
+ * 
+ * @note Calling this function will RESET the level (every door will be to the original
+ * state, the player will be at the spawn of that level, etc)
  */
-void set_level_info(const int level_idx);
+void load_level(const int level_idx);
+
+/**
+ * Resets the current level
+ */
+void reload_level(void);
 
 #endif
