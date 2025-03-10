@@ -77,13 +77,6 @@ void stop_game(void);
 void update_debug_console_state(void);
 
 /**
- * Returns the level offset for the maps list, to get the map of that level
- * 
- * @param level_idx The index of the level to get (from 0 to LEVEL_COUNT)
- */
-int get_map_offset(const int level_idx);
-
-/**
  * Update the global variable curr_lev_info, to the info of the given level_idx
  * 
  * @param level_idx The index of the level to get the info from (from 0 to LEVEL_COUNT)
