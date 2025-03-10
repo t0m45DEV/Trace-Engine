@@ -12,6 +12,15 @@
 #endif
 
 /**
+ * A color struct, having 3 variables: r, g and b
+ */
+typedef struct {
+    float r; /** Red component from RGB */
+    float g; /** Green component from RGB */
+    float b; /** Blue component from RGB */
+} rgb_t;
+
+/**
  * A scene represents a state for the game (like the main
  * menu, options menu, specific level, boos fight, etc)
  */

@@ -29,16 +29,6 @@ typedef enum {
     DOOR
 } structures_t;
 
-
-/**
- * A color struct, having 3 variables: r, g and b
- */
-typedef struct {
-    float r; /** Red component from RGB */
-    float g; /** Green component from RGB */
-    float b; /** Blue component from RGB */
-} rgb_t;
-
 extern position_2D_t player_spawns[];  /** The player spawns for each level, saved in grid position style */
 
 /**
