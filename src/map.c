@@ -64,6 +64,11 @@ int get_map_offset_from_id(const int level_idx)
     return ret;
 }
 
+position_2D_t get_map_size_from_id(const int level_idx)
+{
+    return maps_sizes[level_idx];
+}
+
 void draw_map_2D(void)
 {
     position_2D_t grid_pos;
