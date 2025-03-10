@@ -22,7 +22,8 @@
  * Structures that can form the map
  */
 typedef enum {
-    AIR,  /** Nothing, the squares where the entities can move */
+    UNDEFINED = -1, /** This structure is for error managing */
+    AIR,            /** Nothing, the squares where the entities can move */
     STONE,
     WOOD,
     DOOR
@@ -38,11 +39,28 @@ typedef struct {
     float b; /** Blue component from RGB */
 } rgb_t;
 
-extern structures_t map_w[];         /** The wall maps for ALL the levels in one array */
-extern structures_t map_f[];         /** The floor maps for ALL the levels in one array */
-extern structures_t map_c[];         /** The ceiling maps for ALL the levels in one array */
 extern position_2D_t maps_sizes[];     /** The map sizes for each level */
 extern position_2D_t player_spawns[];  /** The player spawns for each level, saved in grid position style */
+
+/**
+ * Replaces the wall structure of the current map at the given position with the given new_wall
+ */
+void update_map_wall_at(const position_2D_t position, const structures_t new_wall);
+
+/**
+ * Returnss the wall structure of the current map at the given position
+ */
+structures_t get_map_wall_at(const position_2D_t position);
+
+/**
+ * Returnss the floor structure of the current map at the given position
+ */
+structures_t get_map_floor_at(const position_2D_t position);
+
+/**
+ * Returnss the ceiling structure of the current map at the given position
+ */
+structures_t get_map_ceiling_at(const position_2D_t position);
 
 /**
  * Returns the level offset for the maps list, to get the map of that level
@@ -50,13 +68,6 @@ extern position_2D_t player_spawns[];  /** The player spawns for each level, sav
  * @param level_idx The index of the level to get (from 0 to LEVEL_COUNT)
  */
 int get_map_offset_from_id(const int level_idx);
-
-/**
- * Check if the given index is in range of the current level map
- *
- * @note curr_lev_info.mapp_offset <= idx < (curr_lev_info.mapp_offset + MAP_SIZE)
- */
-int is_valid_map_index(int idx);
 
 /**
  * Draw in the screen a 2D matrix of squares, white being wall and blakc being floor

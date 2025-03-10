@@ -93,10 +93,10 @@ void open_door(void)
     printf("Block in front: %i\n", front_pos_grid);
     */
 
-    structures_t block_in_front = map_w[REAL_POS_TO_GRID_POS(front_offset.x, front_offset.y)];
+    structures_t block_in_front = get_map_wall_at((position_2D_t) {front_offset.x, front_offset.y});
 
     if (block_in_front == DOOR)
     {
-        map_w[REAL_POS_TO_GRID_POS(front_offset.x, front_offset.y)] = AIR;
+        update_map_wall_at((position_2D_t) {front_offset.x, front_offset.y}, AIR);
     }
 }

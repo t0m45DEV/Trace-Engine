@@ -80,7 +80,7 @@ void render_line(const ray_t ray)
 
             int pixel_idx = (((int) (texture_y) & (TEXTURE_SIZE - 1)) * TEXTURE_SIZE + ((int) (texture_x) & (TEXTURE_SIZE - 1))) * 3;
 
-            int map_value = map_f[REAL_POS_TO_GRID_POS(texture_x / TEXTURE_SIZE, texture_y / TEXTURE_SIZE)];
+            int map_value = get_map_floor_at((position_2D_t) {texture_x / TEXTURE_SIZE, texture_y / TEXTURE_SIZE});
 
             if (map_value != AIR)
             {
@@ -96,8 +96,7 @@ void render_line(const ray_t ray)
                 glVertex2i(ray.index * LINES_WIDTH + X_CORRECTION, y);
                 glEnd();
             }
-
-            map_value = map_c[REAL_POS_TO_GRID_POS(texture_x / TEXTURE_SIZE, texture_y / TEXTURE_SIZE)];
+            map_value = get_map_ceiling_at((position_2D_t) {texture_x / TEXTURE_SIZE, texture_y / TEXTURE_SIZE});
 
             if (map_value != AIR)
             {

@@ -1,79 +1,57 @@
 #include "map.h"
 
-structures_t map_w[] =
+#include "levels/levels_info.c"
+
+/**
+ * Check if the given index is in range of the current level map
+ *
+ * @note curr_lev_info.mapp_offset <= idx < (curr_lev_info.mapp_offset + MAP_SIZE)
+ */
+static int is_valid_map_index(int idx)
 {
-    1, 1, 1, 1, 1, 1, 1, 1,
-    1, 0, 0, 0, 0, 1, 0, 1,
-    1, 0, 1, 0, 0, 0, 0, 1,
-    1, 0, 1, 0, 1, 0, 1, 1,
-    1, 0, 1, 0, 1, 0, 0, 1,
-    1, 0, 1, 0, 1, 1, 0, 1,
-    1, 0, 0, 0, 0, 1, 0, 1,
-    1, 1, 1, 1, 1, 1, 1, 1,
+    return ((idx > get_current_map_offset()) && (idx < (get_current_map_offset() + MAP_SIZE)));
+}
 
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1,
-    1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1,
-    1, 1, 3, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1,
-    1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1,
-    1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-};
-
-structures_t map_f[] =
+void update_map_wall_at(const position_2D_t position, const structures_t new_wall)
 {
-    2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2,
+    map_w[REAL_POS_TO_GRID_POS(position.x, position.y)] = new_wall;
+}
 
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-};
-
-structures_t map_c[] =
+structures_t get_map_wall_at(const position_2D_t position)
 {
-    2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2,
+    structures_t ret = UNDEFINED;
+    int idx = REAL_POS_TO_GRID_POS(position.x, position.y);
 
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-};
+    if (is_valid_map_index(idx))
+    {
+        ret = map_w[idx];
+    }
+    return ret;
+}
 
-position_2D_t maps_sizes[LEVEL_COUNT] =
+structures_t get_map_floor_at(const position_2D_t position)
 {
-    (position_2D_t) {8, 8},
-    (position_2D_t) {16, 8}
-};
+    structures_t ret = UNDEFINED;
+    int idx = REAL_POS_TO_GRID_POS(position.x, position.y);
 
-position_2D_t player_spawns[LEVEL_COUNT] =
+    if (is_valid_map_index(idx))
+    {
+        ret = map_f[idx];
+    }
+    return ret;
+}
+
+structures_t get_map_ceiling_at(const position_2D_t position)
 {
-    (position_2D_t) {1, 6},
-    (position_2D_t) {1, 1}
-};
+    structures_t ret = UNDEFINED;
+    int idx = REAL_POS_TO_GRID_POS(position.x, position.y);
+
+    if (is_valid_map_index(idx))
+    {
+        ret = map_c[idx];
+    }
+    return ret;
+}
 
 int get_map_offset_from_id(const int level_idx)
 {
@@ -84,11 +62,6 @@ int get_map_offset_from_id(const int level_idx)
         ret += (maps_sizes[i].x * maps_sizes[i].y);
     }
     return ret;
-}
-
-int is_valid_map_index(int idx)
-{
-    return ((idx > get_current_map_offset()) && (idx < (get_current_map_offset() + MAP_SIZE)));
 }
 
 void draw_map_2D(void)

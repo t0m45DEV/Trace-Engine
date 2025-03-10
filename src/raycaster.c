@@ -5,7 +5,7 @@ void cast_rays(void)
 {
     int count_of_hits;
     position_2D_t map_ray;
-    int ray_in_map;
+    structures_t structure_hit;
     position_2D_t ray_pos;
     position_2D_t ray_offset = {0, 0};
     float distance_from_player;
@@ -56,14 +56,14 @@ void cast_rays(void)
         {
             map_ray.x = (int) (ray_pos.x / MAP_CELL_SIZE);
             map_ray.y = (int) (ray_pos.y / MAP_CELL_SIZE);
-            ray_in_map = REAL_POS_TO_GRID_POS(map_ray.x, map_ray.y);
+            structure_hit = get_map_wall_at(map_ray);
 
-            if ((is_valid_map_index(ray_in_map)) && (map_w[ray_in_map] != AIR)) /* Hit a wall */
+            if (structure_hit != UNDEFINED && structure_hit != AIR) /* Hit a wall */
             {
                 ray_H.x = ray_pos.x;
                 ray_H.y = ray_pos.y;
                 distance_h = distance_between(player_pos, ray_pos);
-                surface_H = map_w[ray_in_map];
+                surface_H = structure_hit;
 
                 count_of_hits = get_current_map_size().y; /* End the loop */
             }
@@ -111,14 +111,14 @@ void cast_rays(void)
         {
             map_ray.x = (int) (ray_pos.x / MAP_CELL_SIZE);
             map_ray.y = (int) (ray_pos.y / MAP_CELL_SIZE);
-            ray_in_map = REAL_POS_TO_GRID_POS(map_ray.x, map_ray.y);
+            structure_hit = get_map_wall_at(map_ray);
 
-            if ((is_valid_map_index(ray_in_map)) && (map_w[ray_in_map] != AIR)) /* Hit a wall */
+            if (structure_hit != UNDEFINED && structure_hit != AIR) /* Hit a wall */
             {
                 ray_V.x = ray_pos.x;
                 ray_V.y = ray_pos.y;
                 distance_v = distance_between(player_pos, ray_pos);
-                surface_V = map_w[ray_in_map];
+                surface_V = structure_hit;
 
                 count_of_hits = get_current_map_size().x; /* End the loop */
             }
