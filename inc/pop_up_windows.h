@@ -25,6 +25,11 @@
 extern struct nk_context* nk_ctx; /** The context for Nuklear, it is necessary to create all the windows */
 
 /**
+ * Initialize everything for the Nuklear windows (like themes)
+ */
+void init_nk_windows(struct nk_context* context);
+
+/**
  * It creates the debug console, from which you can access all the data and info of the engine
  */
 void show_debug_console(void);

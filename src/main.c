@@ -72,6 +72,7 @@ int main(void)
     set_background_color(BACKGROUND_COLOR);
 
     nk_ctx = nk_sdl_init(window);
+    init_nk_windows(nk_ctx);
 
     // Load the default font for Nuklear
     struct nk_font_atlas *atlas;
