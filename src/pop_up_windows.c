@@ -19,7 +19,7 @@ void init_nk_windows(struct nk_context* context)
 void show_debug_console(void)
 {
     /* GUI */
-    if (nk_begin(nk_ctx, "Debug Console", nk_rect(50, 50, 200, 130),
+    if (nk_begin(nk_ctx, "Debug Console", nk_rect(50, 50, 200, 160),
         NK_WINDOW_BORDER|NK_WINDOW_MOVABLE|
         NK_WINDOW_MINIMIZABLE|NK_WINDOW_TITLE))
     {
@@ -42,6 +42,8 @@ void show_debug_console(void)
             nk_label(nk_ctx, fps_text, NK_TEXT_LEFT);
 
             nk_checkbox_label(nk_ctx, "Top view", &get_game_state()->is_on_debug_view_mode);
+
+            if (nk_button_label(nk_ctx, "Reset level")) reload_level();
         }
     }
     nk_end(nk_ctx);
