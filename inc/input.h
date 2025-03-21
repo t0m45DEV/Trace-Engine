@@ -8,7 +8,7 @@
 
 /* Action keys */
 
-#define CHANGE_DEBUG_MODE_BUTTON SDL_GetScancodeFromKey('|') /** To test new mechanics */
+#define OPEN_DEBUG_WINDOW_BUTTON SDL_GetScancodeFromKey('|')
 
 #define MOVE_FORWARD_BUTTON  SDL_GetScancodeFromKey('w')
 #define MOVE_BACKWARD_BUTTON SDL_GetScancodeFromKey('s')
