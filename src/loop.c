@@ -1,5 +1,12 @@
 #include "loop.h"
 
+#include "pop_up_windows.h"
+#include "window_display.h"
+#include "delta_time.h"
+#include "physics.h"
+#include "fps_counter.h"
+#include "input.h"
+
 void main_loop(void)
 {
     update_delta_time_counter();

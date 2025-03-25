@@ -1,5 +1,8 @@
 #include "entity.h"
 
+#include <stdio.h>
+#include "map.h"
+
 void print_entity(const entity_t entity)
 {
     printf("=== Entity ===\n");

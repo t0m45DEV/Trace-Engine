@@ -1,5 +1,11 @@
 #include "window_display.h"
 
+#include "pop_up_windows.h"
+#include "game_state.h"
+#include "raycaster.h"
+#include "player.h"
+#include "map.h"
+
 int resolution = LOW_RESOLUTION;
 
 SDL_Window* window = NULL;

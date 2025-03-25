@@ -3,8 +3,6 @@
 
 #include <GL/gl.h>
 #include "trigonometry.h"
-#include "defines.h"
-#include "game_state.h"
 
 /** Size of the squares that forms the map, usually is good to have it (aprox) 3 times the player collision size */
 #define MAP_CELL_SIZE  64
@@ -13,7 +11,7 @@
 #define MAP_SIZE ((int) get_current_map_size().x * (int) get_current_map_size().y)
 
 /** Returns the value in the middle of the square (you use first in one axis, then for the other) */
-#define GRID_POS_TO_REAL_POS(X) ((X * MAP_CELL_SIZE) + (MAP_CELL_SIZE / 2))
+#define GRID_POS_TO_REAL_POS(X) ((X * MAP_CELL_SIZE) + (MAP_CELL_SIZE / 2.0))
 
 /** Returns the index mapped from (X, Y) for map[] */
 #define REAL_POS_TO_GRID_POS(X, Y) (((int) get_current_map_offset()) + ((int) (Y)) * ((int) get_current_map_size().x) + ((int) (X)))

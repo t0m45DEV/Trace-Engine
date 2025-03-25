@@ -3,8 +3,6 @@
 
 #include <SDL.h>
 
-#include "timer.h"
-
 /**
  * A counter for delta time, the difference between every frame
  * 

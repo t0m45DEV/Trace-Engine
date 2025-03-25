@@ -1,5 +1,8 @@
 #include "trigonometry.h"
 
+#include <stdio.h>
+#include <math.h>
+
 void print_position(const position_2D_t pos)
 {
     printf("(%f, %f)\n", pos.x, pos.y);

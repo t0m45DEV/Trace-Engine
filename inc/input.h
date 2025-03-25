@@ -1,10 +1,8 @@
 #ifndef _H_INPUT
 #define _H_INPUT
 
+#include "SDL_events.h"
 #include "defines.h"
-#include "window_display.h"
-#include "trigonometry.h"
-#include "pop_up_windows.h"
 
 /* Action keys */
 

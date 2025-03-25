@@ -1,9 +1,7 @@
 #ifndef _H_TRIGONOMETRY
 #define _H_TRIGONOMETRY
 
-#include <stdio.h>
 #include <stdbool.h>
-#include <math.h>
 
 #define PRECISION 0.0001   /** To compare doubles and floats */
 
@@ -14,9 +12,6 @@
 #define DOWN_DIR  (3 * (UP_DIR))  /** 270 degrees, or the angle in radians for ↓ */
 #define LEFT_DIR  (PI)            /** 180 degrees, or the angle in radians for ← */
 #define RIGHT_DIR (PI * 0)        /** 0 degrees, or the angle in radians for → */
-
-#define CALCULATE_X_DELTA(A) (cos(A))
-#define CALCULATE_Y_DELTA(A) (sin(A))
 
 #define DEG_TO_RAD(angleInDegrees) (adjust_angle((angleInDegrees) * PI / 180.0)) /** Angle in degrees to angle in radians */
 #define RAD_TO_DEG(angleInRadians) (adjust_angle(angleInRadians) * 180.0 / PI)   /** Angle in radians to angle in degrees */

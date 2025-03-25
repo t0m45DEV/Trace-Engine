@@ -1,7 +1,6 @@
 #ifndef _H_PLAYER
 #define _H_PLAYER
 
-#include "entity.h"
 #include "defines.h"
 
 #define P_COLLISION_SIZE 20     /** Initial collision size for player (check MAP_CELL_SIZE for size relation) */

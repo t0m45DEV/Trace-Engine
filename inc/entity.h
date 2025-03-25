@@ -1,9 +1,6 @@
 #ifndef _H_ENTITY
 #define _H_ENTITY
 
-#include <stdio.h>
-
-#include "map.h"
 #include "trigonometry.h"
 
 #define FRONT_X_AXIS_COLLISION 1

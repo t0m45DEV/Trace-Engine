@@ -9,6 +9,9 @@
 #include "pop_up_windows.h"
 #include "nk_styles/nuklear_styles.c"
 
+#include "timer.h"
+#include "game_state.h"
+
 struct nk_context* nk_ctx = NULL;
 
 engine_timer_t debug_fps_timer;

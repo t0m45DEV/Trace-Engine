@@ -1,6 +1,7 @@
 #include "render.h"
 
-#include <stdio.h>
+#include "player.h"
+#include "all_textures.h"
 
 void render_line(const ray_t ray)
 {

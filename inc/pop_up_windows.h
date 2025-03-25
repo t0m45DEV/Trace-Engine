@@ -19,9 +19,6 @@
     #include "nuklear/nuklear_sdl_gl2.h"
 #endif
 
-#include "loop.h"
-#include "defines.h"
-
 #define FPS_IN_CHART 33 /** How many last FPS to show in the performance graph, think of it as a FPS history count */
 
 extern struct nk_context* nk_ctx; /** The context for Nuklear, it is necessary to create all the windows */

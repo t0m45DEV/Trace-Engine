@@ -1,5 +1,12 @@
 #include "player.h"
 
+#include <math.h>
+
+#include "trigonometry.h"
+#include "game_state.h"
+#include "map.h"
+#include "entity.h"
+
 /** The player info, like the position and actual direction of movement */
 entity_t player = {0};
 
@@ -20,8 +27,8 @@ void reset_player_info(void)
     player.angle = P_INIT_ANGLE;
     player.movement_velocity = MOVEMENT_VELOCITY;
     player.rotation_velocity = ROTATION_VELOCITY;
-    player.delta.x = CALCULATE_X_DELTA(player.angle) * player.movement_velocity;
-    player.delta.y = CALCULATE_Y_DELTA(player.angle) * player.movement_velocity;
+    player.delta.x = cos(player.angle) * player.movement_velocity;
+    player.delta.y = sin(player.angle) * player.movement_velocity;
     player.collision_size = P_COLLISION_SIZE;
     update_offset(&player);
 }
@@ -36,16 +43,16 @@ void move_player(keys_state_t keys_state, float delta_time)
         player.angle -= player.rotation_velocity * delta_time;
         player.angle = adjust_angle(player.angle);
         
-        player.delta.x = CALCULATE_X_DELTA(player.angle) * player.movement_velocity;
-        player.delta.y = CALCULATE_Y_DELTA(player.angle) * player.movement_velocity;
+        player.delta.x = cos(player.angle) * player.movement_velocity;
+        player.delta.y = sin(player.angle) * player.movement_velocity;
     }
     if (keys_state.rotate_clockwise)
     {
         player.angle += player.rotation_velocity * delta_time;
         player.angle = adjust_angle(player.angle);
 
-        player.delta.x = CALCULATE_X_DELTA(player.angle) * player.movement_velocity;
-        player.delta.y = CALCULATE_Y_DELTA(player.angle) * player.movement_velocity;
+        player.delta.x = cos(player.angle) * player.movement_velocity;
+        player.delta.y = sin(player.angle) * player.movement_velocity;
     }
     if (keys_state.move_forward)
     {

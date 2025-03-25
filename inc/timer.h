@@ -2,7 +2,6 @@
 #define _H_TIMER
 
 #include <SDL.h>
-#include <stdio.h>
 #include <stdbool.h>
 
 #define SECONDS_TO_MILLISECONDS(X) ((X) * 1000.0)

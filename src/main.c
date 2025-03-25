@@ -7,10 +7,12 @@
 
 #include "pop_up_windows.h"
 
+#include "window_display.h"
 #include "game_state.h"
-#include "defines.h"
+#include "delta_time.h"
 #include "loop.h"
 #include "fps_counter.h"
+#include "map.h"
 
 #define SDL_INIT_ENGINE (SDL_INIT_TIMER | SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_EVENTS)
 

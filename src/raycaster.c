@@ -1,5 +1,10 @@
 #include "raycaster.h"
 
+#include "game_state.h"
+#include "trigonometry.h"
+#include "render.h"
+#include "player.h"
+#include "map.h"
 
 void cast_rays(void)
 {
@@ -14,7 +19,7 @@ void cast_rays(void)
     position_2D_t player_pos = get_player_position();
     angle_t player_angle = get_player_angle();
 
-    angle_t ray_angle = player_angle - (DEG_TO_RAD(FOV / 2));
+    angle_t ray_angle = player_angle - (DEG_TO_RAD(FOV / 2.0));
     ray_angle = adjust_angle(ray_angle);
 
     for (int ray_idx = 0; ray_idx < AMMOUNT_OF_RAYS; ray_idx++)
@@ -37,7 +42,7 @@ void cast_rays(void)
         }
         else if (ray_angle > LEFT_DIR) /* If looking down */
         {
-            ray_pos.y = (((int) player_pos.y / MAP_CELL_SIZE) * MAP_CELL_SIZE) - PRECISION;
+            ray_pos.y = (((int) (player_pos.y / MAP_CELL_SIZE)) * MAP_CELL_SIZE) - PRECISION;
             ray_pos.x = (player_pos.y - ray_pos.y) * aTan + player_pos.x;
 
             ray_offset.y = (-1) * MAP_CELL_SIZE;
@@ -45,7 +50,7 @@ void cast_rays(void)
         }
         else if (ray_angle < LEFT_DIR) /* If looking up */
         {
-            ray_pos.y = (((int) player_pos.y / MAP_CELL_SIZE) * MAP_CELL_SIZE) + MAP_CELL_SIZE;
+            ray_pos.y = (((int) (player_pos.y / MAP_CELL_SIZE)) * MAP_CELL_SIZE) + MAP_CELL_SIZE;
             ray_pos.x = (player_pos.y - ray_pos.y) * aTan + player_pos.x;
 
             ray_offset.y = MAP_CELL_SIZE;
@@ -92,7 +97,7 @@ void cast_rays(void)
         }
         else if ((ray_angle > UP_DIR) && (ray_angle < DOWN_DIR)) /* If looking left */
         {
-            ray_pos.x = (((int) player_pos.x / MAP_CELL_SIZE) * MAP_CELL_SIZE) - PRECISION;
+            ray_pos.x = (((int) (player_pos.x / MAP_CELL_SIZE)) * MAP_CELL_SIZE) - PRECISION;
             ray_pos.y = (player_pos.x - ray_pos.x) * nTan + player_pos.y;
 
             ray_offset.x = (-1) * MAP_CELL_SIZE;
@@ -100,7 +105,7 @@ void cast_rays(void)
         }
         else if ((ray_angle < UP_DIR) || (ray_angle > DOWN_DIR)) /* If looking right */
         {
-            ray_pos.x = (((int) player_pos.x / MAP_CELL_SIZE) * MAP_CELL_SIZE) + MAP_CELL_SIZE;
+            ray_pos.x = (((int) (player_pos.x / MAP_CELL_SIZE)) * MAP_CELL_SIZE) + MAP_CELL_SIZE;
             ray_pos.y = (player_pos.x - ray_pos.x) * nTan + player_pos.y;
 
             ray_offset.x = MAP_CELL_SIZE;

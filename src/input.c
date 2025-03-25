@@ -1,5 +1,9 @@
 #include "input.h"
 
+#include "game_state.h"
+#include "pop_up_windows.h"
+#include "player.h"
+
 /** The current state of the keyboard */
 keys_state_t action_keys_state = {0};
 

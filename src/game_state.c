@@ -1,5 +1,8 @@
 #include "game_state.h"
 
+#include "player.h"
+#include "map.h"
+
 game_state_t game_state = {0}; /** The current state of ALL the program */
 
 void init_game_state(void)

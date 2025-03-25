@@ -3,10 +3,7 @@
 
 #include <SDL.h>
 
-#include "raycaster.h"
-#include "player.h"
-#include "input.h"
-#include "map.h"
+#include "defines.h"
 
 /** Fixed resolution levels */
 

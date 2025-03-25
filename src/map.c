@@ -1,5 +1,7 @@
 #include "map.h"
 
+#include "game_state.h"
+
 #include "levels/levels_info.c"
 
 /**

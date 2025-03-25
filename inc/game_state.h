@@ -2,8 +2,6 @@
 #define _H_GAME_STATE
 
 #include "defines.h"
-#include "player.h"
-#include "map.h"
 
 /**
  * Initialize the state of the game
