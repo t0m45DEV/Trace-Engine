@@ -11,12 +11,32 @@
  */
 static int is_valid_map_index(int idx)
 {
-    return ((idx > get_current_map_offset()) && (idx < (get_current_map_offset() + get_current_map_size())));
+    return ((idx > 0) && (idx < get_current_map_size()));
+}
+
+void change_to_map(int level_idx)
+{
+    int x_size = maps_sizes[level_idx].x;
+    int y_size = maps_sizes[level_idx].y;
+
+    for (int y = 0; y < y_size; y++)
+    {
+        int row = y * x_size;
+
+        for (int x = 0; x < x_size; x++)
+        {
+            int actual_map_pos = get_current_map_offset() + row + x;
+            
+            current_w_map[x + row] = map_w[actual_map_pos];
+            current_f_map[x + row] = map_f[actual_map_pos];
+            current_c_map[x + row] = map_c[actual_map_pos];
+        }
+    }
 }
 
 void update_map_wall_at(const position_2D_t position, const structures_t new_wall)
 {
-    map_w[REAL_POS_TO_GRID_POS(position.x, position.y)] = new_wall;
+    current_w_map[REAL_POS_TO_GRID_POS(position.x, position.y)] = new_wall;
 }
 
 structures_t get_map_wall_at(const position_2D_t position)
@@ -26,7 +46,7 @@ structures_t get_map_wall_at(const position_2D_t position)
 
     if (is_valid_map_index(idx))
     {
-        ret = map_w[idx];
+        ret = current_w_map[idx];
     }
     return ret;
 }
@@ -38,7 +58,7 @@ structures_t get_map_floor_at(const position_2D_t position)
 
     if (is_valid_map_index(idx))
     {
-        ret = map_f[idx];
+        ret = current_f_map[idx];
     }
     return ret;
 }
@@ -50,7 +70,7 @@ structures_t get_map_ceiling_at(const position_2D_t position)
 
     if (is_valid_map_index(idx))
     {
-        ret = map_c[idx];
+        ret = current_c_map[idx];
     }
     return ret;
 }
@@ -84,7 +104,7 @@ void draw_map_2D(void)
     {
         for (int x = 0; x < get_current_map_dimensions().x; x++)
         {
-            if (map_w[REAL_POS_TO_GRID_POS(x, y)] == AIR)
+            if (get_map_wall_at((position_2D_t) {x, y}) == AIR)
             {
                 glColor3f(0, 0, 0);
             }

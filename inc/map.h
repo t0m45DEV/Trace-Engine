@@ -5,7 +5,7 @@
 #include "trigonometry.h"
 
 /** Maximum dimensions for a level */
-#define MAX_MAP_SIZE 32 * 32
+#define MAX_MAP_SIZE 50 * 50
 
 /** Size of the squares that forms the map, usually is good to have it (aprox) 3 times the player collision size */
 #define MAP_CELL_SIZE  64
@@ -14,7 +14,7 @@
 #define GRID_POS_TO_REAL_POS(X) ((X * MAP_CELL_SIZE) + (MAP_CELL_SIZE / 2.0))
 
 /** Returns the index mapped from (X, Y) for map[] */
-#define REAL_POS_TO_GRID_POS(X, Y) (((int) get_current_map_offset()) + ((int) (Y)) * ((int) get_current_map_dimensions().x) + ((int) (X)))
+#define REAL_POS_TO_GRID_POS(X, Y) (((int) (Y)) * ((int) get_current_map_dimensions().x) + ((int) (X)))
 
 /**
  * Structures that can form the map
@@ -26,6 +26,11 @@ typedef enum {
     WOOD,
     DOOR
 } structures_t;
+
+/**
+ * Updates the current map info to the map of the level_idx level
+ */
+void change_to_map(int level_idx);
 
 /**
  * Replaces the wall structure of the current map at the given position with the given new_wall

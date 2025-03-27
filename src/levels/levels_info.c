@@ -1,4 +1,6 @@
-structures_t current_map[MAX_MAP_SIZE];
+structures_t current_w_map[MAX_MAP_SIZE] = {0};
+structures_t current_f_map[MAX_MAP_SIZE] = {0};
+structures_t current_c_map[MAX_MAP_SIZE] = {0};
 
 structures_t map_w[] =
 {
