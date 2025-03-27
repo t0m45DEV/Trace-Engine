@@ -38,7 +38,7 @@ void cast_rays(void)
             ray_pos.x = player_pos.x;
             ray_pos.y = player_pos.y;
 
-            count_of_hits = get_current_map_size().y;
+            count_of_hits = get_current_map_dimensions().y;
         }
         else if (ray_angle > LEFT_DIR) /* If looking down */
         {
@@ -57,7 +57,7 @@ void cast_rays(void)
             ray_offset.x = (-1) * ray_offset.y * aTan;
         }
 
-        while (count_of_hits < get_current_map_size().y)
+        while (count_of_hits < get_current_map_dimensions().y)
         {
             map_ray.x = (int) (ray_pos.x / MAP_CELL_SIZE);
             map_ray.y = (int) (ray_pos.y / MAP_CELL_SIZE);
@@ -70,7 +70,7 @@ void cast_rays(void)
                 distance_h = distance_between(player_pos, ray_pos);
                 surface_H = structure_hit;
 
-                count_of_hits = get_current_map_size().y; /* End the loop */
+                count_of_hits = get_current_map_dimensions().y; /* End the loop */
             }
             else /* Check the next */
             {
@@ -93,7 +93,7 @@ void cast_rays(void)
             ray_pos.x = player_pos.x;
             ray_pos.y = player_pos.y;
 
-            count_of_hits = get_current_map_size().x;
+            count_of_hits = get_current_map_dimensions().x;
         }
         else if ((ray_angle > UP_DIR) && (ray_angle < DOWN_DIR)) /* If looking left */
         {
@@ -112,7 +112,7 @@ void cast_rays(void)
             ray_offset.y = (-1) * ray_offset.x * nTan;
         }
 
-        while (count_of_hits < get_current_map_size().x)
+        while (count_of_hits < get_current_map_dimensions().x)
         {
             map_ray.x = (int) (ray_pos.x / MAP_CELL_SIZE);
             map_ray.y = (int) (ray_pos.y / MAP_CELL_SIZE);
@@ -125,7 +125,7 @@ void cast_rays(void)
                 distance_v = distance_between(player_pos, ray_pos);
                 surface_V = structure_hit;
 
-                count_of_hits = get_current_map_size().x; /* End the loop */
+                count_of_hits = get_current_map_dimensions().x; /* End the loop */
             }
             else /* Check the next */
             {

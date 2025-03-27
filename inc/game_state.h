@@ -44,9 +44,14 @@ int get_current_level_index(void);
 level_t get_current_level_info(void);
 
 /**
+ * Returns the map dimensions of the current level in a position_2D_t
+ */
+ position_2D_t get_current_map_dimensions(void);
+
+/**
  * Returns the map size of the current level
  */
-position_2D_t get_current_map_size(void);
+float get_current_map_size(void);
 
 /**
  * Returns the current map offset for the levels map array

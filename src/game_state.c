@@ -48,9 +48,14 @@ level_t get_current_level_info(void)
     return game_state.current_level_info;
 }
 
-position_2D_t get_current_map_size(void)
+position_2D_t get_current_map_dimensions(void)
 {
     return game_state.current_level_info.map_size;
+}
+
+float get_current_map_size(void)
+{
+    return game_state.current_level_info.map_size.x * game_state.current_level_info.map_size.y;
 }
 
 int get_current_map_offset(void)

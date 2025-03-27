@@ -11,7 +11,7 @@
  */
 static int is_valid_map_index(int idx)
 {
-    return ((idx > get_current_map_offset()) && (idx < (get_current_map_offset() + MAP_SIZE)));
+    return ((idx > get_current_map_offset()) && (idx < (get_current_map_offset() + get_current_map_size())));
 }
 
 void update_map_wall_at(const position_2D_t position, const structures_t new_wall)
@@ -80,9 +80,9 @@ void draw_map_2D(void)
 {
     position_2D_t grid_pos;
 
-    for (int y = 0; y < get_current_map_size().y; y++)
+    for (int y = 0; y < get_current_map_dimensions().y; y++)
     {
-        for (int x = 0; x < get_current_map_size().x; x++)
+        for (int x = 0; x < get_current_map_dimensions().x; x++)
         {
             if (map_w[REAL_POS_TO_GRID_POS(x, y)] == AIR)
             {

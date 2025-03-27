@@ -1,3 +1,5 @@
+structures_t current_map[MAX_MAP_SIZE];
+
 structures_t map_w[] =
 {
     1, 1, 1, 1, 1, 1, 1, 1,
