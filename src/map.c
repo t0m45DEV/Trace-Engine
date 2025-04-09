@@ -3,6 +3,7 @@
 #include "game_state.h"
 
 #include "levels/levels_info.c"
+#include "trigonometry.h"
 
 /**
  * Check if the given index is in range of the current level map
@@ -12,6 +13,22 @@
 static int is_valid_map_index(int idx)
 {
     return ((idx > 0) && (idx < get_current_map_size()));
+}
+
+/**
+ * Calculates the grid position for the given window position
+ */
+int real_pos_to_map_pos(position_2D_t real_pos)
+{
+    return ((int) (real_pos.y)) * ((int) get_current_map_dimensions().x) + ((int) (real_pos.x));
+}
+
+position_2D_t map_pos_to_real_pos(position_2D_t map_pos)
+{
+    float real_x = (map_pos.x * MAP_CELL_SIZE) + (MAP_CELL_SIZE / 2.0);
+    float real_y = (map_pos.y * MAP_CELL_SIZE) + (MAP_CELL_SIZE / 2.0);
+
+    return (position_2D_t) {real_x, real_y};
 }
 
 void change_to_map(int level_idx)
@@ -36,13 +53,13 @@ void change_to_map(int level_idx)
 
 void update_map_wall_at(const position_2D_t position, const structures_t new_wall)
 {
-    current_w_map[REAL_POS_TO_GRID_POS(position.x, position.y)] = new_wall;
+    current_w_map[real_pos_to_map_pos(position)] = new_wall;
 }
 
 structures_t get_map_wall_at(const position_2D_t position)
 {
     structures_t ret = UNDEFINED;
-    int idx = REAL_POS_TO_GRID_POS(position.x, position.y);
+    int idx = real_pos_to_map_pos(position);
 
     if (is_valid_map_index(idx))
     {
@@ -54,7 +71,7 @@ structures_t get_map_wall_at(const position_2D_t position)
 structures_t get_map_floor_at(const position_2D_t position)
 {
     structures_t ret = UNDEFINED;
-    int idx = REAL_POS_TO_GRID_POS(position.x, position.y);
+    int idx = real_pos_to_map_pos(position);
 
     if (is_valid_map_index(idx))
     {
@@ -66,7 +83,7 @@ structures_t get_map_floor_at(const position_2D_t position)
 structures_t get_map_ceiling_at(const position_2D_t position)
 {
     structures_t ret = UNDEFINED;
-    int idx = REAL_POS_TO_GRID_POS(position.x, position.y);
+    int idx = real_pos_to_map_pos(position);
 
     if (is_valid_map_index(idx))
     {

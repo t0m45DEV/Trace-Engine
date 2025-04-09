@@ -22,8 +22,7 @@ angle_t get_player_angle(void)
 
 void reset_player_info(void)
 {
-    player.pos.x = GRID_POS_TO_REAL_POS(get_current_player_spawn().x);
-    player.pos.y = GRID_POS_TO_REAL_POS(get_current_player_spawn().y);
+    player.pos = map_pos_to_real_pos(get_current_player_spawn());
     player.angle = P_INIT_ANGLE;
     player.movement_velocity = MOVEMENT_VELOCITY;
     player.rotation_velocity = ROTATION_VELOCITY;

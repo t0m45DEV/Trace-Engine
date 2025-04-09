@@ -10,12 +10,6 @@
 /** Size of the squares that forms the map, usually is good to have it (aprox) 3 times the player collision size */
 #define MAP_CELL_SIZE  64
 
-/** Returns the value in the middle of the square (you use first in one axis, then for the other) */
-#define GRID_POS_TO_REAL_POS(X) ((X * MAP_CELL_SIZE) + (MAP_CELL_SIZE / 2.0))
-
-/** Returns the index mapped from (X, Y) for map[] */
-#define REAL_POS_TO_GRID_POS(X, Y) (((int) (Y)) * ((int) get_current_map_dimensions().x) + ((int) (X)))
-
 /**
  * Structures that can form the map
  */
@@ -26,6 +20,11 @@ typedef enum {
     WOOD,
     DOOR
 } structures_t;
+
+/**
+ * Returns the windows position for the middle of the map square
+ */
+position_2D_t map_pos_to_real_pos(position_2D_t map_pos);
 
 /**
  * Updates the current map info to the map of the level_idx level
