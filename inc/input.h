@@ -4,17 +4,6 @@
 #include "SDL_events.h"
 #include "defines.h"
 
-/* Action keys */
-
-#define OPEN_DEBUG_WINDOW_BUTTON SDL_GetScancodeFromKey('|')
-
-#define MOVE_FORWARD_BUTTON  SDL_GetScancodeFromKey('w')
-#define MOVE_BACKWARD_BUTTON SDL_GetScancodeFromKey('s')
-#define ROTATE_ANTI_CLOCKWISE_BUTTON SDL_GetScancodeFromKey('a')
-#define ROTATE_CLOCKWISE_BUTTON      SDL_GetScancodeFromKey('d')
-
-#define OPEN_DOOR_BUTTON SDL_GetScancodeFromKey('e')
-
 /**
  * Returns the current state of the action keys
  */

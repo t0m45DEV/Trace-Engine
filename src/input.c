@@ -4,6 +4,17 @@
 #include "pop_up_windows.h"
 #include "player.h"
 
+/* Action keys */
+
+#define OPEN_DEBUG_WINDOW_BUTTON SDL_GetScancodeFromKey('|')
+
+#define MOVE_FORWARD_BUTTON          SDL_GetScancodeFromKey('w')
+#define MOVE_BACKWARD_BUTTON         SDL_GetScancodeFromKey('s')
+#define ROTATE_ANTI_CLOCKWISE_BUTTON SDL_GetScancodeFromKey('a')
+#define ROTATE_CLOCKWISE_BUTTON      SDL_GetScancodeFromKey('d')
+
+#define OPEN_DOOR_BUTTON SDL_GetScancodeFromKey('e')
+
 /** The current state of the keyboard */
 keys_state_t action_keys_state = {0};
 
