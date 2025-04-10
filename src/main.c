@@ -62,7 +62,7 @@ int main(void)
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
     #endif
 
-    window = create_window(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT);
+    SDL_Window* window = create_window(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT);
 
     if (!init_GL())
     {
@@ -93,7 +93,7 @@ int main(void)
     }
     #else // If the game will run locally
     {
-        while (is_game_running()) main_loop();
+        while (is_game_running()) main_loop(window);
     }
     #endif
 

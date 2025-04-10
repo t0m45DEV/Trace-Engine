@@ -1,10 +1,20 @@
 #include "raycaster.h"
 
+#include "window_display.h"
 #include "game_state.h"
 #include "trigonometry.h"
 #include "render.h"
 #include "player.h"
 #include "map.h"
+
+#define RATIO_ANGLE_RAYS (get_ammount_of_rays() / (float) FOV)   /** Relation between AMMOUNT_OF_RAYS and FOV, for making the right steps between every ray */
+
+#define RAY_COLOR (rgb_t) {0.3, 0.3, 0.3} /** Color of the rays represented as a line */
+
+int get_ammount_of_rays(void)
+{
+    return (FOV * 2) * get_actual_resolution();
+}
 
 void cast_rays(void)
 {
@@ -22,7 +32,7 @@ void cast_rays(void)
     angle_t ray_angle = player_angle - (DEG_TO_RAD(FOV / 2.0));
     ray_angle = adjust_angle(ray_angle);
 
-    for (int ray_idx = 0; ray_idx < AMMOUNT_OF_RAYS; ray_idx++)
+    for (int ray_idx = 0; ray_idx < get_ammount_of_rays(); ray_idx++)
     {
         /* Check horizontal lines */
 

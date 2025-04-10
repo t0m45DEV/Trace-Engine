@@ -6,9 +6,23 @@
 #include "player.h"
 #include "map.h"
 
-int resolution = LOW_RESOLUTION;
+/** V-sync modes */
 
-SDL_Window* window = NULL;
+#define V_SYNC_OFF    0  /** Immediate update from frame to frame */
+#define V_SYNC_ON     1  /** Updates synchronized with the vertical retrace */
+#define V_SYNC_ADAPT -1  /** Adaptive V-sync */
+
+resolutions_t resolution = LOW_RESOLUTION;
+
+int get_actual_resolution(void)
+{
+    return resolution;
+}
+
+void set_actual_resolution(resolutions_t new_resolution)
+{
+    resolution = new_resolution;
+}
 
 SDL_Window* create_window(const char* title, const int width, const int height)
 {
