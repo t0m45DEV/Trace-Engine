@@ -1,3 +1,6 @@
+/** Maximum dimensions for a level */
+#define MAX_MAP_SIZE 50 * 50
+
 structures_t current_w_map[MAX_MAP_SIZE] = {0};
 structures_t current_f_map[MAX_MAP_SIZE] = {0};
 structures_t current_c_map[MAX_MAP_SIZE] = {0};

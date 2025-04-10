@@ -4,9 +4,6 @@
 #include <GL/gl.h>
 #include "trigonometry.h"
 
-/** Maximum dimensions for a level */
-#define MAX_MAP_SIZE 50 * 50
-
 /** Size of the squares that forms the map, usually is good to have it (aprox) 3 times the player collision size */
 #define MAP_CELL_SIZE  64
 
