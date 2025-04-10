@@ -7,6 +7,13 @@
 #include "map.h"
 #include "entity.h"
 
+#define P_COLLISION_SIZE 20     /** Initial collision size for player (check MAP_CELL_SIZE for size relation) */
+
+#define MOVEMENT_VELOCITY  100    /** Initial player movement velocity */
+#define ROTATION_VELOCITY  2      /** Initial player rotation velocity */
+
+#define P_INIT_ANGLE 0          /** Initial player vision angle (0 means bro is seeing right) */
+
 /** The player info, like the position and actual direction of movement */
 entity_t player = {0};
 
