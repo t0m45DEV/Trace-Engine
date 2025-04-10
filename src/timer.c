@@ -6,7 +6,7 @@
 
 float get_actual_time_seconds(void)
 {
-    return SDL_GetTicks() / MILLISECONDS_TO_SECONDS(1);
+    return SDL_GetTicks() / SECONDS_TO_MILLISECONDS(1);
 }
 
 float get_actual_time_milliseconds(void)
