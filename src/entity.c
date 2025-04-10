@@ -50,7 +50,7 @@ int can_move(const position_2D_t idx, const position_2D_t offset)
 }
 
 
-int is_colliding_in_axis(entity_t entity, const int axis)
+int is_colliding_in_axis(entity_t entity, const collision_directions_t axis)
 {
     update_offset(&entity);
 
@@ -88,5 +88,5 @@ int is_colliding_in_axis(entity_t entity, const int axis)
             return (get_map_wall_at((position_2D_t) {idx.x, sub_offset.y}) != AIR);
         }
     }
-    return 1; /* Entity can't move at any direction */
+    return true; /* Entity can't move at any direction */
 }

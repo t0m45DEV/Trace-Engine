@@ -3,12 +3,13 @@
 
 #include "trigonometry.h"
 
-#define FRONT_X_AXIS_COLLISION 1
-#define FRONT_Y_AXIS_COLLISION 2
-#define BACK_X_AXIS_COLLISION -1
-#define BACK_Y_AXIS_COLLISION -2
-#define NO_COLLISION 0
-
+typedef enum {
+    BACK_Y_AXIS_COLLISION = -2,
+    BACK_X_AXIS_COLLISION,
+    NO_COLLISION,
+    FRONT_X_AXIS_COLLISION,
+    FRONT_Y_AXIS_COLLISION
+} collision_directions_t;
 
 /**
  * An entity is every interactive and moving thing in the game, including the player
@@ -54,6 +55,6 @@ int can_move(const position_2D_t idx, const position_2D_t offset);
  * @param entity The entity that the function will check
  * @param axis The axis of collision to check (X and Y axis, collision from front and the back)
  */
-int is_colliding_in_axis(const entity_t entity, const int axis);
+int is_colliding_in_axis(const entity_t entity, const collision_directions_t axis);
 
 #endif
