@@ -4,9 +4,6 @@
 #include <SDL.h>
 #include <stdbool.h>
 
-#define SECONDS_TO_MILLISECONDS(X) ((X) * 1000.0)
-#define MILLISECONDS_TO_SECONDS(X) ((X) / 1000.0)
-
 /**
  * A timer struct, can init and check when is stopped
  */
@@ -15,6 +12,16 @@ typedef struct {
     float duration;     /** The timer duration in miliseconds */
     float initial_time; /** The timer activation time, in miliseconds */
 } engine_timer_t;
+
+/**
+ * Returns the ticks elapsed in seconds
+ */
+float get_actual_time_seconds(void);
+
+/**
+ * Returns the ticks elapsed in milliseconds
+ */
+float get_actual_time_milliseconds(void);
 
 /**
  * Only for debug, it shows the timer info
