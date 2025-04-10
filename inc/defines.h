@@ -6,11 +6,6 @@
 
 #define ENG_ARR_LEN(a) (sizeof(a)/sizeof(a[0]))
 
-#if defined(__EMSCRIPTEN__) // If the game will run in the web
-    #define MAX_VERTEX_MEMORY  (512 * 1024)
-    #define MAX_ELEMENT_MEMORY (128 * 1024)
-#endif
-
 /**
  * A color struct, having 3 variables: r, g and b
  */

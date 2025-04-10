@@ -1,10 +1,6 @@
 #define NK_IMPLEMENTATION
 
-#if defined(__EMSCRIPTEN__) // If the game will run in the web
-    #define NK_SDL_GLES2_IMPLEMENTATION
-#else // If the game will run locally
-    #define NK_SDL_GL2_IMPLEMENTATION
-#endif
+#define NK_SDL_GL2_IMPLEMENTATION
 
 #include "pop_up_windows.h"
 #include "nk_styles/nuklear_styles.c"

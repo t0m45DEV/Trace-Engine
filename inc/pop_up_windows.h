@@ -13,11 +13,7 @@
 #define NK_INCLUDE_DEFAULT_FONT
 #include "nuklear/nuklear.h"
 
-#if defined(__EMSCRIPTEN__) // If the game will run in the web
-    #include "nuklear/nuklear_sdl_gles2.h"
-#else // If the game will run locally
-    #include "nuklear/nuklear_sdl_gl2.h"
-#endif
+#include "nuklear/nuklear_sdl_gl2.h"
 
 #define FPS_IN_CHART 33 /** How many last FPS to show in the performance graph, think of it as a FPS history count */
 

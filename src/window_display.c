@@ -73,15 +73,6 @@ void render_screen(void)
     if (is_debug_console_on())
     {
         show_debug_console();
-
-        #if defined(__EMSCRIPTEN__) // If the game will run in the web
-        {
-            nk_sdl_render(NK_ANTI_ALIASING_ON, MAX_VERTEX_MEMORY, MAX_ELEMENT_MEMORY);
-        }
-        #else // If the game will run locally
-        {
-            nk_sdl_render(NK_ANTI_ALIASING_ON);
-        }
-        #endif
+        nk_sdl_render(NK_ANTI_ALIASING_ON);
     }
 }
