@@ -13,13 +13,13 @@ typedef enum {
     HIGH_RESOLUTION = 4
 } resolutions_t;
 
-/** The title to be shown on the top of the window */
-#define WINDOW_TITLE "Tom's 3D Engine"
+/** Is good for the viewport size to satisfy WIDTH = HEIGHT * 1.5, and also for the numbers to be divisible by powers of 2 */
 
-/** Is good for the window size to satisfy WIDTH = HEIGHT * 1.5, and also for the numbers to be divisible by powers of 2 */
+#define VIEWPORT_WIDTH  960
+#define VIEWPORT_HEIGHT 640
 
-#define WINDOW_WIDTH 960
-#define WINDOW_HEIGHT 640
+#define VIEWPORT_X_OFFSET 10
+#define VIEWPORT_Y_OFFSET 10
 
 /** Color of the background (it's always block by the walls, anyway) */
 #define BACKGROUND_COLOR (rgb_t) {0, 0, 0}
