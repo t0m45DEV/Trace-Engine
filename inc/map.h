@@ -3,52 +3,73 @@
 
 #include <GL/gl.h>
 #include "trigonometry.h"
-#include "defines.h"
 
 /** Size of the squares that forms the map, usually is good to have it (aprox) 3 times the player collision size */
 #define MAP_CELL_SIZE  64
-
-/** Returns the size of the current map */
-#define MAP_SIZE ((int) game_state.current_level_info.map_size.x * (int) game_state.current_level_info.map_size.y)
-
-/** Returns the value in the middle of the square (you use first in one axis, then for the other) */
-#define GRID_POS_TO_REAL_POS(X) ((X * MAP_CELL_SIZE) + (MAP_CELL_SIZE / 2))
-
-/** Returns the index mapped from (X, Y) for map[] */
-#define REAL_POS_TO_GRID_POS(X, Y) (((int) game_state.current_level_info.map_offset) + ((int) (Y)) * ((int) game_state.current_level_info.map_size.x) + ((int) (X)))
 
 /**
  * Structures that can form the map
  */
 typedef enum {
-    AIR,  /** Nothing, the squares where the entities can move */
+    UNDEFINED = -1, /** This structure is for error managing */
+    AIR,            /** Nothing, the squares where the entities can move */
     STONE,
     WOOD,
     DOOR
 } structures_t;
 
+/**
+ * Returns the windows position for the middle of the map square
+ */
+position_2D_t map_pos_to_real_pos(position_2D_t map_pos);
 
 /**
- * A color struct, having 3 variables: r, g and b
+ * Updates the current map info to the map of the level_idx level
  */
-typedef struct {
-    float r; /** Red component from RGB */
-    float g; /** Green component from RGB */
-    float b; /** Blue component from RGB */
-} rgb_t;
-
-extern structures_t map_w[];         /** The wall maps for ALL the levels in one array */
-extern structures_t map_f[];         /** The floor maps for ALL the levels in one array */
-extern structures_t map_c[];         /** The ceiling maps for ALL the levels in one array */
-extern position_2D_t maps_sizes[];     /** The map sizes for each level */
-extern position_2D_t player_spawns[];  /** The player spawns for each level, saved in grid position style */
+void change_to_map(int level_idx);
 
 /**
- * Check if the given index is in range of the current level map
- *
- * @note curr_lev_info.mapp_offset <= idx < (curr_lev_info.mapp_offset + MAP_SIZE)
+ * Replaces the wall structure of the current map at the given position with the given new_wall
  */
-int is_valid_map_index(int idx);
+void update_map_wall_at(const position_2D_t position, const structures_t new_wall);
+
+/**
+ * Returnss the wall structure of the current map at the given position
+ */
+structures_t get_map_wall_at(const position_2D_t position);
+
+/**
+ * Returnss the floor structure of the current map at the given position
+ */
+structures_t get_map_floor_at(const position_2D_t position);
+
+/**
+ * Returnss the ceiling structure of the current map at the given position
+ */
+structures_t get_map_ceiling_at(const position_2D_t position);
+
+/**
+ * Returns the level offset for the maps list, to get the map of that level
+ * 
+ * @param level_idx The index of the level to get (from 0 to LEVEL_COUNT)
+ */
+int get_map_offset_from_id(const int level_idx);
+
+/**
+ * Returns the map size of the level_idx level, in the form of
+ * a position_2D_t, where x and y are the dimensions
+ * 
+ * @param level_idx The index of the level to get (from 0 to LEVEL_COUNT)
+ */
+position_2D_t get_map_size_from_id(const int level_idx);
+
+/**
+ * Returns the player spawn point of the level_idx level, in the form of
+ * a position_2D_t
+ * 
+ * @param level_idx The index of the level to get (from 0 to LEVEL_COUNT)
+ */
+position_2D_t get_player_spwan_from_id(const int level_idx);
 
 /**
  * Draw in the screen a 2D matrix of squares, white being wall and blakc being floor

@@ -1,5 +1,20 @@
 #include "input.h"
 
+#include "game_state.h"
+#include "pop_up_windows.h"
+#include "player.h"
+
+/* Action keys */
+
+#define OPEN_DEBUG_WINDOW_BUTTON SDL_GetScancodeFromKey('|')
+
+#define MOVE_FORWARD_BUTTON          SDL_GetScancodeFromKey('w')
+#define MOVE_BACKWARD_BUTTON         SDL_GetScancodeFromKey('s')
+#define ROTATE_ANTI_CLOCKWISE_BUTTON SDL_GetScancodeFromKey('a')
+#define ROTATE_CLOCKWISE_BUTTON      SDL_GetScancodeFromKey('d')
+
+#define OPEN_DOOR_BUTTON SDL_GetScancodeFromKey('e')
+
 /** The current state of the keyboard */
 keys_state_t action_keys_state = {0};
 
@@ -10,17 +25,31 @@ keys_state_t get_keys_state(void)
 
 void handle_input(void)
 {
-    if (game_state.shows_debug_pop_up) nk_input_begin(nk_ctx);
-
     SDL_Event event;
-    SDL_PollEvent(&event);
 
-    if (event.type == SDL_QUIT) // If the window closes
+    if (is_debug_console_on()) nk_input_begin(nk_ctx);
+
+    while (SDL_PollEvent(&event))
     {
-        game_state.is_game_running = false;
-    }
-    if (game_state.shows_debug_pop_up) nk_sdl_handle_event(&event);
+        if (event.type == SDL_QUIT) // If the window closes
+        {
+            stop_game();
+        }
+        if (is_debug_console_on()) nk_sdl_handle_event(&event);
 
+        // Simple input
+        if (event.type == SDL_KEYDOWN && event.key.repeat == 0)
+        {
+            if (get_scancode(event) == OPEN_DEBUG_WINDOW_BUTTON)
+            {
+                update_debug_console_state();
+            }
+            if (get_scancode(event) == OPEN_DOOR_BUTTON)
+            {
+                open_door();
+            }
+        }
+    }
     // Simultaneous input
     SDL_PumpEvents();
     const Uint8* keyboard_state = SDL_GetKeyboardState(NULL);
@@ -30,19 +59,7 @@ void handle_input(void)
     action_keys_state.rotate_anti_clockwise = (keyboard_state[ROTATE_ANTI_CLOCKWISE_BUTTON] != 0);
     action_keys_state.rotate_clockwise = (keyboard_state[ROTATE_CLOCKWISE_BUTTON] != 0);
 
-    // Simple input
-    if (event.type == SDL_KEYDOWN && event.key.repeat == 0)
-    {
-        if (get_scancode(event) == CHANGE_DEBUG_MODE_BUTTON)
-        {
-            game_state.shows_debug_pop_up = !game_state.shows_debug_pop_up;
-        }
-        if (get_scancode(event) == OPEN_DOOR_BUTTON)
-        {
-            open_door();
-        }
-    }
-    if (game_state.shows_debug_pop_up) nk_input_end(nk_ctx);
+    if (is_debug_console_on()) nk_input_end(nk_ctx);
 }
 
 SDL_Scancode get_scancode(const SDL_Event event)

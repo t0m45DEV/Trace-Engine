@@ -1,5 +1,8 @@
 #include "fps_counter.h"
 
+#include "game_state.h"
+#include "timer.h"
+
 /**
  * A little self-explanatory
  * 
@@ -23,19 +26,19 @@ void init_fps_counter(void)
     start_timer(&FPS_counter.timer);
 
     // The division is to the get the time in seconds, not in miliseconds
-    FPS_counter.actual_frame = SDL_GetTicks() / SECONDS_TO_MILLISECONDS(1);
+    FPS_counter.actual_frame = get_actual_time_seconds();
 }
 
 void update_fps_counter(void)
 {
     FPS_counter.last_frame = FPS_counter.actual_frame;
-    FPS_counter.actual_frame = SDL_GetTicks() / SECONDS_TO_MILLISECONDS(1);
+    FPS_counter.actual_frame = get_actual_time_seconds();
 
     FPS_counter.fps++;
 
     if (is_timer_up(&FPS_counter.timer))
     {
-        game_state.fps = FPS_counter.fps;
+        update_game_state_fps(FPS_counter.fps);
         FPS_counter.fps = 0;
         start_timer(&FPS_counter.timer);
     }

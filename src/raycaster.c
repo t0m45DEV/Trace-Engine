@@ -1,22 +1,38 @@
 #include "raycaster.h"
 
+#include "window_display.h"
+#include "game_state.h"
+#include "trigonometry.h"
+#include "render.h"
+#include "player.h"
+#include "map.h"
+
+#define RATIO_ANGLE_RAYS (get_ammount_of_rays() / (float) FOV)   /** Relation between AMMOUNT_OF_RAYS and FOV, for making the right steps between every ray */
+
+#define RAY_COLOR (rgb_t) {0.3, 0.3, 0.3} /** Color of the rays represented as a line */
+
+int get_ammount_of_rays(void)
+{
+    return (FOV * 2) * get_actual_resolution();
+}
 
 void cast_rays(void)
 {
     int count_of_hits;
     position_2D_t map_ray;
-    int ray_in_map;
+    structures_t structure_hit;
     position_2D_t ray_pos;
     position_2D_t ray_offset = {0, 0};
     float distance_from_player;
     float angle_cosine;
 
-    entity_t player = get_player_info();
+    position_2D_t player_pos = get_player_position();
+    angle_t player_angle = get_player_angle();
 
-    float ray_angle = player.angle - (DEG_TO_RAD(FOV / 2));
+    angle_t ray_angle = player_angle - (DEG_TO_RAD(FOV / 2.0));
     ray_angle = adjust_angle(ray_angle);
 
-    for (int ray_idx = 0; ray_idx < AMMOUNT_OF_RAYS; ray_idx++)
+    for (int ray_idx = 0; ray_idx < get_ammount_of_rays(); ray_idx++)
     {
         /* Check horizontal lines */
 
@@ -29,42 +45,42 @@ void cast_rays(void)
 
         if (are_equals(ray_angle, RIGHT_DIR) || are_equals(ray_angle, LEFT_DIR)) /* If looking straight left or right */
         {
-            ray_pos.x = player.pos.x;
-            ray_pos.y = player.pos.y;
+            ray_pos.x = player_pos.x;
+            ray_pos.y = player_pos.y;
 
-            count_of_hits = game_state.current_level_info.map_size.y;
+            count_of_hits = get_current_map_dimensions().y;
         }
         else if (ray_angle > LEFT_DIR) /* If looking down */
         {
-            ray_pos.y = (((int) player.pos.y / MAP_CELL_SIZE) * MAP_CELL_SIZE) - PRECISION;
-            ray_pos.x = (player.pos.y - ray_pos.y) * aTan + player.pos.x;
+            ray_pos.y = (((int) (player_pos.y / MAP_CELL_SIZE)) * MAP_CELL_SIZE) - PRECISION;
+            ray_pos.x = (player_pos.y - ray_pos.y) * aTan + player_pos.x;
 
             ray_offset.y = (-1) * MAP_CELL_SIZE;
             ray_offset.x = (-1) * ray_offset.y * aTan;
         }
         else if (ray_angle < LEFT_DIR) /* If looking up */
         {
-            ray_pos.y = (((int) player.pos.y / MAP_CELL_SIZE) * MAP_CELL_SIZE) + MAP_CELL_SIZE;
-            ray_pos.x = (player.pos.y - ray_pos.y) * aTan + player.pos.x;
+            ray_pos.y = (((int) (player_pos.y / MAP_CELL_SIZE)) * MAP_CELL_SIZE) + MAP_CELL_SIZE;
+            ray_pos.x = (player_pos.y - ray_pos.y) * aTan + player_pos.x;
 
             ray_offset.y = MAP_CELL_SIZE;
             ray_offset.x = (-1) * ray_offset.y * aTan;
         }
 
-        while (count_of_hits < game_state.current_level_info.map_size.y)
+        while (count_of_hits < get_current_map_dimensions().y)
         {
             map_ray.x = (int) (ray_pos.x / MAP_CELL_SIZE);
             map_ray.y = (int) (ray_pos.y / MAP_CELL_SIZE);
-            ray_in_map = REAL_POS_TO_GRID_POS(map_ray.x, map_ray.y);
+            structure_hit = get_map_wall_at(map_ray);
 
-            if ((is_valid_map_index(ray_in_map)) && (map_w[ray_in_map] != AIR)) /* Hit a wall */
+            if (structure_hit != UNDEFINED && structure_hit != AIR) /* Hit a wall */
             {
                 ray_H.x = ray_pos.x;
                 ray_H.y = ray_pos.y;
-                distance_h = distance_between(player.pos, ray_pos);
-                surface_H = map_w[ray_in_map];
+                distance_h = distance_between(player_pos, ray_pos);
+                surface_H = structure_hit;
 
-                count_of_hits = game_state.current_level_info.map_size.y; /* End the loop */
+                count_of_hits = get_current_map_dimensions().y; /* End the loop */
             }
             else /* Check the next */
             {
@@ -84,42 +100,42 @@ void cast_rays(void)
 
         if (are_equals(ray_angle, UP_DIR) || are_equals(ray_angle, DOWN_DIR)) /* If looking straight up or down */
         {
-            ray_pos.x = player.pos.x;
-            ray_pos.y = player.pos.y;
+            ray_pos.x = player_pos.x;
+            ray_pos.y = player_pos.y;
 
-            count_of_hits = game_state.current_level_info.map_size.x;
+            count_of_hits = get_current_map_dimensions().x;
         }
         else if ((ray_angle > UP_DIR) && (ray_angle < DOWN_DIR)) /* If looking left */
         {
-            ray_pos.x = (((int) player.pos.x / MAP_CELL_SIZE) * MAP_CELL_SIZE) - PRECISION;
-            ray_pos.y = (player.pos.x - ray_pos.x) * nTan + player.pos.y;
+            ray_pos.x = (((int) (player_pos.x / MAP_CELL_SIZE)) * MAP_CELL_SIZE) - PRECISION;
+            ray_pos.y = (player_pos.x - ray_pos.x) * nTan + player_pos.y;
 
             ray_offset.x = (-1) * MAP_CELL_SIZE;
             ray_offset.y = (-1) * ray_offset.x * nTan;
         }
         else if ((ray_angle < UP_DIR) || (ray_angle > DOWN_DIR)) /* If looking right */
         {
-            ray_pos.x = (((int) player.pos.x / MAP_CELL_SIZE) * MAP_CELL_SIZE) + MAP_CELL_SIZE;
-            ray_pos.y = (player.pos.x - ray_pos.x) * nTan + player.pos.y;
+            ray_pos.x = (((int) (player_pos.x / MAP_CELL_SIZE)) * MAP_CELL_SIZE) + MAP_CELL_SIZE;
+            ray_pos.y = (player_pos.x - ray_pos.x) * nTan + player_pos.y;
 
             ray_offset.x = MAP_CELL_SIZE;
             ray_offset.y = (-1) * ray_offset.x * nTan;
         }
 
-        while (count_of_hits < game_state.current_level_info.map_size.x)
+        while (count_of_hits < get_current_map_dimensions().x)
         {
             map_ray.x = (int) (ray_pos.x / MAP_CELL_SIZE);
             map_ray.y = (int) (ray_pos.y / MAP_CELL_SIZE);
-            ray_in_map = REAL_POS_TO_GRID_POS(map_ray.x, map_ray.y);
+            structure_hit = get_map_wall_at(map_ray);
 
-            if ((is_valid_map_index(ray_in_map)) && (map_w[ray_in_map] != AIR)) /* Hit a wall */
+            if (structure_hit != UNDEFINED && structure_hit != AIR) /* Hit a wall */
             {
                 ray_V.x = ray_pos.x;
                 ray_V.y = ray_pos.y;
-                distance_v = distance_between(player.pos, ray_pos);
-                surface_V = map_w[ray_in_map];
+                distance_v = distance_between(player_pos, ray_pos);
+                surface_V = structure_hit;
 
-                count_of_hits = game_state.current_level_info.map_size.x; /* End the loop */
+                count_of_hits = get_current_map_dimensions().x; /* End the loop */
             }
             else /* Check the next */
             {
@@ -151,9 +167,9 @@ void cast_rays(void)
             actual_surface = surface_V;
         }
 
-        if (!game_state.is_on_debug_view_mode)
+        if (!is_top_down_view_on())
         {
-            angle_cosine = player.angle - ray_angle;
+            angle_cosine = player_angle - ray_angle;
             angle_cosine = adjust_angle(angle_cosine);
 
             distance_from_player = distance_from_player * cos(angle_cosine); /* Fix fisheye */
@@ -164,7 +180,7 @@ void cast_rays(void)
             glColor3f(RAY_COLOR.r, RAY_COLOR.g, RAY_COLOR.b);
             glLineWidth(2);
             glBegin(GL_LINES);
-            glVertex2i(player.pos.x, player.pos.y);
+            glVertex2i(player_pos.x, player_pos.y);
             glVertex2i(ray_pos.x, ray_pos.y);
             glEnd();
         }

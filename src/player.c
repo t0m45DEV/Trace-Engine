@@ -1,22 +1,40 @@
 #include "player.h"
 
+#include <math.h>
+
+#include "trigonometry.h"
+#include "game_state.h"
+#include "map.h"
+#include "entity.h"
+
+#define P_COLLISION_SIZE 20     /** Initial collision size for player (check MAP_CELL_SIZE for size relation) */
+
+#define MOVEMENT_VELOCITY  100    /** Initial player movement velocity */
+#define ROTATION_VELOCITY  2      /** Initial player rotation velocity */
+
+#define P_INIT_ANGLE 0          /** Initial player vision angle (0 means bro is seeing right) */
+
 /** The player info, like the position and actual direction of movement */
 entity_t player = {0};
 
-entity_t get_player_info(void)
+position_2D_t get_player_position(void)
 {
-    return player;
+    return player.pos;
+}
+
+angle_t get_player_angle(void)
+{
+    return player.angle;
 }
 
 void reset_player_info(void)
 {
-    player.pos.x = GRID_POS_TO_REAL_POS(game_state.current_level_info.player_spawn.x);
-    player.pos.y = GRID_POS_TO_REAL_POS(game_state.current_level_info.player_spawn.y);
+    player.pos = map_pos_to_real_pos(get_current_player_spawn());
     player.angle = P_INIT_ANGLE;
     player.movement_velocity = MOVEMENT_VELOCITY;
     player.rotation_velocity = ROTATION_VELOCITY;
-    player.delta.x = CALCULATE_X_DELTA(player.angle) * player.movement_velocity;
-    player.delta.y = CALCULATE_Y_DELTA(player.angle) * player.movement_velocity;
+    player.delta.x = cos(player.angle) * player.movement_velocity;
+    player.delta.y = sin(player.angle) * player.movement_velocity;
     player.collision_size = P_COLLISION_SIZE;
     update_offset(&player);
 }
@@ -31,16 +49,16 @@ void move_player(keys_state_t keys_state, float delta_time)
         player.angle -= player.rotation_velocity * delta_time;
         player.angle = adjust_angle(player.angle);
         
-        player.delta.x = CALCULATE_X_DELTA(player.angle) * player.movement_velocity;
-        player.delta.y = CALCULATE_Y_DELTA(player.angle) * player.movement_velocity;
+        player.delta.x = cos(player.angle) * player.movement_velocity;
+        player.delta.y = sin(player.angle) * player.movement_velocity;
     }
     if (keys_state.rotate_clockwise)
     {
         player.angle += player.rotation_velocity * delta_time;
         player.angle = adjust_angle(player.angle);
 
-        player.delta.x = CALCULATE_X_DELTA(player.angle) * player.movement_velocity;
-        player.delta.y = CALCULATE_Y_DELTA(player.angle) * player.movement_velocity;
+        player.delta.x = cos(player.angle) * player.movement_velocity;
+        player.delta.y = sin(player.angle) * player.movement_velocity;
     }
     if (keys_state.move_forward)
     {
@@ -88,10 +106,10 @@ void open_door(void)
     printf("Block in front: %i\n", front_pos_grid);
     */
 
-    structures_t block_in_front = map_w[REAL_POS_TO_GRID_POS(front_offset.x, front_offset.y)];
+    structures_t block_in_front = get_map_wall_at((position_2D_t) {front_offset.x, front_offset.y});
 
     if (block_in_front == DOOR)
     {
-        map_w[REAL_POS_TO_GRID_POS(front_offset.x, front_offset.y)] = AIR;
+        update_map_wall_at((position_2D_t) {front_offset.x, front_offset.y}, AIR);
     }
 }

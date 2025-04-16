@@ -1,5 +1,8 @@
 #include "entity.h"
 
+#include <stdio.h>
+#include "map.h"
+
 void print_entity(const entity_t entity)
 {
     printf("=== Entity ===\n");
@@ -37,9 +40,9 @@ void update_offset(entity_t* entity)
 
 int can_move(const position_2D_t idx, const position_2D_t offset)
 {
-    int front  = map_w[REAL_POS_TO_GRID_POS(offset.x, offset.y)];
-    int x_axis = map_w[REAL_POS_TO_GRID_POS(offset.x, idx.y)];
-    int y_axis = map_w[REAL_POS_TO_GRID_POS(idx.x, offset.y)];
+    int front  = get_map_wall_at((position_2D_t) {offset.x, offset.y});
+    int x_axis = get_map_wall_at((position_2D_t) {offset.x, idx.y});
+    int y_axis = get_map_wall_at((position_2D_t) {idx.x, offset.y});
 
     /* Thing at idx don't have a wall directly on front
         and can slide in some axis X or Y */
@@ -47,7 +50,7 @@ int can_move(const position_2D_t idx, const position_2D_t offset)
 }
 
 
-int is_colliding_in_axis(entity_t entity, const int axis)
+int is_colliding_in_axis(entity_t entity, const collision_directions_t axis)
 {
     update_offset(&entity);
 
@@ -67,23 +70,23 @@ int is_colliding_in_axis(entity_t entity, const int axis)
     {
         if (axis == FRONT_X_AXIS_COLLISION) /* If can slide forward along X axis */
         {
-            return (map_w[REAL_POS_TO_GRID_POS(add_offset.x, idx.y)] != AIR);
+            return (get_map_wall_at((position_2D_t) {add_offset.x, idx.y}) != AIR);
         }
         else if (axis == FRONT_Y_AXIS_COLLISION) /* If can slide forward along Y axis */
         {
-            return (map_w[REAL_POS_TO_GRID_POS(idx.x, add_offset.y)] != AIR);
+            return (get_map_wall_at((position_2D_t) {idx.x, add_offset.y}) != AIR);
         }
     }
     if (can_move(idx, sub_offset)) /* If can move backward */
     {
         if (axis == BACK_X_AXIS_COLLISION) /* If can slide backward along X axis */
         {
-            return (map_w[REAL_POS_TO_GRID_POS(sub_offset.x, idx.y)] != AIR);
+            return (get_map_wall_at((position_2D_t) {sub_offset.x, idx.y}) != AIR);
         }
         else if (axis == BACK_Y_AXIS_COLLISION) /* If can slide backward along Y axis */
         {
-            return (map_w[REAL_POS_TO_GRID_POS(idx.x, sub_offset.y)] != AIR);
+            return (get_map_wall_at((position_2D_t) {idx.x, sub_offset.y}) != AIR);
         }
     }
-    return 1; /* Entity can't move at any direction */
+    return true; /* Entity can't move at any direction */
 }

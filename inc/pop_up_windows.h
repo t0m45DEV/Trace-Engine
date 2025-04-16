@@ -13,16 +13,21 @@
 #define NK_INCLUDE_DEFAULT_FONT
 #include "nuklear/nuklear.h"
 
-#if defined(__EMSCRIPTEN__) // If the game will run in the web
-    #include "nuklear/nuklear_sdl_gles2.h"
-#else // If the game will run locally
-    #include "nuklear/nuklear_sdl_gl2.h"
-#endif
+#include "nuklear/nuklear_sdl_gl2.h"
 
-#include "loop.h"
-#include "defines.h"
+#define FPS_IN_CHART 33 /** How many last FPS to show in the performance graph, think of it as a FPS history count */
 
 extern struct nk_context* nk_ctx; /** The context for Nuklear, it is necessary to create all the windows */
+
+/**
+ * Update the current FPS history, you can see the chart in the debug window
+ */
+void update_fps_history(void);
+
+/**
+ * Initialize everything for the Nuklear windows (like themes)
+ */
+void init_nk_windows(struct nk_context* context);
 
 /**
  * It creates the debug console, from which you can access all the data and info of the engine

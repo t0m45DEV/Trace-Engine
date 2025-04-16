@@ -3,12 +3,9 @@ cmake_minimum_required(VERSION 3.5)
 project(videoGame LANGUAGES C VERSION 0.1.0)
 
 add_compile_options(-fsanitize=address -Wall -Wextra -Werror -O3)
-add_link_options(-fsanitize=address -static-libasan)
+add_link_options(-fsanitize=address)
 
-if(EMSCRIPTEN)
-        add_compile_options(-sUSE_SDL=2)
-        add_link_options(-sLEGACY_GL_EMULATION=1 -sGL_UNSAFE_OPTS=0 -sUSE_WEBGL2=1)
-endif()
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ferror-limit=0")
 
 file(GLOB src src/*.c)
 add_executable(${PROJECT_NAME} ${src})

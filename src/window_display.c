@@ -1,8 +1,28 @@
 #include "window_display.h"
 
-int resolution = LOW_RESOLUTION;
+#include "pop_up_windows.h"
+#include "game_state.h"
+#include "raycaster.h"
+#include "player.h"
+#include "map.h"
 
-SDL_Window* window = NULL;
+/** V-sync modes */
+
+#define V_SYNC_OFF    0  /** Immediate update from frame to frame */
+#define V_SYNC_ON     1  /** Updates synchronized with the vertical retrace */
+#define V_SYNC_ADAPT -1  /** Adaptive V-sync */
+
+resolutions_t resolution = LOW_RESOLUTION;
+
+int get_actual_resolution(void)
+{
+    return resolution;
+}
+
+void set_actual_resolution(resolutions_t new_resolution)
+{
+    resolution = new_resolution;
+}
 
 SDL_Window* create_window(const char* title, const int width, const int height)
 {
@@ -36,32 +56,23 @@ void set_background_color(const rgb_t color)
 
 void render_screen(void)
 {
-    switch (game_state.current_scene)
+    switch (get_current_scene())
     {
         case MAIN_MENU_SCENE:
             break;
         
         case GAME_SCENE:
-            if (game_state.is_on_debug_view_mode) draw_map_2D();
+            if (is_top_down_view_on()) draw_map_2D();
             cast_rays();
-            if (game_state.is_on_debug_view_mode) draw_player();
+            if (is_top_down_view_on()) draw_player();
             break;
 
         default:
             break;
     }
-    if (game_state.shows_debug_pop_up)
+    if (is_debug_console_on())
     {
         show_debug_console();
-
-        #if defined(__EMSCRIPTEN__) // If the game will run in the web
-        {
-            nk_sdl_render(NK_ANTI_ALIASING_ON, MAX_VERTEX_MEMORY, MAX_ELEMENT_MEMORY);
-        }
-        #else // If the game will run locally
-        {
-            nk_sdl_render(NK_ANTI_ALIASING_ON);
-        }
-        #endif
+        nk_sdl_render(NK_ANTI_ALIASING_ON);
     }
 }

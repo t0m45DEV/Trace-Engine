@@ -3,38 +3,36 @@
 
 #include <SDL.h>
 
-#include "raycaster.h"
-#include "player.h"
-#include "input.h"
-#include "map.h"
+#include "defines.h"
 
 /** Fixed resolution levels */
 
-#define HIGH_RESOLUTION 4
-#define MID_RESOLUTION 2
-#define LOW_RESOLUTION 1
+typedef enum {
+    LOW_RESOLUTION = 1,
+    MID_RESOLUTION = 2,
+    HIGH_RESOLUTION = 4
+} resolutions_t;
 
-/** The current resolution of the game, more resolution means more rays, so a big value could compromise performance, use fixed values */
-extern int resolution;
+/** Is good for the viewport size to satisfy WIDTH = HEIGHT * 1.5, and also for the numbers to be divisible by powers of 2 */
 
-/** The title to be shown on the top of the window */
-#define WINDOW_TITLE "Tom's 3D Engine"
+#define VIEWPORT_WIDTH  960
+#define VIEWPORT_HEIGHT 640
 
-/** Is good for the window size to satisfy WIDTH = HEIGHT * 1.5, and also for the numbers to be divisible by powers of 2 */
-
-#define WINDOW_WIDTH 960
-#define WINDOW_HEIGHT 640
-
-/** V-sync modes */
-
-#define V_SYNC_OFF    0  /** Immediate update from frame to frame */
-#define V_SYNC_ON     1  /** Updates synchronized with the vertical retrace */
-#define V_SYNC_ADAPT -1  /** Adaptive V-sync */
-
-extern SDL_Window* window; /** SDL context for the actual window */
+#define VIEWPORT_X_OFFSET 10
+#define VIEWPORT_Y_OFFSET 10
 
 /** Color of the background (it's always block by the walls, anyway) */
 #define BACKGROUND_COLOR (rgb_t) {0, 0, 0}
+
+/**
+ * Returns the current selected resolution
+ */
+int get_actual_resolution(void);
+
+/**
+ * Updates the current resolution to the given new one
+ */
+void set_actual_resolution(resolutions_t new_resolution);
 
 /**
  * Creates the window and the context for OpenGL

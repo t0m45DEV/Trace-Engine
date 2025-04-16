@@ -1,95 +1,127 @@
 #include "map.h"
 
-structures_t map_w[] =
+#include "game_state.h"
+
+#include "levels/levels_info.c"
+#include "trigonometry.h"
+
+/**
+ * Check if the given index is in range of the current level map
+ *
+ * @note curr_lev_info.mapp_offset <= idx < (curr_lev_info.mapp_offset + MAP_SIZE)
+ */
+static int is_valid_map_index(int idx)
 {
-    1, 1, 1, 1, 1, 1, 1, 1,
-    1, 0, 0, 0, 0, 1, 0, 1,
-    1, 0, 1, 0, 0, 0, 0, 1,
-    1, 0, 1, 0, 1, 0, 1, 1,
-    1, 0, 1, 0, 1, 0, 0, 1,
-    1, 0, 1, 0, 1, 1, 0, 1,
-    1, 0, 0, 0, 0, 1, 0, 1,
-    1, 1, 1, 1, 1, 1, 1, 1,
+    return ((idx > 0) && (idx < get_current_map_size()));
+}
 
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1,
-    1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1,
-    1, 1, 3, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1,
-    1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1,
-    1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-};
-
-structures_t map_f[] =
+/**
+ * Calculates the grid position for the given window position
+ */
+int real_pos_to_map_pos(position_2D_t real_pos)
 {
-    2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2,
+    return ((int) (real_pos.y)) * ((int) get_current_map_dimensions().x) + ((int) (real_pos.x));
+}
 
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-};
-
-structures_t map_c[] =
+position_2D_t map_pos_to_real_pos(position_2D_t map_pos)
 {
-    2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2,
+    float real_x = (map_pos.x * MAP_CELL_SIZE) + (MAP_CELL_SIZE / 2.0);
+    float real_y = (map_pos.y * MAP_CELL_SIZE) + (MAP_CELL_SIZE / 2.0);
 
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-};
+    return (position_2D_t) {real_x, real_y};
+}
 
-position_2D_t maps_sizes[LEVEL_COUNT] =
+void change_to_map(int level_idx)
 {
-    (position_2D_t) {8, 8},
-    (position_2D_t) {16, 8}
-};
+    int x_size = maps_sizes[level_idx].x;
+    int y_size = maps_sizes[level_idx].y;
 
-position_2D_t player_spawns[LEVEL_COUNT] =
+    for (int y = 0; y < y_size; y++)
+    {
+        int row = y * x_size;
+
+        for (int x = 0; x < x_size; x++)
+        {
+            int actual_map_pos = get_current_map_offset() + row + x;
+            
+            current_w_map[x + row] = map_w[actual_map_pos];
+            current_f_map[x + row] = map_f[actual_map_pos];
+            current_c_map[x + row] = map_c[actual_map_pos];
+        }
+    }
+}
+
+void update_map_wall_at(const position_2D_t position, const structures_t new_wall)
 {
-    (position_2D_t) {1, 6},
-    (position_2D_t) {1, 1}
-};
+    current_w_map[real_pos_to_map_pos(position)] = new_wall;
+}
 
-
-int is_valid_map_index(int idx)
+structures_t get_map_wall_at(const position_2D_t position)
 {
-    return ((idx > game_state.current_level_info.map_offset) && (idx < (game_state.current_level_info.map_offset + MAP_SIZE)));
+    structures_t ret = UNDEFINED;
+    int idx = real_pos_to_map_pos(position);
+
+    if (is_valid_map_index(idx))
+    {
+        ret = current_w_map[idx];
+    }
+    return ret;
+}
+
+structures_t get_map_floor_at(const position_2D_t position)
+{
+    structures_t ret = UNDEFINED;
+    int idx = real_pos_to_map_pos(position);
+
+    if (is_valid_map_index(idx))
+    {
+        ret = current_f_map[idx];
+    }
+    return ret;
+}
+
+structures_t get_map_ceiling_at(const position_2D_t position)
+{
+    structures_t ret = UNDEFINED;
+    int idx = real_pos_to_map_pos(position);
+
+    if (is_valid_map_index(idx))
+    {
+        ret = current_c_map[idx];
+    }
+    return ret;
+}
+
+int get_map_offset_from_id(const int level_idx)
+{
+    int ret = 0;
+
+    for (int i = 0; i < level_idx; i++)
+    {
+        ret += (maps_sizes[i].x * maps_sizes[i].y);
+    }
+    return ret;
+}
+
+position_2D_t get_map_size_from_id(const int level_idx)
+{
+    return maps_sizes[level_idx];
+}
+
+position_2D_t get_player_spwan_from_id(const int level_idx)
+{
+    return player_spawns[level_idx];
 }
 
 void draw_map_2D(void)
 {
     position_2D_t grid_pos;
 
-    for (int y = 0; y < game_state.current_level_info.map_size.y; y++)
+    for (int y = 0; y < get_current_map_dimensions().y; y++)
     {
-        for (int x = 0; x < game_state.current_level_info.map_size.x; x++)
+        for (int x = 0; x < get_current_map_dimensions().x; x++)
         {
-            if (map_w[REAL_POS_TO_GRID_POS(x, y)] == AIR)
+            if (get_map_wall_at((position_2D_t) {x, y}) == AIR)
             {
                 glColor3f(0, 0, 0);
             }

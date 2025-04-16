@@ -1,19 +1,26 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+/** The title to be shown on the top of the window */
+#define WINDOW_TITLE "Tom's 3D Engine"
+
+#define WINDOW_HEIGHT (VIEWPORT_HEIGHT + (VIEWPORT_Y_OFFSET * 2))
+#define WINDOW_WIDTH  (VIEWPORT_WIDTH + (VIEWPORT_X_OFFSET * 2))
+
 #define SDL_MAIN_HANDLED
 #include <SDL.h>
 #include <GL/gl.h>
 
 #include "pop_up_windows.h"
 
-#include "defines.h"
+#include "window_display.h"
+#include "game_state.h"
+#include "delta_time.h"
 #include "loop.h"
 #include "fps_counter.h"
+#include "map.h"
 
 #define SDL_INIT_ENGINE (SDL_INIT_TIMER | SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_EVENTS)
-
-game_state_t game_state = {0};
 
 bool init_GL(void)
 {
@@ -28,7 +35,7 @@ bool init_GL(void)
         return false;
     }
     glOrtho(0.0, WINDOW_WIDTH, WINDOW_HEIGHT, 0.0, -1.0, 1.0);
-    
+
     // Initialize modelview matrix
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
@@ -44,11 +51,7 @@ bool init_GL(void)
 
 int main(void)
 {
-    game_state.is_game_running = true;
-    game_state.current_scene = GAME_SCENE;
-    game_state.is_on_debug_view_mode = false;
-    game_state.shows_debug_pop_up = false;
-
+    init_game_state();
     load_level(FIRST_LEVEL);
 
     /* Try to initialize SDL */
@@ -57,15 +60,10 @@ int main(void)
         printf("Error initializing SDL Error: %s\n", SDL_GetError());
         exit(EXIT_FAILURE);
     }
-
-    #if defined(__EMSCRIPTEN__)
-        SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_ES);
-    #else
-        /* To use OpenGL legacy functions */
-        SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
-    #endif
-
-    window = create_window(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT);
+    /* To use OpenGL legacy functions */
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
+    
+    SDL_Window* window = create_window(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT);
 
     if (!init_GL())
     {
@@ -75,6 +73,7 @@ int main(void)
     set_background_color(BACKGROUND_COLOR);
 
     nk_ctx = nk_sdl_init(window);
+    init_nk_windows(nk_ctx);
 
     // Load the default font for Nuklear
     struct nk_font_atlas *atlas;
@@ -87,18 +86,10 @@ int main(void)
     init_delta_time_counter();
     init_fps_counter();
 
-    #if defined(__EMSCRIPTEN__) // If the game will run in the web
+    while (is_game_running())
     {
-        #include <emscripten.h>
-        #define USE_MAX_FPS_FOR_WEB -1
-        emscripten_set_main_loop(main_loop, USE_MAX_FPS_FOR_WEB, true);
+        main_loop(window);
     }
-    #else // If the game will run locally
-    {
-        while (game_state.is_game_running) main_loop();
-    }
-    #endif
-
     nk_sdl_shutdown();
     SDL_DestroyWindow(window);
     SDL_Quit();

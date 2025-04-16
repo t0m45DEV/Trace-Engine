@@ -1,4 +1,18 @@
 #include "timer.h"
+#include <SDL_timer.h>
+
+#define SECONDS_TO_MILLISECONDS(X) ((X) * 1000.0)
+#define MILLISECONDS_TO_SECONDS(X) ((X) / 1000.0)
+
+float get_actual_time_seconds(void)
+{
+    return SDL_GetTicks() / SECONDS_TO_MILLISECONDS(1);
+}
+
+float get_actual_time_milliseconds(void)
+{
+    return SDL_GetTicks();
+}
 
 void print_timer(const engine_timer_t* timer)
 {
