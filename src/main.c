@@ -92,7 +92,6 @@ int main(void)
     }
     nk_sdl_shutdown();
     SDL_DestroyWindow(window);
-    SDL_Quit();
     
     exit(EXIT_SUCCESS);
 }
