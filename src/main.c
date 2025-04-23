@@ -1,3 +1,4 @@
+#include "raycaster.h"
 #include <stdio.h>
 #include <stdbool.h>
 
@@ -75,6 +76,8 @@ int main(void)
     nk_ctx = nk_sdl_init(window);
     init_nk_windows(nk_ctx);
 
+    init_raycaster();
+
     // Load the default font for Nuklear
     struct nk_font_atlas *atlas;
     nk_sdl_font_stash_begin(&atlas);
@@ -90,6 +93,7 @@ int main(void)
     {
         main_loop(window);
     }
+    quit_raycaster();
     nk_sdl_shutdown();
     SDL_DestroyWindow(window);
     

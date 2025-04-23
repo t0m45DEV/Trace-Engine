@@ -18,4 +18,16 @@ int get_ammount_of_rays(void);
  */
 void cast_rays(void);
 
+/**
+ * Initialize the raycaster
+ *
+ * @note Don't forget to use quit_raycaster after
+ */
+void init_raycaster(void);
+
+/**
+ * Safely delete and disable the raycaster
+ */
+void quit_raycaster(void);
+
 #endif
