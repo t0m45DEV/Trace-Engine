@@ -1,4 +1,5 @@
 #include "raycaster.h"
+#include "trigonometry.h"
 #include <stdio.h>
 #include <stdbool.h>
 
@@ -77,15 +78,6 @@ int main(void)
     init_nk_windows(nk_ctx);
 
     init_raycaster();
-
-    // Load the default font for Nuklear
-    struct nk_font_atlas *atlas;
-    nk_sdl_font_stash_begin(&atlas);
-    nk_sdl_font_stash_end();
-
-    //engine_timer_t animation_timer = create_timer(0.3);
-    //start_timer(&animation_timer);
-
     init_delta_time_counter();
     init_fps_counter();
 

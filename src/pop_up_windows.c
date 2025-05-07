@@ -27,6 +27,11 @@ void init_nk_windows(struct nk_context* context)
     debug_fps_timer = create_timer(1);
     start_timer(&debug_fps_timer);
     set_style(context, current_theme);
+
+    // Load the default font for Nuklear
+    struct nk_font_atlas *atlas;
+    nk_sdl_font_stash_begin(&atlas);
+    nk_sdl_font_stash_end();
 }
 
 void show_debug_console(void)
