@@ -1,5 +1,3 @@
-#include "raycaster.h"
-#include "trigonometry.h"
 #include <stdio.h>
 #include <stdbool.h>
 
@@ -15,6 +13,7 @@
 
 #include "pop_up_windows.h"
 
+#include "raycaster.h"
 #include "window_display.h"
 #include "game_state.h"
 #include "delta_time.h"
