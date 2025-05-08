@@ -4,6 +4,7 @@
 #include <SDL.h>
 
 #include "defines.h"
+#include "trigonometry.h"
 
 /** Fixed resolution levels */
 
@@ -54,5 +55,22 @@ void set_background_color(const rgb_t color);
  * Draw the objects in the window
  */
 void render_screen(void);
+
+/**
+ * Draw a point of the given size (plus the border) in the given position with the given color
+ *
+ * @note If you wan't a full square, pass a border of 0
+ */
+void draw_square(position_2D_t position, position_2D_t size, int border, rgb_t color);
+
+/**
+ * Draw a point of the given size in the given position with the given color
+ */
+void draw_point(position_2D_t position, int size, rgb_t color);
+
+/**
+ * Draw a line of the given thickness from the given start point to the given end point with the given color
+ */
+void draw_line(position_2D_t start_point, position_2D_t end_point, int thickness, rgb_t color);
 
 #endif

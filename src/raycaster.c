@@ -20,7 +20,7 @@ int threads_ids[NUM_THREADS];
 
 #define RATIO_ANGLE_RAYS (get_ammount_of_rays() / (float) FOV)   /** Relation between AMMOUNT_OF_RAYS and FOV, for making the right steps between every ray */
 
-#define RAY_COLOR (rgb_t) {0.3, 0.3, 0.3} /** Color of the rays represented as a line */
+#define RAY_COLOR (rgb_t) {80, 80, 80} /** Color of the rays represented as a line */
 
 int get_ammount_of_rays(void)
 {
@@ -225,12 +225,7 @@ void cast_rays(void)
         }
         else
         {
-            glColor3f(RAY_COLOR.r, RAY_COLOR.g, RAY_COLOR.b);
-            glLineWidth(2);
-            glBegin(GL_LINES);
-            glVertex2i(get_player_position().x, get_player_position().y);
-            glVertex2i(rays[i].pos.x, rays[i].pos.y);
-            glEnd();
+            draw_line(get_player_position(), rays[i].pos, 2, RAY_COLOR);
         }
     }
 }

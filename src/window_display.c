@@ -5,6 +5,7 @@
 #include "raycaster.h"
 #include "player.h"
 #include "map.h"
+#include <GL/gl.h>
 
 /** V-sync modes */
 
@@ -75,4 +76,37 @@ void render_screen(void)
         show_debug_console();
         nk_sdl_render(NK_ANTI_ALIASING_ON);
     }
+}
+
+void draw_square(position_2D_t position, position_2D_t size, int border, rgb_t color)
+{
+    glColor3ub(color.r, color.g, color.b);
+
+    glBegin(GL_QUADS);
+        glVertex2i(position.x          + border, position.y          + border);
+        glVertex2i(position.x          + border, position.y + size.y - border);
+        glVertex2i(position.x + size.x - border, position.y + size.y - border);
+        glVertex2i(position.x + size.x - border, position.y          + border);
+    glEnd();
+}
+
+void draw_point(position_2D_t position, int size, rgb_t color)
+{
+    glColor3ub(color.r, color.g, color.b);
+    glPointSize(size);
+
+    glBegin(GL_POINTS);
+        glVertex2i(position.x, position.y);
+    glEnd();
+}
+
+void draw_line(position_2D_t start_point, position_2D_t end_point, int thickness, rgb_t color)
+{
+    glColor3ub(color.r, color.g, color.b);
+    glLineWidth(thickness);
+
+    glBegin(GL_LINES);
+        glVertex2i(start_point.x, start_point.y);
+        glVertex2i(end_point.x, end_point.y);
+    glEnd();
 }
