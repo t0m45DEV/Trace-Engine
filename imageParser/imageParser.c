@@ -38,14 +38,14 @@ int main(int argc, char* argv[])
 	fprintf(dest_header_file, "#ifndef _H_%s\n", argv[TEXTURE_MATRIX_ARG]);
 	fprintf(dest_header_file, "#define _H_%s\n\n", argv[TEXTURE_MATRIX_ARG]);
 	fprintf(dest_header_file, "#define %s %i\n\n", argv[TEXTURE_SIZE_ARG], width);
-	fprintf(dest_header_file, "extern int %s[];\n", argv[TEXTURE_MATRIX_ARG]);
+	fprintf(dest_header_file, "extern const int %s[];\n", argv[TEXTURE_MATRIX_ARG]);
 	fprintf(dest_header_file, "\n#endif\n");
 	fclose(dest_header_file);
 
 	char* dest_code_path = argv[DEST_CODE_PATH_ARG];
 	FILE* dest_code_file = fopen(dest_code_path, WRITE_MODE);
 	
-	fprintf(dest_code_file, "\nint %s[] =\n{\n", argv[TEXTURE_MATRIX_ARG]);
+	fprintf(dest_code_file, "\nconst int %s[] =\n{\n", argv[TEXTURE_MATRIX_ARG]);
 
 
 	for (int i = 0; i < height; i++)

@@ -3,6 +3,6 @@
 
 #define TEXTURE_SIZE 32
 
-extern int ALL_TEXTURES[];
+extern const int ALL_TEXTURES[];
 
 #endif
