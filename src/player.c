@@ -2,10 +2,12 @@
 
 #include <math.h>
 
+#include "defines.h"
 #include "trigonometry.h"
 #include "game_state.h"
 #include "map.h"
 #include "entity.h"
+#include "window_display.h"
 
 #define P_COLLISION_SIZE 20     /** Initial collision size for player (check MAP_CELL_SIZE for size relation) */
 
@@ -13,6 +15,8 @@
 #define ROTATION_VELOCITY  2      /** Initial player rotation velocity */
 
 #define P_INIT_ANGLE 0          /** Initial player vision angle (0 means bro is seeing right) */
+
+#define P_COLOR (rgb_t) {255, 255, 0} /** The player is yellow because reasons */
 
 /** The player info, like the position and actual direction of movement */
 entity_t player = {0};
@@ -75,20 +79,13 @@ void move_player(keys_state_t keys_state, float delta_time)
 
 void draw_player(void)
 {
-    glColor3f(1, 1, 0);
-    glPointSize(12);
-    glBegin(GL_POINTS);
-    glVertex2i(player.pos.x, player.pos.y);
-    glEnd();
+    draw_point(player.pos, 12, P_COLOR);
 
     float look_x_dir = player.pos.x + (player.delta.x / 5);
     float look_y_dir = player.pos.y + (player.delta.y / 5);
+    position_2D_t look_dir = (position_2D_t) {look_x_dir, look_y_dir};
 
-    glLineWidth(4);
-    glBegin(GL_LINES);
-    glVertex2i(player.pos.x, player.pos.y);
-    glVertex2i(look_x_dir, look_y_dir);
-    glEnd();
+    draw_line(player.pos, look_dir, 4, P_COLOR);
 }
 
 

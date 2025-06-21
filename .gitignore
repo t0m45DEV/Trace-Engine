@@ -1,5 +1,4 @@
 .gdb_history
 .vscode/*
-.idea/*
-build/*
-export/*
+obj/*
+bin/*

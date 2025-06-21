@@ -1,23 +1,31 @@
-#include <stdio.h>
-#include <stdlib.h>
-
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_lib/stb_image.h"
 
+#include <string.h>
+
 #define WRITE_MODE "wb"
 
-#define IMG_PATH_ARG 1
-#define DEST_HEADER_PATH_ARG 2
-#define DEST_CODE_PATH_ARG 3
-#define TEXTURE_SIZE_ARG 4
-#define TEXTURE_MATRIX_ARG 5
+enum {
+	IMG_PATH_ARG = 1,
+	DEST_FILE_PATH_ARG,
+	TEXTURE_SIZE_ARG,
+	TEXTURE_MATRIX_ARG
+};
+
+#define ARG_COUNT 4
+
+#define HEADER_DIR "inc/"
+#define CODE_DIR   "src/"
+
+#define HEADER_EXT ".h"
+#define CODE_EXT   ".c"
 
 int main(int argc, char* argv[])
 {
-    if (argc < 5)
+    if (argc < ARG_COUNT)
     {
         printf("Error 01: Need arguments.\n");
-    	printf("Example: %s path/to/image.png path/to/dest.h path/to/dest.c TEXTURE_SIZE_NAME TEXTURE_MATRIX_NAME\n", argv[0]);
+    	printf("Example: %s path/to/image.png dest_file_name TEXTURE_SIZE_NAME TEXTURE_MATRIX_NAME\n", argv[0]);
     	exit(EXIT_FAILURE);
   	}
 
@@ -32,21 +40,27 @@ int main(int argc, char* argv[])
     	exit(EXIT_FAILURE);
 	}
 
-	char* dest_header_path = argv[DEST_HEADER_PATH_ARG];
+	char dest_header_path[] = HEADER_DIR;
+	strcat(dest_header_path, argv[DEST_FILE_PATH_ARG]);
+	strcat(dest_header_path, HEADER_EXT);
+	
 	FILE* dest_header_file = fopen(dest_header_path, WRITE_MODE);
 
 	fprintf(dest_header_file, "#ifndef _H_%s\n", argv[TEXTURE_MATRIX_ARG]);
 	fprintf(dest_header_file, "#define _H_%s\n\n", argv[TEXTURE_MATRIX_ARG]);
 	fprintf(dest_header_file, "#define %s %i\n\n", argv[TEXTURE_SIZE_ARG], width);
-	fprintf(dest_header_file, "extern int %s[];\n", argv[TEXTURE_MATRIX_ARG]);
+	fprintf(dest_header_file, "extern const int %s[];\n", argv[TEXTURE_MATRIX_ARG]);
 	fprintf(dest_header_file, "\n#endif\n");
 	fclose(dest_header_file);
 
-	char* dest_code_path = argv[DEST_CODE_PATH_ARG];
+	char dest_code_path[] = CODE_DIR;
+	strcat(dest_code_path, argv[DEST_FILE_PATH_ARG]);
+	strcat(dest_code_path, CODE_EXT);
+
 	FILE* dest_code_file = fopen(dest_code_path, WRITE_MODE);
 	
-	fprintf(dest_code_file, "\nint %s[] =\n{\n", argv[TEXTURE_MATRIX_ARG]);
-
+	fprintf(dest_code_file, "#include \"%s.h\"\n", argv[DEST_FILE_PATH_ARG]);
+	fprintf(dest_code_file, "\nconst int %s[] =\n{\n", argv[TEXTURE_MATRIX_ARG]);
 
 	for (int i = 0; i < height; i++)
 	{

@@ -1,8 +1,10 @@
 #include "map.h"
+#include "levels_info.h"
 
+#include "window_display.h"
+#include "defines.h"
 #include "game_state.h"
 
-#include "levels/levels_info.c"
 #include "trigonometry.h"
 
 /**
@@ -121,23 +123,22 @@ void draw_map_2D(void)
     {
         for (int x = 0; x < get_current_map_dimensions().x; x++)
         {
+            rgb_t cell_color = (rgb_t) {0};
+
             if (get_map_wall_at((position_2D_t) {x, y}) == AIR)
             {
-                glColor3f(0, 0, 0);
+                cell_color = (rgb_t) {0, 0, 0};
             }
             else
             {
-                glColor3f(1, 1, 1);
+                cell_color = (rgb_t) {255, 255, 255};
             }
 
             grid_pos.x = x * MAP_CELL_SIZE;
             grid_pos.y = y * MAP_CELL_SIZE;
-            glBegin(GL_QUADS);
-            glVertex2i(grid_pos.x                 + 1, grid_pos.y                 + 1);
-            glVertex2i(grid_pos.x                 + 1, grid_pos.y + MAP_CELL_SIZE - 1);
-            glVertex2i(grid_pos.x + MAP_CELL_SIZE - 1, grid_pos.y + MAP_CELL_SIZE - 1);
-            glVertex2i(grid_pos.x + MAP_CELL_SIZE - 1, grid_pos.y                 + 1);
-            glEnd();
+            position_2D_t cell_size = (position_2D_t) {MAP_CELL_SIZE, MAP_CELL_SIZE};
+            
+            draw_square(grid_pos, cell_size, 1, cell_color);
         }
     }
 }

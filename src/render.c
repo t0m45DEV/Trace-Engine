@@ -1,6 +1,8 @@
 #include "render.h"
 
+#include "defines.h"
 #include "raycaster.h"
+#include "trigonometry.h"
 #include "window_display.h"
 #include "player.h"
 #include "all_textures.h"
@@ -10,13 +12,13 @@
 
 #define MAX_WALL_HEIGHT (VIEWPORT_HEIGHT)                             /** A rename for VIEWPORT_HEIGHT, for easier code reading */
 #define LINES_WIDTH ((int) (VIEWPORT_WIDTH / get_ammount_of_rays()))  /** Ammount of pixels each ray will draw on screen      */
-#define X_CORRECTION (LINES_WIDTH / 2)                                /** Correction for X axis to get the screen centered    */
+#define X_CORRECTION (LINES_WIDTH / 2.0)                              /** Correction for X axis to get the screen centered    */
 #define Y_CORRECTION (VIEWPORT_HEIGHT / 2.0)                          /** Correction for Y axis to get the screen centered    */
 
 #define DISTANCE_CORRECTION (((float) VIEWPORT_WIDTH) / ((float) VIEWPORT_HEIGHT)) /** To see the walls square */
 
 #define FLOOR_CORRECTION ((VIEWPORT_WIDTH / 2.0) - 4)     /** The floor (and also the ceiling) stops sliding with this one */
-#define CEILEING_CORRECTION (8 / get_actual_resolution()) /** The ceiling stops covering the walls */
+#define CEILEING_CORRECTION (8.0 / get_actual_resolution()) /** The ceiling stops covering the walls */
 
 void render_line(const ray_t ray)
 {
@@ -64,15 +66,15 @@ void render_line(const ray_t ray)
             int pixel_idx = ((int) (texture_y) * TEXTURE_SIZE + (int) texture_x) * 3;
             pixel_idx += ((ray.surface - 1) * TEXTURE_SIZE * TEXTURE_SIZE * 3);
 
-            int red = ALL_TEXTURES[pixel_idx];
-            int green = ALL_TEXTURES[pixel_idx + 1];
-            int blue = ALL_TEXTURES[pixel_idx + 2];
+            int red = ALL_TEXTURES[pixel_idx] * shade;
+            int green = ALL_TEXTURES[pixel_idx + 1] * shade;
+            int blue = ALL_TEXTURES[pixel_idx + 2] * shade;
 
-            glPointSize(LINES_WIDTH);
-            glColor3ub(red * shade, green * shade, blue * shade);
-            glBegin(GL_POINTS);
-            glVertex2i(ray.index * LINES_WIDTH + X_CORRECTION + VIEWPORT_X_OFFSET, y + line_offset + VIEWPORT_Y_OFFSET);
-            glEnd();
+            position_2D_t wall_pos = (position_2D_t) {ray.index * LINES_WIDTH + X_CORRECTION + VIEWPORT_X_OFFSET,
+                                                       y + line_offset + VIEWPORT_Y_OFFSET};
+
+            draw_point(wall_pos, LINES_WIDTH, (rgb_t) {red, green, blue});
+
             texture_y += texture_y_step;
         }
     }
@@ -102,15 +104,14 @@ void render_line(const ray_t ray)
             {
                 int floor_pixel_idx = pixel_idx + (map_value - 1) * TEXTURE_SIZE * TEXTURE_SIZE * 3;
 
-                int red = ALL_TEXTURES[floor_pixel_idx];
-                int green = ALL_TEXTURES[floor_pixel_idx + 1];
-                int blue = ALL_TEXTURES[floor_pixel_idx + 2];
+                int red = ALL_TEXTURES[floor_pixel_idx] * shade;
+                int green = ALL_TEXTURES[floor_pixel_idx + 1] * shade;
+                int blue = ALL_TEXTURES[floor_pixel_idx + 2] * shade;
 
-                glPointSize(LINES_WIDTH);
-                glColor3ub(red * shade, green * shade, blue * shade);
-                glBegin(GL_POINTS);
-                glVertex2i(ray.index * LINES_WIDTH + X_CORRECTION + VIEWPORT_X_OFFSET, y + VIEWPORT_Y_OFFSET);
-                glEnd();
+                position_2D_t floor_pos = (position_2D_t) {ray.index * LINES_WIDTH + X_CORRECTION + VIEWPORT_X_OFFSET,
+                                                            y + VIEWPORT_Y_OFFSET};
+
+                draw_point(floor_pos, LINES_WIDTH, (rgb_t) {red, green, blue});
             }
             map_value = get_map_ceiling_at((position_2D_t) {texture_x / TEXTURE_SIZE, texture_y / TEXTURE_SIZE});
 
@@ -118,15 +119,14 @@ void render_line(const ray_t ray)
             {
                 int ceiling_pixel_idx = pixel_idx + (map_value - 1) * TEXTURE_SIZE * TEXTURE_SIZE * 3;
 
-                int red = ALL_TEXTURES[ceiling_pixel_idx];
-                int green = ALL_TEXTURES[ceiling_pixel_idx + 1];
-                int blue = ALL_TEXTURES[ceiling_pixel_idx + 2];
+                int red = ALL_TEXTURES[ceiling_pixel_idx] * shade;
+                int green = ALL_TEXTURES[ceiling_pixel_idx + 1] * shade;
+                int blue = ALL_TEXTURES[ceiling_pixel_idx + 2] * shade;
+
+                position_2D_t ceiling_pos = (position_2D_t) {ray.index * LINES_WIDTH + X_CORRECTION + VIEWPORT_X_OFFSET,
+                                                              VIEWPORT_HEIGHT - CEILEING_CORRECTION - y + VIEWPORT_Y_OFFSET};
                 
-                glColor3ub(red * shade, green * shade, blue * shade);
-                glPointSize(LINES_WIDTH);
-                glBegin(GL_POINTS);
-                glVertex2i(ray.index * LINES_WIDTH + X_CORRECTION + VIEWPORT_X_OFFSET, VIEWPORT_HEIGHT - CEILEING_CORRECTION - y + VIEWPORT_Y_OFFSET);
-                glEnd();
+                draw_point(ceiling_pos, LINES_WIDTH, (rgb_t) {red, green, blue});
             }
         }
     }

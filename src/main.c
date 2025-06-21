@@ -13,6 +13,7 @@
 
 #include "pop_up_windows.h"
 
+#include "raycaster.h"
 #include "window_display.h"
 #include "game_state.h"
 #include "delta_time.h"
@@ -75,14 +76,7 @@ int main(void)
     nk_ctx = nk_sdl_init(window);
     init_nk_windows(nk_ctx);
 
-    // Load the default font for Nuklear
-    struct nk_font_atlas *atlas;
-    nk_sdl_font_stash_begin(&atlas);
-    nk_sdl_font_stash_end();
-
-    //engine_timer_t animation_timer = create_timer(0.3);
-    //start_timer(&animation_timer);
-
+    init_raycaster();
     init_delta_time_counter();
     init_fps_counter();
 
@@ -90,9 +84,9 @@ int main(void)
     {
         main_loop(window);
     }
+    quit_raycaster();
     nk_sdl_shutdown();
     SDL_DestroyWindow(window);
-    SDL_Quit();
     
     exit(EXIT_SUCCESS);
 }

@@ -1,5 +1,6 @@
+#include "all_textures.h"
 
-int ALL_TEXTURES[] =
+const int ALL_TEXTURES[] =
 {
 173, 181, 145,
 173, 181, 145,

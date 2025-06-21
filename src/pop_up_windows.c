@@ -1,9 +1,5 @@
-#define NK_IMPLEMENTATION
-
-#define NK_SDL_GL2_IMPLEMENTATION
-
 #include "pop_up_windows.h"
-#include "nk_styles/nuklear_styles.c"
+#include "nuklear/nuklear_styles.h"
 
 #include "timer.h"
 #include "game_state.h"
@@ -31,6 +27,11 @@ void init_nk_windows(struct nk_context* context)
     debug_fps_timer = create_timer(1);
     start_timer(&debug_fps_timer);
     set_style(context, current_theme);
+
+    // Load the default font for Nuklear
+    struct nk_font_atlas *atlas;
+    nk_sdl_font_stash_begin(&atlas);
+    nk_sdl_font_stash_end();
 }
 
 void show_debug_console(void)
@@ -45,7 +46,7 @@ void show_debug_console(void)
             nk_layout_row_dynamic(nk_ctx, 0, 2);
             nk_theme_t new_theme;
             nk_label(nk_ctx, "Theme:", NK_TEXT_LEFT);
-            new_theme = nk_combo(nk_ctx, themes_names, NK_LEN(themes_names), current_theme, 25, nk_vec2(200, 200));
+            new_theme = nk_combo(nk_ctx, themes_names, THEME_COUNT, current_theme, 25, nk_vec2(200, 200));
             if (new_theme != current_theme) {
                 current_theme = new_theme;
                 set_style(nk_ctx, current_theme);
@@ -56,6 +57,11 @@ void show_debug_console(void)
         if (nk_tree_push(nk_ctx, NK_TREE_TAB, "Performance", NK_MINIMIZED))
         {
             nk_label(nk_ctx, "FPS:", NK_TEXT_LEFT);
+
+            char fps_text[10];
+            snprintf(fps_text, 10, "FPS: %i", get_fps());
+            nk_layout_row_dynamic(nk_ctx, 20, 1);
+            nk_label(nk_ctx, fps_text, NK_TEXT_LEFT);
 
             int index = -1;
             int past_fps = 0;

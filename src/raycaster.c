@@ -1,5 +1,9 @@
 #include "raycaster.h"
 
+#include <SDL.h>
+
+#include <pthread.h>
+
 #include "window_display.h"
 #include "game_state.h"
 #include "trigonometry.h"
@@ -7,16 +11,23 @@
 #include "player.h"
 #include "map.h"
 
+#define NUM_THREADS 4
+
+ray_t* rays;
+
+pthread_t threads[NUM_THREADS];
+int threads_ids[NUM_THREADS];
+
 #define RATIO_ANGLE_RAYS (get_ammount_of_rays() / (float) FOV)   /** Relation between AMMOUNT_OF_RAYS and FOV, for making the right steps between every ray */
 
-#define RAY_COLOR (rgb_t) {0.3, 0.3, 0.3} /** Color of the rays represented as a line */
+#define RAY_COLOR (rgb_t) {80, 80, 80} /** Color of the rays represented as a line */
 
 int get_ammount_of_rays(void)
 {
-    return (FOV * 2) * get_actual_resolution();
+    return (FOV << 1) * get_actual_resolution();
 }
 
-void cast_rays(void)
+void cast_rays_from_to(int start, int end)
 {
     int count_of_hits;
     position_2D_t map_ray;
@@ -30,9 +41,10 @@ void cast_rays(void)
     angle_t player_angle = get_player_angle();
 
     angle_t ray_angle = player_angle - (DEG_TO_RAD(FOV / 2.0));
+    ray_angle += (DEGREE / RATIO_ANGLE_RAYS) * start;
     ray_angle = adjust_angle(ray_angle);
 
-    for (int ray_idx = 0; ray_idx < get_ammount_of_rays(); ray_idx++)
+    for (int ray_idx = start; ray_idx < end; ray_idx++)
     {
         /* Check horizontal lines */
 
@@ -167,25 +179,63 @@ void cast_rays(void)
             actual_surface = surface_V;
         }
 
-        if (!is_top_down_view_on())
-        {
-            angle_cosine = player_angle - ray_angle;
-            angle_cosine = adjust_angle(angle_cosine);
+        angle_cosine = player_angle - ray_angle;
+        angle_cosine = adjust_angle(angle_cosine);
 
-            distance_from_player = distance_from_player * cos(angle_cosine); /* Fix fisheye */
-            render_line((ray_t) {ray_idx, ray_pos, ray_angle, distance_from_player, actual_surface, actual_orientation});
-        }
-        else
-        {
-            glColor3f(RAY_COLOR.r, RAY_COLOR.g, RAY_COLOR.b);
-            glLineWidth(2);
-            glBegin(GL_LINES);
-            glVertex2i(player_pos.x, player_pos.y);
-            glVertex2i(ray_pos.x, ray_pos.y);
-            glEnd();
-        }
+        distance_from_player = distance_from_player * cos(angle_cosine); /* Fix fisheye */
+        rays[ray_idx] = (ray_t) {ray_idx, ray_pos, ray_angle, distance_from_player, actual_surface, actual_orientation};
 
         ray_angle += (DEGREE / RATIO_ANGLE_RAYS);
         ray_angle = adjust_angle(ray_angle);
     }
+}
+
+void* multithreading_casting(void* arg)
+{
+    int thread_id = *(int*) arg;
+
+    int first_ray = thread_id * (get_ammount_of_rays() / NUM_THREADS);
+    int last_ray = first_ray + (get_ammount_of_rays() / NUM_THREADS);
+
+    for (int i = first_ray; i < last_ray; i++)
+    {
+        cast_rays_from_to(first_ray, last_ray);
+    }
+    pthread_exit(NULL);
+}
+
+void cast_rays(void)
+{
+    for (int i = 0; i < NUM_THREADS; i++)
+    {
+        threads_ids[i] = i;
+        pthread_create(&threads[i], NULL, multithreading_casting, &threads_ids[i]);
+    }
+
+    for (int i = 0; i < NUM_THREADS; i++)
+    {
+        pthread_join(threads[i], NULL);
+    }
+
+    for (int i = 0; i < get_ammount_of_rays(); i++)
+    {
+        if (!is_top_down_view_on())
+        {
+            render_line(rays[i]);
+        }
+        else
+        {
+            draw_line(get_player_position(), rays[i].pos, 2, RAY_COLOR);
+        }
+    }
+}
+
+void init_raycaster(void)
+{
+    rays = (ray_t*) malloc(sizeof(ray_t) * get_ammount_of_rays());
+}
+
+void quit_raycaster(void)
+{
+    free(rays);
 }
