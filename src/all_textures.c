@@ -1,3 +1,4 @@
+#include "all_textures.h"
 
 const int ALL_TEXTURES[] =
 {

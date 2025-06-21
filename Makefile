@@ -23,6 +23,14 @@ IMG_PARSER_DIR := imageParser
 IMG_PARSER_C   := $(IMG_PARSER_DIR)/imageParser.c
 IMG_PARSER     := imageParser.out
 
+TEXTURES_STRUCT_DIR  := ./textures/structures.png
+TEXTURES_STRUCT_FILE := all_textures
+
+TEXTURE_SIZE_VAR_NAME := TEXTURE_SIZE
+TEXTURE_ARRAY_NAME    := ALL_TEXTURES
+
+RUN_IMG_PARSER := ./$(IMG_PARSER) $(TEXTURES_STRUCT_DIR) $(TEXTURES_STRUCT_FILE) $(TEXTURE_SIZE_VAR_NAME) $(TEXTURE_ARRAY_NAME)
+
 # C compiler
 CC = gcc
 
@@ -79,7 +87,7 @@ $(ENGINE) : $(OBJ_FILES)
 
 $(OBJ_DIR)/all_textures.o : ./$(IMG_PARSER)
 	@$(call MESSAGE,$(INFO_COL),Parsing images...)
-	@./$(IMG_PARSER) "./textures/structures.png" "./inc/all_textures.h" "./src/all_textures.c" "TEXTURE_SIZE" "ALL_TEXTURES"
+	@$(RUN_IMG_PARSER)
 	@rm ./$(IMG_PARSER)
 	@$(CC) -c -MD $(CFLAGS) ./src/all_textures.c -o $(OBJ_DIR)/all_textures.o $(LIBS)
 	@$(call MESSAGE,$(SUCCESS_COL),All images parsed!)
@@ -147,6 +155,6 @@ test: $(ENGINE)
 
 parser: ./$(IMG_PARSER)
 	@$(call MESSAGE,$(INFO_COL),Parsing images...)
-	@./$(IMG_PARSER) "./textures/structures.png" "./inc/all_textures.h" "./src/all_textures.c" "TEXTURE_SIZE" "ALL_TEXTURES"
+	@$(RUN_IMG_PARSER)
 	@rm ./$(IMG_PARSER)
 	@$(call MESSAGE,$(SUCCESS_COL),All images parsed!)
