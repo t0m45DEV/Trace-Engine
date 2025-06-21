@@ -1,10 +1,10 @@
 #include "map.h"
+#include "levels_info.h"
 
 #include "window_display.h"
 #include "defines.h"
 #include "game_state.h"
 
-#include "levels/levels_info.c"
 #include "trigonometry.h"
 
 /**
