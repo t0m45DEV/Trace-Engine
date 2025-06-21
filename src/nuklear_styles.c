@@ -1,18 +1,8 @@
-typedef enum {
-    THEME_BLACK,
-    THEME_WHITE,
-    THEME_RED,
-    THEME_BLUE,
-    THEME_DARK,
-    THEME_DRACULA,
-    THEME_CATPPUCCIN_LATTE,
-    THEME_CATPPUCCIN_FRAPPE,
-    THEME_CATPPUCCIN_MACCHIATO,
-    THEME_CATPPUCCIN_MOCHA    
-} nk_theme_t;
+#include "nuklear/nuklear_styles.h"
 
-const char* themes_names[] = {"Black", "White", "Red", "Blue", "Dark", "Dracula", 
+const char* themes_names[THEME_COUNT] = {"Black", "White", "Red", "Blue", "Dark", "Dracula", 
     "Catppucin Latte", "Catppucin Frappe", "Catppucin Macchiato", "Catppucin Mocha"};
+
 nk_theme_t current_theme = THEME_RED;
 
 void set_style(struct nk_context *ctx, nk_theme_t theme)
