@@ -1,5 +1,5 @@
 #include "pop_up_windows.h"
-#include "nk_styles/nuklear_styles.c"
+#include "nuklear/nuklear_styles.h"
 
 #include "timer.h"
 #include "game_state.h"
@@ -46,7 +46,7 @@ void show_debug_console(void)
             nk_layout_row_dynamic(nk_ctx, 0, 2);
             nk_theme_t new_theme;
             nk_label(nk_ctx, "Theme:", NK_TEXT_LEFT);
-            new_theme = nk_combo(nk_ctx, themes_names, NK_LEN(themes_names), current_theme, 25, nk_vec2(200, 200));
+            new_theme = nk_combo(nk_ctx, themes_names, THEME_COUNT, current_theme, 25, nk_vec2(200, 200));
             if (new_theme != current_theme) {
                 current_theme = new_theme;
                 set_style(nk_ctx, current_theme);
