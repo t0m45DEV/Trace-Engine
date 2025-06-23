@@ -3,6 +3,7 @@ OBJ_DIR := obj
 INC_DIR := inc
 SRC_DIR := src
 EXP_DIR := bin
+DAT_DIR := data
 TST_DIR := tests
 
 # The debug executable
@@ -21,15 +22,13 @@ OBJ_FILES := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
 
 IMG_PARSER_DIR := imageParser
 IMG_PARSER_C   := $(IMG_PARSER_DIR)/imageParser.c
-IMG_PARSER     := imageParser.out
+IMG_PARSER     := $(EXP_DIR)/imageParser.out
 
 TEXTURES_STRUCT_DIR  := ./textures/structures.png
-TEXTURES_STRUCT_FILE := all_textures
+TEXTURES_STRUCT_FILE := $(DAT_DIR)/structures.ted
+TEXTURES_INFO_FILE   := $(INC_DIR)/textures_info.h
 
-TEXTURE_SIZE_VAR_NAME := TEXTURE_SIZE
-TEXTURE_ARRAY_NAME    := ALL_TEXTURES
-
-RUN_IMG_PARSER := ./$(IMG_PARSER) $(TEXTURES_STRUCT_DIR) $(TEXTURES_STRUCT_FILE) $(TEXTURE_SIZE_VAR_NAME) $(TEXTURE_ARRAY_NAME)
+RUN_IMG_PARSER := ./$(IMG_PARSER) $(TEXTURES_STRUCT_DIR) $(TEXTURES_STRUCT_FILE) $(TEXTURES_INFO_FILE)
 
 # C compiler
 CC = gcc
@@ -78,19 +77,12 @@ MESSAGE = tput setaf $1;echo '>>$2';tput setaf $(DEFAULT_COL);
 
 
 # Create debug engine executable
-$(ENGINE) : $(OBJ_FILES)
+$(ENGINE) : $(OBJ_FILES) parser
 	@$(call MESSAGE,$(INFO_COL),Creating executable for $(ENGINE_NAME)...)
 	@mkdir -p $(EXP_DIR)
 	@$(CC) $(CFLAGS) $(OBJ_FILES) -o $(ENGINE) $(LIBS)
 	@$(call MESSAGE,$(SUCCESS_COL),Executable for $(ENGINE) created)
 	@$(call MESSAGE,$(INFO_COL),Have fun!)
-
-$(OBJ_DIR)/all_textures.o : ./$(IMG_PARSER)
-	@$(call MESSAGE,$(INFO_COL),Parsing images...)
-	@$(RUN_IMG_PARSER)
-	@rm ./$(IMG_PARSER)
-	@$(CC) -c -MD $(CFLAGS) ./src/all_textures.c -o $(OBJ_DIR)/all_textures.o $(LIBS)
-	@$(call MESSAGE,$(SUCCESS_COL),All images parsed!)
 
 # Create the objects files
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
@@ -103,6 +95,7 @@ $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
 
 $(IMG_PARSER) : ./$(IMG_PARSER_C)
 	@$(call MESSAGE,$(INFO_COL),Compiling image parser...)
+	@mkdir -p $(EXP_DIR) $(DAT_DIR)
 	@$(CC) ./$(IMG_PARSER_C) -o $(IMG_PARSER) -lm
 	@$(call MESSAGE,$(SUCCESS_COL),Image parser compiled!)
 
@@ -115,7 +108,7 @@ $(GAME) : $(OBJ_FILES)
 	@$(call MESSAGE,$(SUCCESS_COL),Cleaned debug info from Linux executable!)
 
 # So Makefile won't cry if a file has this names
-.PHONY: clean play debug mem_check export test
+.PHONY: clean play debug mem_check export test parser
 
 # Erase all the temporal files and executables
 clean:

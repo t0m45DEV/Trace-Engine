@@ -5,7 +5,7 @@
 #include "trigonometry.h"
 #include "window_display.h"
 #include "player.h"
-#include "all_textures.h"
+#include "textures.h"
 
 #define RENDER_CHUNK_SIZE (4)                                 /** How many blocks away can the player see */
 #define RENDER_DISTANCE (MAP_CELL_SIZE * RENDER_CHUNK_SIZE)   /** Distance between the player and the further object visible */
@@ -27,7 +27,7 @@ void render_line(const ray_t ray)
 
     float line_h = ((MAP_CELL_SIZE * VIEWPORT_HEIGHT) / ray.distance) * DISTANCE_CORRECTION;
     
-    float texture_y_step = TEXTURE_SIZE / (float) line_h;
+    float texture_y_step = get_texture_size() / (float) line_h;
     float texture_y_offset = 0;
     
     if (line_h > MAX_WALL_HEIGHT)
@@ -42,13 +42,13 @@ void render_line(const ray_t ray)
 
     if (are_equals(ray.wall_orientation, NORTH_SOUTH_WALL))
     {
-        texture_x = (int) (ray.pos.x / 2.0) % TEXTURE_SIZE;
-        if (ray.angle < LEFT_DIR) texture_x = (TEXTURE_SIZE - 1) - texture_x;
+        texture_x = (int) (ray.pos.x / 2.0) % get_texture_size();
+        if (ray.angle < LEFT_DIR) texture_x = (get_texture_size() - 1) - texture_x;
     }
     else
     {
-        texture_x = (int) (ray.pos.y / 2.0) % TEXTURE_SIZE;
-        if (ray.angle > UP_DIR && ray.angle < DOWN_DIR) texture_x = (TEXTURE_SIZE - 1) - texture_x;
+        texture_x = (int) (ray.pos.y / 2.0) % get_texture_size();
+        if (ray.angle > UP_DIR && ray.angle < DOWN_DIR) texture_x = (get_texture_size() - 1) - texture_x;
     }
 
     float distance_x_to_wall = fabs(ray.distance * cos(ray.angle));
@@ -63,17 +63,15 @@ void render_line(const ray_t ray)
         // Draw walls
         for (int y = 0; y < line_h; y++)
         {
-            int pixel_idx = ((int) (texture_y) * TEXTURE_SIZE + (int) texture_x) * 3;
-            pixel_idx += ((ray.surface - 1) * TEXTURE_SIZE * TEXTURE_SIZE * 3);
+            position_2D_t pixel_pos = {texture_x, texture_y};
 
-            int red = ALL_TEXTURES[pixel_idx] * shade;
-            int green = ALL_TEXTURES[pixel_idx + 1] * shade;
-            int blue = ALL_TEXTURES[pixel_idx + 2] * shade;
+            rgb_t pixel_color = get_texture_pixel(ray.surface, pixel_pos);
+            pixel_color = apply_shade(pixel_color, shade);
 
             position_2D_t wall_pos = (position_2D_t) {ray.index * LINES_WIDTH + X_CORRECTION + VIEWPORT_X_OFFSET,
                                                        y + line_offset + VIEWPORT_Y_OFFSET};
 
-            draw_point(wall_pos, LINES_WIDTH, (rgb_t) {red, green, blue});
+            draw_point(wall_pos, LINES_WIDTH, pixel_color);
 
             texture_y += texture_y_step;
         }
@@ -87,8 +85,8 @@ void render_line(const ray_t ray)
     {
         float delta_y = y - (VIEWPORT_HEIGHT / 2.0);
 
-        texture_x = (player_pos.x / 2) + cos(ray.angle) * FLOOR_CORRECTION * TEXTURE_SIZE / delta_y / ray_angle_fix;
-        texture_y = (player_pos.y / 2) + sin(ray.angle) * FLOOR_CORRECTION * TEXTURE_SIZE / delta_y / ray_angle_fix;
+        texture_x = (player_pos.x / 2) + cos(ray.angle) * FLOOR_CORRECTION * get_texture_size() / delta_y / ray_angle_fix;
+        texture_y = (player_pos.y / 2) + sin(ray.angle) * FLOOR_CORRECTION * get_texture_size() / delta_y / ray_angle_fix;
 
         float distance = ((VIEWPORT_HEIGHT / 2.0) - delta_y) * (RENDER_CHUNK_SIZE / 3.75);
 
@@ -96,37 +94,31 @@ void render_line(const ray_t ray)
         {
             float shade = 1 - distance / RENDER_DISTANCE;
 
-            int pixel_idx = (((int) (texture_y) & (TEXTURE_SIZE - 1)) * TEXTURE_SIZE + ((int) (texture_x) & (TEXTURE_SIZE - 1))) * 3;
+            position_2D_t pixel_pos = {(int) (texture_x) & (get_texture_size() - 1), (int) (texture_y) & (get_texture_size() - 1)};
 
-            int map_value = get_map_floor_at((position_2D_t) {texture_x / TEXTURE_SIZE, texture_y / TEXTURE_SIZE});
+            int map_value = get_map_floor_at((position_2D_t) {texture_x / get_texture_size(), texture_y / get_texture_size()});
 
             if (map_value != AIR)
             {
-                int floor_pixel_idx = pixel_idx + (map_value - 1) * TEXTURE_SIZE * TEXTURE_SIZE * 3;
-
-                int red = ALL_TEXTURES[floor_pixel_idx] * shade;
-                int green = ALL_TEXTURES[floor_pixel_idx + 1] * shade;
-                int blue = ALL_TEXTURES[floor_pixel_idx + 2] * shade;
+                rgb_t pixel_color = get_texture_pixel(map_value, pixel_pos);
+                pixel_color = apply_shade(pixel_color, shade);
 
                 position_2D_t floor_pos = (position_2D_t) {ray.index * LINES_WIDTH + X_CORRECTION + VIEWPORT_X_OFFSET,
                                                             y + VIEWPORT_Y_OFFSET};
 
-                draw_point(floor_pos, LINES_WIDTH, (rgb_t) {red, green, blue});
+                draw_point(floor_pos, LINES_WIDTH, pixel_color);
             }
-            map_value = get_map_ceiling_at((position_2D_t) {texture_x / TEXTURE_SIZE, texture_y / TEXTURE_SIZE});
+            map_value = get_map_ceiling_at((position_2D_t) {texture_x / get_texture_size(), texture_y / get_texture_size()});
 
             if (map_value != AIR)
             {
-                int ceiling_pixel_idx = pixel_idx + (map_value - 1) * TEXTURE_SIZE * TEXTURE_SIZE * 3;
-
-                int red = ALL_TEXTURES[ceiling_pixel_idx] * shade;
-                int green = ALL_TEXTURES[ceiling_pixel_idx + 1] * shade;
-                int blue = ALL_TEXTURES[ceiling_pixel_idx + 2] * shade;
+                rgb_t pixel_color = get_texture_pixel(map_value, pixel_pos);
+                pixel_color = apply_shade(pixel_color, shade);
 
                 position_2D_t ceiling_pos = (position_2D_t) {ray.index * LINES_WIDTH + X_CORRECTION + VIEWPORT_X_OFFSET,
                                                               VIEWPORT_HEIGHT - CEILEING_CORRECTION - y + VIEWPORT_Y_OFFSET};
                 
-                draw_point(ceiling_pos, LINES_WIDTH, (rgb_t) {red, green, blue});
+                draw_point(ceiling_pos, LINES_WIDTH, pixel_color);
             }
         }
     }

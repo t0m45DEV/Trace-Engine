@@ -20,6 +20,7 @@
 #include "loop.h"
 #include "fps_counter.h"
 #include "map.h"
+#include "textures.h"
 
 #define SDL_INIT_ENGINE (SDL_INIT_TIMER | SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_EVENTS)
 
@@ -52,6 +53,8 @@ bool init_GL(void)
 
 int main(void)
 {
+    load_textures();
+
     init_game_state();
     load_level(FIRST_LEVEL);
 

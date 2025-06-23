@@ -10,9 +10,9 @@
  * A color struct, having 3 variables: r, g and b
  */
 typedef struct {
-    float r; /** Red component from RGB */
-    float g; /** Green component from RGB */
-    float b; /** Blue component from RGB */
+    unsigned char r; /** Red component from RGB */
+    unsigned char g; /** Green component from RGB */
+    unsigned char b; /** Blue component from RGB */
 } rgb_t;
 
 /**
