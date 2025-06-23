@@ -1,6 +1,7 @@
 #ifndef _H_PLAYER
 #define _H_PLAYER
 
+#include "trigonometry.h"
 #include "input.h"
 
 /**
