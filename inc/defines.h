@@ -7,15 +7,6 @@
 #define ENG_ARR_LEN(a) (sizeof(a)/sizeof(a[0]))
 
 /**
- * A color struct, having 3 variables: r, g and b
- */
-typedef struct {
-    unsigned char r; /** Red component from RGB */
-    unsigned char g; /** Green component from RGB */
-    unsigned char b; /** Blue component from RGB */
-} rgb_t;
-
-/**
  * A scene represents a state for the game (like the main
  * menu, options menu, specific level, boos fight, etc)
  */

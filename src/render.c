@@ -1,6 +1,5 @@
 #include "render.h"
 
-#include "defines.h"
 #include "raycaster.h"
 #include "trigonometry.h"
 #include "window_display.h"

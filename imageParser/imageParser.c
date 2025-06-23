@@ -1,7 +1,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_lib/stb_image.h"
 
-#include "../inc/defines.h"
+#include "../inc/textures.h"
 #include <string.h>
 
 #define WRITE_MODE "wb"
