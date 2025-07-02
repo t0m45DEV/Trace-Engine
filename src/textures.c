@@ -8,6 +8,8 @@
 #define TEXTURE_FILE_PATH "./data/structures.ted"
 #define READ_MODE "r"
 
+#define TEXTURES_ARR_SIZE (TEXTURE_SIZE * TEXTURE_SIZE * TEXTURE_COUNT)
+
 rgb_t ALL_TEXTURES[TEXTURES_ARR_SIZE];
 
 void load_textures(void)

@@ -3,7 +3,7 @@
 
 #define TEXTURE_SIZE 32
 
-#define TEXTURES_ARR_SIZE 3072
+#define TEXTURE_COUNT 3
 
 
 #endif

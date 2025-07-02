@@ -1,10 +1,15 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_lib/stb_image.h"
 
-#include "../inc/textures.h"
 #include <string.h>
 
 #define WRITE_MODE "wb"
+
+typedef struct {
+	unsigned char r;
+	unsigned char g;
+	unsigned char b;
+} rgb_t;
 
 enum {
 	IMG_PATH_ARG = 1,
@@ -36,7 +41,6 @@ int main(int argc, char* argv[])
 	    printf("Error 02: Couldn't load the image.\n");
     	exit(EXIT_FAILURE);
 	}
-	int texture_size = width * width;
 	int texture_count = height / width;
 	int pixel_count = width * height;
 
@@ -45,7 +49,7 @@ int main(int argc, char* argv[])
 	fprintf(dest_header_file, "#ifndef %s\n", HEADER_NAME);
 	fprintf(dest_header_file, "#define %s\n\n", HEADER_NAME);
 	fprintf(dest_header_file, "#define TEXTURE_SIZE %i\n\n", width);
-	fprintf(dest_header_file, "#define TEXTURES_ARR_SIZE %i\n\n", pixel_count);
+	fprintf(dest_header_file, "#define TEXTURE_COUNT %i\n\n", texture_count);
 	fprintf(dest_header_file, "\n#endif\n");
 	fclose(dest_header_file);
 
