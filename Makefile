@@ -108,7 +108,9 @@ $(GAME) : $(OBJ_FILES)
 	@$(call MESSAGE,$(SUCCESS_COL),Cleaned debug info from Linux executable!)
 
 # So Makefile won't cry if a file has this names
-.PHONY: clean play debug mem_check export test parser
+.PHONY: all clean play debug mem_check export test parser
+
+all: $(ENGINE) $(GAME)
 
 # Erase all the temporal files and executables
 clean:
