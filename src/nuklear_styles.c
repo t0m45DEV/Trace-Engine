@@ -1,3 +1,6 @@
+#define NK_IMPLEMENTATION
+#define NK_SDL_GL2_IMPLEMENTATION
+
 #include "nuklear/nuklear_styles.h"
 
 const char* themes_names[THEME_COUNT] = {"Black", "White", "Red", "Blue", "Dark", "Dracula", 
