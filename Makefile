@@ -5,6 +5,7 @@ SRC_DIR := src
 EXP_DIR := bin
 DAT_DIR := data
 TST_DIR := tests
+OBJ_EXP_DIR := obj_exp
 
 # The debug executable
 ENGINE_NAME := Tom_3D_game_engine
@@ -19,6 +20,9 @@ SRC_FILES := $(shell find $(SRC_DIR) -type f -name '*.c')
 
 # To get all the objects files
 OBJ_FILES := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
+
+# To get all the objects files for the final export
+OBJ_EXP_FILES := $(patsubst $(SRC_DIR)/%.c, $(OBJ_EXP_DIR)/%.o, $(SRC_FILES))
 
 IMG_PARSER_DIR := imageParser
 IMG_PARSER_C   := $(IMG_PARSER_DIR)/imageParser.c
@@ -40,7 +44,7 @@ SDL2_DIR := /usr/include/SDL2
 CFLAGS = -Wall -Wextra -O3 -I$(SDL2_DIR) -I$(INC_DIR) -g 
 
 # Flags for final executable
-EXPORTFLAGS = $(CFLAGS) -no-pie
+EXPORTFLAGS = -DGAME_EXPORT $(CFLAGS) -no-pie
 
 # C libraries
 LIBS = -lSDL2 -lGL -lm
@@ -77,7 +81,7 @@ MESSAGE = tput setaf $1;echo '>>$2';tput setaf $(DEFAULT_COL);
 
 
 # Create debug engine executable
-$(ENGINE) : $(OBJ_FILES) parser
+$(ENGINE) : parser $(OBJ_FILES)
 	@$(call MESSAGE,$(INFO_COL),Creating executable for $(ENGINE_NAME)...)
 	@mkdir -p $(EXP_DIR)
 	@$(CC) $(CFLAGS) $(OBJ_FILES) -o $(ENGINE) $(LIBS)
@@ -100,12 +104,21 @@ $(IMG_PARSER) : ./$(IMG_PARSER_C)
 	@$(call MESSAGE,$(SUCCESS_COL),Image parser compiled!)
 
 # Export for Linux
-$(GAME) : $(OBJ_FILES)
+$(GAME) : $(ENGINE) $(OBJ_EXP_FILES)
 	@mkdir -p ./$(EXP_DIR)
 	@$(call MESSAGE,$(INFO_COL),Exporting $(EXPORT_NAME) for Linux...)
-	@$(CC) $(EXPORTFLAGS) $(OBJ_FILES) -o $(GAME) $(LIBS)
+	@$(CC) $(EXPORTFLAGS) $(OBJ_EXP_FILES) -o $(GAME) $(LIBS)
 	@strip $(GAME)
 	@$(call MESSAGE,$(SUCCESS_COL),Cleaned debug info from Linux executable!)
+
+# Create the objects files for export
+$(OBJ_EXP_DIR)/%.o : $(SRC_DIR)/%.c
+	@$(call MESSAGE,$(INFO_COL),Creating $@ for export...)
+	@mkdir -p $(dir $@)
+	@$(CC) -c -MD $(EXPORTFLAGS) $< -o $@ $(LIBS)
+	@$(call MESSAGE,$(SUCCESS_COL),$@ succesfully created)
+
+-include ./$(OBJ_EXP_DIR)/*.d
 
 # So Makefile won't cry if a file has this names
 .PHONY: all clean play debug mem_check export test parser
@@ -115,7 +128,7 @@ all: $(ENGINE) $(GAME)
 # Erase all the temporal files and executables
 clean:
 	@$(call MESSAGE,$(INFO_COL),Deleting previous version...)
-	@rm -fr $(ENGINE) ./$(OBJ_DIR) ./$(EXP_DIR) ./$(TST_BIN) ./$(IMG_PARSER)
+	@rm -fr $(ENGINE) ./$(OBJ_DIR) ./$(EXP_DIR) ./$(TST_BIN) ./$(IMG_PARSER) ./$(OBJ_EXP_DIR)
 	@$(call MESSAGE,$(INFO_COL),Every object file and the executable no longer exists)
 
 # Makes the engine and opens it
