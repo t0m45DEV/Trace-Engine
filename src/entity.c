@@ -1,20 +1,34 @@
 #include "entity.h"
 
-#include <stdio.h>
+#include "log.h"
 #include "map.h"
 
-void print_entity(const entity_t entity)
-{
-    printf("=== Entity ===\n");
-    printf("Position: (%f, %f)\n", entity.pos.x, entity.pos.y);
-    printf("Delta: (%f, %f)\n", entity.delta.x, entity.delta.y);
-    printf("Angle: %f\n", entity.angle);
-    printf("Movement velocity: %f\n", entity.movement_velocity);
-    printf("Rotation velocity: %f\n", entity.rotation_velocity);
-    printf("Collision size: %i\n", entity.collision_size);
-    printf("Offset: (%f, %f)\n", entity.offset.x, entity.offset.y);
-}
+#ifndef GAME_EXPORT
+    void print_entity(const entity_t entity, const char* entity_name)
+    {
+        const char* entity_parsed =
+            "\n\t=== Entity %s ===\n"
+            "\t\tPosition: (%f, %f)\n"
+            "\t\tDelta: (%f, %f)\n"
+            "\t\tAngle: %f\n"
+            "\t\tMovement velocity: %f\n"
+            "\t\tRotation velocity: %f\n"
+            "\t\tCollision size: %i\n"
+            "\t\tOffset: (%f, %f)\n"
+        ;
 
+        log_debug(entity_parsed,
+            entity_name,
+            entity.pos.x, entity.pos.y,
+            entity.delta.x, entity.delta.y,
+            entity.angle,
+            entity.movement_velocity,
+            entity.rotation_velocity,
+            entity.collision_size,
+            entity.offset.x, entity.offset.y
+        );
+    }
+#endif
 
 void update_offset(entity_t* entity)
 {

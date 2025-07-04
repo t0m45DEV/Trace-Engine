@@ -1,12 +1,14 @@
 #include "trigonometry.h"
 
-#include <stdio.h>
+#include "log.h"
 #include <math.h>
 
-void print_position(const position_2D_t pos)
-{
-    printf("(%f, %f)\n", pos.x, pos.y);
-}
+#ifndef GAME_EXPORT
+    void print_position(const position_2D_t pos, const char* pos_name)
+    {
+        log_debug("%s = (%f, %f)\n", pos_name, pos.x, pos.y);
+    }
+#endif
 
 float distance_between(const position_2D_t p1, const position_2D_t p2)
 {
