@@ -2,6 +2,7 @@
 
 #include <math.h>
 
+#include "log.h"
 #include "textures.h"
 #include "trigonometry.h"
 #include "game_state.h"
@@ -41,6 +42,8 @@ void reset_player_info(void)
     player.delta.y = sin(player.angle) * player.movement_velocity;
     player.collision_size = P_COLLISION_SIZE;
     update_offset(&player);
+
+    log_info("Player info reseted.");
 }
 
 

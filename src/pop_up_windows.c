@@ -1,6 +1,7 @@
 #include "pop_up_windows.h"
 #include "nuklear/nuklear_styles.h"
 
+#include "log.h"
 #include "timer.h"
 #include "game_state.h"
 
@@ -32,6 +33,8 @@ void init_nk_windows(struct nk_context* context)
     struct nk_font_atlas *atlas;
     nk_sdl_font_stash_begin(&atlas);
     nk_sdl_font_stash_end();
+
+    log_info("Nuklear context initialized!");
 }
 
 void show_debug_console(void)

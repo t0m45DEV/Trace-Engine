@@ -1,9 +1,9 @@
 #include "textures.h"
 
 #include <stdio.h>
-#include <assert.h>
 
 #include "textures_info.h"
+#include "log.h"
 
 #define TEXTURE_FILE_PATH "./data/structures.ted"
 #define READ_MODE "r"
@@ -17,7 +17,12 @@ void load_textures(void)
     FILE* textures_file = fopen(TEXTURE_FILE_PATH, READ_MODE);
 
     size_t read_out = fread(ALL_TEXTURES, sizeof(rgb_t) * TEXTURES_ARR_SIZE, 1, textures_file);
-    assert(read_out > 0);
+    
+    if (read_out <= 0)
+    {
+        log_error("There was an error loading the textures!");
+    }
+    log_info("Textures loaded!");
 
     fclose(textures_file);
 }
@@ -29,7 +34,6 @@ int get_texture_size(void)
 
 rgb_t get_texture_pixel(structures_t structure, position_2D_t pixel_pos)
 {
-    //printf("Hello there\n");
     int pixel_id = ((int) (pixel_pos.y) * TEXTURE_SIZE + (int) pixel_pos.x);
     pixel_id += ((structure - 1) * TEXTURE_SIZE * TEXTURE_SIZE);
 

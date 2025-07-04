@@ -1,5 +1,6 @@
 #include "game_state.h"
 
+#include "log.h"
 #include "player.h"
 #include "map.h"
 
@@ -11,6 +12,8 @@ void init_game_state(void)
     game_state.current_scene = GAME_SCENE;
     game_state.is_on_debug_view_mode = false;
     game_state.shows_debug_pop_up = false;
+
+    log_info("Game state initiliazed!");
 }
 
 bool is_game_running(void)
@@ -96,6 +99,8 @@ void load_level(const int level_idx)
     game_state.current_level_info.player_spawn = get_player_spwan_from_id(level_idx);
     change_to_map(level_idx);
     reset_player_info();
+
+    log_info("Succesfully loaded the %i-th level!", level_idx);
 }
 
 void reload_level(void)

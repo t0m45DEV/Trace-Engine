@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdbool.h>
 
 /** The title to be shown on the top of the window */
@@ -13,6 +12,7 @@
 
 #include "pop_up_windows.h"
 
+#include "log.h"
 #include "raycaster.h"
 #include "window_display.h"
 #include "game_state.h"
@@ -33,9 +33,10 @@ bool init_GL(void)
     // Check for errors
     if (glGetError() != GL_NO_ERROR)
     {
-        printf("Error initializing OpenGL projection matrix!\n");
+        log_error("Error initializing OpenGL projection matrix!");
         return false;
     }
+    log_info("OpenGL projection matrix initialized!");
     glOrtho(0.0, WINDOW_WIDTH, WINDOW_HEIGHT, 0.0, -1.0, 1.0);
 
     // Initialize modelview matrix
@@ -45,9 +46,10 @@ bool init_GL(void)
     // Check for errors
     if (glGetError() != GL_NO_ERROR)
     {
-        printf("Error initializing OpenGL modelview matrix!\n");
+        log_error("Error initializing OpenGL modelview matrix!");
         return false;
     }
+    log_info("OpenGL modelview matrix initialized!");
     return true;
 }
 
@@ -61,9 +63,10 @@ int main(void)
     /* Try to initialize SDL */
     if (SDL_Init(SDL_INIT_ENGINE) != 0)
     {
-        printf("Error initializing SDL Error: %s\n", SDL_GetError());
+        log_error("Error initializing SDL Error: %s", SDL_GetError());
         exit(EXIT_FAILURE);
     }
+    log_info("SDL initialized.");
     /* To use OpenGL legacy functions */
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
     
@@ -71,9 +74,10 @@ int main(void)
 
     if (!init_GL())
     {
-        printf("Unable to initialize OpenGL\n");
+        log_error("Unable to initialize OpenGL");
         exit(EXIT_FAILURE);
     }
+    log_info("OpenGL fully initialized!");
     set_background_color(BACKGROUND_COLOR);
 
     nk_ctx = nk_sdl_init(window);
@@ -90,6 +94,8 @@ int main(void)
     quit_raycaster();
     nk_sdl_shutdown();
     SDL_DestroyWindow(window);
-    
+    log_info("SDL window destroyed!");
+    log_info("Good bye :)");
+
     exit(EXIT_SUCCESS);
 }

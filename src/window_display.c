@@ -1,5 +1,7 @@
 #include "window_display.h"
 
+#include "log.h"
+
 #include "pop_up_windows.h"
 #include "game_state.h"
 #include "raycaster.h"
@@ -31,22 +33,26 @@ SDL_Window* create_window(const char* title, const int width, const int height)
 
     if (window == NULL)
     {
-        printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
+        log_error("Window could not be created! SDL Error: %s\n", SDL_GetError());
         exit(EXIT_FAILURE);
     }
+    log_info("SDL window created!");
+
     SDL_GLContext* context = SDL_GL_CreateContext(window);
   
     if (!context)
     {
-        printf("Context could not be created! SDL Error: %s\n", SDL_GetError());
+        log_error("Context could not be created! SDL Error: %s\n", SDL_GetError());
         exit(EXIT_FAILURE);
     }
+    log_info("SDL context created!");
   
     if (SDL_GL_SetSwapInterval(V_SYNC_ON) != 0)
     {
-        printf("Unable to set VSync! SDL Error: %s\n", SDL_GetError());
+        log_error("Unable to set VSync! SDL Error: %s\n", SDL_GetError());
         exit(EXIT_FAILURE);
     }
+    log_info("VSync activated!");
     return window;
 }
 
