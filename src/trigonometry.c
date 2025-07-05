@@ -4,9 +4,21 @@
 #include <math.h>
 
 #ifndef GAME_EXPORT
-    void print_position(const position_2D_t pos, const char* pos_name)
+    #include <stdio.h>
+    #include <stdlib.h>
+
+    char* position_2D_to_string_with_name(const position_2D_t pos, const char* pos_name)
     {
-        log_debug("%s = (%f, %f)\n", pos_name, pos.x, pos.y);
+        const int MAX_LEN = 50;
+        char* string = malloc(sizeof(char) * MAX_LEN);
+
+        int printf_out = snprintf(string, MAX_LEN, "%s = (%f, %f)", pos_name, pos.x, pos.y);
+
+        if (printf_out <= 0)
+        {
+            log_error("There was an error parsing to string for %s", pos_name);
+        }
+        return string;
     }
 #endif
 
