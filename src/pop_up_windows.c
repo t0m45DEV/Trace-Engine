@@ -59,10 +59,8 @@ void show_debug_console(void)
 
         if (nk_tree_push(nk_ctx, NK_TREE_TAB, "Performance", NK_MINIMIZED))
         {
-            nk_label(nk_ctx, "FPS:", NK_TEXT_LEFT);
-
-            char fps_text[10];
-            snprintf(fps_text, 10, "FPS: %i", get_fps());
+            char fps_text[20];
+            snprintf(fps_text, 20, "Current FPS: %i", get_fps());
             nk_layout_row_dynamic(nk_ctx, 20, 1);
             nk_label(nk_ctx, fps_text, NK_TEXT_LEFT);
 
