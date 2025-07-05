@@ -4,29 +4,50 @@
 #include "map.h"
 
 #ifndef GAME_EXPORT
-    void print_entity(const entity_t entity, const char* entity_name)
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include "trigonometry.h"
+
+    char* entity_to_string_with_name(const entity_t entity, const char* entity_name)
     {
+        const int MAX_LEN = 300;
+        char* string = malloc(sizeof(char) * MAX_LEN);
+
         const char* entity_parsed =
             "\n\t=== Entity %s ===\n"
-            "\t\tPosition: (%f, %f)\n"
-            "\t\tDelta: (%f, %f)\n"
+            "\t\t%s\n"
+            "\t\t%s\n"
             "\t\tAngle: %f\n"
             "\t\tMovement velocity: %f\n"
             "\t\tRotation velocity: %f\n"
             "\t\tCollision size: %i\n"
-            "\t\tOffset: (%f, %f)\n"
+            "\t\t%s\n"
         ;
 
-        log_debug(entity_parsed,
+        char* entity_pos    = position_2D_to_string_with_name(entity.pos, "Position");
+        char* entity_delta  = position_2D_to_string_with_name(entity.delta, "Delta");
+        char* entity_offset = position_2D_to_string_with_name(entity.offset, "Offset");
+
+        int printf_out = snprintf(string, MAX_LEN, entity_parsed,
             entity_name,
-            entity.pos.x, entity.pos.y,
-            entity.delta.x, entity.delta.y,
+            entity_pos,
+            entity_delta,
             entity.angle,
             entity.movement_velocity,
             entity.rotation_velocity,
             entity.collision_size,
-            entity.offset.x, entity.offset.y
+            entity_offset
         );
+
+        if (printf_out <= 0)
+        {
+            log_error("There was an error parsing to string for %s", entity_name);
+        }
+        free(entity_pos);
+        free(entity_delta);
+        free(entity_offset);
+
+        return string;
     }
 #endif
 
