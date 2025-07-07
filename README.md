@@ -65,4 +65,4 @@ The texture parser assumes a vertical strip format, where each texture is square
 
 ## Contributing
 
-Contributing are welcome! Open an issue or submit a PR to improve functionality, add features, or fix bugs.
+Contributing is welcome! Open an issue or submit a PR to improve functionality, add features, or fix bugs.
