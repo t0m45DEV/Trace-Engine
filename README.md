@@ -14,24 +14,26 @@ There is a ton of features in a game engine, but this will give a glimpse of wha
 
 | Feature | State |
 | --- | --- |
-| Basic raycasting | :white_check_mark: |
-| Renderer | :white_check_mark: |
-| Logging system | :white_check_mark: |
-| Entities | :hourglass_flowing_sand: |
-| Level editor | :hourglass_flowing_sand: |
-| Physics engine | :hourglass_flowing_sand: |
+| Basic raycasting | :white_check_mark: Done |
+| Renderer | :white_check_mark: Done |
+| Logging system | :white_check_mark: Done |
+| Entities | :hourglass_flowing_sand: In progress |
+| Level editor | :hourglass_flowing_sand: In progress |
+| Physics engine | :hourglass_flowing_sand: In progress |
 
 ## License
 
-This project is available under either the MIT License or public domain. See [LICENSE](LICENSE) for more info.
+This project is available under either the **MIT License** or **Public Domain**. See [LICENSE](LICENSE) for more info.
 
 ## Dependencies
 
-Currently the engine uses [OpenGL](https://www.opengl.org/) and [SDL](https://www.libsdl.org/) to handle graphics. 
+This engine uses:
 
-Additionally, I included the [Nuklear](https://github.com/Immediate-Mode-UI/Nuklear) header for simple UI, like buttons and sliders. For the image parser I used the [stb image loader](https://github.com/nothings/stb) header.
+- [OpenGL](https://www.opengl.org/) and [SDL](https://www.libsdl.org/) to handle graphics. 
+- [Nuklear](https://github.com/Immediate-Mode-UI/Nuklear) for simple UI, like buttons and sliders.
+- [stb image loader](https://github.com/nothings/stb) for image loading.
 
-Besides that, it's made in standar C.
+Everything else is written in standard C.
 
 ## Controls
 
