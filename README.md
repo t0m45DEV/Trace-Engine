@@ -1,12 +1,9 @@
 # 3D Game Engine using C
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-![Platform](https://img.shields.io/badge/platform-Linux-blue)
 ![Language](https://img.shields.io/badge/Made%20with-C-blue)
 ![Graphics](https://img.shields.io/badge/Graphics-OpenGL-green)
 ![Framework](https://img.shields.io/badge/Framework-SDL2-orange)
-![UI](https://img.shields.io/badge/UI-Nuklear-lightgrey)
-![Image Loader](https://img.shields.io/badge/Image%20Loader-stb-blue)
 
 A minimal and modular Wolfenstein-style raycasting engine entirely made with C for Linux.
 
