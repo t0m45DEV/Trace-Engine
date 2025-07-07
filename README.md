@@ -4,7 +4,7 @@ A minimal and modular Wolfenstein-style raycasting engine entirely made with C f
 
 ![work_space](screenshots/work_space.png)
 
-Everything is written from scratch (so no high-level libraries and a lot of bugs!): just C, OpenGL and SDL (and a little headers here and there).
+Everything is written from scratch (so no high-level libraries and a lot of bugs!) --- just C, OpenGL and SDL (and a little headers here and there).
 
 It is a modular game engine, so every piece is independent of any other. It's fully open source! You can see all the code in this repository.
 
