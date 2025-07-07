@@ -53,6 +53,6 @@ The Makefile include other modes, like `make export` to give away a final execut
 
 The textures for the walls, ceilings and floors must be a png file located in the same root as the variable `TEXTURES_STRUCT_DIR` from the `Makefile`. In the standard repo the png is called `structures.png` and the folder is `textures`. This will create a new file `structures.ted` in the folder `data`. The `.ted` extension is not really that important, but you could read it as Tom's Engine Data.
 
-![Texture_example](screenshots/texture_example.png)
+![Texture_example](screenshots/texture_example.png){:style="float: right;margin-right: 7px;margin-top: 7px;"}
 
 The texture parser assumes a vertical strip format, where each texture is square and identically sized (e.g., 32x32 pixels), like in the image shown.
