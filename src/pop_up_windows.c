@@ -1,6 +1,7 @@
 #include "pop_up_windows.h"
 #include "nuklear/nuklear_styles.h"
 
+#include "log.h"
 #include "timer.h"
 #include "game_state.h"
 
@@ -32,6 +33,8 @@ void init_nk_windows(struct nk_context* context)
     struct nk_font_atlas *atlas;
     nk_sdl_font_stash_begin(&atlas);
     nk_sdl_font_stash_end();
+
+    log_info("Nuklear context initialized!");
 }
 
 void show_debug_console(void)
@@ -56,10 +59,8 @@ void show_debug_console(void)
 
         if (nk_tree_push(nk_ctx, NK_TREE_TAB, "Performance", NK_MINIMIZED))
         {
-            nk_label(nk_ctx, "FPS:", NK_TEXT_LEFT);
-
-            char fps_text[10];
-            snprintf(fps_text, 10, "FPS: %i", get_fps());
+            char fps_text[20];
+            snprintf(fps_text, 20, "Current FPS: %i", get_fps());
             nk_layout_row_dynamic(nk_ctx, 20, 1);
             nk_label(nk_ctx, fps_text, NK_TEXT_LEFT);
 

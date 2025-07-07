@@ -1,5 +1,6 @@
 #include "delta_time.h"
 
+#include "log.h"
 #include "timer.h"
 
 // The counter for delta_time
@@ -8,6 +9,7 @@ delta_time_counter_t delta_t_ctr = {0};
 void init_delta_time_counter(void)
 {
     delta_t_ctr.actual_frame = get_actual_time_seconds();
+    log_info("Timer for delta time created!");
 }
 
 void update_delta_time_counter(void)

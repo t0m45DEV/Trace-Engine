@@ -27,12 +27,22 @@ typedef struct {
     float y;  /** Y component of the (x, y) vector */
 } position_2D_t;
 
-/**
- * Only for debug, it prints the position in a readable way
- * 
- * @param pos position_2D_t, the position to print
- */
-void print_position(const position_2D_t pos);
+#ifndef GAME_EXPORT
+    #define position_2D_to_string(X) position_2D_to_string_with_name(X, #X)
+
+    /**
+     * Only for debug, it returns the position in the form of a string with the format:
+     * 
+     * "pos_name = (pos.x, pos.y)"
+     * 
+     * @param pos position_2D_t, the position to print
+     * 
+     * @note Caller MUST free the memory allocated for the string
+     */
+    char* position_2D_to_string_with_name(const position_2D_t pos, const char* pos_name);
+#else
+    #define debug_position(X) // Does nothing
+#endif
 
 /**
  * Returns the distance between p1 and p2

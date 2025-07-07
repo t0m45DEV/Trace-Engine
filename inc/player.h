@@ -1,7 +1,8 @@
 #ifndef _H_PLAYER
 #define _H_PLAYER
 
-#include "defines.h"
+#include "trigonometry.h"
+#include "input.h"
 
 /**
  * Returns the current player position

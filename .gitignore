@@ -1,4 +1,5 @@
 .gdb_history
 .vscode/*
 obj/*
+obj_exp/*
 bin/*

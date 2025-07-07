@@ -3,7 +3,7 @@
 
 #include <SDL.h>
 
-#include "defines.h"
+#include "textures.h"
 #include "trigonometry.h"
 
 /** Fixed resolution levels */

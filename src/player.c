@@ -2,7 +2,8 @@
 
 #include <math.h>
 
-#include "defines.h"
+#include "log.h"
+#include "textures.h"
 #include "trigonometry.h"
 #include "game_state.h"
 #include "map.h"
@@ -41,6 +42,8 @@ void reset_player_info(void)
     player.delta.y = sin(player.angle) * player.movement_velocity;
     player.collision_size = P_COLLISION_SIZE;
     update_offset(&player);
+
+    log_info("Player info reseted.");
 }
 
 
@@ -94,14 +97,6 @@ void open_door(void)
     position_2D_t front_offset;
     front_offset.x = ((player.pos.x + player.offset.x) / (float) MAP_CELL_SIZE);
     front_offset.y = ((player.pos.y + player.offset.y) / (float) MAP_CELL_SIZE);
-
-    /*
-    int player_pos_grid = REAL_POS_TO_GRID_POS(player.pos.x / MAP_CELL_SIZE, player.pos.y / MAP_CELL_SIZE);
-    int front_pos_grid = REAL_POS_TO_GRID_POS((player.pos.x / MAP_CELL_SIZE) + (player.offset.x / player.offset.x), (player.pos.y / MAP_CELL_SIZE) + (player.offset.y / player.offset.y));
-
-    printf("Player block: %i\n", player_pos_grid);
-    printf("Block in front: %i\n", front_pos_grid);
-    */
 
     structures_t block_in_front = get_map_wall_at((position_2D_t) {front_offset.x, front_offset.y});
 

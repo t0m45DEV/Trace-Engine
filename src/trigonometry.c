@@ -1,12 +1,26 @@
 #include "trigonometry.h"
 
-#include <stdio.h>
+#include "log.h"
 #include <math.h>
 
-void print_position(const position_2D_t pos)
-{
-    printf("(%f, %f)\n", pos.x, pos.y);
-}
+#ifndef GAME_EXPORT
+    #include <stdio.h>
+    #include <stdlib.h>
+
+    char* position_2D_to_string_with_name(const position_2D_t pos, const char* pos_name)
+    {
+        const int MAX_LEN = 50;
+        char* string = malloc(sizeof(char) * MAX_LEN);
+
+        int printf_out = snprintf(string, MAX_LEN, "%s = (%f, %f)", pos_name, pos.x, pos.y);
+
+        if (printf_out <= 0)
+        {
+            log_error("There was an error parsing to string for %s", pos_name);
+        }
+        return string;
+    }
+#endif
 
 float distance_between(const position_2D_t p1, const position_2D_t p2)
 {

@@ -24,13 +24,20 @@ typedef struct {
     position_2D_t offset;    /** The offset is a point at distance collision_size from pos, we use this point to detect collisions */
 } entity_t;
 
+#ifndef GAME_EXPORT
+    #define entity_to_string(X) entity_to_string_with_name(X, #X)
 
-/**
- * Only for debug, it shows the entity info
- * 
- * @param entity entity_t, the entity to print
- */
-void print_entity(const entity_t entity);
+    /**
+     * Only for debug, it returns the entity info in the form of a string
+     * 
+     * @param entity entity_t, the entity to print
+     * 
+     * @note Caller MUST free the memory allocated for the string
+     */
+    char* entity_to_string_with_name(const entity_t entity, const char* entity_name);
+#else
+    #define debug_entity(X) // Does nothing
+#endif
 
 /**
  * Returns the same entity with the x_offset and y_offset calculated using the entity angle

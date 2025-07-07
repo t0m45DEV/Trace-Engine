@@ -4,6 +4,7 @@
 
 #include <pthread.h>
 
+#include "log.h"
 #include "window_display.h"
 #include "game_state.h"
 #include "trigonometry.h"
@@ -233,9 +234,11 @@ void cast_rays(void)
 void init_raycaster(void)
 {
     rays = (ray_t*) malloc(sizeof(ray_t) * get_ammount_of_rays());
+    log_info("Raycaster initialized!");
 }
 
 void quit_raycaster(void)
 {
     free(rays);
+    log_info("Raycaster closed!");
 }
