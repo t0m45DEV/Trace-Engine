@@ -78,7 +78,7 @@ INFO_COL    := $(CYAN)
 ERROR_COL   := $(RED)
 SUCCESS_COL := $(GREEN)
 
-MESSAGE = tput setaf $1;echo '>>$2';tput setaf $(DEFAULT_COL);
+MESSAGE = tput setaf $1;echo '>> $2';tput setaf $(DEFAULT_COL);
 
 
 # Create debug engine executable
