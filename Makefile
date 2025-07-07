@@ -56,7 +56,8 @@ VALGRIND_FLAGS = --leak-check=full --show-leak-kinds=all
 TST_C := testing.c
 
 TST_FILES := ./$(TST_DIR)/$(TST_C)\
-				./$(OBJ_DIR)/trigonometry.o
+				./$(OBJ_DIR)/trigonometry.o\
+				./$(OBJ_DIR)/log.o
 
 TST_FLAGS := $(CFLAGS)
 TST_LIBS := $(LIBS) -lcunit
@@ -154,7 +155,7 @@ export: $(GAME)
 # Run the tests
 test: $(ENGINE)
 	@$(call MESSAGE,$(CYAN),Compiling the tests...)
-	@cc $(TST_FILES) $(TST_FLAGS) $(TST_LIBS) -o $(TST_BIN)
+	@$(CC) $(TST_FILES) $(TST_FLAGS) $(TST_LIBS) -o $(TST_BIN)
 	@$(call MESSAGE,$(GREEN),Test compiled!)
 	@$(call MESSAGE,$(CYAN),Running tests...)
 	@./$(TST_BIN)
