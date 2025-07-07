@@ -53,4 +53,4 @@ The textures for the walls, ceilings and floors must be a png file located in th
 
 The texture parser assumes a vertical strip format, where each texture is square and identically sized (e.g., 32x32 pixels).
 
-![Texture_example](textures/structures.png)
+![Texture_example](textures/structures.png =96x288)
