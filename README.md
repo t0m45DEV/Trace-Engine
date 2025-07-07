@@ -6,7 +6,7 @@ A minimal and modular Wolfenstein-style raycasting engine entirely made with C f
 
 Everything is written from scratch (so no high-level libraries and a lot of bugs!): just C, OpenGL and SDL (and a little headers here and there).
 
-It is a modular game engine, so every piece is independent of any other. Also is open source! You can see all the code in this repository.
+It is a modular game engine, so every piece is independent of any other. It's fully open source! You can see all the code in this repository.
 
 ## Roadmap
 
@@ -20,6 +20,7 @@ There is a ton of features in a game engine, but this will give a glimpse of wha
 | Entities | :hourglass_flowing_sand: In progress |
 | Level editor | :hourglass_flowing_sand: In progress |
 | Physics engine | :hourglass_flowing_sand: In progress |
+| Windows export | :hourglass_flowing_sand: In progress |
 
 ## License
 
@@ -56,3 +57,7 @@ The textures for the walls, ceilings and floors must be a png file located in th
 ![Texture_example](screenshots/texture_example.png)
 
 The texture parser assumes a vertical strip format, where each texture is square and identically sized (e.g., 32x32 pixels), like in the image shown.
+
+## Contributing
+
+Contributing are welcome! Open an issue or submit a PR to improve functionality, add features, or fix bugs.
