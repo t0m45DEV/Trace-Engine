@@ -27,7 +27,9 @@ This project is avaliable under either the MIT License or public domain. See [LI
 
 ## Dependencies
 
-Currently the engine uses [OpenGL](https://www.opengl.org/) and [SDL](https://www.libsdl.org/) to handle graphics. Additionally, I included the [Nuklear](https://github.com/Immediate-Mode-UI/Nuklear) header for simple UI, like buttons and sliders.
+Currently the engine uses [OpenGL](https://www.opengl.org/) and [SDL](https://www.libsdl.org/) to handle graphics. 
+
+Additionally, I included the [Nuklear](https://github.com/Immediate-Mode-UI/Nuklear) header for simple UI, like buttons and sliders. For the image parser I used the [stb image loader](https://github.com/nothings/stb) header.
 
 Besides that, it's made in standar C.
 
