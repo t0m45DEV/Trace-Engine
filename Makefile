@@ -5,6 +5,8 @@ SRC_DIR := src
 EXP_DIR := bin
 DAT_DIR := data
 TST_DIR := tests
+THIRDPARTY_DIR := thirdparty
+
 OBJ_EXP_DIR := obj_exp
 
 # The debug executable
@@ -41,7 +43,7 @@ CC = gcc
 SDL2_DIR := /usr/include/SDL2
 
 # Linker flags
-CFLAGS = -Wall -Wextra -O3 -I$(SDL2_DIR) -I$(INC_DIR) -g 
+CFLAGS = -Wall -Wextra -O3 -I$(SDL2_DIR) -I$(INC_DIR) -I$(THIRDPARTY_DIR) -g 
 
 # Flags for final executable
 EXPORTFLAGS = -DGAME_EXPORT $(CFLAGS) -no-pie
@@ -101,7 +103,7 @@ $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
 $(IMG_PARSER) : ./$(IMG_PARSER_C)
 	@$(call MESSAGE,$(INFO_COL),Compiling image parser...)
 	@mkdir -p $(EXP_DIR) $(DAT_DIR)
-	@$(CC) ./$(IMG_PARSER_C) -o $(IMG_PARSER) -lm
+	@$(CC) ./$(IMG_PARSER_C) -o $(IMG_PARSER) -I$(THIRDPARTY_DIR) -lm
 	@$(call MESSAGE,$(SUCCESS_COL),Image parser compiled!)
 
 # Export for Linux

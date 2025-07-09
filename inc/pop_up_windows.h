@@ -11,9 +11,8 @@
 #define NK_INCLUDE_VERTEX_BUFFER_OUTPUT
 #define NK_INCLUDE_FONT_BAKING
 #define NK_INCLUDE_DEFAULT_FONT
-#include "nuklear/nuklear.h"
-
-#include "nuklear/nuklear_sdl_gl2.h"
+#include "Nuklear/nuklear.h"
+#include "Nuklear/demo/sdl_opengl2/nuklear_sdl_gl2.h"
 
 #define FPS_IN_CHART 33 /** How many last FPS to show in the performance graph, think of it as a FPS history count */
 

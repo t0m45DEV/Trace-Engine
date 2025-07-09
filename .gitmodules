@@ -1,0 +1,6 @@
+[submodule "thirdparty/Nuklear"]
+	path = thirdparty/Nuklear
+	url = https://github.com/Immediate-Mode-UI/Nuklear
+[submodule "thirdparty/stb"]
+	path = thirdparty/stb
+	url = https://github.com/nothings/stb
