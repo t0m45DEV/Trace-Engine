@@ -25,6 +25,9 @@ typedef struct {
 } entity_t;
 
 #ifndef GAME_EXPORT
+    /**
+     * @note Remember to free the memory allocated for the string!
+     */
     #define entity_to_string(X) entity_to_string_with_name(X, #X)
 
     /**

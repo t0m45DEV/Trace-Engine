@@ -47,7 +47,21 @@ You can move forward and backward with `W` and `S`, respectively. To rotate left
 
 ## Installation
 
-Clone the repo, enter the main folder and run:
+Clone the repo like this:
+
+```bash
+git clone --recursive https://github.com/t0m45DEV/3D-Game-Engine-in-C
+```
+
+If you already cloned it without the `--recursive` flag, you could run this instead:
+
+```bash
+git submodule update --init --recursive
+```
+
+This is to make sure that every third-party library is included correctly into the project.
+
+Once cloned, enter the main folder and run:
 
 ```bash
 make
@@ -65,4 +79,4 @@ The texture parser assumes a vertical strip format, where each texture is square
 
 ## Contributing
 
-Contributing are welcome! Open an issue or submit a PR to improve functionality, add features, or fix bugs.
+Contributing is welcome! Open an issue or submit a PR to improve functionality, add features, or fix bugs.

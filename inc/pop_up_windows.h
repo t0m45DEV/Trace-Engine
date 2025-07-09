@@ -1,8 +1,8 @@
 #ifndef _H_POP_UP_WIN
 #define _H_POP_UP_WIN
 
-#include <SDL.h>
-#include <SDL_opengl.h>
+#include "SDL2/include/SDL.h"
+#include "SDL2/include/SDL_opengl.h"
 
 #define NK_INCLUDE_FIXED_TYPES
 #define NK_INCLUDE_STANDARD_IO
@@ -11,9 +11,8 @@
 #define NK_INCLUDE_VERTEX_BUFFER_OUTPUT
 #define NK_INCLUDE_FONT_BAKING
 #define NK_INCLUDE_DEFAULT_FONT
-#include "nuklear/nuklear.h"
-
-#include "nuklear/nuklear_sdl_gl2.h"
+#include "Nuklear/nuklear.h"
+#include "Nuklear/demo/sdl_opengl2/nuklear_sdl_gl2.h"
 
 #define FPS_IN_CHART 33 /** How many last FPS to show in the performance graph, think of it as a FPS history count */
 

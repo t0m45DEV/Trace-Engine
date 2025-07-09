@@ -28,6 +28,9 @@ typedef struct {
 } position_2D_t;
 
 #ifndef GAME_EXPORT
+    /**
+     * @note Remember to free the memory allocated for the string!
+     */
     #define position_2D_to_string(X) position_2D_to_string_with_name(X, #X)
 
     /**

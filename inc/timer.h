@@ -1,7 +1,7 @@
 #ifndef _H_TIMER
 #define _H_TIMER
 
-#include <SDL.h>
+#include "SDL2/include/SDL.h"
 #include <stdbool.h>
 
 /**
@@ -12,6 +12,24 @@ typedef struct {
     float duration;     /** The timer duration in miliseconds */
     float initial_time; /** The timer activation time, in miliseconds */
 } engine_timer_t;
+
+#ifndef GAME_EXPORT
+    /**
+     * @note Remember to free the memory allocated for the string!
+     */
+    #define timer_to_string(X) timer_to_string_with_name(X, #X)
+
+    /**
+     * Only for debug, it returns the timer in the form of a string
+     * 
+     * @param timer engine_timer_t, the timer to print
+     * 
+     * @note Caller MUST free the memory allocated for the string
+     */
+    char* timer_to_string_with_name(const engine_timer_t timer, const char* timer_name);
+#else
+    #define debug_position(X) // Does nothing
+#endif
 
 /**
  * Returns the ticks elapsed in seconds

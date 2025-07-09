@@ -1,8 +1,6 @@
 #ifndef _H_LOG
 #define _H_LOG
 
-#define GET_VARIABLE_NAME(X) #X
-
 #ifndef GAME_EXPORT
     #define log_debug(...)   (log_message(_LOG_LEVEL_DEBUG, __FILE__, __LINE__, __VA_ARGS__))
     #define log_info(...)    (log_message(_LOG_LEVEL_INFO, __FILE__, __LINE__, __VA_ARGS__))
