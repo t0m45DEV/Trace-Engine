@@ -1,6 +1,8 @@
 #include "pop_up_windows.h"
 #include "nuklear_styles.h"
 
+#include <stdio.h>
+
 #include "log.h"
 #include "timer.h"
 #include "game_state.h"
