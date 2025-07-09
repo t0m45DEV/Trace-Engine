@@ -1,63 +1,19 @@
-#include <CUnit/CUnit.h>
-#include <CUnit/Automated.h>
 #include <stdlib.h>
 
 #include "trigonometry_tests.c"
 
-void print_failed_tests(const CU_pFailureRecord failed_tests)
-{
-    CU_pFailureRecord actual = failed_tests;
-    int count = 1;
-
-    while (actual != NULL)
-    {
-        printf(" == Fail #%i ==\n", count);
-        printf("  SUITE:      %s\n", actual->pSuite->pName);
-        printf("  TEST:       %s\n", actual->pTest->pName);
-        printf("  CONDITION:  %s\n", actual->strCondition);
-        printf("\n");
-
-        actual = actual->pNext;
-        count++;
-    }
-}
-
-void print_tests_result(void)
-{
-    CU_pRunSummary summary = CU_get_run_summary();
-
-    printf("\n");
-    printf(" |--------------------------|  |--------------|\n");
-    printf(" | TOTAL | SUCCEED | FAILED |  | ELAPSED TIME |\n");
-    printf(" |-------|---------|--------|  |--------------|\n");
-    printf(" | %5i | %7i | %6i |  | %12f |\n",
-        summary->nAsserts,
-        summary->nAsserts - summary->nAssertsFailed,
-        summary->nAssertsFailed,
-        summary->ElapsedTime
-    );
-    printf(" |--------------------------|  |--------------|\n");
-    printf("\n");
-
-    print_failed_tests(CU_get_failure_list());
-}
+#include <time.h>
 
 int main(void)
 {
-    CU_initialize_registry();
-    CU_set_output_filename(NULL);
+    clock_t start, end;
 
+    start = clock();
     init_trigonometry_suites();
-    CU_automated_run_tests();
+    end = clock();
 
-    int fail_count = CU_get_number_of_failures();
+    double time = ((double) (end - start)) / CLOCKS_PER_SEC;
 
-    print_tests_result();
-    CU_cleanup_registry();
-
-    if (fail_count > 0)
-    {
-        exit(EXIT_FAILURE);
-    }
+    TESTS_PASSED(time);
     exit(EXIT_SUCCESS);
 }

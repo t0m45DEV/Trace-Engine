@@ -62,7 +62,7 @@ TST_FILES := ./$(TST_DIR)/$(TST_C)\
 				./$(OBJ_DIR)/log.o
 
 TST_FLAGS := $(CFLAGS)
-TST_LIBS := $(LIBS) -lcunit
+TST_LIBS := $(LIBS)
 
 TST_BIN := ./$(TST_DIR)/test
 
@@ -161,7 +161,7 @@ test: $(ENGINE)
 	@$(call MESSAGE,$(GREEN),Test compiled!)
 	@$(call MESSAGE,$(CYAN),Running tests...)
 	@./$(TST_BIN)
-	@rm -f ./CUnitAutomated-Results.xml $(TST_BIN)
+	@rm $(TST_BIN)
 	@$(call MESSAGE,$(GREEN),Tests finished running!)
 
 parser: ./$(IMG_PARSER)
