@@ -1,6 +1,6 @@
 # 3D Game Engine using C
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](#license)
 [![Language](https://img.shields.io/badge/Made%20with-C-blue)](#dependencies)
 [![Graphics](https://img.shields.io/badge/Graphics-OpenGL-green)](https://www.opengl.org/)
 [![Framework](https://img.shields.io/badge/Framework-SDL2-orange)](https://www.libsdl.org/)
