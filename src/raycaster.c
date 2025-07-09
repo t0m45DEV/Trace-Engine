@@ -1,7 +1,8 @@
 #include "raycaster.h"
 
-#include <SDL.h>
+#include "SDL2/include/SDL.h"
 
+#include <math.h>
 #include <pthread.h>
 
 #include "log.h"
