@@ -180,4 +180,4 @@ $(SDL2_STATIC):
 	@mkdir -p $(SDL2_BUILD_DIR)
 	@cd $(SDL2_BUILD_DIR) && ../../$(THIRDPARTY_DIR)/SDL2/configure --disable-shared --enable-static prefix=$(abspath $(SDL2_BUILD_DIR)) > /dev/null
 	@$(MAKE) -C $(SDL2_BUILD_DIR) > /dev/null 2>&1
-	@$(call MESSAGE,$(INFO_COL),SDL2 built succesfully!)
+	@$(call MESSAGE,$(SUCCESS_COL),SDL2 built succesfully!)
