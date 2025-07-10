@@ -45,8 +45,12 @@ SDL2_DIR := $(THIRDPARTY_DIR)/SDL2/include
 SDL2_BUILD_DIR := .build/sdl2
 SDL2_STATIC := $(SDL2_BUILD_DIR)/build/.libs/libSDL2.a
 
+# Nuklear files
+NK_INC_DIR := $(THIRDPARTY_DIR)/Nuklear
+NK_SDL2_INC_DIR := $(NK_INC_DIR)/demo/sdl_opengl2
+
 # Linker flags
-CFLAGS = -Wall -Wextra -O3 -I$(INC_DIR) -I$(THIRDPARTY_DIR) -I$(SDL2_DIR) -g 
+CFLAGS = -Wall -Wextra -O3 -I$(INC_DIR) -I$(THIRDPARTY_DIR) -I$(SDL2_DIR) -I$(NK_INC_DIR) -I$(NK_SDL2_INC_DIR) -g 
 
 # Flags for final executable
 EXPORTFLAGS = -DGAME_EXPORT $(CFLAGS) -no-pie
