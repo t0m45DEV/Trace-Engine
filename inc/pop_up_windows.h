@@ -1,8 +1,8 @@
 #ifndef _H_POP_UP_WIN
 #define _H_POP_UP_WIN
 
-#include "SDL2/include/SDL.h"
-#include "SDL2/include/SDL_opengl.h"
+#include "SDL.h"
+#include "SDL_opengl.h"
 
 #define NK_INCLUDE_FIXED_TYPES
 #define NK_INCLUDE_STANDARD_IO

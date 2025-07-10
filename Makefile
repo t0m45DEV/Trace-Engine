@@ -39,14 +39,17 @@ RUN_IMG_PARSER := ./$(IMG_PARSER) $(TEXTURES_STRUCT_DIR) $(TEXTURES_STRUCT_FILE)
 # C compiler
 CC = gcc
 
+# SDL2 location
+SDL2_DIR := $(THIRDPARTY_DIR)/SDL2/include
+
 # Linker flags
-CFLAGS = -Wall -Wextra -O3 -I$(INC_DIR) -I$(THIRDPARTY_DIR) -g 
+CFLAGS = -Wall -Wextra -O3 -I$(INC_DIR) -I$(THIRDPARTY_DIR) -I$(SDL2_DIR) -g 
 
 # Flags for final executable
 EXPORTFLAGS = -DGAME_EXPORT $(CFLAGS) -no-pie
 
 # C libraries
-LIBS = -lSDL2 -lGL -lm
+LIBS = $(THIRDPARTY_DIR)/SDL2/build/.libs/libSDL2.a -lGL -lm
 
 # Memory leaks check flags
 VALGRIND_FLAGS = --leak-check=full --show-leak-kinds=all
@@ -81,7 +84,7 @@ MESSAGE = tput setaf $1;echo '>> $2';tput setaf $(DEFAULT_COL);
 
 
 # Create debug engine executable
-$(ENGINE) : parser $(OBJ_FILES)
+$(ENGINE) : parser setup_sdl2 $(OBJ_FILES)
 	@$(call MESSAGE,$(INFO_COL),Creating executable for $(ENGINE_NAME)...)
 	@mkdir -p $(EXP_DIR)
 	@$(CC) $(CFLAGS) $(OBJ_FILES) -o $(ENGINE) $(LIBS)
@@ -92,7 +95,7 @@ $(ENGINE) : parser $(OBJ_FILES)
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
 	@$(call MESSAGE,$(INFO_COL),Creating $@...)
 	@mkdir -p $(dir $@)
-	@$(CC) -c -MD $(CFLAGS) $< -o $@ $(LIBS)
+	@$(CC) -c -MD $(CFLAGS) $< -o $@
 	@$(call MESSAGE,$(SUCCESS_COL),$@ succesfully created)
 
 -include ./$(OBJ_DIR)/*.d
@@ -115,7 +118,7 @@ $(GAME) : $(ENGINE) $(OBJ_EXP_FILES)
 $(OBJ_EXP_DIR)/%.o : $(SRC_DIR)/%.c
 	@$(call MESSAGE,$(INFO_COL),Creating $@ for export...)
 	@mkdir -p $(dir $@)
-	@$(CC) -c -MD $(EXPORTFLAGS) $< -o $@ $(LIBS)
+	@$(CC) -c -MD $(EXPORTFLAGS) $< -o $@
 	@$(call MESSAGE,$(SUCCESS_COL),$@ succesfully created)
 
 -include ./$(OBJ_EXP_DIR)/*.d
@@ -166,3 +169,8 @@ parser: ./$(IMG_PARSER)
 	@$(RUN_IMG_PARSER)
 	@rm ./$(IMG_PARSER)
 	@$(call MESSAGE,$(SUCCESS_COL),All images parsed!)
+
+setup_sdl2:
+	@$(call MESSAGE,$(INFO_COL),Building SDL2 from source... (this may take a while))
+	@cd $(THIRDPARTY_DIR)/SDL2 && ./configure --disable-shared --enable-static > /dev/null && make > /dev/null
+	@$(call MESSAGE,$(INFO_COL),SDL2 built succesfully!)

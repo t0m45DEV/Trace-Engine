@@ -1,7 +1,7 @@
 #ifndef _H_INPUT
 #define _H_INPUT
 
-#include "SDL2/include/SDL_events.h"
+#include "SDL_events.h"
 
 /**
  * State of the keys being pressed, used to press distinct keys simultaneously

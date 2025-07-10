@@ -7,7 +7,7 @@
 #define WINDOW_WIDTH  (VIEWPORT_WIDTH + (VIEWPORT_X_OFFSET * 2))
 
 #define SDL_MAIN_HANDLED
-#include "SDL2/include/SDL.h"
+#include "SDL.h"
 #include <GL/gl.h>
 
 #include "pop_up_windows.h"

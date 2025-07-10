@@ -1,7 +1,7 @@
 #ifndef _H_WIN_DISP
 #define _H_WIN_DISP
 
-#include "SDL2/include/SDL.h"
+#include "SDL.h"
 
 #include "textures.h"
 #include "trigonometry.h"
