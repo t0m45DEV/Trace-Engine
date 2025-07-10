@@ -39,11 +39,8 @@ RUN_IMG_PARSER := ./$(IMG_PARSER) $(TEXTURES_STRUCT_DIR) $(TEXTURES_STRUCT_FILE)
 # C compiler
 CC = gcc
 
-# SDL2 location
-SDL2_DIR := /usr/include/SDL2
-
 # Linker flags
-CFLAGS = -Wall -Wextra -O3 -I$(SDL2_DIR) -I$(INC_DIR) -I$(THIRDPARTY_DIR) -g 
+CFLAGS = -Wall -Wextra -O3 -I$(INC_DIR) -I$(THIRDPARTY_DIR) -g 
 
 # Flags for final executable
 EXPORTFLAGS = -DGAME_EXPORT $(CFLAGS) -no-pie

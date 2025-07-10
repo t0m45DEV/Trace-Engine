@@ -1,7 +1,7 @@
 #ifndef _H_LOOP
 #define _H_LOOP
 
-#include "SDL_video.h"
+#include "SDL2/include/SDL_video.h"
 #include <GL/gl.h>
 
 /**
