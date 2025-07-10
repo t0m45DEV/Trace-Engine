@@ -42,6 +42,9 @@ CC = gcc
 # SDL2 location
 SDL2_DIR := $(THIRDPARTY_DIR)/SDL2/include
 
+SDL2_BUILD_DIR := .build/sdl2
+SDL2_STATIC := $(SDL2_BUILD_DIR)/build/.libs/libSDL2.a
+
 # Linker flags
 CFLAGS = -Wall -Wextra -O3 -I$(INC_DIR) -I$(THIRDPARTY_DIR) -I$(SDL2_DIR) -g 
 
@@ -49,7 +52,7 @@ CFLAGS = -Wall -Wextra -O3 -I$(INC_DIR) -I$(THIRDPARTY_DIR) -I$(SDL2_DIR) -g
 EXPORTFLAGS = -DGAME_EXPORT $(CFLAGS) -no-pie
 
 # C libraries
-LIBS = $(THIRDPARTY_DIR)/SDL2/build/.libs/libSDL2.a -lGL -lm
+LIBS = $(SDL2_STATIC) -lGL -lm
 
 # Memory leaks check flags
 VALGRIND_FLAGS = --leak-check=full --show-leak-kinds=all
@@ -170,10 +173,11 @@ parser: ./$(IMG_PARSER)
 	@rm ./$(IMG_PARSER)
 	@$(call MESSAGE,$(SUCCESS_COL),All images parsed!)
 
-setup_sdl2: $(THIRDPARTY_DIR)/SDL2/.built
+setup_sdl2: $(SDL2_STATIC)
 
-$(THIRDPARTY_DIR)/SDL2/.built:
+$(SDL2_STATIC):
 	@$(call MESSAGE,$(INFO_COL),Building SDL2 from source... (this may take a while))
-	@cd $(THIRDPARTY_DIR)/SDL2 && ./configure --disable-shared --enable-static > /dev/null && make > /dev/null
-	@touch $(THIRDPARTY_DIR)/SDL2/.built
+	@mkdir -p $(SDL2_BUILD_DIR)
+	@cd $(SDL2_BUILD_DIR) && ../../$(THIRDPARTY_DIR)/SDL2/configure --disable-shared --enable-static prefix=$(abspath $(SDL2_BUILD_DIR)) > /dev/null
+	@$(MAKE) -C $(SDL2_BUILD_DIR) > /dev/null 2>&1
 	@$(call MESSAGE,$(INFO_COL),SDL2 built succesfully!)
