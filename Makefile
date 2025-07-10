@@ -39,6 +39,16 @@ RUN_IMG_PARSER := ./$(IMG_PARSER) $(TEXTURES_STRUCT_DIR) $(TEXTURES_STRUCT_FILE)
 # C compiler
 CC = gcc
 
+# Glad location
+GLAD_INC := $(THIRDPARTY_DIR)/glad/include
+GLAD_SRC := $(THIRDPARTY_DIR)/glad/src/glad.c
+
+GLAD_OBJ := $(OBJ_DIR)/glad.o
+GLAD_EXP_OBJ := $(OBJ_EXP_DIR)/glad.o
+
+OBJ_FILES += $(GLAD_OBJ)
+OBJ_EXP_FILES += $(GLAD_EXP_OBJ)
+
 # SDL2 location
 SDL2_DIR := $(THIRDPARTY_DIR)/SDL2/include
 
@@ -50,7 +60,8 @@ NK_INC_DIR := $(THIRDPARTY_DIR)/Nuklear
 NK_SDL2_INC_DIR := $(NK_INC_DIR)/demo/sdl_opengl2
 
 # Linker flags
-CFLAGS = -Wall -Wextra -O3 -I$(INC_DIR) -I$(THIRDPARTY_DIR) -I$(SDL2_DIR) -I$(NK_INC_DIR) -I$(NK_SDL2_INC_DIR) -g 
+CFLAGS = -Wall -Wextra -O3 -g \
+	-I$(INC_DIR) -I$(THIRDPARTY_DIR) -I$(GLAD_INC) -I$(SDL2_DIR) -I$(NK_INC_DIR) -I$(NK_SDL2_INC_DIR) 
 
 # Flags for final executable
 EXPORTFLAGS = -DGAME_EXPORT $(CFLAGS) -no-pie
@@ -129,6 +140,15 @@ $(OBJ_EXP_DIR)/%.o : $(SRC_DIR)/%.c
 	@$(call MESSAGE,$(SUCCESS_COL),$@ succesfully created)
 
 -include ./$(OBJ_EXP_DIR)/*.d
+
+$(GLAD_OBJ) $(GLAD_EXP_OBJ) : $(GLAD_SRC)
+	@$(call MESSAGE,$(INFO_COL),Compiling Glad...)
+	@mkdir -p $(dir $@)
+	@$(CC) -c -MD $(CFLAGS) $< -o $@
+	@$(call MESSAGE,$(SUCCESS_COL),Glad compiled successfully!)
+
+-include $(OBJ_DIR)/*.d $(OBJ_EXP_DIR)/*.d
+
 
 # So Makefile won't cry if a file has this names
 .PHONY: all clean play debug mem_check export test parser

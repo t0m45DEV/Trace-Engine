@@ -2,7 +2,7 @@
 #define _H_LOOP
 
 #include "SDL_video.h"
-#include <GL/gl.h>
+#include "glad/glad.h"
 
 /**
  * Main loop of the game, here we make magic!
