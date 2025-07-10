@@ -170,7 +170,10 @@ parser: ./$(IMG_PARSER)
 	@rm ./$(IMG_PARSER)
 	@$(call MESSAGE,$(SUCCESS_COL),All images parsed!)
 
-setup_sdl2:
+setup_sdl2: $(THIRDPARTY_DIR)/SDL2/.built
+
+$(THIRDPARTY_DIR)/SDL2/.built:
 	@$(call MESSAGE,$(INFO_COL),Building SDL2 from source... (this may take a while))
 	@cd $(THIRDPARTY_DIR)/SDL2 && ./configure --disable-shared --enable-static > /dev/null && make > /dev/null
+	@touch $(THIRDPARTY_DIR)/SDL2/.built
 	@$(call MESSAGE,$(INFO_COL),SDL2 built succesfully!)
