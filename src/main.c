@@ -7,8 +7,8 @@
 #define WINDOW_WIDTH  (VIEWPORT_WIDTH + (VIEWPORT_X_OFFSET * 2))
 
 #define SDL_MAIN_HANDLED
-#include "SDL2/include/SDL.h"
-#include <GL/gl.h>
+#include "SDL.h"
+#include "glad/glad.h"
 
 #include "pop_up_windows.h"
 
@@ -53,6 +53,25 @@ bool init_GL(void)
     return true;
 }
 
+void init_glad(SDL_Window* window)
+{
+    SDL_GLContext gl_context = SDL_GL_CreateContext(window);
+
+    if (!gl_context)
+    {
+        log_error("Failed to create OpenGL context: %s", SDL_GetError());
+        exit(EXIT_FAILURE);
+    }
+
+    // Load GLAD
+    if (!gladLoadGLLoader((GLADloadproc) SDL_GL_GetProcAddress)) {
+        log_error("Failed to initialize GLAD");
+        exit(EXIT_FAILURE);
+    }
+    log_info("GLAD initialized successfully");
+    log_info("OpenGL version: %s", glGetString(GL_VERSION));
+}
+
 int main(void)
 {
     load_textures();
@@ -71,6 +90,8 @@ int main(void)
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
     
     SDL_Window* window = create_window(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT);
+
+    init_glad(window);
 
     if (!init_GL())
     {

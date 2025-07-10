@@ -7,7 +7,7 @@
 #include "fps_counter.h"
 #include "input.h"
 
-#include "SDL2/include/SDL_video.h"
+#include "SDL_video.h"
 
 void main_loop(SDL_Window* window)
 {

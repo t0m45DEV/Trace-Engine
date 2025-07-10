@@ -1,6 +1,6 @@
 #include "raycaster.h"
 
-#include "SDL2/include/SDL.h"
+#include "SDL.h"
 
 #include <math.h>
 #include <pthread.h>

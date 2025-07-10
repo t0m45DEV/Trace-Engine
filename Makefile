@@ -39,17 +39,35 @@ RUN_IMG_PARSER := ./$(IMG_PARSER) $(TEXTURES_STRUCT_DIR) $(TEXTURES_STRUCT_FILE)
 # C compiler
 CC = gcc
 
+# Glad location
+GLAD_INC := $(THIRDPARTY_DIR)/glad/include
+GLAD_SRC := $(THIRDPARTY_DIR)/glad/src/glad.c
+
+GLAD_OBJ := $(OBJ_DIR)/glad.o
+GLAD_EXP_OBJ := $(OBJ_EXP_DIR)/glad.o
+
+OBJ_FILES += $(GLAD_OBJ)
+OBJ_EXP_FILES += $(GLAD_EXP_OBJ)
+
 # SDL2 location
-SDL2_DIR := /usr/include/SDL2
+SDL2_DIR := $(THIRDPARTY_DIR)/SDL2/include
+
+SDL2_BUILD_DIR := .build/sdl2
+SDL2_STATIC := $(SDL2_BUILD_DIR)/build/.libs/libSDL2.a
+
+# Nuklear files
+NK_INC_DIR := $(THIRDPARTY_DIR)/Nuklear
+NK_SDL2_INC_DIR := $(NK_INC_DIR)/demo/sdl_opengl2
 
 # Linker flags
-CFLAGS = -Wall -Wextra -O3 -I$(SDL2_DIR) -I$(INC_DIR) -I$(THIRDPARTY_DIR) -g 
+CFLAGS = -Wall -Wextra -O3 -g \
+	-I$(INC_DIR) -I$(THIRDPARTY_DIR) -I$(GLAD_INC) -I$(SDL2_DIR) -I$(NK_INC_DIR) -I$(NK_SDL2_INC_DIR) 
 
 # Flags for final executable
 EXPORTFLAGS = -DGAME_EXPORT $(CFLAGS) -no-pie
 
 # C libraries
-LIBS = -lSDL2 -lGL -lm
+LIBS = $(SDL2_STATIC) -lGL -lm
 
 # Memory leaks check flags
 VALGRIND_FLAGS = --leak-check=full --show-leak-kinds=all
@@ -84,7 +102,7 @@ MESSAGE = tput setaf $1;echo '>> $2';tput setaf $(DEFAULT_COL);
 
 
 # Create debug engine executable
-$(ENGINE) : parser $(OBJ_FILES)
+$(ENGINE) : parser setup_sdl2 $(OBJ_FILES)
 	@$(call MESSAGE,$(INFO_COL),Creating executable for $(ENGINE_NAME)...)
 	@mkdir -p $(EXP_DIR)
 	@$(CC) $(CFLAGS) $(OBJ_FILES) -o $(ENGINE) $(LIBS)
@@ -95,7 +113,7 @@ $(ENGINE) : parser $(OBJ_FILES)
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
 	@$(call MESSAGE,$(INFO_COL),Creating $@...)
 	@mkdir -p $(dir $@)
-	@$(CC) -c -MD $(CFLAGS) $< -o $@ $(LIBS)
+	@$(CC) -c -MD $(CFLAGS) $< -o $@
 	@$(call MESSAGE,$(SUCCESS_COL),$@ succesfully created)
 
 -include ./$(OBJ_DIR)/*.d
@@ -118,10 +136,19 @@ $(GAME) : $(ENGINE) $(OBJ_EXP_FILES)
 $(OBJ_EXP_DIR)/%.o : $(SRC_DIR)/%.c
 	@$(call MESSAGE,$(INFO_COL),Creating $@ for export...)
 	@mkdir -p $(dir $@)
-	@$(CC) -c -MD $(EXPORTFLAGS) $< -o $@ $(LIBS)
+	@$(CC) -c -MD $(EXPORTFLAGS) $< -o $@
 	@$(call MESSAGE,$(SUCCESS_COL),$@ succesfully created)
 
 -include ./$(OBJ_EXP_DIR)/*.d
+
+$(GLAD_OBJ) $(GLAD_EXP_OBJ) : $(GLAD_SRC)
+	@$(call MESSAGE,$(INFO_COL),Compiling Glad...)
+	@mkdir -p $(dir $@)
+	@$(CC) -c -MD $(CFLAGS) $< -o $@
+	@$(call MESSAGE,$(SUCCESS_COL),Glad compiled successfully!)
+
+-include $(OBJ_DIR)/*.d $(OBJ_EXP_DIR)/*.d
+
 
 # So Makefile won't cry if a file has this names
 .PHONY: all clean play debug mem_check export test parser
@@ -169,3 +196,12 @@ parser: ./$(IMG_PARSER)
 	@$(RUN_IMG_PARSER)
 	@rm ./$(IMG_PARSER)
 	@$(call MESSAGE,$(SUCCESS_COL),All images parsed!)
+
+setup_sdl2: $(SDL2_STATIC)
+
+$(SDL2_STATIC):
+	@$(call MESSAGE,$(INFO_COL),Building SDL2 from source... (this may take a while))
+	@mkdir -p $(SDL2_BUILD_DIR)
+	@cd $(SDL2_BUILD_DIR) && ../../$(THIRDPARTY_DIR)/SDL2/configure --disable-shared --enable-static prefix=$(abspath $(SDL2_BUILD_DIR)) > /dev/null
+	@$(MAKE) -C $(SDL2_BUILD_DIR) > /dev/null 2>&1
+	@$(call MESSAGE,$(SUCCESS_COL),SDL2 built succesfully!)

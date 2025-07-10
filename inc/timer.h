@@ -1,7 +1,7 @@
 #ifndef _H_TIMER
 #define _H_TIMER
 
-#include "SDL2/include/SDL.h"
+#include "SDL.h"
 #include <stdbool.h>
 
 /**

@@ -7,7 +7,7 @@
 #include "raycaster.h"
 #include "player.h"
 #include "map.h"
-#include <GL/gl.h>
+#include "glad/glad.h"
 
 /** V-sync modes */
 
