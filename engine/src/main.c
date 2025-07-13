@@ -10,6 +10,8 @@
 #include "SDL.h"
 #include "glad/glad.h"
 
+#include "Tom_Engine.h"
+
 #include "pop_up_windows.h"
 
 #include "log.h"
@@ -74,6 +76,7 @@ void init_glad(SDL_Window* window)
 
 int main(void)
 {
+    log_info("Welcome to Tom's 3D Engine.");
     load_textures();
 
     init_game_state();
@@ -108,15 +111,20 @@ int main(void)
     init_delta_time_counter();
     init_fps_counter();
 
+    init_game();
+
     while (is_game_running())
     {
         main_loop(window);
+        update_game(get_delta_time());
     }
     quit_raycaster();
     nk_sdl_shutdown();
     SDL_DestroyWindow(window);
     log_info("SDL window destroyed!");
     log_info("Good bye :)");
+
+    close_game();
 
     exit(EXIT_SUCCESS);
 }
