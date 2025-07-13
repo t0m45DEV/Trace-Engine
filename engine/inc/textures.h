@@ -1,16 +1,8 @@
 #ifndef _H_ALL_TEXTURES
 #define _H_ALL_TEXTURES
 
+#include "graphics.h"
 #include "map.h"
-
-/**
- * A color struct, having 3 variables: r, g and b; each one an int from 0 to 255
- */
-typedef struct {
-    unsigned char r; /** Red component from RGB */
-    unsigned char g; /** Green component from RGB */
-    unsigned char b; /** Blue component from RGB */
-} rgb_t;
 
 /**
  * Loads the textures into engine structures (for faster performance)

@@ -5,6 +5,7 @@
 #include "raycaster.h"
 #include "player.h"
 #include "pop_up_windows.h"
+#include "map.h"
 
 resolutions_t resolution = LOW_RESOLUTION;
 
