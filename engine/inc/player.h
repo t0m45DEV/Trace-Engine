@@ -2,7 +2,7 @@
 #define _H_PLAYER
 
 #include "trigonometry.h"
-#include "input.h"
+#include "basic_input.h"
 
 /**
  * Returns the current player position

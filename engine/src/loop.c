@@ -5,7 +5,7 @@
 #include "delta_time.h"
 #include "physics.h"
 #include "fps_counter.h"
-#include "input.h"
+#include "basic_input.h"
 
 #include "SDL_video.h"
 

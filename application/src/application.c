@@ -11,7 +11,20 @@ void init_game(void)
 
 void update_game(float delta_time)
 {
-    log_warning("Delta time is currently: %f", delta_time);
+    if (is_key_being_pressed('p'))
+    {
+        log_warning("Delta time is currently: %f", delta_time);
+    }
+
+    if (is_key_just_pressed('o'))
+    {
+        log_warning("O just pressed!");
+    }
+
+    if (is_key_being_pressed('b'))
+    {
+        log_warning("B being pressed");
+    }
 }
 
 void close_game(void)

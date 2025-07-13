@@ -1,4 +1,5 @@
 #include "log.h"
+#include "app_input.h"
 
 /**
  * This is where the first things you want to happen in your game

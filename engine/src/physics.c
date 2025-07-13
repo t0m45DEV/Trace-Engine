@@ -1,6 +1,6 @@
 #include "physics.h"
 
-#include "input.h"
+#include "basic_input.h"
 #include "player.h"
 
 void handle_physics(float delta_time)
