@@ -6,17 +6,17 @@
 
 // A few colors, useful for testing or drawing directly
 
-#define COLOR_BLACK    (rgb_t) {0, 0, 0}
-#define COLOR_BLUE     (rgb_t) {0, 0, 1}
-#define COLOR_GREEN    (rgb_t) {0, 1, 0}
-#define COLOR_CYAN     (rgb_t) {0, 1, 1}
-#define COLOR_RED      (rgb_t) {1, 0, 0}
-#define COLOR_MAGENTA  (rgb_t) {1, 0, 1}
-#define COLOR_YELLOW   (rgb_t) {1, 1, 0}
-#define COLOR_WHITE    (rgb_t) {1, 1, 1}
+#define COLOR_BLACK    (rgb_t) {  0,   0, 0  }
+#define COLOR_BLUE     (rgb_t) {  0,   0, 255}
+#define COLOR_GREEN    (rgb_t) {  0, 255, 0  }
+#define COLOR_CYAN     (rgb_t) {  0, 255, 255}
+#define COLOR_RED      (rgb_t) {255,   0, 0  }
+#define COLOR_MAGENTA  (rgb_t) {255,   0, 255}
+#define COLOR_YELLOW   (rgb_t) {255, 255, 0  }
+#define COLOR_WHITE    (rgb_t) {255, 255, 255}
 
 /** Color of the background (it's always block by the walls, anyway) */
-#define BACKGROUND_COLOR (rgb_t) {0, 0, 0}
+#define BACKGROUND_COLOR COLOR_BLACK
 
 /** Fixed resolution levels */
 

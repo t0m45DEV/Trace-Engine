@@ -4,7 +4,7 @@
 #include "map.h"
 
 /**
- * A color struct, having 3 variables: r, g and b
+ * A color struct, having 3 variables: r, g and b; each one an int from 0 to 255
  */
 typedef struct {
     unsigned char r; /** Red component from RGB */
