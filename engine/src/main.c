@@ -35,7 +35,7 @@ int main(void)
     init_delta_time_counter();
     init_fps_counter();
 
-    init_game();
+    app_init();
 
     while (is_game_running())
     {
@@ -48,15 +48,15 @@ int main(void)
 
         update_window();
 
-        update_game(get_delta_time());
+        app_update(get_delta_time());
 
         swap_window_buffers();
     }
     quit_raycaster();
     destroy_window();
-    log_info("Good bye :)");
 
-    close_game();
+    app_close();
+    log_info("Good bye :)");
 
     exit(EXIT_SUCCESS);
 }

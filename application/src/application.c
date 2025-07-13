@@ -2,14 +2,14 @@
 #include "app_test.h"
 
 
-void init_game(void)
+void app_init(void)
 {
     bar(2, 6);
 
     log_warning("This is the app!");
 }
 
-void update_game(float delta_time)
+void app_update(float delta_time)
 {
     if (is_key_being_pressed('p'))
     {
@@ -27,7 +27,7 @@ void update_game(float delta_time)
     }
 }
 
-void close_game(void)
+void app_close(void)
 {
     log_warning("Good bye from app!");
 }

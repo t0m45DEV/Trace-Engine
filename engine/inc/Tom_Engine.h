@@ -8,7 +8,7 @@
  * everything that happen only once and at the start of the game
  * should be here
  */
-void init_game(void);
+void app_init(void);
 
 /**
  * This function is called every frame, so if you want some structure
@@ -19,10 +19,10 @@ void init_game(void);
  * should multiply that distance by delta_time (the difference in time
  * between the last frame and the current one)
  */
-void update_game(float delta_time);
+void app_update(float delta_time);
 
 /**
  * This is the last called function before closing the window and all
  * that, here you should put free if you called a malloc or save files
  */
-void close_game(void);
+void app_close(void);
