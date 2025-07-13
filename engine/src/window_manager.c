@@ -131,6 +131,10 @@ void update_window(void)
 {
     glClear(GL_COLOR_BUFFER_BIT);
     render_screen();
+}
+
+void swap_window_buffers(void)
+{
     SDL_GL_SwapWindow(engine_window);
 }
 

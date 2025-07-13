@@ -14,10 +14,12 @@
 #include "window_manager.h"
 #include "game_state.h"
 #include "delta_time.h"
-#include "loop.h"
 #include "fps_counter.h"
 #include "map.h"
 #include "textures.h"
+#include "basic_input.h"
+#include "pop_up_windows.h"
+#include "physics.h"
 
 int main(void)
 {
@@ -37,8 +39,18 @@ int main(void)
 
     while (is_game_running())
     {
-        main_loop();
+        update_delta_time_counter();
+        update_fps_counter();
+        update_fps_history();
+
+        handle_input();
+        handle_physics(get_delta_time());
+
+        update_window();
+
         update_game(get_delta_time());
+
+        swap_window_buffers();
     }
     quit_raycaster();
     destroy_window();
