@@ -1,11 +1,20 @@
 # Folders
-OBJ_DIR := obj
-INC_DIR := inc
-SRC_DIR := src
+ENGINE_DIR := engine
+APP_DIR := application
+
+ENG_INC_DIR := $(ENGINE_DIR)/inc
+ENG_SRC_DIR := $(ENGINE_DIR)/src
+ENG_DAT_DIR := $(ENGINE_DIR)/data
+ENG_TST_DIR := $(ENGINE_DIR)/tests
+THIRDPARTY_DIR := $(ENGINE_DIR)/thirdparty
+
+APP_INC_DIR := $(APP_DIR)/inc
+APP_SRC_DIR := $(APP_DIR)/src
+
+SRC_DIRS := $(ENG_SRC_DIR) $(APP_SRC_DIR)
+
 EXP_DIR := bin
-DAT_DIR := data
-TST_DIR := tests
-THIRDPARTY_DIR := thirdparty
+OBJ_DIR := obj
 
 OBJ_EXP_DIR := obj_exp
 
@@ -18,21 +27,24 @@ GAME   := $(EXP_DIR)/$(EXPORT_NAME)
 ENGINE := $(EXP_DIR)/$(ENGINE_NAME)
 
 # To get the C files
-SRC_FILES := $(shell find $(SRC_DIR) -type f -name '*.c')
+ENG_SRC_FILES := $(shell find $(ENG_SRC_DIR) -type f -name '*.c')
+APP_SRC_FILES := $(shell find $(APP_SRC_DIR) -type f -name '*.c')
 
 # To get all the objects files
-OBJ_FILES := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
+OBJ_FILES := $(patsubst $(ENG_SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(ENG_SRC_FILES)) \
+			 $(patsubst $(APP_SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(APP_SRC_FILES))
 
 # To get all the objects files for the final export
-OBJ_EXP_FILES := $(patsubst $(SRC_DIR)/%.c, $(OBJ_EXP_DIR)/%.o, $(SRC_FILES))
+OBJ_EXP_FILES := $(patsubst $(ENG_SRC_DIR)/%.c, $(OBJ_EXP_DIR)/%.o, $(ENG_SRC_FILES)) \
+				 $(patsubst $(APP_SRC_DIR)/%.c, $(OBJ_EXP_DIR)/%.o, $(APP_SRC_FILES))
 
-IMG_PARSER_DIR := imageParser
+IMG_PARSER_DIR := $(ENGINE_DIR)/imageParser
 IMG_PARSER_C   := $(IMG_PARSER_DIR)/imageParser.c
 IMG_PARSER     := $(EXP_DIR)/imageParser.out
 
 TEXTURES_STRUCT_DIR  := ./textures/structures.png
-TEXTURES_STRUCT_FILE := $(DAT_DIR)/structures.ted
-TEXTURES_INFO_FILE   := $(INC_DIR)/textures_info.h
+TEXTURES_STRUCT_FILE := $(ENG_DAT_DIR)/structures.ted
+TEXTURES_INFO_FILE   := $(ENG_INC_DIR)/textures_info.h
 
 RUN_IMG_PARSER := ./$(IMG_PARSER) $(TEXTURES_STRUCT_DIR) $(TEXTURES_STRUCT_FILE) $(TEXTURES_INFO_FILE)
 
@@ -61,7 +73,8 @@ NK_SDL2_INC_DIR := $(NK_INC_DIR)/demo/sdl_opengl2
 
 # Linker flags
 CFLAGS = -Wall -Wextra -O3 -g \
-	-I$(INC_DIR) -I$(THIRDPARTY_DIR) -I$(GLAD_INC) -I$(SDL2_DIR) -I$(NK_INC_DIR) -I$(NK_SDL2_INC_DIR) 
+	-I$(ENG_INC_DIR) -I$(APP_INC_DIR) \
+	-I$(THIRDPARTY_DIR) -I$(GLAD_INC) -I$(SDL2_DIR) -I$(NK_INC_DIR) -I$(NK_SDL2_INC_DIR) 
 
 # Flags for final executable
 EXPORTFLAGS = -DGAME_EXPORT $(CFLAGS) -no-pie
@@ -75,14 +88,14 @@ VALGRIND_FLAGS = --leak-check=full --show-leak-kinds=all
 # The tests files
 TST_C := testing.c
 
-TST_FILES := ./$(TST_DIR)/$(TST_C)\
-				./$(OBJ_DIR)/trigonometry.o\
+TST_FILES := ./$(ENG_TST_DIR)/$(TST_C) \
+				./$(OBJ_DIR)/trigonometry.o \
 				./$(OBJ_DIR)/log.o
 
 TST_FLAGS := $(CFLAGS)
 TST_LIBS := $(LIBS)
 
-TST_BIN := ./$(TST_DIR)/test
+TST_BIN := ./$(ENG_TST_DIR)/test
 
 # To print my shit
 RED     := 1
@@ -110,7 +123,14 @@ $(ENGINE) : parser setup_sdl2 $(OBJ_FILES)
 	@$(call MESSAGE,$(INFO_COL),Have fun!)
 
 # Create the objects files
-$(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o : $(ENG_SRC_DIR)/%.c
+	@$(call MESSAGE,$(INFO_COL),Creating $@...)
+	@mkdir -p $(dir $@)
+	@$(CC) -c -MD $(CFLAGS) $< -o $@
+	@$(call MESSAGE,$(SUCCESS_COL),$@ succesfully created)
+
+# Create the objects files
+$(OBJ_DIR)/%.o : $(APP_SRC_DIR)/%.c
 	@$(call MESSAGE,$(INFO_COL),Creating $@...)
 	@mkdir -p $(dir $@)
 	@$(CC) -c -MD $(CFLAGS) $< -o $@
