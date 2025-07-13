@@ -123,15 +123,11 @@ void draw_map_2D(void)
     {
         for (int x = 0; x < get_current_map_dimensions().x; x++)
         {
-            rgb_t cell_color = (rgb_t) {0};
+            rgb_t cell_color = COLOR_WHITE;
 
             if (get_map_wall_at((position_2D_t) {x, y}) == AIR)
             {
-                cell_color = (rgb_t) {0, 0, 0};
-            }
-            else
-            {
-                cell_color = (rgb_t) {255, 255, 255};
+                cell_color = COLOR_BLACK;
             }
 
             grid_pos.x = x * MAP_CELL_SIZE;

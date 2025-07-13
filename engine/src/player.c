@@ -17,7 +17,7 @@
 
 #define P_INIT_ANGLE 0          /** Initial player vision angle (0 means bro is seeing right) */
 
-#define P_COLOR (rgb_t) {255, 255, 0} /** The player is yellow because reasons */
+#define P_COLOR COLOR_YELLOW /** The player is yellow because reasons */
 
 /** The player info, like the position and actual direction of movement */
 entity_t player = {0};
