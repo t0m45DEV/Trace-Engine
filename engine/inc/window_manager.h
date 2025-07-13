@@ -1,8 +1,6 @@
 #ifndef _H_WIN_DISP
 #define _H_WIN_DISP
 
-#include "SDL.h"
-
 #include "textures.h"
 #include "trigonometry.h"
 
@@ -42,7 +40,17 @@ void set_actual_resolution(resolutions_t new_resolution);
  * @param width The window width in pixels
  * @param height The window height in pixels
  */
-SDL_Window* create_window(const char* title, const int width, const int height);
+void create_window(const char* title, const int width, const int height);
+
+/**
+ * Clears the previous frame and swaps it with the one being drawn
+ */
+void update_window(void);
+
+/**
+ * Calls every deleter function for the graphical stuff
+ */
+void destroy_window(void);
 
 /**
  * Change the color of the screen when called glClear()

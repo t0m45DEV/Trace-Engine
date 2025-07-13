@@ -2,7 +2,7 @@
 #define _H_POP_UP_WIN
 
 #include "SDL.h"
-#include "SDL_opengl.h"
+#include "glad/glad.h"
 
 #define NK_INCLUDE_FIXED_TYPES
 #define NK_INCLUDE_STANDARD_IO

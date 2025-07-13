@@ -1,15 +1,14 @@
 #include "loop.h"
 
 #include "pop_up_windows.h"
-#include "window_display.h"
 #include "delta_time.h"
 #include "physics.h"
 #include "fps_counter.h"
 #include "basic_input.h"
+#include "window_manager.h"
 
-#include "SDL_video.h"
 
-void main_loop(SDL_Window* window)
+void main_loop(void)
 {
     update_delta_time_counter();
     update_fps_counter();
@@ -18,7 +17,5 @@ void main_loop(SDL_Window* window)
     handle_input();
     handle_physics(get_delta_time());
 
-    glClear(GL_COLOR_BUFFER_BIT);
-    render_screen();
-    SDL_GL_SwapWindow(window);
+    update_window();
 }

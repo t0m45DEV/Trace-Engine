@@ -8,7 +8,7 @@
 #include "game_state.h"
 #include "map.h"
 #include "entity.h"
-#include "window_display.h"
+#include "window_manager.h"
 
 #define P_COLLISION_SIZE 20     /** Initial collision size for player (check MAP_CELL_SIZE for size relation) */
 

@@ -1,7 +1,7 @@
 #include "map.h"
 #include "levels_info.h"
 
-#include "window_display.h"
+#include "window_manager.h"
 #include "textures.h"
 #include "game_state.h"
 
