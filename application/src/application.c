@@ -23,7 +23,7 @@ void update_game(float delta_time)
 
     if (is_key_being_pressed('b'))
     {
-        log_warning("B being pressed");
+        draw_point((position_2D_t) {200, 200}, 100, COLOR_MAGENTA);
     }
 }
 
