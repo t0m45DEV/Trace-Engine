@@ -2,6 +2,11 @@
 
 #include <stdio.h>
 
+#include "glad/glad.h"
+
+#define NK_IMPLEMENTATION
+#define NK_SDL_GL2_IMPLEMENTATION
+
 #define NK_INCLUDE_FIXED_TYPES
 #define NK_INCLUDE_STANDARD_IO
 #define NK_INCLUDE_STANDARD_VARARGS
@@ -15,6 +20,10 @@
 #include "log.h"
 #include "timer.h"
 #include "game_state.h"
+
+// ===========================
+// === Nuklear Themes Stuff
+// ===========================
 
 const char* themes_names[THEME_COUNT] = {"Black", "White", "Red", "Blue", "Dark", "Dracula", 
     "Catppucin Latte", "Catppucin Frappe", "Catppucin Macchiato", "Catppucin Mocha"};

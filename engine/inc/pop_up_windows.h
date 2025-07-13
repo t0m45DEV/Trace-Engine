@@ -57,10 +57,9 @@ typedef enum {
     THEME_CATPPUCCIN_MOCHA    
 } nk_theme_t;
 
-extern const char* themes_names[THEME_COUNT];
-
-extern nk_theme_t current_theme;
-
+/**
+ * Sets the given theme to the floating windows, sliders, buttons and stuff
+ */
 void set_style(nk_theme_t theme);
 
 #endif
