@@ -1,22 +1,22 @@
 #ifndef _H_POP_UP_WIN
 #define _H_POP_UP_WIN
 
-#include "SDL.h"
-#include "glad/glad.h"
+#include "SDL_events.h"
 
-#define NK_INCLUDE_FIXED_TYPES
-#define NK_INCLUDE_STANDARD_IO
-#define NK_INCLUDE_STANDARD_VARARGS
-#define NK_INCLUDE_DEFAULT_ALLOCATOR
-#define NK_INCLUDE_VERTEX_BUFFER_OUTPUT
-#define NK_INCLUDE_FONT_BAKING
-#define NK_INCLUDE_DEFAULT_FONT
-#include "nuklear.h"
-#include "nuklear_sdl_gl2.h"
+/**
+ * Nuklear needs to start seeing mouse and keyboard input, call it every frame
+ */
+void start_nk_input_hanlder(void);
 
-#define FPS_IN_CHART 33 /** How many last FPS to show in the performance graph, think of it as a FPS history count */
+/**
+ * Nuklear hanlder for an SDL_Event, call it every frame
+ */
+void run_nk_input_hanlder(SDL_Event* event);
 
-extern struct nk_context* nk_ctx; /** The context for Nuklear, it is necessary to create all the windows */
+/**
+ * Nuklear needs to stop seeing mouse and keyboard input, call it every frame
+ */
+void stop_nk_input_hanlder(void);
 
 /**
  * Update the current FPS history, you can see the chart in the debug window
@@ -26,11 +26,41 @@ void update_fps_history(void);
 /**
  * Initialize everything for the Nuklear windows (like themes)
  */
-void init_nk_windows(struct nk_context* context);
+void init_nk_windows(SDL_Window* current_window);
+
+/**
+ * Close all Nuklear functionality
+ */
+void close_nk(void);
 
 /**
  * It creates the debug console, from which you can access all the data and info of the engine
  */
 void show_debug_console(void);
+
+// ===========================
+// === Nuklear Themes Stuff
+// ===========================
+
+#define THEME_COUNT 10
+
+typedef enum {
+    THEME_BLACK,
+    THEME_WHITE,
+    THEME_RED,
+    THEME_BLUE,
+    THEME_DARK,
+    THEME_DRACULA,
+    THEME_CATPPUCCIN_LATTE,
+    THEME_CATPPUCCIN_FRAPPE,
+    THEME_CATPPUCCIN_MACCHIATO,
+    THEME_CATPPUCCIN_MOCHA    
+} nk_theme_t;
+
+extern const char* themes_names[THEME_COUNT];
+
+extern nk_theme_t current_theme;
+
+void set_style(nk_theme_t theme);
 
 #endif

@@ -27,7 +27,7 @@ void handle_input(void)
 {
     SDL_Event event;
 
-    if (is_debug_console_on()) nk_input_begin(nk_ctx);
+    if (is_debug_console_on()) start_nk_input_hanlder();
 
     while (SDL_PollEvent(&event))
     {
@@ -35,7 +35,7 @@ void handle_input(void)
         {
             stop_game();
         }
-        if (is_debug_console_on()) nk_sdl_handle_event(&event);
+        if (is_debug_console_on()) run_nk_input_hanlder(&event);
 
         // Simple input
         if (event.type == SDL_KEYDOWN && event.key.repeat == 0)
@@ -59,7 +59,7 @@ void handle_input(void)
     action_keys_state.rotate_anti_clockwise = (keyboard_state[ROTATE_ANTI_CLOCKWISE_BUTTON] != 0);
     action_keys_state.rotate_clockwise = (keyboard_state[ROTATE_CLOCKWISE_BUTTON] != 0);
 
-    if (is_debug_console_on()) nk_input_end(nk_ctx);
+    if (is_debug_console_on()) stop_nk_input_hanlder();
 }
 
 SDL_Scancode get_scancode(const SDL_Event event)

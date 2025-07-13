@@ -135,8 +135,7 @@ void create_window(const char* title, const int width, const int height)
 
     set_background_color(BACKGROUND_COLOR);
 
-    nk_ctx = nk_sdl_init(engine_window);
-    init_nk_windows(nk_ctx);
+    init_nk_windows(engine_window);
 }
 
 void update_window(void)
@@ -148,7 +147,6 @@ void update_window(void)
 
 void destroy_window(void)
 {
-    nk_sdl_shutdown();
     SDL_DestroyWindow(engine_window);
     log_info("SDL window destroyed!");
 }
@@ -177,7 +175,6 @@ void render_screen(void)
     if (is_debug_console_on())
     {
         show_debug_console();
-        nk_sdl_render(NK_ANTI_ALIASING_ON);
     }
 }
 
