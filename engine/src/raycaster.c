@@ -5,7 +5,7 @@
 #include <pthread.h>
 
 #include "log.h"
-#include "window_manager.h"
+#include "graphics.h"
 #include "game_state.h"
 #include "trigonometry.h"
 #include "render.h"
