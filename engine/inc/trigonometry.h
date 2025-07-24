@@ -1,6 +1,7 @@
 #ifndef _H_TRIGONOMETRY
 #define _H_TRIGONOMETRY
 
+#include "position.h"
 #include <stdbool.h>
 
 #define PRECISION 0.0001   /** To compare doubles and floats */
@@ -18,14 +19,6 @@
 
 // A float rename, for better reading
 typedef float angle_t;
-
-/**
- * A vector of 2 dimensions, the values x and y are floats
- */
-typedef struct {
-    float x;  /** X component of the (x, y) vector */
-    float y;  /** Y component of the (x, y) vector */
-} position_2D_t;
 
 #ifndef GAME_EXPORT
     /**
