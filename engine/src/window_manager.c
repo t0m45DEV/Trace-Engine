@@ -1,30 +1,29 @@
-#include <stdbool.h>
+#include "window_manager.h"
 
-/** The title to be shown on the top of the window */
-#define WINDOW_TITLE "Tom's 3D Engine"
+#include "log.h"
 
-#define WINDOW_HEIGHT (VIEWPORT_HEIGHT + (VIEWPORT_Y_OFFSET * 2))
-#define WINDOW_WIDTH  (VIEWPORT_WIDTH + (VIEWPORT_X_OFFSET * 2))
+#include "pop_up_windows.h"
+#include "game_state.h"
+#include "raycaster.h"
+#include "player.h"
+#include "map.h"
+#include "graphics.h"
 
 #define SDL_MAIN_HANDLED
 #include "SDL.h"
 #include "glad/glad.h"
 
-#include "pop_up_windows.h"
+SDL_Window* engine_window;
 
-#include "log.h"
-#include "raycaster.h"
-#include "window_display.h"
-#include "game_state.h"
-#include "delta_time.h"
-#include "loop.h"
-#include "fps_counter.h"
-#include "map.h"
-#include "textures.h"
+/** V-sync modes */
+
+#define V_SYNC_OFF    0  /** Immediate update from frame to frame */
+#define V_SYNC_ON     1  /** Updates synchronized with the vertical retrace */
+#define V_SYNC_ADAPT -1  /** Adaptive V-sync */
 
 #define SDL_INIT_ENGINE (SDL_INIT_TIMER | SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_EVENTS)
 
-bool init_GL(void)
+bool init_GL(int window_width, int window_height)
 {
     // Initialize projection matrix
     glMatrixMode(GL_PROJECTION);
@@ -37,7 +36,7 @@ bool init_GL(void)
         return false;
     }
     log_info("OpenGL projection matrix initialized!");
-    glOrtho(0.0, WINDOW_WIDTH, WINDOW_HEIGHT, 0.0, -1.0, 1.0);
+    glOrtho(0.0, window_width, window_height, 0.0, -1.0, 1.0);
 
     // Initialize modelview matrix
     glMatrixMode(GL_MODELVIEW);
@@ -72,13 +71,8 @@ void init_glad(SDL_Window* window)
     log_info("OpenGL version: %s", glGetString(GL_VERSION));
 }
 
-int main(void)
+void init_SLD(void)
 {
-    load_textures();
-
-    init_game_state();
-    load_level(FIRST_LEVEL);
-
     /* Try to initialize SDL */
     if (SDL_Init(SDL_INIT_ENGINE) != 0)
     {
@@ -88,35 +82,64 @@ int main(void)
     log_info("SDL initialized.");
     /* To use OpenGL legacy functions */
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
+}
+
+void create_window(const char* title, const int width, const int height)
+{
+    init_SLD();
+
+    engine_window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
+
+    if (engine_window == NULL)
+    {
+        log_error("Window could not be created! SDL Error: %s\n", SDL_GetError());
+        exit(EXIT_FAILURE);
+    }
+    log_info("SDL window created!");
+
+    SDL_GLContext* context = SDL_GL_CreateContext(engine_window);
+  
+    if (!context)
+    {
+        log_error("Context could not be created! SDL Error: %s\n", SDL_GetError());
+        exit(EXIT_FAILURE);
+    }
+    log_info("SDL context created!");
+  
+    if (SDL_GL_SetSwapInterval(V_SYNC_ON) != 0)
+    {
+        log_error("Unable to set VSync! SDL Error: %s\n", SDL_GetError());
+        exit(EXIT_FAILURE);
+    }
+    log_info("VSync activated!");
     
-    SDL_Window* window = create_window(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT);
+    init_glad(engine_window);
 
-    init_glad(window);
-
-    if (!init_GL())
+    if (!init_GL(width, height))
     {
         log_error("Unable to initialize OpenGL");
         exit(EXIT_FAILURE);
     }
     log_info("OpenGL fully initialized!");
+
     set_background_color(BACKGROUND_COLOR);
 
-    nk_ctx = nk_sdl_init(window);
-    init_nk_windows(nk_ctx);
+    init_nk_windows(engine_window);
+}
 
-    init_raycaster();
-    init_delta_time_counter();
-    init_fps_counter();
+void update_window(void)
+{
+    glClear(GL_COLOR_BUFFER_BIT);
+    render_screen();
+}
 
-    while (is_game_running())
-    {
-        main_loop(window);
-    }
-    quit_raycaster();
-    nk_sdl_shutdown();
-    SDL_DestroyWindow(window);
+void swap_window_buffers(void)
+{
+    SDL_GL_SwapWindow(engine_window);
+}
+
+void destroy_window(void)
+{
+    SDL_DestroyWindow(engine_window);
     log_info("SDL window destroyed!");
-    log_info("Good bye :)");
-
-    exit(EXIT_SUCCESS);
 }

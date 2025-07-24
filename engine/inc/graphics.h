@@ -1,10 +1,30 @@
-#ifndef _H_WIN_DISP
-#define _H_WIN_DISP
+#ifndef _H_GRAPHICS
+#define _H_GRAPHICS
 
-#include "SDL.h"
+#include "position.h"
 
-#include "textures.h"
-#include "trigonometry.h"
+/**
+ * A color struct, having 3 variables: r, g and b; each one an int from 0 to 255
+ */
+typedef struct {
+    unsigned char r; /** Red component from RGB */
+    unsigned char g; /** Green component from RGB */
+    unsigned char b; /** Blue component from RGB */
+} rgb_t;
+
+// A few colors, useful for testing or drawing directly
+
+#define COLOR_BLACK    (rgb_t) {  0,   0, 0  }
+#define COLOR_BLUE     (rgb_t) {  0,   0, 255}
+#define COLOR_GREEN    (rgb_t) {  0, 255, 0  }
+#define COLOR_CYAN     (rgb_t) {  0, 255, 255}
+#define COLOR_RED      (rgb_t) {255,   0, 0  }
+#define COLOR_MAGENTA  (rgb_t) {255,   0, 255}
+#define COLOR_YELLOW   (rgb_t) {255, 255, 0  }
+#define COLOR_WHITE    (rgb_t) {255, 255, 255}
+
+/** Color of the background (it's always block by the walls, anyway) */
+#define BACKGROUND_COLOR COLOR_BLACK
 
 /** Fixed resolution levels */
 
@@ -13,17 +33,6 @@ typedef enum {
     MID_RESOLUTION = 2,
     HIGH_RESOLUTION = 4
 } resolutions_t;
-
-/** Is good for the viewport size to satisfy WIDTH = HEIGHT * 1.5, and also for the numbers to be divisible by powers of 2 */
-
-#define VIEWPORT_WIDTH  960
-#define VIEWPORT_HEIGHT 640
-
-#define VIEWPORT_X_OFFSET 10
-#define VIEWPORT_Y_OFFSET 10
-
-/** Color of the background (it's always block by the walls, anyway) */
-#define BACKGROUND_COLOR (rgb_t) {0, 0, 0}
 
 /**
  * Returns the current selected resolution
@@ -34,15 +43,6 @@ int get_actual_resolution(void);
  * Updates the current resolution to the given new one
  */
 void set_actual_resolution(resolutions_t new_resolution);
-
-/**
- * Creates the window and the context for OpenGL
- * 
- * @param title The title of the window, it'll show up in the upper section of the window
- * @param width The window width in pixels
- * @param height The window height in pixels
- */
-SDL_Window* create_window(const char* title, const int width, const int height);
 
 /**
  * Change the color of the screen when called glClear()

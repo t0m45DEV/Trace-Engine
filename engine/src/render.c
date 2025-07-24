@@ -4,7 +4,8 @@
 
 #include "raycaster.h"
 #include "trigonometry.h"
-#include "window_display.h"
+#include "window_manager.h"
+#include "graphics.h"
 #include "player.h"
 #include "textures.h"
 

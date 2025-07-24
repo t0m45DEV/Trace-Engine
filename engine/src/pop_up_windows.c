@@ -1,14 +1,162 @@
+#include "pop_up_windows.h"
+
+#include <stdio.h>
+
+#include "glad/glad.h"
+
 #define NK_IMPLEMENTATION
 #define NK_SDL_GL2_IMPLEMENTATION
 
-#include "nuklear_styles.h"
+#define NK_INCLUDE_FIXED_TYPES
+#define NK_INCLUDE_STANDARD_IO
+#define NK_INCLUDE_STANDARD_VARARGS
+#define NK_INCLUDE_DEFAULT_ALLOCATOR
+#define NK_INCLUDE_VERTEX_BUFFER_OUTPUT
+#define NK_INCLUDE_FONT_BAKING
+#define NK_INCLUDE_DEFAULT_FONT
+#include "nuklear.h"
+#include "nuklear_sdl_gl2.h"
+
+#include "log.h"
+#include "timer.h"
+#include "game_state.h"
+
+// ===========================
+// === Nuklear Themes Stuff
+// ===========================
 
 const char* themes_names[THEME_COUNT] = {"Black", "White", "Red", "Blue", "Dark", "Dracula", 
     "Catppucin Latte", "Catppucin Frappe", "Catppucin Macchiato", "Catppucin Mocha"};
 
 nk_theme_t current_theme = THEME_RED;
 
-void set_style(struct nk_context *ctx, nk_theme_t theme)
+#define FPS_IN_CHART 33 /** How many last FPS to show in the performance graph, think of it as a FPS history count */
+
+/** The context for Nuklear, it is necessary to create all the windows */
+struct nk_context* nk_ctx = NULL;
+
+engine_timer_t debug_fps_timer;
+int last_fps[FPS_IN_CHART] = {0}; // FPS history
+
+void start_nk_input_hanlder(void)
+{
+    nk_input_begin(nk_ctx);
+}
+
+void run_nk_input_hanlder(SDL_Event* event)
+{
+    nk_sdl_handle_event(event);
+}
+
+void stop_nk_input_hanlder(void)
+{
+    nk_input_end(nk_ctx);
+}
+
+void update_fps_history(void)
+{
+    if (is_timer_up(&debug_fps_timer))
+    {
+        for (int i = 0; i < FPS_IN_CHART - 1; i++)
+        {
+            last_fps[i] = last_fps[i + 1];
+        }
+        last_fps[FPS_IN_CHART - 1] = get_fps();
+        start_timer(&debug_fps_timer);
+    }
+}
+
+void init_nk_windows(SDL_Window* current_window)
+{
+    nk_ctx = nk_sdl_init(current_window);
+
+    debug_fps_timer = create_timer(1);
+    start_timer(&debug_fps_timer);
+    set_style(current_theme);
+
+    // Load the default font for Nuklear
+    struct nk_font_atlas *atlas;
+    nk_sdl_font_stash_begin(&atlas);
+    nk_sdl_font_stash_end();
+
+    log_info("Nuklear context initialized!");
+}
+
+void close_nk(void)
+{
+    nk_sdl_shutdown();
+    log_info("Nuklear closed");
+}
+
+void show_debug_console(void)
+{
+    /* GUI */
+    if (nk_begin(nk_ctx, "Debug Console", nk_rect(50, 50, 190, 260),
+        NK_WINDOW_BORDER|NK_WINDOW_MOVABLE|
+        NK_WINDOW_MINIMIZABLE|NK_WINDOW_TITLE))
+    {
+        if (nk_tree_push(nk_ctx, NK_TREE_TAB, "Window style", NK_MINIMIZED))
+        {
+            nk_layout_row_dynamic(nk_ctx, 0, 2);
+            nk_theme_t new_theme;
+            nk_label(nk_ctx, "Theme:", NK_TEXT_LEFT);
+            new_theme = nk_combo(nk_ctx, themes_names, THEME_COUNT, current_theme, 25, nk_vec2(200, 200));
+            if (new_theme != current_theme) {
+                current_theme = new_theme;
+                set_style(current_theme);
+            }
+            nk_tree_pop(nk_ctx);
+        }
+
+        if (nk_tree_push(nk_ctx, NK_TREE_TAB, "Performance", NK_MINIMIZED))
+        {
+            char fps_text[20];
+            snprintf(fps_text, 20, "Current FPS: %i", get_fps());
+            nk_layout_row_dynamic(nk_ctx, 20, 1);
+            nk_label(nk_ctx, fps_text, NK_TEXT_LEFT);
+
+            int index = -1;
+            int past_fps = 0;
+
+            nk_layout_row_dynamic(nk_ctx, 100, 1);
+            nk_ctx->style.chart.show_markers = nk_true;
+            if (nk_chart_begin(nk_ctx, NK_CHART_LINES, 32, 0, 120)) {
+
+                for (int i = 0; i < FPS_IN_CHART; i++)
+                {
+                    nk_flags res = nk_chart_push(nk_ctx, (float) last_fps[i]);
+                    
+                    if (res & NK_CHART_HOVERING)
+                    {
+                        index = (int)i;
+                        past_fps = last_fps[i];
+                    }
+                }
+                nk_chart_end(nk_ctx);
+            }
+            if (index != -1) nk_tooltipf(nk_ctx, "FPS: %i", past_fps);
+
+            nk_tree_pop(nk_ctx);
+        }
+
+        if (nk_tree_push(nk_ctx, NK_TREE_TAB, "Level design", NK_MINIMIZED))
+        {
+            nk_layout_row_dynamic(nk_ctx, 15, 1);
+
+            nk_checkbox_label(nk_ctx, "Top view", &get_game_state()->is_on_debug_view_mode);
+
+            if (nk_button_label(nk_ctx, "Reset level"))
+            {
+                reload_level();
+            }
+            nk_tree_pop(nk_ctx);
+        }
+    }
+    nk_end(nk_ctx);
+    nk_sdl_render(NK_ANTI_ALIASING_ON);
+}
+
+void set_style(nk_theme_t theme)
 {
     struct nk_color table[NK_COLOR_COUNT];
     if (theme == THEME_WHITE) {
@@ -44,7 +192,7 @@ void set_style(struct nk_context *ctx, nk_theme_t theme)
         table[NK_COLOR_KNOB_CURSOR] = table[NK_COLOR_SLIDER_CURSOR];
         table[NK_COLOR_KNOB_CURSOR_HOVER] = table[NK_COLOR_SLIDER_CURSOR_HOVER];
         table[NK_COLOR_KNOB_CURSOR_ACTIVE] = table[NK_COLOR_SLIDER_CURSOR_ACTIVE];
-        nk_style_from_table(ctx, table);
+        nk_style_from_table(nk_ctx, table);
     } else if (theme == THEME_RED) {
         table[NK_COLOR_TEXT] = nk_rgba(190, 190, 190, 255);
         table[NK_COLOR_WINDOW] = nk_rgba(30, 33, 40, 215);
@@ -78,7 +226,7 @@ void set_style(struct nk_context *ctx, nk_theme_t theme)
         table[NK_COLOR_KNOB_CURSOR] = table[NK_COLOR_SLIDER_CURSOR];
         table[NK_COLOR_KNOB_CURSOR_HOVER] = table[NK_COLOR_SLIDER_CURSOR_HOVER];
         table[NK_COLOR_KNOB_CURSOR_ACTIVE] = table[NK_COLOR_SLIDER_CURSOR_ACTIVE];
-        nk_style_from_table(ctx, table);
+        nk_style_from_table(nk_ctx, table);
     } else if (theme == THEME_BLUE) {
         table[NK_COLOR_TEXT] = nk_rgba(20, 20, 20, 255);
         table[NK_COLOR_WINDOW] = nk_rgba(202, 212, 214, 215);
@@ -112,7 +260,7 @@ void set_style(struct nk_context *ctx, nk_theme_t theme)
         table[NK_COLOR_KNOB_CURSOR] = table[NK_COLOR_SLIDER_CURSOR];
         table[NK_COLOR_KNOB_CURSOR_HOVER] = table[NK_COLOR_SLIDER_CURSOR_HOVER];
         table[NK_COLOR_KNOB_CURSOR_ACTIVE] = table[NK_COLOR_SLIDER_CURSOR_ACTIVE];
-        nk_style_from_table(ctx, table);
+        nk_style_from_table(nk_ctx, table);
     } else if (theme == THEME_DARK) {
         table[NK_COLOR_TEXT] = nk_rgba(210, 210, 210, 255);
         table[NK_COLOR_WINDOW] = nk_rgba(57, 67, 71, 215);
@@ -146,7 +294,7 @@ void set_style(struct nk_context *ctx, nk_theme_t theme)
         table[NK_COLOR_KNOB_CURSOR] = table[NK_COLOR_SLIDER_CURSOR];
         table[NK_COLOR_KNOB_CURSOR_HOVER] = table[NK_COLOR_SLIDER_CURSOR_HOVER];
         table[NK_COLOR_KNOB_CURSOR_ACTIVE] = table[NK_COLOR_SLIDER_CURSOR_ACTIVE];
-        nk_style_from_table(ctx, table);
+        nk_style_from_table(nk_ctx, table);
     } else if (theme == THEME_DRACULA) {
         struct nk_color background = nk_rgba(40, 42, 54, 255);
         struct nk_color currentline = nk_rgba(68, 71, 90, 255);
@@ -191,7 +339,7 @@ void set_style(struct nk_context *ctx, nk_theme_t theme)
         table[NK_COLOR_KNOB_CURSOR] = table[NK_COLOR_SLIDER_CURSOR];
         table[NK_COLOR_KNOB_CURSOR_HOVER] = table[NK_COLOR_SLIDER_CURSOR_HOVER];
         table[NK_COLOR_KNOB_CURSOR_ACTIVE] = table[NK_COLOR_SLIDER_CURSOR_ACTIVE];
-        nk_style_from_table(ctx, table);
+        nk_style_from_table(nk_ctx, table);
     } else if (theme == THEME_CATPPUCCIN_LATTE) {
         /*struct nk_color rosewater = nk_rgba(220, 138, 120, 255);*/
         /*struct nk_color flamingo = nk_rgba(221, 120, 120, 255);*/
@@ -251,7 +399,7 @@ void set_style(struct nk_context *ctx, nk_theme_t theme)
         table[NK_COLOR_KNOB_CURSOR] = pink;
         table[NK_COLOR_KNOB_CURSOR_HOVER] = pink;
         table[NK_COLOR_KNOB_CURSOR_ACTIVE] = pink;
-        nk_style_from_table(ctx, table);
+        nk_style_from_table(nk_ctx, table);
     } else if (theme == THEME_CATPPUCCIN_FRAPPE) {
         /*struct nk_color rosewater = nk_rgba(242, 213, 207, 255);*/
         /*struct nk_color flamingo = nk_rgba(238, 190, 190, 255);*/
@@ -311,7 +459,7 @@ void set_style(struct nk_context *ctx, nk_theme_t theme)
         table[NK_COLOR_KNOB_CURSOR] = pink;
         table[NK_COLOR_KNOB_CURSOR_HOVER] = pink;
         table[NK_COLOR_KNOB_CURSOR_ACTIVE] = pink;
-        nk_style_from_table(ctx, table);
+        nk_style_from_table(nk_ctx, table);
     } else if (theme == THEME_CATPPUCCIN_MACCHIATO) {
         /*struct nk_color rosewater = nk_rgba(244, 219, 214, 255);*/
         /*struct nk_color flamingo = nk_rgba(240, 198, 198, 255);*/
@@ -371,7 +519,7 @@ void set_style(struct nk_context *ctx, nk_theme_t theme)
         table[NK_COLOR_KNOB_CURSOR] = pink;
         table[NK_COLOR_KNOB_CURSOR_HOVER] = pink;
         table[NK_COLOR_KNOB_CURSOR_ACTIVE] = pink;
-        nk_style_from_table(ctx, table); 
+        nk_style_from_table(nk_ctx, table); 
     } else if (theme == THEME_CATPPUCCIN_MOCHA) {
         /*struct nk_color rosewater = nk_rgba(245, 224, 220, 255);*/
         /*struct nk_color flamingo = nk_rgba(242, 205, 205, 255);*/
@@ -431,9 +579,8 @@ void set_style(struct nk_context *ctx, nk_theme_t theme)
         table[NK_COLOR_KNOB_CURSOR] = pink;
         table[NK_COLOR_KNOB_CURSOR_HOVER] = pink;
         table[NK_COLOR_KNOB_CURSOR_ACTIVE] = pink;
-        nk_style_from_table(ctx, table);   
+        nk_style_from_table(nk_ctx, table);   
     } else {
-        nk_style_default(ctx);
+        nk_style_default(nk_ctx);
     }
 }
-

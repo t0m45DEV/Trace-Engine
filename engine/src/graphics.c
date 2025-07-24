@@ -1,19 +1,11 @@
-#include "window_display.h"
+#include "graphics.h"
 
-#include "log.h"
-
-#include "pop_up_windows.h"
+#include "glad/glad.h"
 #include "game_state.h"
 #include "raycaster.h"
 #include "player.h"
+#include "pop_up_windows.h"
 #include "map.h"
-#include "glad/glad.h"
-
-/** V-sync modes */
-
-#define V_SYNC_OFF    0  /** Immediate update from frame to frame */
-#define V_SYNC_ON     1  /** Updates synchronized with the vertical retrace */
-#define V_SYNC_ADAPT -1  /** Adaptive V-sync */
 
 resolutions_t resolution = LOW_RESOLUTION;
 
@@ -25,35 +17,6 @@ int get_actual_resolution(void)
 void set_actual_resolution(resolutions_t new_resolution)
 {
     resolution = new_resolution;
-}
-
-SDL_Window* create_window(const char* title, const int width, const int height)
-{
-    SDL_Window* window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
-
-    if (window == NULL)
-    {
-        log_error("Window could not be created! SDL Error: %s\n", SDL_GetError());
-        exit(EXIT_FAILURE);
-    }
-    log_info("SDL window created!");
-
-    SDL_GLContext* context = SDL_GL_CreateContext(window);
-  
-    if (!context)
-    {
-        log_error("Context could not be created! SDL Error: %s\n", SDL_GetError());
-        exit(EXIT_FAILURE);
-    }
-    log_info("SDL context created!");
-  
-    if (SDL_GL_SetSwapInterval(V_SYNC_ON) != 0)
-    {
-        log_error("Unable to set VSync! SDL Error: %s\n", SDL_GetError());
-        exit(EXIT_FAILURE);
-    }
-    log_info("VSync activated!");
-    return window;
 }
 
 void set_background_color(const rgb_t color)
@@ -80,7 +43,6 @@ void render_screen(void)
     if (is_debug_console_on())
     {
         show_debug_console();
-        nk_sdl_render(NK_ANTI_ALIASING_ON);
     }
 }
 
@@ -116,3 +78,4 @@ void draw_line(position_2D_t start_point, position_2D_t end_point, int thickness
         glVertex2i(end_point.x, end_point.y);
     glEnd();
 }
+

@@ -1,12 +1,11 @@
 #include "raycaster.h"
 
-#include "SDL.h"
-
+#include <stdlib.h>
 #include <math.h>
 #include <pthread.h>
 
 #include "log.h"
-#include "window_display.h"
+#include "graphics.h"
 #include "game_state.h"
 #include "trigonometry.h"
 #include "render.h"

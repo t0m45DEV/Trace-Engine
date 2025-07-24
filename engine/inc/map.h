@@ -1,7 +1,6 @@
 #ifndef _H_MAP
 #define _H_MAP
 
-#include "glad/glad.h"
 #include "trigonometry.h"
 
 /** Size of the squares that forms the map, usually is good to have it (aprox) 3 times the player collision size */

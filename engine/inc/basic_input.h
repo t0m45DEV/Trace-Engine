@@ -1,7 +1,8 @@
-#ifndef _H_INPUT
-#define _H_INPUT
+#ifndef _H_BASIC_INPUT
+#define _H_BASIC_INPUT
 
 #include "SDL_events.h"
+#include <stdbool.h>
 
 /**
  * State of the keys being pressed, used to press distinct keys simultaneously
