@@ -1,6 +1,13 @@
 #include "Tom_Engine.h"
 #include "app_test.h"
 
+#include <math.h>
+
+position_2D_t square_center = {200, 200};
+
+angle_t square_angle = 0;
+position_2D_t square_pos = {200, 200};
+float radious = 100;
 
 void app_init(void)
 {
@@ -23,8 +30,15 @@ void app_update(float delta_time)
 
     if (is_key_being_pressed('b'))
     {
-        draw_point((position_2D_t) {200, 200}, 100, COLOR_MAGENTA);
+        draw_point(square_pos, 100, COLOR_MAGENTA);
     }
+
+    square_angle = adjust_angle(square_angle);
+
+    square_pos.x = radious * cos(square_angle) + square_center.x;
+    square_pos.y = radious * sin(square_angle) + square_center.y;
+
+    square_angle += 0.1;
 }
 
 void app_close(void)
