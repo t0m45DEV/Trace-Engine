@@ -2,6 +2,7 @@
 
 #include <math.h>
 
+#include "map.h"
 #include "raycaster.h"
 #include "trigonometry.h"
 #include "window_manager.h"
@@ -25,7 +26,7 @@
 void render_line(const ray_t ray)
 {
     position_2D_t player_pos = get_player_position();
-    angle_t player_angle = get_player_angle();
+    float player_angle = get_player_angle();
 
     float line_h = ((MAP_CELL_SIZE * VIEWPORT_HEIGHT) / ray.distance) * DISTANCE_CORRECTION;
     

@@ -1,7 +1,7 @@
 #ifndef _H_ENTITY
 #define _H_ENTITY
 
-#include "trigonometry.h"
+#include "position.h"
 
 typedef enum {
     BACK_Y_AXIS_COLLISION = -2,
@@ -17,7 +17,7 @@ typedef enum {
 typedef struct {
     position_2D_t pos;       /** Where the entity is in the top view map */
     position_2D_t delta;     /** Where the entity is looking at */
-    angle_t angle;             /** The angle between pos and delta, in radians */
+    float angle;             /** The angle between pos and delta, in radians */
     float movement_velocity; /** How fast the entity moves */
     float rotation_velocity; /** How fast the entity rotates */
     int collision_size;      /** Radious of the collision shape (it's always a circle) */

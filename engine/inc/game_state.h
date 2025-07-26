@@ -2,7 +2,7 @@
 #define _H_GAME_STATE
 
 #include <stdbool.h>
-#include "trigonometry.h"
+#include "position.h"
 
 /**
  * A scene represents a state for the game (like the main

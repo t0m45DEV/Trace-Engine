@@ -5,7 +5,7 @@
 
 position_2D_t square_center = {200, 200};
 
-angle_t square_angle = 0;
+float square_angle = 0;
 position_2D_t square_pos = {200, 200};
 float radious = 100;
 

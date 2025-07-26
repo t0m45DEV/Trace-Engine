@@ -39,9 +39,9 @@ void cast_rays_from_to(int start, int end)
     float angle_cosine;
 
     position_2D_t player_pos = get_player_position();
-    angle_t player_angle = get_player_angle();
+    float player_angle = get_player_angle();
 
-    angle_t ray_angle = player_angle - (DEG_TO_RAD(FOV / 2.0));
+    float ray_angle = player_angle - (DEG_TO_RAD(FOV / 2.0));
     ray_angle += (DEGREE / RATIO_ANGLE_RAYS) * start;
     ray_angle = adjust_angle(ray_angle);
 

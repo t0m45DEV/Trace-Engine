@@ -1,7 +1,7 @@
 #ifndef _H_PLAYER
 #define _H_PLAYER
 
-#include "trigonometry.h"
+#include "position.h"
 #include "basic_input.h"
 
 /**
@@ -12,7 +12,7 @@ position_2D_t get_player_position(void);
 /**
  * Returns the current player angle of vision (in radians)
  */
-angle_t get_player_angle(void);
+float get_player_angle(void);
 
 /**
  * Sets the player info to the current level 

@@ -18,7 +18,7 @@
 #define RAD_TO_DEG(angleInRadians) (adjust_angle(angleInRadians) * 180.0 / PI)   /** Angle in radians to angle in degrees */
 
 // A float rename, for better reading
-typedef float angle_t;
+//typedef float angle_t;
 
 #ifndef GAME_EXPORT
     /**
@@ -53,7 +53,7 @@ float distance_between(const position_2D_t p1, const position_2D_t p2);
  * 
  * @param angle The angle to adjust, in radians
  */
-angle_t adjust_angle(const angle_t angle);
+float adjust_angle(const float angle);
 
 /**
  * Returns if the first float is equal to the second
