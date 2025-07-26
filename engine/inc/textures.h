@@ -2,7 +2,7 @@
 #define _H_ALL_TEXTURES
 
 #include "graphics.h"
-#include "map.h"
+#include "trc_structure.h"
 
 /**
  * Loads the textures into engine structures (for faster performance)

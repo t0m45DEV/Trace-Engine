@@ -1,7 +1,8 @@
 #ifndef _H_RENDER
 #define _H_RENDER
 
-#include "map.h"
+#include "trc_structure.h"
+#include "position.h"
 
 /**
  * A ray is a line between the player and the closest wall in a certain angle

@@ -1,21 +1,11 @@
 #ifndef _H_MAP
 #define _H_MAP
 
-#include "trigonometry.h"
+#include "trc_structure.h"
+#include "position.h"
 
 /** Size of the squares that forms the map, usually is good to have it (aprox) 3 times the player collision size */
 #define MAP_CELL_SIZE  64
-
-/**
- * Structures that can form the map
- */
-typedef enum {
-    UNDEFINED = -1, /** This structure is for error managing */
-    AIR,            /** Nothing, the squares where the entities can move */
-    STONE,
-    WOOD,
-    DOOR
-} structures_t;
 
 /**
  * Returns the windows position for the middle of the map square
