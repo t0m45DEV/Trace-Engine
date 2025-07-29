@@ -17,9 +17,6 @@
 #define DEG_TO_RAD(angleInDegrees) (adjust_angle((angleInDegrees) * PI / 180.0)) /** Angle in degrees to angle in radians */
 #define RAD_TO_DEG(angleInRadians) (adjust_angle(angleInRadians) * 180.0 / PI)   /** Angle in radians to angle in degrees */
 
-// A float rename, for better reading
-//typedef float angle_t;
-
 #ifndef GAME_EXPORT
     /**
      * @note Remember to free the memory allocated for the string!
