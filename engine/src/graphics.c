@@ -3,7 +3,7 @@
 #include "glad/glad.h"
 #include "game_state.h"
 #include "raycaster.h"
-#include "player.h"
+#include "trc_camera.h"
 #include "pop_up_windows.h"
 #include "map.h"
 
@@ -34,7 +34,7 @@ void render_screen(void)
         case GAME_SCENE:
             if (is_top_down_view_on()) draw_map_2D();
             cast_rays();
-            if (is_top_down_view_on()) draw_player();
+            if (is_top_down_view_on()) draw_camera();
             break;
 
         default:

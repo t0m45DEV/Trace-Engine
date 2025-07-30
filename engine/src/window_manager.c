@@ -5,7 +5,7 @@
 #include "pop_up_windows.h"
 #include "game_state.h"
 #include "raycaster.h"
-#include "player.h"
+#include "trc_camera.h"
 #include "map.h"
 #include "graphics.h"
 

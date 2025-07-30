@@ -1,7 +1,7 @@
 #include "game_state.h"
 
 #include "log.h"
-#include "player.h"
+#include "trc_camera.h"
 #include "map.h"
 
 game_state_t game_state = {0}; /** The current state of ALL the program */
@@ -98,7 +98,7 @@ void load_level(const int level_idx)
     game_state.current_level_info.map_size = get_map_size_from_id(level_idx);
     game_state.current_level_info.player_spawn = get_player_spwan_from_id(level_idx);
     change_to_map(level_idx);
-    reset_player_info();
+    reset_camera_info();
 
     log_info("Succesfully loaded the %i-th level!", level_idx);
 }
