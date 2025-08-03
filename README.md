@@ -56,7 +56,7 @@ Everything else is written in standard C.
 Clone the repo like this:
 
 ```bash
-git clone --recursive https://github.com/t0m45DEV/3D-Game-Engine-in-C
+git clone --recursive git@github.com:t0m45DEV/Trace-Engine.git
 ```
 
 If you already cloned it without the `--recursive` flag, you could run this instead:
