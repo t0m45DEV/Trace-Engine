@@ -110,9 +110,9 @@ position_2D_t get_map_size_from_id(const int level_idx)
     return maps_sizes[level_idx];
 }
 
-position_2D_t get_player_spwan_from_id(const int level_idx)
+position_2D_t get_camera_spwan_from_id(const int level_idx)
 {
-    return player_spawns[level_idx];
+    return camera_spawns[level_idx];
 }
 
 void draw_map_2D(void)

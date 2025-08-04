@@ -74,7 +74,7 @@ position_2D_t maps_sizes[LEVEL_COUNT] =
     (position_2D_t) {16, 8}
 };
 
-position_2D_t player_spawns[LEVEL_COUNT] =
+position_2D_t camera_spawns[LEVEL_COUNT] =
 {
     (position_2D_t) {1, 6},
     (position_2D_t) {1, 1}

@@ -9,7 +9,7 @@
 #include "game_state.h"
 #include "trigonometry.h"
 #include "render.h"
-#include "player.h"
+#include "trc_camera.h"
 #include "map.h"
 
 #define NUM_THREADS 4
@@ -35,13 +35,13 @@ void cast_rays_from_to(int start, int end)
     structures_t structure_hit;
     position_2D_t ray_pos;
     position_2D_t ray_offset = {0, 0};
-    float distance_from_player;
+    float distance_from_camera;
     float angle_cosine;
 
-    position_2D_t player_pos = get_player_position();
-    angle_t player_angle = get_player_angle();
+    position_2D_t camera_pos = get_camera_position();
+    angle_t camera_angle = get_camera_angle();
 
-    angle_t ray_angle = player_angle - (DEG_TO_RAD(FOV / 2.0));
+    angle_t ray_angle = camera_angle - (DEG_TO_RAD(FOV / 2.0));
     ray_angle += (DEGREE / RATIO_ANGLE_RAYS) * start;
     ray_angle = adjust_angle(ray_angle);
 
@@ -58,23 +58,23 @@ void cast_rays_from_to(int start, int end)
 
         if (are_equals(ray_angle, RIGHT_DIR) || are_equals(ray_angle, LEFT_DIR)) /* If looking straight left or right */
         {
-            ray_pos.x = player_pos.x;
-            ray_pos.y = player_pos.y;
+            ray_pos.x = camera_pos.x;
+            ray_pos.y = camera_pos.y;
 
             count_of_hits = get_current_map_dimensions().y;
         }
         else if (ray_angle > LEFT_DIR) /* If looking down */
         {
-            ray_pos.y = (((int) (player_pos.y / MAP_CELL_SIZE)) * MAP_CELL_SIZE) - PRECISION;
-            ray_pos.x = (player_pos.y - ray_pos.y) * aTan + player_pos.x;
+            ray_pos.y = (((int) (camera_pos.y / MAP_CELL_SIZE)) * MAP_CELL_SIZE) - PRECISION;
+            ray_pos.x = (camera_pos.y - ray_pos.y) * aTan + camera_pos.x;
 
             ray_offset.y = (-1) * MAP_CELL_SIZE;
             ray_offset.x = (-1) * ray_offset.y * aTan;
         }
         else if (ray_angle < LEFT_DIR) /* If looking up */
         {
-            ray_pos.y = (((int) (player_pos.y / MAP_CELL_SIZE)) * MAP_CELL_SIZE) + MAP_CELL_SIZE;
-            ray_pos.x = (player_pos.y - ray_pos.y) * aTan + player_pos.x;
+            ray_pos.y = (((int) (camera_pos.y / MAP_CELL_SIZE)) * MAP_CELL_SIZE) + MAP_CELL_SIZE;
+            ray_pos.x = (camera_pos.y - ray_pos.y) * aTan + camera_pos.x;
 
             ray_offset.y = MAP_CELL_SIZE;
             ray_offset.x = (-1) * ray_offset.y * aTan;
@@ -90,7 +90,7 @@ void cast_rays_from_to(int start, int end)
             {
                 ray_H.x = ray_pos.x;
                 ray_H.y = ray_pos.y;
-                distance_h = distance_between(player_pos, ray_pos);
+                distance_h = distance_between(camera_pos, ray_pos);
                 surface_H = structure_hit;
 
                 count_of_hits = get_current_map_dimensions().y; /* End the loop */
@@ -113,23 +113,23 @@ void cast_rays_from_to(int start, int end)
 
         if (are_equals(ray_angle, UP_DIR) || are_equals(ray_angle, DOWN_DIR)) /* If looking straight up or down */
         {
-            ray_pos.x = player_pos.x;
-            ray_pos.y = player_pos.y;
+            ray_pos.x = camera_pos.x;
+            ray_pos.y = camera_pos.y;
 
             count_of_hits = get_current_map_dimensions().x;
         }
         else if ((ray_angle > UP_DIR) && (ray_angle < DOWN_DIR)) /* If looking left */
         {
-            ray_pos.x = (((int) (player_pos.x / MAP_CELL_SIZE)) * MAP_CELL_SIZE) - PRECISION;
-            ray_pos.y = (player_pos.x - ray_pos.x) * nTan + player_pos.y;
+            ray_pos.x = (((int) (camera_pos.x / MAP_CELL_SIZE)) * MAP_CELL_SIZE) - PRECISION;
+            ray_pos.y = (camera_pos.x - ray_pos.x) * nTan + camera_pos.y;
 
             ray_offset.x = (-1) * MAP_CELL_SIZE;
             ray_offset.y = (-1) * ray_offset.x * nTan;
         }
         else if ((ray_angle < UP_DIR) || (ray_angle > DOWN_DIR)) /* If looking right */
         {
-            ray_pos.x = (((int) (player_pos.x / MAP_CELL_SIZE)) * MAP_CELL_SIZE) + MAP_CELL_SIZE;
-            ray_pos.y = (player_pos.x - ray_pos.x) * nTan + player_pos.y;
+            ray_pos.x = (((int) (camera_pos.x / MAP_CELL_SIZE)) * MAP_CELL_SIZE) + MAP_CELL_SIZE;
+            ray_pos.y = (camera_pos.x - ray_pos.x) * nTan + camera_pos.y;
 
             ray_offset.x = MAP_CELL_SIZE;
             ray_offset.y = (-1) * ray_offset.x * nTan;
@@ -145,7 +145,7 @@ void cast_rays_from_to(int start, int end)
             {
                 ray_V.x = ray_pos.x;
                 ray_V.y = ray_pos.y;
-                distance_v = distance_between(player_pos, ray_pos);
+                distance_v = distance_between(camera_pos, ray_pos);
                 surface_V = structure_hit;
 
                 count_of_hits = get_current_map_dimensions().x; /* End the loop */
@@ -165,7 +165,7 @@ void cast_rays_from_to(int start, int end)
         {
             ray_pos.x = ray_H.x;
             ray_pos.y = ray_H.y;
-            distance_from_player = distance_h;
+            distance_from_camera = distance_h;
             
             actual_orientation = NORTH_SOUTH_WALL;
             actual_surface = surface_H;
@@ -174,17 +174,17 @@ void cast_rays_from_to(int start, int end)
         {
             ray_pos.x = ray_V.x;
             ray_pos.y = ray_V.y;
-            distance_from_player = distance_v;
+            distance_from_camera = distance_v;
 
             actual_orientation = WEAST_EAST_WALL;
             actual_surface = surface_V;
         }
 
-        angle_cosine = player_angle - ray_angle;
+        angle_cosine = camera_angle - ray_angle;
         angle_cosine = adjust_angle(angle_cosine);
 
-        distance_from_player = distance_from_player * cos(angle_cosine); /* Fix fisheye */
-        rays[ray_idx] = (ray_t) {ray_idx, ray_pos, ray_angle, distance_from_player, actual_surface, actual_orientation};
+        distance_from_camera = distance_from_camera * cos(angle_cosine); /* Fix fisheye */
+        rays[ray_idx] = (ray_t) {ray_idx, ray_pos, ray_angle, distance_from_camera, actual_surface, actual_orientation};
 
         ray_angle += (DEGREE / RATIO_ANGLE_RAYS);
         ray_angle = adjust_angle(ray_angle);
@@ -226,7 +226,7 @@ void cast_rays(void)
         }
         else
         {
-            draw_line(get_player_position(), rays[i].pos, 2, RAY_COLOR);
+            draw_line(get_camera_position(), rays[i].pos, 2, RAY_COLOR);
         }
     }
 }

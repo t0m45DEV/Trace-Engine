@@ -68,7 +68,7 @@ position_2D_t get_map_size_from_id(const int level_idx);
  * 
  * @param level_idx The index of the level to get (from 0 to LEVEL_COUNT)
  */
-position_2D_t get_player_spwan_from_id(const int level_idx);
+position_2D_t get_camera_spwan_from_id(const int level_idx);
 
 /**
  * Draw in the screen a 2D matrix of squares, white being wall and blakc being floor

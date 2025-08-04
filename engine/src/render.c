@@ -6,11 +6,11 @@
 #include "trigonometry.h"
 #include "window_manager.h"
 #include "graphics.h"
-#include "player.h"
+#include "trc_camera.h"
 #include "textures.h"
 
-#define RENDER_CHUNK_SIZE (4)                                 /** How many blocks away can the player see */
-#define RENDER_DISTANCE (MAP_CELL_SIZE * RENDER_CHUNK_SIZE)   /** Distance between the player and the further object visible */
+#define RENDER_CHUNK_SIZE (4)                                 /** How many blocks away can the camera see */
+#define RENDER_DISTANCE (MAP_CELL_SIZE * RENDER_CHUNK_SIZE)   /** Distance between the camera and the further object visible */
 
 #define MAX_WALL_HEIGHT (VIEWPORT_HEIGHT)                             /** A rename for VIEWPORT_HEIGHT, for easier code reading */
 #define LINES_WIDTH ((int) (VIEWPORT_WIDTH / get_ammount_of_rays()))  /** Ammount of pixels each ray will draw on screen      */
@@ -24,8 +24,8 @@
 
 void render_line(const ray_t ray)
 {
-    position_2D_t player_pos = get_player_position();
-    angle_t player_angle = get_player_angle();
+    position_2D_t camera_pos = get_camera_position();
+    angle_t camera_angle = get_camera_angle();
 
     float line_h = ((MAP_CELL_SIZE * VIEWPORT_HEIGHT) / ray.distance) * DISTANCE_CORRECTION;
     
@@ -81,14 +81,14 @@ void render_line(const ray_t ray)
 
     // Draw floors and ceilings
 
-    float ray_angle_fix = cos(adjust_angle(player_angle - ray.angle));
+    float ray_angle_fix = cos(adjust_angle(camera_angle - ray.angle));
 
     for (int y = line_h + line_offset; y < VIEWPORT_HEIGHT; y++)
     {
         float delta_y = y - (VIEWPORT_HEIGHT / 2.0);
 
-        texture_x = (player_pos.x / 2) + cos(ray.angle) * FLOOR_CORRECTION * get_texture_size() / delta_y / ray_angle_fix;
-        texture_y = (player_pos.y / 2) + sin(ray.angle) * FLOOR_CORRECTION * get_texture_size() / delta_y / ray_angle_fix;
+        texture_x = (camera_pos.x / 2) + cos(ray.angle) * FLOOR_CORRECTION * get_texture_size() / delta_y / ray_angle_fix;
+        texture_y = (camera_pos.y / 2) + sin(ray.angle) * FLOOR_CORRECTION * get_texture_size() / delta_y / ray_angle_fix;
 
         float distance = ((VIEWPORT_HEIGHT / 2.0) - delta_y) * (RENDER_CHUNK_SIZE / 3.75);
 

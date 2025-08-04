@@ -19,7 +19,7 @@ typedef enum {
 typedef struct {
     int map_offset;             /** Location in the maps array */
     position_2D_t map_size;     /** Size of the map of the level, in the form of position_2D */
-    position_2D_t player_spawn; /** Location of the player when the level is loaded, in the form of position_2D */
+    position_2D_t camera_spawn; /** Location of the camera when the level is loaded, in the form of position_2D */
 } level_t;
 
 /**
@@ -93,9 +93,9 @@ float get_current_map_size(void);
 int get_current_map_offset(void);
 
 /**
- * Returns the player spawn of the current level
+ * Returns the camera spawn of the current level
  */
-position_2D_t get_current_player_spawn(void);
+position_2D_t get_current_camera_spawn(void);
 
 /**
  * Returns the current FPS count
@@ -120,12 +120,12 @@ void stop_game(void);
 void update_debug_console_state(void);
 
 /**
- * Update the current map and player info to be the level_idx level 
+ * Update the current map and camera info to be the level_idx level 
  * 
  * @param level_idx The index of the level to get the info from (from 0 to LEVEL_COUNT)
  * 
  * @note Calling this function will RESET the level (every door will be to the original
- * state, the player will be at the spawn of that level, etc)
+ * state, the camera will be at the spawn of that level, etc)
  */
 void load_level(const int level_idx);
 
