@@ -9,4 +9,6 @@ typedef struct {
     float y;  /** Y component of the (x, y) vector */
 } position_2D_t;
 
+#define TRC_POS_ORIGIN ((position_2D_t) {0, 0})
+
 #endif
