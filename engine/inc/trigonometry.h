@@ -58,7 +58,12 @@ float vector_length(const position_2D_t vector);
  * 
  * @note If it is already normalized, returns one with the same parameters
  */
-position_2D_t normalize_vector(position_2D_t vector);
+position_2D_t normalize_vector(const position_2D_t vector);
+
+/**
+ * Returns the given vector scaled by the given factor
+ */
+position_2D_t scalar_multiplication(const position_2D_t vector, const float scalar);
 
 /**
  * Returns the angle so it's in the range of 0 to 2*PI

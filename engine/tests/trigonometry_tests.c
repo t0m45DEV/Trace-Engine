@@ -23,9 +23,18 @@ void test_normalize_vector(void)
     position_2D_t north_east = (position_2D_t) {1, 1};
     position_2D_t random_point = (position_2D_t) {2, 7};
 
-    ASSERT(vector_length(normalize_vector(east)) == 1);
-    ASSERT(vector_length(normalize_vector(north_east)) == 1);
-    ASSERT(vector_length(normalize_vector(random_point)) == 1);
+    ASSERT(are_equals(vector_length(normalize_vector(east)), 1));
+    ASSERT(are_equals(vector_length(normalize_vector(north_east)), 1));
+    ASSERT(are_equals(vector_length(normalize_vector(random_point)), sqrt(2)));
+}
+
+void test_scalar_multiplication(void)
+{
+    position_2D_t p1 = (position_2D_t) {1, 1};
+
+    ASSERT(are_equals(vector_length(scalar_multiplication(TRC_POS_ORIGIN, 5)), 0));
+    ASSERT(are_equals(vector_length(scalar_multiplication(p1, 2)), 8));
+    ASSERT(are_equals(vector_length(scalar_multiplication(p1, -1)), 2));
 }
 
 

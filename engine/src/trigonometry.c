@@ -32,7 +32,7 @@ float vector_length(const position_2D_t vector)
     return distance_between(TRC_POS_ORIGIN, vector);
 }
 
-position_2D_t normalize_vector(position_2D_t vector)
+position_2D_t normalize_vector(const position_2D_t vector)
 {
     float length = vector_length(vector);
 
@@ -41,6 +41,16 @@ position_2D_t normalize_vector(position_2D_t vector)
     new_vector.y = vector.y / length;
 
     return new_vector;
+}
+
+position_2D_t scalar_multiplication(const position_2D_t vector, const float scalar)
+{
+    position_2D_t new_pos;
+
+    new_pos.x = vector.x * scalar;
+    new_pos.y = vector.y * scalar;
+
+    return new_pos;
 }
 
 angle_t adjust_angle(const angle_t angle)
