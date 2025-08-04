@@ -1,5 +1,5 @@
 #include "Tom_Engine.h"
-#include "app_test.h"
+#include "demo_player.h"
 
 #include <math.h>
 
@@ -11,8 +11,6 @@ float radious = 100;
 
 void app_init(void)
 {
-    bar(2, 6);
-
     log_warning("This is the app!");
 }
 
@@ -39,6 +37,8 @@ void app_update(float delta_time)
     square_pos.y = radious * sin(square_angle) + square_center.y;
 
     square_angle += 0.1;
+
+    move_player(delta_time);
 }
 
 void app_close(void)
