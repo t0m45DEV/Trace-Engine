@@ -33,7 +33,7 @@ void change_to_map(int level_idx);
 void update_map_wall_at(const position_2D_t position, const structures_t new_wall);
 
 /**
- * Returnss the wall structure of the current map at the given position
+ * Returns the wall structure of the current map at the given position
  */
 structures_t get_map_wall_at(const position_2D_t position);
 
