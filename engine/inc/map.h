@@ -20,7 +20,7 @@ typedef enum {
 /**
  * Returns the windows position for the middle of the map square
  */
-position_2D_t map_pos_to_real_pos(position_2D_t map_pos);
+position_2D_t map_pos_to_real_pos(const position_2D_t map_pos);
 
 /**
  * Updates the current map info to the map of the level_idx level

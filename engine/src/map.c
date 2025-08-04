@@ -20,7 +20,7 @@ static int is_valid_map_index(int idx)
 /**
  * Calculates the grid position for the given window position
  */
-int real_pos_to_map_pos(position_2D_t real_pos)
+int real_pos_to_map_pos(const position_2D_t real_pos)
 {
     return ((int) (real_pos.y)) * ((int) get_current_map_dimensions().x) + ((int) (real_pos.x));
 }
