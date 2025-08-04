@@ -37,7 +37,7 @@ typedef enum {
 /**
  * Returns the current selected resolution
  */
-int get_actual_resolution(void);
+resolutions_t get_actual_resolution(void);
 
 /**
  * Updates the current resolution to the given new one

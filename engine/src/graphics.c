@@ -3,13 +3,13 @@
 #include "glad/glad.h"
 #include "game_state.h"
 #include "raycaster.h"
-#include "player.h"
+#include "trc_camera.h"
 #include "pop_up_windows.h"
 #include "map.h"
 
 resolutions_t resolution = LOW_RESOLUTION;
 
-int get_actual_resolution(void)
+resolutions_t get_actual_resolution(void)
 {
     return resolution;
 }
@@ -34,7 +34,7 @@ void render_screen(void)
         case GAME_SCENE:
             if (is_top_down_view_on()) draw_map_2D();
             cast_rays();
-            if (is_top_down_view_on()) draw_player();
+            if (is_top_down_view_on()) draw_camera();
             break;
 
         default:
