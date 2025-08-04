@@ -17,6 +17,18 @@ void test_are_equals_different_numbers(void)
 }
 
 
+void test_normalize_vector(void)
+{
+    position_2D_t east = (position_2D_t) {1, 0};
+    position_2D_t north_east = (position_2D_t) {1, 1};
+    position_2D_t random_point = (position_2D_t) {2, 7};
+
+    ASSERT(vector_length(normalize_vector(east)) == 1);
+    ASSERT(vector_length(normalize_vector(north_east)) == 1);
+    ASSERT(vector_length(normalize_vector(random_point)) == 1);
+}
+
+
 void test_adjust_angle_same_angle(void)
 {
     ASSERT(are_equals(adjust_angle(0), (float) 0));

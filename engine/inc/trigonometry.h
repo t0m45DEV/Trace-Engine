@@ -49,6 +49,18 @@ typedef float angle_t;
 float distance_between(const position_2D_t p1, const position_2D_t p2);
 
 /**
+ * Returns the distance between the origin and the given vector
+ */
+float vector_length(const position_2D_t vector);
+
+/**
+ * Returns the normalized vector
+ * 
+ * @note If it is already normalized, returns one with the same parameters
+ */
+position_2D_t normalize_vector(position_2D_t vector);
+
+/**
  * Returns the angle so it's in the range of 0 to 2*PI
  * 
  * @param angle The angle to adjust, in radians

@@ -27,6 +27,22 @@ float distance_between(const position_2D_t p1, const position_2D_t p2)
     return sqrt(((p1.x - p2.x) * (p1.x - p2.x)) + ((p1.y - p2.y) * (p1.y - p2.y)));
 }
 
+float vector_length(const position_2D_t vector)
+{
+    return distance_between(TRC_POS_ORIGIN, vector);
+}
+
+position_2D_t normalize_vector(position_2D_t vector)
+{
+    float length = vector_length(vector);
+
+    position_2D_t new_vector;
+    new_vector.x = vector.x / length;
+    new_vector.y = vector.y / length;
+
+    return new_vector;
+}
+
 angle_t adjust_angle(const angle_t angle)
 {
     angle_t new_angle = angle;
