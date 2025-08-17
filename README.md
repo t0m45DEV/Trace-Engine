@@ -73,7 +73,7 @@ Once cloned, enter the main folder and run:
 make
 ```
 
-The Makefile includes other modes, like `make export` to give away a final executable, and `make test` to run the auto tests.
+The Makefile includes other modes, like `make export` to give away a final executable, and `make test` to run the auto tests. The rule `make help` gives the entire list and a little info about the project.
 
 ## Usage
 
