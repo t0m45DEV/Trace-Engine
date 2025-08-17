@@ -98,7 +98,7 @@ void render_line(const ray_t ray)
 
             position_2D_t pixel_pos = {(int) (texture_x) & (get_texture_size() - 1), (int) (texture_y) & (get_texture_size() - 1)};
 
-            int map_value = get_map_floor_at((position_2D_t) {texture_x / get_texture_size(), texture_y / get_texture_size()});
+            int map_value = get_map_floor_at((trc_grid_position_t) {texture_x / get_texture_size(), texture_y / get_texture_size()});
 
             if (map_value != AIR)
             {
@@ -110,7 +110,7 @@ void render_line(const ray_t ray)
 
                 draw_point(floor_pos, LINES_WIDTH, pixel_color);
             }
-            map_value = get_map_ceiling_at((position_2D_t) {texture_x / get_texture_size(), texture_y / get_texture_size()});
+            map_value = get_map_ceiling_at((trc_grid_position_t) {texture_x / get_texture_size(), texture_y / get_texture_size()});
 
             if (map_value != AIR)
             {

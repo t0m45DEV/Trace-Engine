@@ -18,11 +18,29 @@ static int is_valid_map_index(int idx)
 }
 
 /**
- * Calculates the grid position for the given window position
+ * Calculates the grid position for the given grid position
  */
-int real_pos_to_map_pos(const position_2D_t real_pos)
+int real_pos_to_map_pos(const trc_grid_position_t real_pos)
 {
     return ((int) (real_pos.y)) * ((int) get_current_map_dimensions().x) + ((int) (real_pos.x));
+}
+
+position_2D_t to_world_pos(trc_grid_position_t grid_pos)
+{
+    position_2D_t world_pos;
+    world_pos.x = grid_pos.x * (float) MAP_CELL_SIZE + ((float) MAP_CELL_SIZE / 2);
+    world_pos.y = grid_pos.y * (float) MAP_CELL_SIZE + ((float) MAP_CELL_SIZE / 2);
+
+    return world_pos;
+}
+
+trc_grid_position_t to_grid_pos(position_2D_t world_pos)
+{
+    trc_grid_position_t grid_pos;
+    grid_pos.x = world_pos.x / (float) MAP_CELL_SIZE;
+    grid_pos.y = world_pos.y / (float) MAP_CELL_SIZE;
+
+    return grid_pos;
 }
 
 position_2D_t map_pos_to_real_pos(position_2D_t map_pos)
@@ -53,12 +71,12 @@ void change_to_map(int level_idx)
     }
 }
 
-void update_map_wall_at(const position_2D_t position, const structures_t new_wall)
+void update_map_wall_at(const trc_grid_position_t position, const structures_t new_wall)
 {
     current_w_map[real_pos_to_map_pos(position)] = new_wall;
 }
 
-structures_t get_map_wall_at(const position_2D_t position)
+structures_t get_map_wall_at(const trc_grid_position_t position)
 {
     structures_t ret = UNDEFINED;
     int idx = real_pos_to_map_pos(position);
@@ -70,7 +88,7 @@ structures_t get_map_wall_at(const position_2D_t position)
     return ret;
 }
 
-structures_t get_map_floor_at(const position_2D_t position)
+structures_t get_map_floor_at(const trc_grid_position_t position)
 {
     structures_t ret = UNDEFINED;
     int idx = real_pos_to_map_pos(position);
@@ -82,7 +100,7 @@ structures_t get_map_floor_at(const position_2D_t position)
     return ret;
 }
 
-structures_t get_map_ceiling_at(const position_2D_t position)
+structures_t get_map_ceiling_at(const trc_grid_position_t position)
 {
     structures_t ret = UNDEFINED;
     int idx = real_pos_to_map_pos(position);
@@ -125,7 +143,7 @@ void draw_map_2D(void)
         {
             rgb_t cell_color = COLOR_WHITE;
 
-            if (get_map_wall_at((position_2D_t) {x, y}) == AIR)
+            if (get_map_wall_at((trc_grid_position_t) {x, y}) == AIR)
             {
                 cell_color = COLOR_BLACK;
             }

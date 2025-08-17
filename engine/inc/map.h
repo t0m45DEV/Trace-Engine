@@ -7,6 +7,16 @@
 #define MAP_CELL_SIZE  64
 
 /**
+ * A vector of 2 dimensions, the values x and y are floats
+ * 
+ * Useful for accesing the map cells
+ */
+typedef struct {
+    int x;
+    int y;
+} trc_grid_position_t;
+
+/**
  * Structures that can form the map
  */
 typedef enum {
@@ -16,6 +26,19 @@ typedef enum {
     WOOD,
     DOOR
 } structures_t;
+
+/**
+ * Given a position in a grid (with integers) returns the position_2D with
+ * the values pointing to the same cell in the map (in the center of the
+ * cell, to be precise)
+ */
+position_2D_t to_world_pos(trc_grid_position_t grid_pos);
+
+/**
+ * Given a position_2D (with floats) returns the corresponding cell
+ * position in the current map
+ */
+trc_grid_position_t to_grid_pos(position_2D_t world_pos);
 
 /**
  * Returns the windows position for the middle of the map square
@@ -30,22 +53,22 @@ void change_to_map(int level_idx);
 /**
  * Replaces the wall structure of the current map at the given position with the given new_wall
  */
-void update_map_wall_at(const position_2D_t position, const structures_t new_wall);
+void update_map_wall_at(const trc_grid_position_t position, const structures_t new_wall);
 
 /**
  * Returns the wall structure of the current map at the given position
  */
-structures_t get_map_wall_at(const position_2D_t position);
+structures_t get_map_wall_at(const trc_grid_position_t position);
 
 /**
  * Returnss the floor structure of the current map at the given position
  */
-structures_t get_map_floor_at(const position_2D_t position);
+structures_t get_map_floor_at(const trc_grid_position_t position);
 
 /**
  * Returnss the ceiling structure of the current map at the given position
  */
-structures_t get_map_ceiling_at(const position_2D_t position);
+structures_t get_map_ceiling_at(const trc_grid_position_t position);
 
 /**
  * Returns the level offset for the maps list, to get the map of that level

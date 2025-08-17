@@ -73,11 +73,11 @@ void update_offset(entity_t* entity)
 }
 
 
-int can_move(const position_2D_t idx, const position_2D_t offset)
+int can_move(const trc_grid_position_t idx, const trc_grid_position_t offset)
 {
-    int front  = get_map_wall_at((position_2D_t) {offset.x, offset.y});
-    int x_axis = get_map_wall_at((position_2D_t) {offset.x, idx.y});
-    int y_axis = get_map_wall_at((position_2D_t) {idx.x, offset.y});
+    int front  = get_map_wall_at((trc_grid_position_t) {offset.x, offset.y});
+    int x_axis = get_map_wall_at((trc_grid_position_t) {offset.x, idx.y});
+    int y_axis = get_map_wall_at((trc_grid_position_t) {idx.x, offset.y});
 
     /* Thing at idx don't have a wall directly on front
         and can slide in some axis X or Y */
@@ -89,38 +89,37 @@ int is_colliding_in_axis(entity_t entity, const collision_directions_t axis)
 {
     update_offset(&entity);
 
-    position_2D_t idx;
-    idx.x = entity.pos.x / (float) MAP_CELL_SIZE;
-    idx.y = entity.pos.y / (float) MAP_CELL_SIZE;
+    trc_grid_position_t idx;
+    idx = to_grid_pos(entity.pos);
 
-    position_2D_t add_offset;
-    add_offset.x = (entity.pos.x + entity.offset.x) / (float) MAP_CELL_SIZE;
-    add_offset.y = (entity.pos.y + entity.offset.y) / (float) MAP_CELL_SIZE;
+    trc_grid_position_t add_offset;
+    add_offset = to_grid_pos((position_2D_t) {entity.pos.x + entity.offset.x,
+                                                        entity.pos.y + entity.offset.y});
 
-    position_2D_t sub_offset;
-    sub_offset.x = (entity.pos.x - entity.offset.x) / (float) MAP_CELL_SIZE;
-    sub_offset.y = (entity.pos.y - entity.offset.y) / (float) MAP_CELL_SIZE;
+    trc_grid_position_t sub_offset;
+    sub_offset = to_grid_pos((position_2D_t) {entity.pos.x - entity.offset.x,
+                                                        entity.pos.y - entity.offset.y});
 
     if (can_move(idx, add_offset)) /* If can move forward */
     {
         if (axis == FRONT_X_AXIS_COLLISION) /* If can slide forward along X axis */
         {
-            return (get_map_wall_at((position_2D_t) {add_offset.x, idx.y}) != AIR);
+            return (get_map_wall_at((trc_grid_position_t) {add_offset.x, idx.y}) != AIR);
         }
         else if (axis == FRONT_Y_AXIS_COLLISION) /* If can slide forward along Y axis */
         {
-            return (get_map_wall_at((position_2D_t) {idx.x, add_offset.y}) != AIR);
+            return (get_map_wall_at((trc_grid_position_t) {idx.x, add_offset.y}) != AIR);
         }
     }
     if (can_move(idx, sub_offset)) /* If can move backward */
     {
         if (axis == BACK_X_AXIS_COLLISION) /* If can slide backward along X axis */
         {
-            return (get_map_wall_at((position_2D_t) {sub_offset.x, idx.y}) != AIR);
+            return (get_map_wall_at((trc_grid_position_t) {sub_offset.x, idx.y}) != AIR);
         }
         else if (axis == BACK_Y_AXIS_COLLISION) /* If can slide backward along Y axis */
         {
-            return (get_map_wall_at((position_2D_t) {idx.x, sub_offset.y}) != AIR);
+            return (get_map_wall_at((trc_grid_position_t) {idx.x, sub_offset.y}) != AIR);
         }
     }
     return true; /* Entity can't move at any direction */

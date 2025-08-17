@@ -31,7 +31,6 @@ int get_ammount_of_rays(void)
 void cast_rays_from_to(int start, int end)
 {
     int count_of_hits;
-    position_2D_t map_ray;
     structures_t structure_hit;
     position_2D_t ray_pos;
     position_2D_t ray_offset = {0, 0};
@@ -82,9 +81,7 @@ void cast_rays_from_to(int start, int end)
 
         while (count_of_hits < get_current_map_dimensions().y)
         {
-            map_ray.x = (int) (ray_pos.x / MAP_CELL_SIZE);
-            map_ray.y = (int) (ray_pos.y / MAP_CELL_SIZE);
-            structure_hit = get_map_wall_at(map_ray);
+            structure_hit = get_map_wall_at(to_grid_pos(ray_pos));
 
             if (structure_hit != UNDEFINED && structure_hit != AIR) /* Hit a wall */
             {
@@ -137,9 +134,7 @@ void cast_rays_from_to(int start, int end)
 
         while (count_of_hits < get_current_map_dimensions().x)
         {
-            map_ray.x = (int) (ray_pos.x / MAP_CELL_SIZE);
-            map_ray.y = (int) (ray_pos.y / MAP_CELL_SIZE);
-            structure_hit = get_map_wall_at(map_ray);
+            structure_hit = get_map_wall_at(to_grid_pos(ray_pos));
 
             if (structure_hit != UNDEFINED && structure_hit != AIR) /* Hit a wall */
             {

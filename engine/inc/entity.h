@@ -1,7 +1,8 @@
 #ifndef _H_ENTITY
 #define _H_ENTITY
 
-#include "trigonometry.h"
+#include "position.h"
+#include "map.h"
 
 typedef enum {
     BACK_Y_AXIS_COLLISION = -2,
@@ -54,9 +55,9 @@ void update_offset(entity_t* entity);
  * Returns true (not zero) if the thing at the position idx can move towards the offset position
  * 
  * @param idx The actual position of the object
- * @param offset The direction in whichc the object wants to move
+ * @param offset The direction in which the object wants to move
  */
-int can_move(const position_2D_t idx, const position_2D_t offset);
+int can_move(const trc_grid_position_t idx, const trc_grid_position_t offset);
 
 
 /**
