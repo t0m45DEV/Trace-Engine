@@ -35,7 +35,7 @@ nk_theme_t current_theme = THEME_RED;
 /** The context for Nuklear, it is necessary to create all the windows */
 struct nk_context* nk_ctx = NULL;
 
-engine_timer_t debug_fps_timer;
+trc_timer_t debug_fps_timer;
 int last_fps[FPS_IN_CHART] = {0}; // FPS history
 
 void start_nk_input_hanlder(void)

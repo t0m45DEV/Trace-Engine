@@ -15,7 +15,7 @@ typedef struct {
     float actual_frame;
     float last_frame;
     int fps;
-    engine_timer_t timer;
+    trc_timer_t timer;
 } FPS_counter_t;
 
 FPS_counter_t FPS_counter = {0}; /** The struct that tracks current FPS */

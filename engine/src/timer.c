@@ -9,7 +9,7 @@
     #include <stdlib.h>
     #include "log.h"
 
-    char* timer_to_string_with_name(const engine_timer_t timer, const char* timer_name)
+    char* timer_to_string_with_name(const trc_timer_t timer, const char* timer_name)
     {
         const int MAX_LEN = 300;
         char* string = malloc(sizeof(char) * MAX_LEN);
@@ -43,27 +43,27 @@ float get_actual_time_milliseconds(void)
     return SDL_GetTicks();
 }
 
-engine_timer_t create_timer(const float duration)
+trc_timer_t create_timer(const float duration)
 {
-    engine_timer_t timer;
+    trc_timer_t timer;
     timer.is_active = false;
     timer.duration = SECONDS_TO_MILLISECONDS(duration);
     timer.initial_time = 0;
     return timer;
 }
 
-void start_timer(engine_timer_t* timer)
+void start_timer(trc_timer_t* timer)
 {
     timer->is_active = true;
     timer->initial_time = SDL_GetTicks();
 }
 
-void reset_timer(engine_timer_t* timer)
+void reset_timer(trc_timer_t* timer)
 {
     *timer = create_timer(MILLISECONDS_TO_SECONDS(timer->duration));
 }
 
-bool is_timer_up(engine_timer_t* timer)
+bool is_timer_up(trc_timer_t* timer)
 {
     if (!timer->is_active)
     {
