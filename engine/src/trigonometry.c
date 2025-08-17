@@ -36,6 +36,11 @@ position_2D_t normalize_vector(const position_2D_t vector)
 {
     float length = vector_length(vector);
 
+    if (length == 0)
+    {
+        return TRC_POS_ORIGIN;
+    }
+
     position_2D_t new_vector;
     new_vector.x = vector.x / length;
     new_vector.y = vector.y / length;
