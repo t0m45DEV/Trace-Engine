@@ -1,7 +1,7 @@
 #ifndef _H_GRAPHICS
 #define _H_GRAPHICS
 
-#include "position.h"
+#include "trc_world_position.h"
 
 /**
  * A color struct, having 3 variables: r, g and b; each one an int from 0 to 255

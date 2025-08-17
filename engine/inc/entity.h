@@ -1,7 +1,7 @@
 #ifndef _H_ENTITY
 #define _H_ENTITY
 
-#include "position.h"
+#include "trc_world_position.h"
 #include "map.h"
 
 typedef enum {

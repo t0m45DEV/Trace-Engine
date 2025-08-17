@@ -1,7 +1,7 @@
 #ifndef _H_TRIGONOMETRY
 #define _H_TRIGONOMETRY
 
-#include "position.h"
+#include "trc_world_position.h"
 #include <stdbool.h>
 
 #define PRECISION 0.0001   /** To compare doubles and floats */

@@ -1,7 +1,7 @@
 #ifndef TRC_CAMERA
 #define TRC_CAMERA
 
-#include "position.h"
+#include "trc_world_position.h"
 #include "basic_input.h"
 
 /**
