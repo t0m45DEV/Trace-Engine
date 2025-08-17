@@ -38,7 +38,7 @@ void app_update(float delta_time)
 
     square_angle += 0.1;
 
-    move_player(delta_time);
+    move_demo_player(delta_time);
 }
 
 void app_close(void)
