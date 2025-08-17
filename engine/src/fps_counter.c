@@ -1,7 +1,7 @@
 #include "fps_counter.h"
 
 #include "game_state.h"
-#include "timer.h"
+#include "trc_timer.h"
 
 /**
  * A little self-explanatory

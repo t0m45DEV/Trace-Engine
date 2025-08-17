@@ -18,7 +18,7 @@
 #include "nuklear_sdl_gl2.h"
 
 #include "log.h"
-#include "timer.h"
+#include "trc_timer.h"
 #include "game_state.h"
 
 // ===========================

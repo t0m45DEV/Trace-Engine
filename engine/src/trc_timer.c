@@ -1,4 +1,4 @@
-#include "timer.h"
+#include "trc_timer.h"
 #include "SDL_timer.h"
 
 #define SECONDS_TO_MILLISECONDS(X) ((X) * 1000.0)
