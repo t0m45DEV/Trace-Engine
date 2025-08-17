@@ -27,19 +27,40 @@ position_2D_t get_camera_position(void)
     return camera.pos;
 }
 
-void set_camera_position(position_2D_t new_pos)
-{
-    camera.pos = new_pos;
-}
-
 float get_camera_angle(void)
 {
     return camera.angle;
 }
 
+void set_camera_position(position_2D_t new_pos)
+{
+    position_2D_t offset_dir;
+    offset_dir.x = new_pos.x - camera.pos.x;
+    offset_dir.y = new_pos.y - camera.pos.y;
+
+    offset_dir = normalize_vector(offset_dir);
+    offset_dir = scalar_multiplication(offset_dir, P_COLLISION_SIZE);
+
+    position_2D_t offset;
+    offset.x = camera.pos.x + offset_dir.x;
+    offset.y = camera.pos.y + offset_dir.y;
+    
+    position_2D_t current_pos = get_camera_position();
+    current_pos = scalar_multiplication(current_pos, 1 / (float) MAP_CELL_SIZE);
+
+    if (get_map_wall_at(to_grid_pos(offset)) != AIR)
+    {
+        //log_error("Error moving camera to {%f, %f}: There is a solid wall there", offset.x, offset.y);
+    }
+    else
+    {
+        camera.pos = new_pos;
+    }
+}
+
 void reset_camera_info(void)
 {
-    camera.pos = map_pos_to_real_pos(get_current_player_spawn());
+    camera.pos = map_pos_to_real_pos(get_current_camera_spawn());
     camera.angle = P_INIT_ANGLE;
     camera.movement_velocity = MOVEMENT_VELOCITY;
     camera.rotation_velocity = ROTATION_VELOCITY;
@@ -79,8 +100,8 @@ void move_camera(keys_state_t keys_state, float delta_time)
     }
     if (keys_state.move_backward)
     {
-        if (!is_colliding_in_axis(camera, BACK_X_AXIS_COLLISION)) camera.pos.x -= camera.delta.x * delta_time;
-        if (!is_colliding_in_axis(camera, BACK_Y_AXIS_COLLISION)) camera.pos.y -= camera.delta.y * delta_time;
+        //if (!is_colliding_in_axis(camera, BACK_X_AXIS_COLLISION)) camera.pos.x -= camera.delta.x * delta_time;
+        //if (!is_colliding_in_axis(camera, BACK_Y_AXIS_COLLISION)) camera.pos.y -= camera.delta.y * delta_time;
     }
 }
 
@@ -103,10 +124,10 @@ void open_door(void)
     front_offset.x = ((camera.pos.x + camera.offset.x) / (float) MAP_CELL_SIZE);
     front_offset.y = ((camera.pos.y + camera.offset.y) / (float) MAP_CELL_SIZE);
 
-    structures_t block_in_front = get_map_wall_at((position_2D_t) {front_offset.x, front_offset.y});
+    structures_t block_in_front; //= get_map_wall_at((position_2D_t) {front_offset.x, front_offset.y});
 
     if (block_in_front == DOOR)
     {
-        update_map_wall_at((position_2D_t) {front_offset.x, front_offset.y}, AIR);
+        update_map_wall_at((trc_grid_position_t) {front_offset.x, front_offset.y}, AIR);
     }
 }
