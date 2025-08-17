@@ -18,8 +18,8 @@ typedef enum {
  */
 typedef struct {
     int map_offset;             /** Location in the maps array */
-    position_2D_t map_size;     /** Size of the map of the level, in the form of position_2D */
-    position_2D_t camera_spawn; /** Location of the camera when the level is loaded, in the form of position_2D */
+    trc_world_position_t map_size;     /** Size of the map of the level, in the form of position_2D */
+    trc_world_position_t camera_spawn; /** Location of the camera when the level is loaded, in the form of position_2D */
 } level_t;
 
 /**
@@ -78,9 +78,9 @@ int get_current_level_index(void);
 level_t get_current_level_info(void);
 
 /**
- * Returns the map dimensions of the current level in a position_2D_t
+ * Returns the map dimensions of the current level in a trc_world_position_t
  */
- position_2D_t get_current_map_dimensions(void);
+ trc_world_position_t get_current_map_dimensions(void);
 
 /**
  * Returns the map size of the current level
@@ -95,7 +95,7 @@ int get_current_map_offset(void);
 /**
  * Returns the camera spawn of the current level
  */
-position_2D_t get_current_camera_spawn(void);
+trc_world_position_t get_current_camera_spawn(void);
 
 /**
  * Returns the current FPS count

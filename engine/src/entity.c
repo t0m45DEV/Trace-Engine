@@ -24,9 +24,9 @@
             "\t\t%s\n"
         ;
 
-        char* entity_pos    = position_2D_to_string_with_name(entity.pos, "Position");
-        char* entity_delta  = position_2D_to_string_with_name(entity.delta, "Delta");
-        char* entity_offset = position_2D_to_string_with_name(entity.offset, "Offset");
+        char* entity_pos    = trc_world_position_to_string_with_name(entity.pos, "Position");
+        char* entity_delta  = trc_world_position_to_string_with_name(entity.delta, "Delta");
+        char* entity_offset = trc_world_position_to_string_with_name(entity.offset, "Offset");
 
         int printf_out = snprintf(string, MAX_LEN, entity_parsed,
             entity_name,
@@ -93,11 +93,11 @@ int is_colliding_in_axis(entity_t entity, const collision_directions_t axis)
     idx = to_grid_pos(entity.pos);
 
     trc_grid_position_t add_offset;
-    add_offset = to_grid_pos((position_2D_t) {entity.pos.x + entity.offset.x,
+    add_offset = to_grid_pos((trc_world_position_t) {entity.pos.x + entity.offset.x,
                                                         entity.pos.y + entity.offset.y});
 
     trc_grid_position_t sub_offset;
-    sub_offset = to_grid_pos((position_2D_t) {entity.pos.x - entity.offset.x,
+    sub_offset = to_grid_pos((trc_world_position_t) {entity.pos.x - entity.offset.x,
                                                         entity.pos.y - entity.offset.y});
 
     if (can_move(idx, add_offset)) /* If can move forward */

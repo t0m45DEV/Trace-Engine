@@ -24,18 +24,18 @@ typedef float angle_t;
     /**
      * @note Remember to free the memory allocated for the string!
      */
-    #define position_2D_to_string(X) position_2D_to_string_with_name(X, #X)
+    #define trc_world_position_to_string(X) trc_world_position_to_string_with_name(X, #X)
 
     /**
      * Only for debug, it returns the position in the form of a string with the format:
      * 
      * "pos_name = (pos.x, pos.y)"
      * 
-     * @param pos position_2D_t, the position to print
+     * @param pos trc_world_position_t, the position to print
      * 
      * @note Caller MUST free the memory allocated for the string
      */
-    char* position_2D_to_string_with_name(const position_2D_t pos, const char* pos_name);
+    char* trc_world_position_to_string_with_name(const trc_world_position_t pos, const char* pos_name);
 #else
     #define debug_position(X) // Does nothing
 #endif
@@ -46,24 +46,24 @@ typedef float angle_t;
  * @param p1 First point
  * @param p2 Second point
  */
-float distance_between(const position_2D_t p1, const position_2D_t p2);
+float distance_between(const trc_world_position_t p1, const trc_world_position_t p2);
 
 /**
  * Returns the distance between the origin and the given vector
  */
-float vector_length(const position_2D_t vector);
+float vector_length(const trc_world_position_t vector);
 
 /**
  * Returns the normalized vector
  * 
  * @note If it is already normalized, returns one with the same parameters
  */
-position_2D_t normalize_vector(const position_2D_t vector);
+trc_world_position_t normalize_vector(const trc_world_position_t vector);
 
 /**
  * Returns the given vector scaled by the given factor
  */
-position_2D_t scalar_multiplication(const position_2D_t vector, const float scalar);
+trc_world_position_t scalar_multiplication(const trc_world_position_t vector, const float scalar);
 
 /**
  * Returns the angle so it's in the range of 0 to 2*PI

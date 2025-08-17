@@ -51,7 +51,7 @@ level_t get_current_level_info(void)
     return game_state.current_level_info;
 }
 
-position_2D_t get_current_map_dimensions(void)
+trc_world_position_t get_current_map_dimensions(void)
 {
     return game_state.current_level_info.map_size;
 }
@@ -66,7 +66,7 @@ int get_current_map_offset(void)
     return game_state.current_level_info.map_offset;
 }
 
-position_2D_t get_current_camera_spawn(void)
+trc_world_position_t get_current_camera_spawn(void)
 {
     return game_state.current_level_info.camera_spawn;
 }

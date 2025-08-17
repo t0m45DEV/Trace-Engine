@@ -32,12 +32,12 @@ void cast_rays_from_to(int start, int end)
 {
     int count_of_hits;
     structures_t structure_hit;
-    position_2D_t ray_pos;
-    position_2D_t ray_offset = {0, 0};
+    trc_world_position_t ray_pos;
+    trc_world_position_t ray_offset = {0, 0};
     float distance_from_camera;
     float angle_cosine;
 
-    position_2D_t camera_pos = get_camera_position();
+    trc_world_position_t camera_pos = get_camera_position();
     angle_t camera_angle = get_camera_angle();
 
     angle_t ray_angle = camera_angle - (DEG_TO_RAD(FOV / 2.0));
@@ -49,7 +49,7 @@ void cast_rays_from_to(int start, int end)
         /* Check horizontal lines */
 
         float distance_h = INFINITY;
-        position_2D_t ray_H = {0, 0};
+        trc_world_position_t ray_H = {0, 0};
         structures_t surface_H = AIR;
 
         count_of_hits = 0;
@@ -102,7 +102,7 @@ void cast_rays_from_to(int start, int end)
         /* Check vertical lines */
 
         float distance_v = INFINITY;
-        position_2D_t ray_V = {0, 0};
+        trc_world_position_t ray_V = {0, 0};
         structures_t surface_V = AIR;
 
         count_of_hits = 0;

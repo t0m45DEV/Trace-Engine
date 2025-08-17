@@ -10,7 +10,7 @@ const int velocity = 100;
 
 void move_demo_player(float delta_time)
 {
-    position_2D_t modified_pos = get_camera_position();
+    trc_world_position_t modified_pos = get_camera_position();
     float current_angle = get_camera_angle();
 
     if (is_key_being_pressed(MOVE_FORWARD))

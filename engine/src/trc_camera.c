@@ -9,6 +9,7 @@
 #include "map.h"
 #include "entity.h"
 #include "graphics.h"
+#include "trc_transform.h"
 
 #define P_COLLISION_SIZE 20     /** Initial collision size for camera (check MAP_CELL_SIZE for size relation) */
 
@@ -22,7 +23,7 @@
 /** The camera info, like the position and actual direction of movement */
 entity_t camera = {0};
 
-position_2D_t get_camera_position(void)
+trc_world_position_t get_camera_position(void)
 {
     return camera.pos;
 }
@@ -32,25 +33,25 @@ float get_camera_angle(void)
     return camera.angle;
 }
 
-void set_camera_position(position_2D_t new_pos)
+void set_camera_position(trc_world_position_t new_pos)
 {
-    position_2D_t offset_dir;
+    trc_world_position_t offset_dir;
     offset_dir.x = new_pos.x - camera.pos.x;
     offset_dir.y = new_pos.y - camera.pos.y;
 
     offset_dir = normalize_vector(offset_dir);
     offset_dir = scalar_multiplication(offset_dir, P_COLLISION_SIZE);
 
-    position_2D_t offset;
+    trc_world_position_t offset;
     offset.x = camera.pos.x + offset_dir.x;
     offset.y = camera.pos.y + offset_dir.y;
     
-    position_2D_t current_pos = get_camera_position();
+    trc_world_position_t current_pos = get_camera_position();
     current_pos = scalar_multiplication(current_pos, 1 / (float) MAP_CELL_SIZE);
 
     if (get_map_wall_at(to_grid_pos(offset)) != AIR)
     {
-        //log_error("Error moving camera to {%f, %f}: There is a solid wall there", offset.x, offset.y);
+        log_error("Error moving camera to {%f, %f}: There is a solid wall there", offset.x, offset.y);
     }
     else
     {
@@ -112,7 +113,7 @@ void draw_camera(void)
 
     float look_x_dir = camera.pos.x + (camera.delta.x / 5);
     float look_y_dir = camera.pos.y + (camera.delta.y / 5);
-    position_2D_t look_dir = (position_2D_t) {look_x_dir, look_y_dir};
+    trc_world_position_t look_dir = (trc_world_position_t) {look_x_dir, look_y_dir};
 
     draw_line(camera.pos, look_dir, 4, P_COLOR);
 }
@@ -120,11 +121,11 @@ void draw_camera(void)
 
 void open_door(void)
 {
-    position_2D_t front_offset;
+    trc_world_position_t front_offset;
     front_offset.x = ((camera.pos.x + camera.offset.x) / (float) MAP_CELL_SIZE);
     front_offset.y = ((camera.pos.y + camera.offset.y) / (float) MAP_CELL_SIZE);
 
-    structures_t block_in_front; //= get_map_wall_at((position_2D_t) {front_offset.x, front_offset.y});
+    structures_t block_in_front; //= get_map_wall_at((trc_world_position_t) {front_offset.x, front_offset.y});
 
     if (block_in_front == DOOR)
     {

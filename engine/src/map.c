@@ -25,16 +25,16 @@ int real_pos_to_map_pos(const trc_grid_position_t real_pos)
     return ((int) (real_pos.y)) * ((int) get_current_map_dimensions().x) + ((int) (real_pos.x));
 }
 
-position_2D_t to_world_pos(trc_grid_position_t grid_pos)
+trc_world_position_t to_world_pos(trc_grid_position_t grid_pos)
 {
-    position_2D_t world_pos;
+    trc_world_position_t world_pos;
     world_pos.x = grid_pos.x * (float) MAP_CELL_SIZE + ((float) MAP_CELL_SIZE / 2);
     world_pos.y = grid_pos.y * (float) MAP_CELL_SIZE + ((float) MAP_CELL_SIZE / 2);
 
     return world_pos;
 }
 
-trc_grid_position_t to_grid_pos(position_2D_t world_pos)
+trc_grid_position_t to_grid_pos(trc_world_position_t world_pos)
 {
     trc_grid_position_t grid_pos;
     grid_pos.x = world_pos.x / (float) MAP_CELL_SIZE;
@@ -43,12 +43,12 @@ trc_grid_position_t to_grid_pos(position_2D_t world_pos)
     return grid_pos;
 }
 
-position_2D_t map_pos_to_real_pos(position_2D_t map_pos)
+trc_world_position_t map_pos_to_real_pos(trc_world_position_t map_pos)
 {
     float real_x = (map_pos.x * MAP_CELL_SIZE) + (MAP_CELL_SIZE / 2.0);
     float real_y = (map_pos.y * MAP_CELL_SIZE) + (MAP_CELL_SIZE / 2.0);
 
-    return (position_2D_t) {real_x, real_y};
+    return (trc_world_position_t) {real_x, real_y};
 }
 
 void change_to_map(int level_idx)
@@ -123,19 +123,19 @@ int get_map_offset_from_id(const int level_idx)
     return ret;
 }
 
-position_2D_t get_map_size_from_id(const int level_idx)
+trc_world_position_t get_map_size_from_id(const int level_idx)
 {
     return maps_sizes[level_idx];
 }
 
-position_2D_t get_camera_spwan_from_id(const int level_idx)
+trc_world_position_t get_camera_spwan_from_id(const int level_idx)
 {
     return camera_spawns[level_idx];
 }
 
 void draw_map_2D(void)
 {
-    position_2D_t grid_pos;
+    trc_world_position_t grid_pos;
 
     for (int y = 0; y < get_current_map_dimensions().y; y++)
     {
@@ -150,7 +150,7 @@ void draw_map_2D(void)
 
             grid_pos.x = x * MAP_CELL_SIZE;
             grid_pos.y = y * MAP_CELL_SIZE;
-            position_2D_t cell_size = (position_2D_t) {MAP_CELL_SIZE, MAP_CELL_SIZE};
+            trc_world_position_t cell_size = (trc_world_position_t) {MAP_CELL_SIZE, MAP_CELL_SIZE};
             
             draw_square(grid_pos, cell_size, 1, cell_color);
         }

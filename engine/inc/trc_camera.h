@@ -7,12 +7,12 @@
 /**
  * Returns the current camera position
  */
-position_2D_t get_camera_position(void);
+trc_world_position_t get_camera_position(void);
 
 /**
  * Moves the camera to new_pos
  */
-void set_camera_position(position_2D_t new_pos);
+void set_camera_position(trc_world_position_t new_pos);
 
 /**
  * Returns the current camera angle of vision (in radians)

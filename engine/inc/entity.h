@@ -16,13 +16,13 @@ typedef enum {
  * An entity is every interactive and moving thing in the game, including the player
  */
 typedef struct {
-    position_2D_t pos;       /** Where the entity is in the top view map */
-    position_2D_t delta;     /** Where the entity is looking at */
+    trc_world_position_t pos;       /** Where the entity is in the top view map */
+    trc_world_position_t delta;     /** Where the entity is looking at */
     angle_t angle;             /** The angle between pos and delta, in radians */
     float movement_velocity; /** How fast the entity moves */
     float rotation_velocity; /** How fast the entity rotates */
     int collision_size;      /** Radious of the collision shape (it's always a circle) */
-    position_2D_t offset;    /** The offset is a point at distance collision_size from pos, we use this point to detect collisions */
+    trc_world_position_t offset;    /** The offset is a point at distance collision_size from pos, we use this point to detect collisions */
 } entity_t;
 
 #ifndef GAME_EXPORT

@@ -3,10 +3,10 @@
 
 #include <math.h>
 
-position_2D_t square_center = {200, 200};
+trc_world_position_t square_center = {200, 200};
 
 angle_t square_angle = 0;
-position_2D_t square_pos = {200, 200};
+trc_world_position_t square_pos = {200, 200};
 float radious = 100;
 
 void app_init(void)

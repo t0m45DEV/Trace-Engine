@@ -32,18 +32,18 @@ typedef enum {
  * the values pointing to the same cell in the map (in the center of the
  * cell, to be precise)
  */
-position_2D_t to_world_pos(trc_grid_position_t grid_pos);
+trc_world_position_t to_world_pos(trc_grid_position_t grid_pos);
 
 /**
  * Given a position_2D (with floats) returns the corresponding cell
  * position in the current map
  */
-trc_grid_position_t to_grid_pos(position_2D_t world_pos);
+trc_grid_position_t to_grid_pos(trc_world_position_t world_pos);
 
 /**
  * Returns the windows position for the middle of the map square
  */
-position_2D_t map_pos_to_real_pos(const position_2D_t map_pos);
+trc_world_position_t map_pos_to_real_pos(const trc_world_position_t map_pos);
 
 /**
  * Updates the current map info to the map of the level_idx level
@@ -79,19 +79,19 @@ int get_map_offset_from_id(const int level_idx);
 
 /**
  * Returns the map size of the level_idx level, in the form of
- * a position_2D_t, where x and y are the dimensions
+ * a trc_world_position_t, where x and y are the dimensions
  * 
  * @param level_idx The index of the level to get (from 0 to LEVEL_COUNT)
  */
-position_2D_t get_map_size_from_id(const int level_idx);
+trc_world_position_t get_map_size_from_id(const int level_idx);
 
 /**
  * Returns the player spawn point of the level_idx level, in the form of
- * a position_2D_t
+ * a trc_world_position_t
  * 
  * @param level_idx The index of the level to get (from 0 to LEVEL_COUNT)
  */
-position_2D_t get_camera_spwan_from_id(const int level_idx);
+trc_world_position_t get_camera_spwan_from_id(const int level_idx);
 
 /**
  * Draw in the screen a 2D matrix of squares, white being wall and blakc being floor

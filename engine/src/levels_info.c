@@ -68,14 +68,14 @@ structures_t map_c[] =
     2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
 };
 
-position_2D_t maps_sizes[LEVEL_COUNT] =
+trc_world_position_t maps_sizes[LEVEL_COUNT] =
 {
-    (position_2D_t) {8, 8},
-    (position_2D_t) {16, 8}
+    (trc_world_position_t) {8, 8},
+    (trc_world_position_t) {16, 8}
 };
 
-position_2D_t camera_spawns[LEVEL_COUNT] =
+trc_world_position_t camera_spawns[LEVEL_COUNT] =
 {
-    (position_2D_t) {1, 6},
-    (position_2D_t) {1, 1}
+    (trc_world_position_t) {1, 6},
+    (trc_world_position_t) {1, 1}
 };
