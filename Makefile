@@ -187,8 +187,7 @@ $(GLAD_OBJ) $(GLAD_EXP_OBJ) : $(GLAD_SRC)
 ##  Version v0.prealpha (pre everything, to be honest)
 ## 
 ##  For more information you can check the github repo
-##  here:
-##    https://github.com/t0m45DEV/Trace-Engine?tab=readme-ov-file
+##  here: https://github.com/t0m45DEV/Trace-Engine
 ## 
 ##  Please report any bugs or error to the author
 ## 
