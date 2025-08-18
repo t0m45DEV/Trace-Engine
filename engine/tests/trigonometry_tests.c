@@ -19,9 +19,9 @@ void test_are_equals_different_numbers(void)
 
 void test_normalize_vector(void)
 {
-    position_2D_t east = (position_2D_t) {1, 0};
-    position_2D_t north_east = (position_2D_t) {1, 1};
-    position_2D_t random_point = (position_2D_t) {2, 7};
+    trc_world_position_t east = (trc_world_position_t) {1, 0};
+    trc_world_position_t north_east = (trc_world_position_t) {1, 1};
+    trc_world_position_t random_point = (trc_world_position_t) {2, 7};
 
     ASSERT(are_equals(vector_length(normalize_vector(east)), 1));
     ASSERT(are_equals(vector_length(normalize_vector(north_east)), 1));
@@ -30,7 +30,7 @@ void test_normalize_vector(void)
 
 void test_scalar_multiplication(void)
 {
-    position_2D_t p1 = (position_2D_t) {1, 1};
+    trc_world_position_t p1 = (trc_world_position_t) {1, 1};
 
     ASSERT(are_equals(vector_length(scalar_multiplication(TRC_POS_ORIGIN, 5)), 0));
     ASSERT(are_equals(vector_length(scalar_multiplication(p1, 2)), 8));
@@ -108,9 +108,9 @@ void test_rad_to_deg_less_than_0(void)
 
 void test_distance_between_same_point(void)
 {
-    position_2D_t origin = {0, 0};
-    position_2D_t point_1 = {1, 1};
-    position_2D_t point_2 = {247, -128};
+    trc_world_position_t origin = {0, 0};
+    trc_world_position_t point_1 = {1, 1};
+    trc_world_position_t point_2 = {247, -128};
 
     ASSERT(are_equals(distance_between(origin, origin), 0));
     ASSERT(are_equals(distance_between(point_1, point_1), 0));
@@ -119,18 +119,18 @@ void test_distance_between_same_point(void)
 
 void test_distance_between_origin_unit_circle(void)
 {
-    position_2D_t origin = {0,  0};
+    trc_world_position_t origin = {0,  0};
 
-    position_2D_t east   = { 1,  0};
-    position_2D_t north  = { 0,  1};
-    position_2D_t west   = {-1,  0};
-    position_2D_t south  = { 0, -1};
+    trc_world_position_t east   = { 1,  0};
+    trc_world_position_t north  = { 0,  1};
+    trc_world_position_t west   = {-1,  0};
+    trc_world_position_t south  = { 0, -1};
 
     float diagonal_component = sqrt(2) / 2.0;
-    position_2D_t NE = { diagonal_component,  diagonal_component};
-    position_2D_t NW = {-diagonal_component, diagonal_component};
-    position_2D_t SW = {-diagonal_component, -diagonal_component};
-    position_2D_t SE = { diagonal_component, -diagonal_component};
+    trc_world_position_t NE = { diagonal_component,  diagonal_component};
+    trc_world_position_t NW = {-diagonal_component, diagonal_component};
+    trc_world_position_t SW = {-diagonal_component, -diagonal_component};
+    trc_world_position_t SE = { diagonal_component, -diagonal_component};
 
     ASSERT(are_equals(distance_between(origin, east),  (float) 1.0));
     ASSERT(are_equals(distance_between(origin, north), (float) 1.0));
@@ -145,9 +145,9 @@ void test_distance_between_origin_unit_circle(void)
 
 void test_distance_between_pythagorean_triple(void)
 {
-    position_2D_t point_1 = {0, 0};
-    position_2D_t point_2 = {0, 3};
-    position_2D_t point_3 = {4, 0};
+    trc_world_position_t point_1 = {0, 0};
+    trc_world_position_t point_2 = {0, 3};
+    trc_world_position_t point_3 = {4, 0};
 
     ASSERT(are_equals(distance_between(point_1, point_2), (float) 3));
     ASSERT(are_equals(distance_between(point_1, point_3), (float) 4));
@@ -156,9 +156,9 @@ void test_distance_between_pythagorean_triple(void)
 
 void test_distance_between_ugly_numbers(void)
 {
-    position_2D_t point_1 = {-2, 1 / 3.0};
-    position_2D_t point_2 = {3.5, 2};
-    position_2D_t point_3 = {2.2, -2.8};
+    trc_world_position_t point_1 = {-2, 1 / 3.0};
+    trc_world_position_t point_2 = {3.5, 2};
+    trc_world_position_t point_3 = {2.2, -2.8};
 
     ASSERT(are_equals(distance_between(point_1, point_2), (float) 5.7469798));
     ASSERT(are_equals(distance_between(point_2, point_3), (float) 4.9729267));
