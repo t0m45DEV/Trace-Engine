@@ -5,7 +5,6 @@
 
 #ifndef GAME_EXPORT
     #include <stdio.h>
-    #include <stdlib.h>
     #include "trigonometry.h"
 
     char* entity_to_string_with_name(const entity_t entity, const char* entity_name)

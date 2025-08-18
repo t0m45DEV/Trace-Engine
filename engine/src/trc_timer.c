@@ -6,7 +6,6 @@
 
 #ifndef GAME_EXPORT
     #include <stdio.h>
-    #include <stdlib.h>
     #include "log.h"
 
     char* timer_to_string_with_name(const trc_timer_t timer, const char* timer_name)

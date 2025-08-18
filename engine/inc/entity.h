@@ -26,10 +26,7 @@ typedef struct {
 } entity_t;
 
 #ifndef GAME_EXPORT
-    /**
-     * @note Remember to free the memory allocated for the string!
-     */
-    #define entity_to_string(X) entity_to_string_with_name(X, #X)
+    #include <stdlib.h>
 
     /**
      * Only for debug, it returns the entity info in the form of a string
@@ -37,6 +34,11 @@ typedef struct {
      * @param entity entity_t, the entity to print
      * 
      * @note Caller MUST free the memory allocated for the string
+     */
+    #define entity_to_string(X) entity_to_string_with_name(X, #X)
+
+    /**
+     * @note Remember to free the memory allocated for the string!
      */
     char* entity_to_string_with_name(const entity_t entity, const char* entity_name);
 #else

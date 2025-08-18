@@ -14,10 +14,7 @@ typedef struct {
 } trc_timer_t;
 
 #ifndef GAME_EXPORT
-    /**
-     * @note Remember to free the memory allocated for the string!
-     */
-    #define timer_to_string(X) timer_to_string_with_name(X, #X)
+    #include <stdlib.h>
 
     /**
      * Only for debug, it returns the timer in the form of a string
@@ -25,6 +22,11 @@ typedef struct {
      * @param timer engine_timer_t, the timer to print
      * 
      * @note Caller MUST free the memory allocated for the string
+     */
+    #define timer_to_string(X) timer_to_string_with_name(X, #X)
+
+    /**
+     * @note Remember to free the memory allocated for the string!
      */
     char* timer_to_string_with_name(const trc_timer_t timer, const char* timer_name);
 #else

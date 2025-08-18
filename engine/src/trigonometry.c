@@ -5,7 +5,6 @@
 
 #ifndef GAME_EXPORT
     #include <stdio.h>
-    #include <stdlib.h>
 
     char* trc_world_position_to_string_with_name(const trc_world_position_t pos, const char* pos_name)
     {

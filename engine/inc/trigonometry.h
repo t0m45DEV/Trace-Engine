@@ -21,10 +21,7 @@
 typedef float angle_t;
 
 #ifndef GAME_EXPORT
-    /**
-     * @note Remember to free the memory allocated for the string!
-     */
-    #define trc_world_position_to_string(X) trc_world_position_to_string_with_name(X, #X)
+    #include <stdlib.h>
 
     /**
      * Only for debug, it returns the position in the form of a string with the format:
@@ -34,6 +31,11 @@ typedef float angle_t;
      * @param pos trc_world_position_t, the position to print
      * 
      * @note Caller MUST free the memory allocated for the string
+     */
+    #define trc_world_position_to_string(X) trc_world_position_to_string_with_name(X, #X)
+
+    /**
+     * @note Remember to free the memory allocated for the string!
      */
     char* trc_world_position_to_string_with_name(const trc_world_position_t pos, const char* pos_name);
 #else
