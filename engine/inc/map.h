@@ -28,14 +28,14 @@ typedef enum {
 } structures_t;
 
 /**
- * Given a position in a grid (with integers) returns the position_2D with
+ * Given a position in a grid (with integers) returns the trc_grid_position_t with
  * the values pointing to the same cell in the map (in the center of the
  * cell, to be precise)
  */
 trc_world_position_t to_world_pos(trc_grid_position_t grid_pos);
 
 /**
- * Given a position_2D (with floats) returns the corresponding cell
+ * Given a trc_grid_position_t (with floats) returns the corresponding cell
  * position in the current map
  */
 trc_grid_position_t to_grid_pos(trc_world_position_t world_pos);
