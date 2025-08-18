@@ -40,12 +40,7 @@ trc_world_position_t normalize_vector(const trc_world_position_t vector)
     {
         return TRC_POS_ORIGIN;
     }
-
-    trc_world_position_t new_vector;
-    new_vector.x = vector.x / length;
-    new_vector.y = vector.y / length;
-
-    return new_vector;
+    return scalar_multiplication(vector, 1 / length);
 }
 
 trc_world_position_t scalar_multiplication(const trc_world_position_t vector, const float scalar)
