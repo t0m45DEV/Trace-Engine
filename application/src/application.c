@@ -16,11 +16,6 @@ void app_init(void)
 
 void app_update(float delta_time)
 {
-    if (is_key_being_pressed('p'))
-    {
-        log_warning("Delta time is currently: %f", delta_time);
-    }
-
     if (is_key_just_pressed('o'))
     {
         log_warning("O just pressed!");

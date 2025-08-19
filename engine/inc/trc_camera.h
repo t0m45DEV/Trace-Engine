@@ -1,6 +1,7 @@
 #ifndef TRC_CAMERA
 #define TRC_CAMERA
 
+#include "trigonometry.h"
 #include "trc_world_position.h"
 #include "basic_input.h"
 
@@ -12,7 +13,19 @@ trc_world_position_t get_camera_position(void);
 /**
  * Moves the camera to new_pos
  */
-void set_camera_position(trc_world_position_t new_pos);
+void set_camera_position(const trc_world_position_t velocity);
+
+/**
+ * Rotates the camera adding the given delta to the current camera angle
+ * 
+ * @note The sign of rotation_delta determines the direction of the rotation
+ */
+void rotate_camera(const angle_t rotation_delta);
+
+/**
+ * Returns the current camera direction, in the form of a normalized vector
+ */
+trc_world_position_t get_camera_direction(void);
 
 /**
  * Returns the current camera angle of vision (in radians)
@@ -25,11 +38,6 @@ float get_camera_angle(void);
  * @note If you change or reset the level, call this function to update the camera position, velocity, etc
  */
 void reset_camera_info(void);
-
-/**
- * Move the camera using the info in the camera struct from camera.h and the action_key_state struct from input.h
- */
-void move_camera(keys_state_t key_state, float delta_time);
 
 /**
  * Draw the camera in the screen in the actual camera position.
