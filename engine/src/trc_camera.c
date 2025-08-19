@@ -3,8 +3,6 @@
 #include <math.h>
 
 #include "log.h"
-#include "textures.h"
-#include "trigonometry.h"
 #include "game_state.h"
 #include "map.h"
 #include "graphics.h"
@@ -22,7 +20,7 @@
 /** The camera info, like the position and actual direction of movement */
 trc_transform_t trc_camera;
 
-const trc_world_position_t get_camera_position(void)
+trc_world_position_t get_camera_position(void)
 {
     return trc_camera.pos;
 }
