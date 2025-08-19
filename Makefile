@@ -171,38 +171,65 @@ $(GLAD_OBJ) $(GLAD_EXP_OBJ) : $(GLAD_SRC)
 
 
 # So Makefile won't cry if a file has this names
-.PHONY: all clean play debug mem_check export test parser
+.PHONY: help all clean play debug mem_check export test parser
 
-all: $(ENGINE) $(GAME)
+## ------------------------------------------------------
+##  Welcome to the Trace Engine, or Tom's Raycaster in C
+## ------------------------------------------------------
+## 
+##  This is a fake 3D game engine using the raycasting
+##  technique made in C, feel free to go through the
+##  files and see how everything works!
+## 
+## ------------------------------------------------------
+## 
+##  Written by t0m45DEV
+##  Version v0.prealpha (pre everything, to be honest)
+## 
+##  For more information you can check the github repo
+##  here: https://github.com/t0m45DEV/Trace-Engine
+## 
+##  Please report any bugs or error to the author
+## 
+## ------------------------------------------------------
+## 
+##  Here is the list for all the makefile rules:
+## 
+
+help: ## Show this help
+	@egrep -h '##\s' $(MAKEFILE_LIST) | awk 'BEGIN {FS = "^## "}; $$1 == "" {printf "%s\n", $$2}'
+	@egrep -h '\s##\s' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  %-12s - %s\n\n", $$1, $$2}'
+
+all: $(ENGINE) $(GAME) ## Compiles the engine version and the export version
 
 # Erase all the temporal files and executables
-clean:
+clean: ## Deletes all the object files, the executables, the tests related files, and all that
 	@$(call MESSAGE,$(INFO_COL),Deleting previous version...)
 	@rm -fr $(ENGINE) ./$(OBJ_DIR) ./$(EXP_DIR) ./$(TST_BIN) ./$(IMG_PARSER) ./$(OBJ_EXP_DIR)
 	@$(call MESSAGE,$(INFO_COL),Every object file and the executable no longer exists)
 
 # Makes the engine and opens it
-play: $(ENGINE)
+play: $(ENGINE) ## Compiles the game and then opens it
 	@$(call MESSAGE,$(INFO_COL),Running $(ENGINE)...)
 	@./$(ENGINE)
 
 # Makes the engine and opens it with a GDB session
-debug: $(ENGINE)
+debug: $(ENGINE) ## Compiles the game, and then starts a GDB session with the executable
 	@$(call MESSAGE,$(INFO_COL),Creating debug sesion for $(ENGINE)...)
 	@gdb ./$(ENGINE)
 
 # Makes the engine and opens it with a Valgrind session
-mem_check: $(ENGINE)
+mem_check: $(ENGINE) ## Compiles the game, and then starts a Valgrind session with the executable
 	@$(call MESSAGE,$(INFO_COL),Creating memory check sesion for $(ENGINE)...)
 	@valgrind $(VALGRIND_FLAGS) ./$(ENGINE)
 
 # Exports the game for Linux
-export: $(GAME)
+export: $(GAME) ## Compiles a final version, without debuging symbols and ready to publish
 	@$(call MESSAGE,$(SUCCESS_COL),Portable Linux version for $(EXPORT_NAME) created!)
 	@$(call MESSAGE,$(INFO_COL),Have fun!)
 
 # Run the tests
-test: $(ENGINE)
+test: $(ENGINE) ## Compiles the auto tests and then run them
 	@$(call MESSAGE,$(CYAN),Compiling the tests...)
 	@$(CC) $(TST_FILES) $(TST_FLAGS) $(TST_LIBS) -o $(TST_BIN)
 	@$(call MESSAGE,$(GREEN),Test compiled!)
@@ -211,13 +238,13 @@ test: $(ENGINE)
 	@rm $(TST_BIN)
 	@$(call MESSAGE,$(GREEN),Tests finished running!)
 
-parser: ./$(IMG_PARSER)
+parser: ./$(IMG_PARSER) ## Compiles the image parser and then executes it
 	@$(call MESSAGE,$(INFO_COL),Parsing images...)
 	@$(RUN_IMG_PARSER)
 	@rm ./$(IMG_PARSER)
 	@$(call MESSAGE,$(SUCCESS_COL),All images parsed!)
 
-setup_sdl2: $(SDL2_STATIC)
+setup_sdl2: $(SDL2_STATIC) ## Compiles the SDL2 library as static (only make this the first time)
 
 $(SDL2_STATIC):
 	@$(call MESSAGE,$(INFO_COL),Building SDL2 from source... (this may take a while))

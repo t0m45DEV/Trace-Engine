@@ -1,8 +1,8 @@
 #ifndef _H_RENDER
 #define _H_RENDER
 
-#include "trc_structure.h"
-#include "position.h"
+#include "trc_world_position.h"
+#include "map.h"
 
 /**
  * A ray is a line between the player and the closest wall in a certain angle
@@ -10,7 +10,7 @@
 typedef struct
 {
     int index;              /** Index of the ray, from 0 to AMMOUNT_OF_RAYS */
-    position_2D_t pos;      /** Position of the hit between the ray and the wall */
+    trc_world_position_t pos;      /** Position of the hit between the ray and the wall */
     float angle;            /** Angle between the X axis and the ray, from the player position */
     float distance;         /** Distance between the player and the wall that got hit by this ray */
     structures_t surface;   /** The surface of the wall that got hit */

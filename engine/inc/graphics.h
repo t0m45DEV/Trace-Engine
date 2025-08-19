@@ -1,7 +1,7 @@
 #ifndef _H_GRAPHICS
 #define _H_GRAPHICS
 
-#include "position.h"
+#include "trc_world_position.h"
 
 /**
  * A color struct, having 3 variables: r, g and b; each one an int from 0 to 255
@@ -37,7 +37,7 @@ typedef enum {
 /**
  * Returns the current selected resolution
  */
-int get_actual_resolution(void);
+resolutions_t get_actual_resolution(void);
 
 /**
  * Updates the current resolution to the given new one
@@ -61,16 +61,16 @@ void render_screen(void);
  *
  * @note If you wan't a full square, pass a border of 0
  */
-void draw_square(position_2D_t position, position_2D_t size, int border, rgb_t color);
+void draw_square(trc_world_position_t position, trc_world_position_t size, int border, rgb_t color);
 
 /**
  * Draw a point of the given size in the given position with the given color
  */
-void draw_point(position_2D_t position, int size, rgb_t color);
+void draw_point(trc_world_position_t position, int size, rgb_t color);
 
 /**
  * Draw a line of the given thickness from the given start point to the given end point with the given color
  */
-void draw_line(position_2D_t start_point, position_2D_t end_point, int thickness, rgb_t color);
+void draw_line(trc_world_position_t start_point, trc_world_position_t end_point, int thickness, rgb_t color);
 
 #endif

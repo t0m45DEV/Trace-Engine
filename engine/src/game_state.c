@@ -51,7 +51,7 @@ level_t get_current_level_info(void)
     return game_state.current_level_info;
 }
 
-position_2D_t get_current_map_dimensions(void)
+trc_world_position_t get_current_map_dimensions(void)
 {
     return game_state.current_level_info.map_size;
 }
@@ -66,9 +66,9 @@ int get_current_map_offset(void)
     return game_state.current_level_info.map_offset;
 }
 
-position_2D_t get_current_player_spawn(void)
+trc_world_position_t get_current_camera_spawn(void)
 {
-    return game_state.current_level_info.player_spawn;
+    return game_state.current_level_info.camera_spawn;
 }
 
 int get_fps(void)
@@ -96,7 +96,7 @@ void load_level(const int level_idx)
     game_state.current_level_idx = level_idx;
     game_state.current_level_info.map_offset = get_map_offset_from_id(level_idx);
     game_state.current_level_info.map_size = get_map_size_from_id(level_idx);
-    game_state.current_level_info.player_spawn = get_player_spwan_from_id(level_idx);
+    game_state.current_level_info.camera_spawn = get_camera_spwan_from_id(level_idx);
     change_to_map(level_idx);
     reset_camera_info();
 

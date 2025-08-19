@@ -32,7 +32,7 @@ int get_texture_size(void)
     return TEXTURE_SIZE;
 }
 
-rgb_t get_texture_pixel(structures_t structure, position_2D_t pixel_pos)
+rgb_t get_texture_pixel(structures_t structure, trc_world_position_t pixel_pos)
 {
     int pixel_id = ((int) (pixel_pos.y) * TEXTURE_SIZE + (int) pixel_pos.x);
     pixel_id += ((structure - 1) * TEXTURE_SIZE * TEXTURE_SIZE);

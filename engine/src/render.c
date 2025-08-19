@@ -25,7 +25,7 @@
 
 void render_line(const ray_t ray)
 {
-    position_2D_t camera_pos = get_camera_position();
+    trc_world_position_t camera_pos = get_camera_position();
     float camera_angle = get_camera_angle();
 
     float line_h = ((MAP_CELL_SIZE * VIEWPORT_HEIGHT) / ray.distance) * DISTANCE_CORRECTION;
@@ -66,12 +66,12 @@ void render_line(const ray_t ray)
         // Draw walls
         for (int y = 0; y < line_h; y++)
         {
-            position_2D_t pixel_pos = {texture_x, texture_y};
+            trc_world_position_t pixel_pos = {texture_x, texture_y};
 
             rgb_t pixel_color = get_texture_pixel(ray.surface, pixel_pos);
             pixel_color = apply_shade(pixel_color, shade);
 
-            position_2D_t wall_pos = (position_2D_t) {ray.index * LINES_WIDTH + X_CORRECTION + VIEWPORT_X_OFFSET,
+            trc_world_position_t wall_pos = (trc_world_position_t) {ray.index * LINES_WIDTH + X_CORRECTION + VIEWPORT_X_OFFSET,
                                                        y + line_offset + VIEWPORT_Y_OFFSET};
 
             draw_point(wall_pos, LINES_WIDTH, pixel_color);
@@ -97,28 +97,28 @@ void render_line(const ray_t ray)
         {
             float shade = 1 - distance / RENDER_DISTANCE;
 
-            position_2D_t pixel_pos = {(int) (texture_x) & (get_texture_size() - 1), (int) (texture_y) & (get_texture_size() - 1)};
+            trc_world_position_t pixel_pos = {(int) (texture_x) & (get_texture_size() - 1), (int) (texture_y) & (get_texture_size() - 1)};
 
-            int map_value = get_map_floor_at((position_2D_t) {texture_x / get_texture_size(), texture_y / get_texture_size()});
+            int map_value = get_map_floor_at((trc_grid_position_t) {texture_x / get_texture_size(), texture_y / get_texture_size()});
 
             if (map_value != AIR)
             {
                 rgb_t pixel_color = get_texture_pixel(map_value, pixel_pos);
                 pixel_color = apply_shade(pixel_color, shade);
 
-                position_2D_t floor_pos = (position_2D_t) {ray.index * LINES_WIDTH + X_CORRECTION + VIEWPORT_X_OFFSET,
+                trc_world_position_t floor_pos = (trc_world_position_t) {ray.index * LINES_WIDTH + X_CORRECTION + VIEWPORT_X_OFFSET,
                                                             y + VIEWPORT_Y_OFFSET};
 
                 draw_point(floor_pos, LINES_WIDTH, pixel_color);
             }
-            map_value = get_map_ceiling_at((position_2D_t) {texture_x / get_texture_size(), texture_y / get_texture_size()});
+            map_value = get_map_ceiling_at((trc_grid_position_t) {texture_x / get_texture_size(), texture_y / get_texture_size()});
 
             if (map_value != AIR)
             {
                 rgb_t pixel_color = get_texture_pixel(map_value, pixel_pos);
                 pixel_color = apply_shade(pixel_color, shade);
 
-                position_2D_t ceiling_pos = (position_2D_t) {ray.index * LINES_WIDTH + X_CORRECTION + VIEWPORT_X_OFFSET,
+                trc_world_position_t ceiling_pos = (trc_world_position_t) {ray.index * LINES_WIDTH + X_CORRECTION + VIEWPORT_X_OFFSET,
                                                               VIEWPORT_HEIGHT - CEILEING_CORRECTION - y + VIEWPORT_Y_OFFSET};
                 
                 draw_point(ceiling_pos, LINES_WIDTH, pixel_color);

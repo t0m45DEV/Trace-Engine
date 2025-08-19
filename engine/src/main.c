@@ -19,7 +19,6 @@
 #include "textures.h"
 #include "basic_input.h"
 #include "pop_up_windows.h"
-#include "physics.h"
 
 int main(void)
 {
@@ -44,7 +43,6 @@ int main(void)
         update_fps_history();
 
         handle_input();
-        handle_physics(get_delta_time());
 
         update_window();
 

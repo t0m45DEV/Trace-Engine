@@ -8,21 +8,6 @@
 
 #define OPEN_DEBUG_WINDOW_BUTTON SDL_GetScancodeFromKey('|')
 
-#define MOVE_FORWARD_BUTTON          SDL_GetScancodeFromKey('w')
-#define MOVE_BACKWARD_BUTTON         SDL_GetScancodeFromKey('s')
-#define ROTATE_ANTI_CLOCKWISE_BUTTON SDL_GetScancodeFromKey('a')
-#define ROTATE_CLOCKWISE_BUTTON      SDL_GetScancodeFromKey('d')
-
-#define OPEN_DOOR_BUTTON SDL_GetScancodeFromKey('e')
-
-/** The current state of the keyboard */
-keys_state_t action_keys_state = {0};
-
-keys_state_t get_keys_state(void)
-{
-    return action_keys_state;
-}
-
 void handle_input(void)
 {
     SDL_Event event;
@@ -44,20 +29,10 @@ void handle_input(void)
             {
                 update_debug_console_state();
             }
-            if (get_scancode(event) == OPEN_DOOR_BUTTON)
-            {
-                open_door();
-            }
         }
     }
     // Simultaneous input
     SDL_PumpEvents();
-    const Uint8* keyboard_state = SDL_GetKeyboardState(NULL);
-
-    action_keys_state.move_forward = (keyboard_state[MOVE_FORWARD_BUTTON] != 0);
-    action_keys_state.move_backward = (keyboard_state[MOVE_BACKWARD_BUTTON] != 0);
-    action_keys_state.rotate_anti_clockwise = (keyboard_state[ROTATE_ANTI_CLOCKWISE_BUTTON] != 0);
-    action_keys_state.rotate_clockwise = (keyboard_state[ROTATE_CLOCKWISE_BUTTON] != 0);
 
     if (is_debug_console_on()) stop_nk_input_hanlder();
 }

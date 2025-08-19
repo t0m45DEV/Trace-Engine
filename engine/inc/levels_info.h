@@ -14,9 +14,9 @@ extern structures_t map_w[];
 extern structures_t map_f[];
 extern structures_t map_c[];
 
-extern position_2D_t maps_sizes[LEVEL_COUNT];
+extern trc_world_position_t maps_sizes[LEVEL_COUNT];
 
-extern position_2D_t player_spawns[LEVEL_COUNT];
+extern trc_world_position_t camera_spawns[LEVEL_COUNT];
 
 
 #endif

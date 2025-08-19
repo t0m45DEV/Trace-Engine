@@ -31,14 +31,13 @@ int get_ammount_of_rays(void)
 void cast_rays_from_to(int start, int end)
 {
     int count_of_hits;
-    position_2D_t map_ray;
     structures_t structure_hit;
-    position_2D_t ray_pos;
-    position_2D_t ray_offset = {0, 0};
+    trc_world_position_t ray_pos;
+    trc_world_position_t ray_offset = {0, 0};
     float distance_from_camera;
     float angle_cosine;
 
-    position_2D_t camera_pos = get_camera_position();
+    trc_world_position_t camera_pos = get_camera_position();
     float camera_angle = get_camera_angle();
 
     float ray_angle = camera_angle - (DEG_TO_RAD(FOV / 2.0));
@@ -50,7 +49,7 @@ void cast_rays_from_to(int start, int end)
         /* Check horizontal lines */
 
         float distance_h = INFINITY;
-        position_2D_t ray_H = {0, 0};
+        trc_world_position_t ray_H = {0, 0};
         structures_t surface_H = AIR;
 
         count_of_hits = 0;
@@ -82,9 +81,7 @@ void cast_rays_from_to(int start, int end)
 
         while (count_of_hits < get_current_map_dimensions().y)
         {
-            map_ray.x = (int) (ray_pos.x / MAP_CELL_SIZE);
-            map_ray.y = (int) (ray_pos.y / MAP_CELL_SIZE);
-            structure_hit = get_map_wall_at(map_ray);
+            structure_hit = get_map_wall_at(to_grid_pos(ray_pos));
 
             if (structure_hit != UNDEFINED && structure_hit != AIR) /* Hit a wall */
             {
@@ -105,7 +102,7 @@ void cast_rays_from_to(int start, int end)
         /* Check vertical lines */
 
         float distance_v = INFINITY;
-        position_2D_t ray_V = {0, 0};
+        trc_world_position_t ray_V = {0, 0};
         structures_t surface_V = AIR;
 
         count_of_hits = 0;
@@ -137,9 +134,7 @@ void cast_rays_from_to(int start, int end)
 
         while (count_of_hits < get_current_map_dimensions().x)
         {
-            map_ray.x = (int) (ray_pos.x / MAP_CELL_SIZE);
-            map_ray.y = (int) (ray_pos.y / MAP_CELL_SIZE);
-            structure_hit = get_map_wall_at(map_ray);
+            structure_hit = get_map_wall_at(to_grid_pos(ray_pos));
 
             if (structure_hit != UNDEFINED && structure_hit != AIR) /* Hit a wall */
             {

@@ -9,7 +9,7 @@
 
 resolutions_t resolution = LOW_RESOLUTION;
 
-int get_actual_resolution(void)
+resolutions_t get_actual_resolution(void)
 {
     return resolution;
 }
@@ -46,7 +46,7 @@ void render_screen(void)
     }
 }
 
-void draw_square(position_2D_t position, position_2D_t size, int border, rgb_t color)
+void draw_square(trc_world_position_t position, trc_world_position_t size, int border, rgb_t color)
 {
     glColor3ub(color.r, color.g, color.b);
 
@@ -58,7 +58,7 @@ void draw_square(position_2D_t position, position_2D_t size, int border, rgb_t c
     glEnd();
 }
 
-void draw_point(position_2D_t position, int size, rgb_t color)
+void draw_point(trc_world_position_t position, int size, rgb_t color)
 {
     glColor3ub(color.r, color.g, color.b);
     glPointSize(size);
@@ -68,7 +68,7 @@ void draw_point(position_2D_t position, int size, rgb_t color)
     glEnd();
 }
 
-void draw_line(position_2D_t start_point, position_2D_t end_point, int thickness, rgb_t color)
+void draw_line(trc_world_position_t start_point, trc_world_position_t end_point, int thickness, rgb_t color)
 {
     glColor3ub(color.r, color.g, color.b);
     glLineWidth(thickness);

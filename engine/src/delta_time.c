@@ -1,7 +1,7 @@
 #include "delta_time.h"
 
 #include "log.h"
-#include "timer.h"
+#include "trc_timer.h"
 
 // The counter for delta_time
 delta_time_counter_t delta_t_ctr = {0};

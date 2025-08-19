@@ -2,7 +2,7 @@
 #define _H_ALL_TEXTURES
 
 #include "graphics.h"
-#include "trc_structure.h"
+#include "map.h"
 
 /**
  * Loads the textures into engine structures (for faster performance)
@@ -19,7 +19,7 @@ int get_texture_size(void);
 /**
  * Given an structure and a texture position, it returns the RGB info of the pixel in that position
  */
-rgb_t get_texture_pixel(structures_t structure, position_2D_t pixel_pos);
+rgb_t get_texture_pixel(structures_t structure, trc_world_position_t pixel_pos);
 
 /**
  * Given an RGB and a shade, returns the same pixel but modified with the shade
