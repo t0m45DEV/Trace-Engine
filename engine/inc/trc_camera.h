@@ -9,9 +9,9 @@
 trc_world_position_t get_camera_position(void);
 
 /**
- * Moves the camera to new_pos
+ * Moves the camera with the given velocity, will slide along the walls if a collision is detected
  */
-void set_camera_position(const trc_world_position_t velocity);
+void move_camera(const trc_world_position_t velocity);
 
 /**
  * Rotates the camera adding the given delta to the current camera angle

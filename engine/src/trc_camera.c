@@ -39,7 +39,7 @@ trc_world_position_t get_camera_direction(void)
     return direction;
 }
 
-void set_camera_position(const trc_world_position_t velocity)
+void move_camera(const trc_world_position_t velocity)
 {
     move_and_slide(&trc_camera, velocity);
 }

@@ -2,9 +2,9 @@
 
 #include "Tom_Engine.h"
 
-#define MOVE_FORWARD  'w'
-#define MOVE_BACKWARD 's'
-#define ROTATE_CLOCKWISE 'd'
+#define MOVE_FORWARD          'w'
+#define MOVE_BACKWARD         's'
+#define ROTATE_CLOCKWISE      'd'
 #define ROTATE_ANTI_CLOCKWISE 'a'
 
 const int movement_velocity = 100;
@@ -26,10 +26,12 @@ void move_demo_player(float delta_time)
     if (is_key_being_pressed(MOVE_FORWARD))
     {
         movement_dir = scalar_multiplication(get_camera_direction(), movement_velocity * delta_time);
+        move_camera(movement_dir);
     }
     if (is_key_being_pressed(MOVE_BACKWARD))
     {
         movement_dir = scalar_multiplication(get_camera_direction(), movement_velocity * delta_time * (-1));
+        move_camera(movement_dir);
     }
-    set_camera_position(movement_dir);
+    //move_camera(movement_dir);
 }
