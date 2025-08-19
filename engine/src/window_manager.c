@@ -3,10 +3,9 @@
 #include "log.h"
 
 #include "pop_up_windows.h"
-#include "game_state.h"
-#include "raycaster.h"
-#include "map.h"
 #include "graphics.h"
+
+#include <stdbool.h>
 
 #define SDL_MAIN_HANDLED
 #include "SDL.h"
