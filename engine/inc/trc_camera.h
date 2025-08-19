@@ -1,9 +1,7 @@
 #ifndef TRC_CAMERA
 #define TRC_CAMERA
 
-#include "trigonometry.h"
 #include "trc_world_position.h"
-#include "basic_input.h"
 
 /**
  * Returns the current camera position

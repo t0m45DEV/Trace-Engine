@@ -2,7 +2,6 @@
 #define TRC_TRANSFORM
 
 #include "trc_world_position.h"
-#include "trigonometry.h"
 
 /**
  * A transform is like a point in 2D space, it has a position
