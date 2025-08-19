@@ -2,10 +2,7 @@
 #include "levels_info.h"
 
 #include "graphics.h"
-#include "textures.h"
 #include "game_state.h"
-
-#include "trigonometry.h"
 
 /**
  * Check if the given index is in range of the current level map
