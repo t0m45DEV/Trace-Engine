@@ -2,7 +2,6 @@
 #define _H_BASIC_INPUT
 
 #include "SDL_events.h"
-#include <stdbool.h>
 
 /**
  * Handle user input
