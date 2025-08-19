@@ -2,7 +2,6 @@
 
 #include "game_state.h"
 #include "pop_up_windows.h"
-#include "trc_camera.h"
 
 /* Action keys */
 
