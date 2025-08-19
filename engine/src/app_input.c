@@ -1,6 +1,7 @@
 #include "app_input.h"
 
-#include "SDL_events.h"
+#include "SDL_keyboard.h"
+#include "SDL_scancode.h"
 
 static bool previous_keyboard_state[SDL_NUM_SCANCODES] = {0};
 
