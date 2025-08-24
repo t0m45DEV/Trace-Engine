@@ -1,6 +1,8 @@
+APP ?= application
+
 # Folders
 ENGINE_DIR := engine
-APP_DIR := application
+APP_DIR := $(APP)
 
 ENG_INC_DIR := $(ENGINE_DIR)/inc
 ENG_SRC_DIR := $(ENGINE_DIR)/src
@@ -21,22 +23,16 @@ OBJ_EXP_DIR := obj_exp
 # The debug executable
 ENGINE_NAME := Tom_3D_game_engine
 # The final game name
-EXPORT_NAME := GameName
+EXPORT_NAME := $(APP)
 
-GAME   := $(EXP_DIR)/$(EXPORT_NAME)
+GAME := $(EXP_DIR)/$(EXPORT_NAME)
 ENGINE := $(EXP_DIR)/$(ENGINE_NAME)
 
 # To get the C files
 ENG_SRC_FILES := $(shell find $(ENG_SRC_DIR) -type f -name '*.c')
 APP_SRC_FILES := $(shell find $(APP_SRC_DIR) -type f -name '*.c')
 
-# To get all the objects files
-OBJ_FILES := $(patsubst $(ENG_SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(ENG_SRC_FILES)) \
-			 $(patsubst $(APP_SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(APP_SRC_FILES))
 
-# To get all the objects files for the final export
-OBJ_EXP_FILES := $(patsubst $(ENG_SRC_DIR)/%.c, $(OBJ_EXP_DIR)/%.o, $(ENG_SRC_FILES)) \
-				 $(patsubst $(APP_SRC_DIR)/%.c, $(OBJ_EXP_DIR)/%.o, $(APP_SRC_FILES))
 
 IMG_PARSER_DIR := $(ENGINE_DIR)/imageParser
 IMG_PARSER_C   := $(IMG_PARSER_DIR)/imageParser.c
@@ -54,12 +50,6 @@ CC = gcc
 # Glad location
 GLAD_INC := $(THIRDPARTY_DIR)/glad/include
 GLAD_SRC := $(THIRDPARTY_DIR)/glad/src/glad.c
-
-GLAD_OBJ := $(OBJ_DIR)/glad.o
-GLAD_EXP_OBJ := $(OBJ_EXP_DIR)/glad.o
-
-OBJ_FILES += $(GLAD_OBJ)
-OBJ_EXP_FILES += $(GLAD_EXP_OBJ)
 
 # SDL2 location
 SDL2_DIR := $(THIRDPARTY_DIR)/SDL2/include
@@ -97,6 +87,16 @@ TST_LIBS := $(LIBS)
 
 TST_BIN := ./$(ENG_TST_DIR)/test
 
+OBJ_FILES = \
+	$(patsubst $(ENG_SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(ENG_SRC_FILES)) \
+	$(patsubst $(APP_SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(APP_SRC_FILES)) \
+	$(OBJ_DIR)/glad.o
+
+OBJ_EXP_FILES = \
+	$(patsubst $(ENG_SRC_DIR)/%.c, $(OBJ_EXP_DIR)/%.o, $(ENG_SRC_FILES)) \
+	$(patsubst $(APP_SRC_DIR)/%.c, $(OBJ_EXP_DIR)/%.o, $(APP_SRC_FILES)) \
+	$(OBJ_EXP_DIR)/glad.o
+
 # To print my shit
 RED     := 1
 GREEN   := 2
@@ -122,15 +122,10 @@ $(ENGINE) : parser setup_sdl2 $(OBJ_FILES)
 	@$(call MESSAGE,$(SUCCESS_COL),Executable for $(ENGINE) created)
 	@$(call MESSAGE,$(INFO_COL),Have fun!)
 
-# Create the objects files
-$(OBJ_DIR)/%.o : $(ENG_SRC_DIR)/%.c
-	@$(call MESSAGE,$(INFO_COL),Creating $@...)
-	@mkdir -p $(dir $@)
-	@$(CC) -c -MD $(CFLAGS) $< -o $@
-	@$(call MESSAGE,$(SUCCESS_COL),$@ succesfully created)
+vpath %.c $(ENG_SRC_DIR) $(APP_SRC_DIR)
 
 # Create the objects files
-$(OBJ_DIR)/%.o : $(APP_SRC_DIR)/%.c
+$(OBJ_DIR)/%.o : %.c
 	@$(call MESSAGE,$(INFO_COL),Creating $@...)
 	@mkdir -p $(dir $@)
 	@$(CC) -c -MD $(CFLAGS) $< -o $@
@@ -153,7 +148,7 @@ $(GAME) : $(ENGINE) $(OBJ_EXP_FILES)
 	@$(call MESSAGE,$(SUCCESS_COL),Cleaned debug info from Linux executable!)
 
 # Create the objects files for export
-$(OBJ_EXP_DIR)/%.o : $(SRC_DIR)/%.c
+$(OBJ_EXP_DIR)/%.o : $(SRC_DIRS)/%.c
 	@$(call MESSAGE,$(INFO_COL),Creating $@ for export...)
 	@mkdir -p $(dir $@)
 	@$(CC) -c -MD $(EXPORTFLAGS) $< -o $@
@@ -161,7 +156,7 @@ $(OBJ_EXP_DIR)/%.o : $(SRC_DIR)/%.c
 
 -include ./$(OBJ_EXP_DIR)/*.d
 
-$(GLAD_OBJ) $(GLAD_EXP_OBJ) : $(GLAD_SRC)
+$(OBJ_DIR)/glad.o $(OBJ_EXP_DIR)/glad.o : $(GLAD_SRC)
 	@$(call MESSAGE,$(INFO_COL),Compiling Glad...)
 	@mkdir -p $(dir $@)
 	@$(CC) -c -MD $(CFLAGS) $< -o $@
@@ -171,7 +166,7 @@ $(GLAD_OBJ) $(GLAD_EXP_OBJ) : $(GLAD_SRC)
 
 
 # So Makefile won't cry if a file has this names
-.PHONY: help all clean play debug mem_check export test parser
+.PHONY: help all clean play debug mem_check export test parser demo
 
 ## ------------------------------------------------------
 ##  Welcome to the Trace Engine, or Tom's Raycaster in C
@@ -243,6 +238,9 @@ parser: ./$(IMG_PARSER) ## Compiles the image parser and then executes it
 	@$(RUN_IMG_PARSER)
 	@rm ./$(IMG_PARSER)
 	@$(call MESSAGE,$(SUCCESS_COL),All images parsed!)
+
+demo: ## Compiles the demo, it has basic rendering and input
+	$(MAKE) APP=demo
 
 setup_sdl2: $(SDL2_STATIC) ## Compiles the SDL2 library as static (only make this the first time)
 
