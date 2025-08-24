@@ -21,9 +21,9 @@ OBJ_DIR := obj
 OBJ_EXP_DIR := obj_exp
 
 # The debug executable
-ENGINE_NAME := Tom_3D_game_engine
+ENGINE_NAME := $(APP)_engine
 # The final game name
-EXPORT_NAME := $(APP)
+EXPORT_NAME := $(APP)_export
 
 GAME := $(EXP_DIR)/$(EXPORT_NAME)
 ENGINE := $(EXP_DIR)/$(ENGINE_NAME)
@@ -32,8 +32,7 @@ ENGINE := $(EXP_DIR)/$(ENGINE_NAME)
 ENG_SRC_FILES := $(shell find $(ENG_SRC_DIR) -type f -name '*.c')
 APP_SRC_FILES := $(shell find $(APP_SRC_DIR) -type f -name '*.c')
 
-
-
+# Image parser stuff
 IMG_PARSER_DIR := $(ENGINE_DIR)/imageParser
 IMG_PARSER_C   := $(IMG_PARSER_DIR)/imageParser.c
 IMG_PARSER     := $(EXP_DIR)/imageParser.out
@@ -148,7 +147,7 @@ $(GAME) : $(ENGINE) $(OBJ_EXP_FILES)
 	@$(call MESSAGE,$(SUCCESS_COL),Cleaned debug info from Linux executable!)
 
 # Create the objects files for export
-$(OBJ_EXP_DIR)/%.o : $(SRC_DIRS)/%.c
+$(OBJ_EXP_DIR)/%.o : %.c
 	@$(call MESSAGE,$(INFO_COL),Creating $@ for export...)
 	@mkdir -p $(dir $@)
 	@$(CC) -c -MD $(EXPORTFLAGS) $< -o $@
@@ -167,6 +166,9 @@ $(OBJ_DIR)/glad.o $(OBJ_EXP_DIR)/glad.o : $(GLAD_SRC)
 
 # So Makefile won't cry if a file has this names
 .PHONY: help all clean play debug mem_check export test parser demo
+
+print_var:
+	echo $(OBJ_EXP_FILES)
 
 ## ------------------------------------------------------
 ##  Welcome to the Trace Engine, or Tom's Raycaster in C
@@ -240,7 +242,8 @@ parser: ./$(IMG_PARSER) ## Compiles the image parser and then executes it
 	@$(call MESSAGE,$(SUCCESS_COL),All images parsed!)
 
 demo: ## Compiles the demo, it has basic rendering and input
-	$(MAKE) APP=demo
+	@$(MAKE) clean --no-print-directory
+	@$(MAKE) APP=demo all --no-print-directory
 
 setup_sdl2: $(SDL2_STATIC) ## Compiles the SDL2 library as static (only make this the first time)
 
