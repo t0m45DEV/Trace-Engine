@@ -1,13 +1,10 @@
 #include "demo_player.h"
 
+#include "demo_controls.h"
+
 #include "Tom_Engine.h"
 #include "trc_camera.h"
 #include "trigonometry.h"
-
-#define MOVE_FORWARD          'w'
-#define MOVE_BACKWARD         's'
-#define ROTATE_CLOCKWISE      'd'
-#define ROTATE_ANTI_CLOCKWISE 'a'
 
 const int movement_velocity = 100;
 const int rotation_velocity = 2;
