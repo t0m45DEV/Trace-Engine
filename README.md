@@ -53,6 +53,23 @@ Everything else is written in standard C.
 
 ## Installation
 
+This repository uses **Git LFS** (Large File Storage) for handling large binary assets, like textures.
+
+### Before you clone the repo:
+
+Make sure you have [Git LFS](https://git-lfs.github.com/) installed on your system. If you haven't installed it yet, follow the instructions below:
+
+1. **Install Git LFS** (only once):
+   - **On macOS**: `brew install git-lfs`
+   - **On Windows**: Download and run the installer from the [Git LFS website](https://git-lfs.github.com/).
+   - **On Linux**: Follow the instructions [here](https://github.com/git-lfs/git-lfs/wiki/Installation).
+
+2. **Initialize Git LFS** (after installation):
+   ```bash
+   git lfs install
+
+### After you installed Git LFS:
+
 Clone the repo like this:
 
 ```bash
