@@ -57,10 +57,7 @@ Everything else is written in standard C.
 
 This repository uses **Git LFS** (Large File Storage) for handling large binary assets, like textures.
 
-Make sure you have [Git LFS](https://git-lfs.github.com/) installed on your system. If you haven't installed it yet, follow the instructions below:
-
-**Install Git LFS**:
-   For Linux, follow the instructions [here](https://github.com/git-lfs/git-lfs/wiki/Installation).
+Make sure you have [Git LFS](https://git-lfs.github.com/) installed on your system. If you haven't installed it yet, follow the instructions [here](https://github.com/git-lfs/git-lfs/wiki/Installation).
 
 ### After you installed Git LFS:
 
