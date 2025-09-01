@@ -105,7 +105,7 @@ int get_fps(void);
 /**
  * Updates the count frame per second
  */
-void update_game_state_fps(int fps);
+void update_game_state_fps(const int fps);
 
 /**
  * Sets the game_running variable to false

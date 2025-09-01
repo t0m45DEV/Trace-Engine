@@ -12,7 +12,7 @@
 const int movement_velocity = 100;
 const int rotation_velocity = 2;
 
-void move_player(float delta_time)
+void move_player(const float delta_time)
 {
     if (is_key_being_pressed(ROTATE_CLOCKWISE))
     {

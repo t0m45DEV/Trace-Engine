@@ -9,7 +9,7 @@
  *
  * @note curr_lev_info.mapp_offset <= idx < (curr_lev_info.mapp_offset + MAP_SIZE)
  */
-static int is_valid_map_index(int idx)
+static int is_valid_map_index(const int idx)
 {
     return ((idx > 0) && (idx < get_current_map_size()));
 }
@@ -22,7 +22,7 @@ int real_pos_to_map_pos(const trc_grid_position_t real_pos)
     return ((int) (real_pos.y)) * ((int) get_current_map_dimensions().x) + ((int) (real_pos.x));
 }
 
-trc_world_position_t to_world_pos(trc_grid_position_t grid_pos)
+trc_world_position_t to_world_pos(const trc_grid_position_t grid_pos)
 {
     trc_world_position_t world_pos;
     world_pos.x = grid_pos.x * (float) MAP_CELL_SIZE + ((float) MAP_CELL_SIZE / 2);
@@ -31,7 +31,7 @@ trc_world_position_t to_world_pos(trc_grid_position_t grid_pos)
     return world_pos;
 }
 
-trc_grid_position_t to_grid_pos(trc_world_position_t world_pos)
+trc_grid_position_t to_grid_pos(const trc_world_position_t world_pos)
 {
     trc_grid_position_t grid_pos;
     grid_pos.x = world_pos.x / (float) MAP_CELL_SIZE;
@@ -40,7 +40,7 @@ trc_grid_position_t to_grid_pos(trc_world_position_t world_pos)
     return grid_pos;
 }
 
-trc_world_position_t map_pos_to_real_pos(trc_world_position_t map_pos)
+trc_world_position_t map_pos_to_real_pos(const trc_world_position_t map_pos)
 {
     float real_x = (map_pos.x * MAP_CELL_SIZE) + (MAP_CELL_SIZE / 2.0);
     float real_y = (map_pos.y * MAP_CELL_SIZE) + (MAP_CELL_SIZE / 2.0);
@@ -48,7 +48,7 @@ trc_world_position_t map_pos_to_real_pos(trc_world_position_t map_pos)
     return (trc_world_position_t) {real_x, real_y};
 }
 
-void change_to_map(int level_idx)
+void change_to_map(const int level_idx)
 {
     int x_size = maps_sizes[level_idx].x;
     int y_size = maps_sizes[level_idx].y;

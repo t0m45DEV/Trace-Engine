@@ -21,7 +21,7 @@ void app_init(void);
  * should multiply that distance by delta_time (the difference in time
  * between the last frame and the current one)
  */
-void app_update(float delta_time);
+void app_update(const float delta_time);
 
 /**
  * This is the last called function before closing the window and all

@@ -32,13 +32,13 @@ typedef enum {
  * the values pointing to the same cell in the map (in the center of the
  * cell, to be precise)
  */
-trc_world_position_t to_world_pos(trc_grid_position_t grid_pos);
+trc_world_position_t to_world_pos(const trc_grid_position_t grid_pos);
 
 /**
  * Given a trc_grid_position_t (with floats) returns the corresponding cell
  * position in the current map
  */
-trc_grid_position_t to_grid_pos(trc_world_position_t world_pos);
+trc_grid_position_t to_grid_pos(const trc_world_position_t world_pos);
 
 /**
  * Returns the windows position for the middle of the map square
@@ -48,7 +48,7 @@ trc_world_position_t map_pos_to_real_pos(const trc_world_position_t map_pos);
 /**
  * Updates the current map info to the map of the level_idx level
  */
-void change_to_map(int level_idx);
+void change_to_map(const int level_idx);
 
 /**
  * Replaces the wall structure of the current map at the given position with the given new_wall

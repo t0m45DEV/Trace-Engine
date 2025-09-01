@@ -14,7 +14,7 @@ resolutions_t get_actual_resolution(void)
     return resolution;
 }
 
-void set_actual_resolution(resolutions_t new_resolution)
+void set_actual_resolution(const resolutions_t new_resolution)
 {
     resolution = new_resolution;
 }
@@ -46,7 +46,7 @@ void render_screen(void)
     }
 }
 
-void draw_square(trc_world_position_t position, trc_world_position_t size, int border, rgb_t color)
+void draw_square(const trc_world_position_t position, const trc_world_position_t size, const int border, const rgb_t color)
 {
     glColor3ub(color.r, color.g, color.b);
 
@@ -58,7 +58,7 @@ void draw_square(trc_world_position_t position, trc_world_position_t size, int b
     glEnd();
 }
 
-void draw_point(trc_world_position_t position, int size, rgb_t color)
+void draw_point(const trc_world_position_t position, const int size, const rgb_t color)
 {
     glColor3ub(color.r, color.g, color.b);
     glPointSize(size);
@@ -68,7 +68,7 @@ void draw_point(trc_world_position_t position, int size, rgb_t color)
     glEnd();
 }
 
-void draw_line(trc_world_position_t start_point, trc_world_position_t end_point, int thickness, rgb_t color)
+void draw_line(const trc_world_position_t start_point, const trc_world_position_t end_point, const int thickness, const rgb_t color)
 {
     glColor3ub(color.r, color.g, color.b);
     glLineWidth(thickness);

@@ -32,7 +32,7 @@ int get_texture_size(void)
     return TEXTURE_SIZE;
 }
 
-rgb_t get_texture_pixel(structures_t structure, trc_world_position_t pixel_pos)
+rgb_t get_texture_pixel(const structures_t structure, const trc_world_position_t pixel_pos)
 {
     int pixel_id = ((int) (pixel_pos.y) * TEXTURE_SIZE + (int) pixel_pos.x);
     pixel_id += ((structure - 1) * TEXTURE_SIZE * TEXTURE_SIZE);
@@ -40,7 +40,7 @@ rgb_t get_texture_pixel(structures_t structure, trc_world_position_t pixel_pos)
     return ALL_TEXTURES[pixel_id];
 }
 
-rgb_t apply_shade(rgb_t original_pixel, float shade)
+rgb_t apply_shade(const rgb_t original_pixel, const float shade)
 {
     rgb_t new_pixel = {
         original_pixel.r * shade,

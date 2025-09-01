@@ -76,7 +76,7 @@ int get_fps(void)
     return game_state.fps;
 }
 
-void update_game_state_fps(int fps)
+void update_game_state_fps(const int fps)
 {
     game_state.fps = fps;
 }

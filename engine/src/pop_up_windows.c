@@ -156,7 +156,7 @@ void show_debug_console(void)
     nk_sdl_render(NK_ANTI_ALIASING_ON);
 }
 
-void set_style(nk_theme_t theme)
+void set_style(const nk_theme_t theme)
 {
     struct nk_color table[NK_COLOR_COUNT];
     if (theme == THEME_WHITE) {

@@ -60,6 +60,6 @@ typedef enum {
 /**
  * Sets the given theme to the floating windows, sliders, buttons and stuff
  */
-void set_style(nk_theme_t theme);
+void set_style(const nk_theme_t theme);
 
 #endif

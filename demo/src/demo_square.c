@@ -12,7 +12,7 @@ float orbit_angle = 0;
 
 trc_world_position_t square_pos = {200, 200};
 
-void move_demo_square(float delta_time)
+void move_demo_square(const float delta_time)
 {
     if (is_key_being_pressed(SHOW_SQUARE_KEY))
     {

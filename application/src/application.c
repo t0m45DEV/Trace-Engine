@@ -6,7 +6,7 @@ void app_init(void)
 
 }
 
-void app_update(float delta_time)
+void app_update(const float delta_time)
 {
     move_player(delta_time);
 }

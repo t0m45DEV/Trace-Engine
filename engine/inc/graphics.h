@@ -42,7 +42,7 @@ resolutions_t get_actual_resolution(void);
 /**
  * Updates the current resolution to the given new one
  */
-void set_actual_resolution(resolutions_t new_resolution);
+void set_actual_resolution(const resolutions_t new_resolution);
 
 /**
  * Change the color of the screen when called glClear()
@@ -61,16 +61,16 @@ void render_screen(void);
  *
  * @note If you wan't a full square, pass a border of 0
  */
-void draw_square(trc_world_position_t position, trc_world_position_t size, int border, rgb_t color);
+void draw_square(const trc_world_position_t position, const trc_world_position_t size, const int border, const rgb_t color);
 
 /**
  * Draw a point of the given size in the given position with the given color
  */
-void draw_point(trc_world_position_t position, int size, rgb_t color);
+void draw_point(const trc_world_position_t position, const int size, const rgb_t color);
 
 /**
  * Draw a line of the given thickness from the given start point to the given end point with the given color
  */
-void draw_line(trc_world_position_t start_point, trc_world_position_t end_point, int thickness, rgb_t color);
+void draw_line(const trc_world_position_t start_point, const trc_world_position_t end_point, const int thickness, const rgb_t color);
 
 #endif
