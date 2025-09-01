@@ -113,7 +113,7 @@ In the file `application.c` you will find three important functions which are em
 ```C
 void app_init(void)
 
-void app_update(float delta_time)
+void app_update(const float delta_time)
 
 void app_close(void)
 ```
