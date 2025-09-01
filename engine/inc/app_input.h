@@ -6,11 +6,11 @@
 /**
  * Returns true if the given key is being pressed
  */
-bool is_key_being_pressed(char key);
+bool is_key_being_pressed(const char key);
 
 /**
  * Returns true when the key has just been pressed
  */
-bool is_key_just_pressed(char key);
+bool is_key_just_pressed(const char key);
 
 #endif

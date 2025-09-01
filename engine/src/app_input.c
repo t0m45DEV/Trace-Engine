@@ -5,14 +5,14 @@
 
 static bool previous_keyboard_state[SDL_NUM_SCANCODES] = {0};
 
-bool is_key_being_pressed(char key)
+bool is_key_being_pressed(const char key)
 {
     const Uint8* keyboard_state = SDL_GetKeyboardState(NULL);
     
     return (keyboard_state[SDL_GetScancodeFromKey(key)] != 0);
 }
 
-bool is_key_just_pressed(char key)
+bool is_key_just_pressed(const char key)
 {
     const Uint8* keyboard_state = SDL_GetKeyboardState(NULL);
 
