@@ -97,13 +97,13 @@ Currently the files look something like this:
 
 ```
 application
-├── inc
-└── src
-    └── application.c
+|-- inc
+`-- src
+    `-- application.c
 engine
-├── thirdparty
-├── inc
-└── src
+|-- thirdparty
+|-- inc
+`-- src
 ```
 
 Now, the developer should only work on the `application` folder. There you can define your headers and sources files, as much as you wish. There goes your game logic: every level, every entity, what the player can and can't do, anything.
