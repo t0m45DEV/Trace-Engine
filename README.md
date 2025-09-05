@@ -37,10 +37,12 @@ There are a ton of features in a game engine, but this will give a glimpse of wh
 | Physics engine | :hourglass_flowing_sand: In progress |
 | Windows export | :hourglass_flowing_sand: In progress |
 
+\anchor license
 ## License
 
 This project is available under either the **MIT License** or **Public Domain**. See [LICENSE](LICENSE) for more info.
 
+\anchor dependencies
 ## Dependencies
 
 This engine uses:
