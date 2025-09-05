@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['scalar_5fmultiplication_0',['scalar_multiplication',['../trigonometry_8c.html#a45842bcb81a91f218bd0edf62a357005',1,'scalar_multiplication(const trc_world_position_t vector, const float scalar):&#160;trigonometry.c'],['../trigonometry_8h.html#a45842bcb81a91f218bd0edf62a357005',1,'scalar_multiplication(const trc_world_position_t vector, const float scalar):&#160;trigonometry.c']]],
+  ['scenes_5ft_1',['scenes_t',['../game__state_8h.html#a5788953f951921f19da68c666641fba1',1,'game_state.h']]],
+  ['sdl_5finit_5fengine_2',['SDL_INIT_ENGINE',['../window__manager_8c.html#af95eafadd90be288b098d1099ad7703d',1,'window_manager.c']]],
+  ['sdl_5fmain_5fhandled_3',['SDL_MAIN_HANDLED',['../window__manager_8c.html#a51f528deaaeb973f417b46a2ec36f850',1,'window_manager.c']]],
+  ['sec_4',['sec',['../structmessage__info.html#a835ef9d2b1c97b51114e064690ba084f',1,'message_info']]],
+  ['seconds_5fto_5fmilliseconds_5',['SECONDS_TO_MILLISECONDS',['../trc__timer_8c.html#a11af3082bc7fccaf1d6cd9108d9c42ea',1,'trc_timer.c']]],
+  ['set_5factual_5fresolution_6',['set_actual_resolution',['../graphics_8c.html#a7a5d19154fa529c2ee36a904cccf1b26',1,'set_actual_resolution(const resolutions_t new_resolution):&#160;graphics.c'],['../graphics_8h.html#a7a5d19154fa529c2ee36a904cccf1b26',1,'set_actual_resolution(const resolutions_t new_resolution):&#160;graphics.c']]],
+  ['set_5fbackground_5fcolor_7',['set_background_color',['../graphics_8c.html#abeeedb219f58b9bc55cee3da96b5a9ed',1,'set_background_color(const rgb_t color):&#160;graphics.c'],['../graphics_8h.html#abeeedb219f58b9bc55cee3da96b5a9ed',1,'set_background_color(const rgb_t color):&#160;graphics.c']]],
+  ['set_5fstyle_8',['set_style',['../pop__up__windows_8c.html#ac97cda687d424e49d7d1ea3a11bab2d0',1,'set_style(const nk_theme_t theme):&#160;pop_up_windows.c'],['../pop__up__windows_8h.html#ac97cda687d424e49d7d1ea3a11bab2d0',1,'set_style(const nk_theme_t theme):&#160;pop_up_windows.c']]],
+  ['show_5fdebug_5fconsole_9',['show_debug_console',['../pop__up__windows_8c.html#a2839986770056c6de4e55db68ee9db06',1,'show_debug_console(void):&#160;pop_up_windows.c'],['../pop__up__windows_8h.html#a2839986770056c6de4e55db68ee9db06',1,'show_debug_console(void):&#160;pop_up_windows.c']]],
+  ['shows_5fdebug_5fpop_5fup_10',['shows_debug_pop_up',['../structgame__state__t.html#a6844dd86f562d1a563e9e7b407aa544d',1,'game_state_t']]],
+  ['size_11',['size',['../structtrc__transform__t.html#a3777fe4a8974724092b7f53f0f261cff',1,'trc_transform_t']]],
+  ['start_5fnk_5finput_5fhanlder_12',['start_nk_input_hanlder',['../pop__up__windows_8c.html#a629671e29938e7d2660f5f8b596404bd',1,'start_nk_input_hanlder(void):&#160;pop_up_windows.c'],['../pop__up__windows_8h.html#a629671e29938e7d2660f5f8b596404bd',1,'start_nk_input_hanlder(void):&#160;pop_up_windows.c']]],
+  ['start_5ftimer_13',['start_timer',['../trc__timer_8c.html#a4c15ffc5457b9e891e96cfe4ea09bd1f',1,'start_timer(trc_timer_t *timer):&#160;trc_timer.c'],['../trc__timer_8h.html#a4c15ffc5457b9e891e96cfe4ea09bd1f',1,'start_timer(trc_timer_t *timer):&#160;trc_timer.c']]],
+  ['stb_5fimage_5fimplementation_14',['STB_IMAGE_IMPLEMENTATION',['../imageParser_8c.html#a18372412ad2fc3ce1e3240b3cf0efe78',1,'imageParser.c']]],
+  ['stone_15',['STONE',['../map_8h.html#af399eeab7a97b17d02a9feda367f962da0fca859752b1db047acd56aca4021d2d',1,'map.h']]],
+  ['stop_5fgame_16',['stop_game',['../game__state_8c.html#a542dc032413c4d95341c93e870ccc84d',1,'stop_game(void):&#160;game_state.c'],['../game__state_8h.html#a542dc032413c4d95341c93e870ccc84d',1,'stop_game(void):&#160;game_state.c']]],
+  ['stop_5fnk_5finput_5fhanlder_17',['stop_nk_input_hanlder',['../pop__up__windows_8c.html#a143aa8f5bb5939a57ec48baf98384b56',1,'stop_nk_input_hanlder(void):&#160;pop_up_windows.c'],['../pop__up__windows_8h.html#a143aa8f5bb5939a57ec48baf98384b56',1,'stop_nk_input_hanlder(void):&#160;pop_up_windows.c']]],
+  ['structure_18',['File structure',['../index.html#autotoc_md9',1,'']]],
+  ['structures_5ft_19',['structures_t',['../map_8h.html#af399eeab7a97b17d02a9feda367f962d',1,'map.h']]],
+  ['surface_20',['surface',['../structray__t.html#acb95f2ebafb86fae5b254fd10809c1e4',1,'ray_t']]],
+  ['swap_5fwindow_5fbuffers_21',['swap_window_buffers',['../window__manager_8c.html#a993896485b242738999c2f1d81cfbf91',1,'swap_window_buffers(void):&#160;window_manager.c'],['../window__manager_8h.html#a993896485b242738999c2f1d81cfbf91',1,'swap_window_buffers(void):&#160;window_manager.c']]]
+];

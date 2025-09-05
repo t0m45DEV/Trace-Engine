@@ -1,0 +1,17 @@
+var searchData=
+[
+  ['init_5fdelta_5ftime_5fcounter_0',['init_delta_time_counter',['../delta__time_8c.html#ac2e1a274f79bec998f3380fe8c587bfa',1,'init_delta_time_counter(void):&#160;delta_time.c'],['../delta__time_8h.html#ac2e1a274f79bec998f3380fe8c587bfa',1,'init_delta_time_counter(void):&#160;delta_time.c']]],
+  ['init_5ffps_5fcounter_1',['init_fps_counter',['../fps__counter_8c.html#aadc1eca7bd8e9371864e51c1a1cd23a8',1,'init_fps_counter(void):&#160;fps_counter.c'],['../fps__counter_8h.html#aadc1eca7bd8e9371864e51c1a1cd23a8',1,'init_fps_counter(void):&#160;fps_counter.c']]],
+  ['init_5fgame_5fstate_2',['init_game_state',['../game__state_8c.html#ac4d2f0517264a5378f986813a1e855a2',1,'init_game_state(void):&#160;game_state.c'],['../game__state_8h.html#ac4d2f0517264a5378f986813a1e855a2',1,'init_game_state(void):&#160;game_state.c']]],
+  ['init_5fgl_3',['init_GL',['../window__manager_8c.html#a89352dbc8c23d9b55a1b8680cf11128c',1,'window_manager.c']]],
+  ['init_5fglad_4',['init_glad',['../window__manager_8c.html#a74ac5978794bf51eeb9b6c979bfcdff8',1,'window_manager.c']]],
+  ['init_5fnk_5fwindows_5',['init_nk_windows',['../pop__up__windows_8c.html#ac9ab00d77e9c1b9d5c2a9c3ba6eb5a66',1,'init_nk_windows(SDL_Window *current_window):&#160;pop_up_windows.c'],['../pop__up__windows_8h.html#ac9ab00d77e9c1b9d5c2a9c3ba6eb5a66',1,'init_nk_windows(SDL_Window *current_window):&#160;pop_up_windows.c']]],
+  ['init_5fraycaster_6',['init_raycaster',['../raycaster_8c.html#a802eee01b7d7d41cbfe8fe73650633ae',1,'init_raycaster(void):&#160;raycaster.c'],['../raycaster_8h.html#a802eee01b7d7d41cbfe8fe73650633ae',1,'init_raycaster(void):&#160;raycaster.c']]],
+  ['init_5fsld_7',['init_SLD',['../window__manager_8c.html#a2e38032616b59ed03458533f04fce826',1,'window_manager.c']]],
+  ['is_5fdebug_5fconsole_5fon_8',['is_debug_console_on',['../game__state_8c.html#afabfdf4fbe56df05b1bebd72b7496671',1,'is_debug_console_on(void):&#160;game_state.c'],['../game__state_8h.html#afabfdf4fbe56df05b1bebd72b7496671',1,'is_debug_console_on(void):&#160;game_state.c']]],
+  ['is_5fgame_5frunning_9',['is_game_running',['../game__state_8c.html#a97ae2fc2053be68d712eefb967354d8d',1,'is_game_running(void):&#160;game_state.c'],['../game__state_8h.html#a97ae2fc2053be68d712eefb967354d8d',1,'is_game_running(void):&#160;game_state.c']]],
+  ['is_5fkey_5fbeing_5fpressed_10',['is_key_being_pressed',['../app__input_8c.html#a850467686323afec7edf974b931edc8f',1,'is_key_being_pressed(const char key):&#160;app_input.c'],['../app__input_8h.html#a850467686323afec7edf974b931edc8f',1,'is_key_being_pressed(const char key):&#160;app_input.c']]],
+  ['is_5fkey_5fjust_5fpressed_11',['is_key_just_pressed',['../app__input_8c.html#a672090fb67ffbc6caa8eaf3f4907270e',1,'is_key_just_pressed(const char key):&#160;app_input.c'],['../app__input_8h.html#a672090fb67ffbc6caa8eaf3f4907270e',1,'is_key_just_pressed(const char key):&#160;app_input.c']]],
+  ['is_5ftimer_5fup_12',['is_timer_up',['../trc__timer_8c.html#a6cec36d64644936bcc623966e7cd1af1',1,'is_timer_up(trc_timer_t *timer):&#160;trc_timer.c'],['../trc__timer_8h.html#a6cec36d64644936bcc623966e7cd1af1',1,'is_timer_up(trc_timer_t *timer):&#160;trc_timer.c']]],
+  ['is_5ftop_5fdown_5fview_5fon_13',['is_top_down_view_on',['../game__state_8c.html#a050e4c4b7263d0d4592281592c78dcdd',1,'is_top_down_view_on(void):&#160;game_state.c'],['../game__state_8h.html#a050e4c4b7263d0d4592281592c78dcdd',1,'is_top_down_view_on(void):&#160;game_state.c']]]
+];

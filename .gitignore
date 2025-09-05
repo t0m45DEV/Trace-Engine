@@ -6,4 +6,3 @@ obj_exp/*
 bin/*
 .cache/*
 compile_commands.json
-docs/*

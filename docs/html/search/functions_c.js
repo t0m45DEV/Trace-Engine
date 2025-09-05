@@ -1,0 +1,12 @@
+var searchData=
+[
+  ['real_5fpos_5fto_5fmap_5fpos_0',['real_pos_to_map_pos',['../map_8c.html#a6c7146a3d59f912ae2d02218fbdbfb4e',1,'map.c']]],
+  ['reload_5flevel_1',['reload_level',['../game__state_8c.html#ae3a3b4183b2c652586c69d09be80f466',1,'reload_level(void):&#160;game_state.c'],['../game__state_8h.html#ae3a3b4183b2c652586c69d09be80f466',1,'reload_level(void):&#160;game_state.c']]],
+  ['render_5fline_2',['render_line',['../render_8c.html#a1af385c24a486a39acfe4c6b329012af',1,'render_line(const ray_t ray):&#160;render.c'],['../render_8h.html#a1af385c24a486a39acfe4c6b329012af',1,'render_line(const ray_t ray):&#160;render.c']]],
+  ['render_5fscreen_3',['render_screen',['../graphics_8c.html#a6ddc564198cc4b01dd9c2cb9849b3684',1,'render_screen(void):&#160;graphics.c'],['../graphics_8h.html#a6ddc564198cc4b01dd9c2cb9849b3684',1,'render_screen(void):&#160;graphics.c']]],
+  ['reset_5fcamera_5finfo_4',['reset_camera_info',['../trc__camera_8c.html#afbd310061a17161db5dcf22990829f1f',1,'reset_camera_info(void):&#160;trc_camera.c'],['../trc__camera_8h.html#afbd310061a17161db5dcf22990829f1f',1,'reset_camera_info(void):&#160;trc_camera.c']]],
+  ['reset_5ftimer_5',['reset_timer',['../trc__timer_8c.html#affc8f4a2caf9c1b65b0f58a74ce448aa',1,'reset_timer(trc_timer_t *timer):&#160;trc_timer.c'],['../trc__timer_8h.html#affc8f4a2caf9c1b65b0f58a74ce448aa',1,'reset_timer(trc_timer_t *timer):&#160;trc_timer.c']]],
+  ['rotate_5fcamera_6',['rotate_camera',['../trc__camera_8c.html#aa37719b1de493ea742ba61fd809405e6',1,'rotate_camera(const float rotation_delta):&#160;trc_camera.c'],['../trc__camera_8h.html#aa37719b1de493ea742ba61fd809405e6',1,'rotate_camera(const float rotation_delta):&#160;trc_camera.c']]],
+  ['rotate_5ftransform_7',['rotate_transform',['../trc__transform_8c.html#abf70f5b185abd37edf4b98da2fb637c1',1,'rotate_transform(trc_transform_t *transform, const float rotation_delta):&#160;trc_transform.c'],['../trc__transform_8h.html#abf70f5b185abd37edf4b98da2fb637c1',1,'rotate_transform(trc_transform_t *transform, const float rotation_delta):&#160;trc_transform.c']]],
+  ['run_5fnk_5finput_5fhanlder_8',['run_nk_input_hanlder',['../pop__up__windows_8c.html#a4d1863681b8b11d5551b4a58ad94c62a',1,'run_nk_input_hanlder(SDL_Event *event):&#160;pop_up_windows.c'],['../pop__up__windows_8h.html#a4d1863681b8b11d5551b4a58ad94c62a',1,'run_nk_input_hanlder(SDL_Event *event):&#160;pop_up_windows.c']]]
+];
