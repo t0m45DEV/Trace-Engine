@@ -31,10 +31,10 @@ typedef enum {
 /**
  * Prints to the standard output the given message formated with the given parameters.
  *
- * @param[in] log_level The message importance level, this is used to include a keyword (DEBUG, INFO, WARNING and ERROR)
- * @param[in] file_name The file name of the caller
- * @param[in] line The line of the call
- * @param[in] message The text to print
+ * @param log_level The message importance level, this is used to include a keyword (DEBUG, INFO, WARNING and ERROR)
+ * @param file_name The file name of the caller
+ * @param line The line of the call
+ * @param message The text to print
  */
 void log_message(const log_levels_t log_level, const char* file_name, const int line, const char* message, ...);
 
