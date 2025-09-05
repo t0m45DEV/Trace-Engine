@@ -9,8 +9,8 @@
  * menu, options menu, specific level, boos fight, etc)
  */
 typedef enum {
-    MAIN_MENU_SCENE, /** The main menu, the first scene */
-    GAME_SCENE       /** Gameplay scene */
+    MAIN_MENU_SCENE, /**< The main menu, the first scene */
+    GAME_SCENE       /**< Gameplay scene */
 } scenes_t;
 
 /**

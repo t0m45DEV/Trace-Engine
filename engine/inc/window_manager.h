@@ -1,13 +1,22 @@
 #ifndef _H_WIN_DISP
 #define _H_WIN_DISP
 
-/** Is good for the viewport size to satisfy WIDTH = HEIGHT * 1.5, and also for the numbers to be divisible by powers of 2 */
+/** @defgroup ViewportMacros Viewport Macros
+ *
+ * These macros define the size and the position of the viewport. The viewport is the picture captured by the camera.
+ *
+ * @note Is good for the viewport size to satisfy WIDTH = HEIGHT * 1.5, and also for the numbers to be divisible by powers of 2
+ *
+ * @{
+ */
 
-#define VIEWPORT_WIDTH  960
-#define VIEWPORT_HEIGHT 640
+#define VIEWPORT_WIDTH  960   /**< The width of the picture captured byt the camera */
+#define VIEWPORT_HEIGHT 640   /**< The height of the picture captured byt the camera */
 
-#define VIEWPORT_X_OFFSET 10
-#define VIEWPORT_Y_OFFSET 10
+#define VIEWPORT_X_OFFSET 10  /**< The horizontal offset of the picture captured byt the camera from the top-left corner */
+#define VIEWPORT_Y_OFFSET 10  /**< The vertical offset of the picture captured byt the camera from the top-left corner */
+
+/** @} */
 
 /**
  * Creates the window and the context for OpenGL

@@ -9,9 +9,9 @@
  * (for like areas or entities)
  */
 typedef struct {
-    trc_world_position_t pos;
-    float angle;
-    int size;
+    trc_world_position_t pos; /**< The current position of the object */
+    float angle;              /**< The current angle of the object */
+    int size;                 /**< The current collision size of the object */
 } trc_transform_t;
 
 /**

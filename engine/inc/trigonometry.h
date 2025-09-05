@@ -4,18 +4,18 @@
 #include "trc_world_position.h"
 #include <stdbool.h>
 
-#define PRECISION 0.0001   /** To compare doubles and floats */
+#define PRECISION 0.0001   /**< To compare doubles and floats */
 
-#define DEGREE 0.0174533 /** One degree in radians */
+#define DEGREE 0.0174533 /**< One degree in radians */
 
-#define PI 3.1415926535           /** An aproximation to pi */
-#define UP_DIR    (PI / 2)        /** 90 degrees, or the angle in radians for ↑  */
-#define DOWN_DIR  (3 * (UP_DIR))  /** 270 degrees, or the angle in radians for ↓ */
-#define LEFT_DIR  (PI)            /** 180 degrees, or the angle in radians for ← */
-#define RIGHT_DIR (PI * 0)        /** 0 degrees, or the angle in radians for → */
+#define PI 3.1415926535           /**< An aproximation to pi */
+#define UP_DIR    (PI / 2)        /**< 90 degrees, or the angle in radians for ↑  */
+#define DOWN_DIR  (3 * (UP_DIR))  /**< 270 degrees, or the angle in radians for ↓ */
+#define LEFT_DIR  (PI)            /**< 180 degrees, or the angle in radians for ← */
+#define RIGHT_DIR (PI * 0)        /**< 0 degrees, or the angle in radians for → */
 
-#define DEG_TO_RAD(angleInDegrees) (adjust_angle((angleInDegrees) * PI / 180.0)) /** Angle in degrees to angle in radians */
-#define RAD_TO_DEG(angleInRadians) (adjust_angle(angleInRadians) * 180.0 / PI)   /** Angle in radians to angle in degrees */
+#define DEG_TO_RAD(angleInDegrees) (adjust_angle((angleInDegrees) * PI / 180.0)) /**< Angle in degrees to angle in radians */
+#define RAD_TO_DEG(angleInRadians) (adjust_angle(angleInRadians) * 180.0 / PI)   /**< Angle in radians to angle in degrees */
 
 #ifndef GAME_EXPORT
     #include <stdlib.h>
@@ -24,8 +24,6 @@
      * Only for debug, it returns the position in the form of a string with the format:
      * 
      * "pos_name = (pos.x, pos.y)"
-     * 
-     * @param pos trc_world_position_t, the position to print
      * 
      * @note Caller MUST free the memory allocated for the string
      */

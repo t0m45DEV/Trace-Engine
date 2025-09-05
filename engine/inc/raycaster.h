@@ -1,7 +1,7 @@
 #ifndef _H_RAYCASTER
 #define _H_RAYCASTER
 
-#define FOV 60 /** Field of view (between 60 and 90 is okay, more than 90 warps the image) */
+#define FOV 60 /**< Field of view (between 60 and 90 is okay, more than 90 warps the image) */
 
 enum {
     NORTH_SOUTH_WALL,

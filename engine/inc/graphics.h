@@ -7,9 +7,9 @@
  * A color struct, having 3 variables: r, g and b; each one an int from 0 to 255
  */
 typedef struct {
-    unsigned char r; /** Red component from RGB */
-    unsigned char g; /** Green component from RGB */
-    unsigned char b; /** Blue component from RGB */
+    unsigned char r; /**< Red component from RGB */
+    unsigned char g; /**< Green component from RGB */
+    unsigned char b; /**< Blue component from RGB */
 } rgb_t;
 
 // A few colors, useful for testing or drawing directly

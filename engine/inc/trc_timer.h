@@ -7,9 +7,9 @@
  * A timer struct, can init and check when is stopped
  */
 typedef struct {
-    bool is_active;     /** False means the timer is stopped, true means the timer is running */
-    float duration;     /** The timer duration in miliseconds */
-    float initial_time; /** The timer activation time, in miliseconds */
+    bool is_active;     /**< False means the timer is stopped, true means the timer is running */
+    float duration;     /**< The timer duration in miliseconds */
+    float initial_time; /**< The timer activation time, in miliseconds */
 } trc_timer_t;
 
 #ifndef GAME_EXPORT
@@ -17,9 +17,7 @@ typedef struct {
 
     /**
      * Only for debug, it returns the timer in the form of a string
-     * 
-     * @param timer engine_timer_t, the timer to print
-     * 
+     *
      * @note Caller MUST free the memory allocated for the string
      */
     #define timer_to_string(X) timer_to_string_with_name(X, #X)

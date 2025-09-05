@@ -9,9 +9,9 @@
  * @param delta_time The difference between actual_frame and last_frame
  */
 typedef struct {
-    float actual_frame;
-    float last_frame;
-    float delta_time;
+    float actual_frame; /**< Time of the current frame (the one being calculated) */
+    float last_frame;   /**< Time of the last frame (the one being shown) */
+    float delta_time;   /**< actual_frame - last_frame */
 } delta_time_counter_t;
 
 /**
