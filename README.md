@@ -11,7 +11,7 @@ A minimal and modular Wolfenstein-style raycasting engine entirely made with C f
 
 Everything is written from scratch — no high-level libraries, and yes, a lot of bugs! — just C, OpenGL and SDL (and a few headers here and there).
 
-It is a modular game engine, so every piece is independent from the others. It's fully open source! You can see all the code in this repository.
+It is a modular game engine, so every piece is independent from the others. It's fully open source! You can see all the code in this repository, and [here](https://t0m45dev.github.io/Trace-Engine/) is the documentation.
 
 ![work_space](resources/screenshots/work_space.png)
 
