@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['macros_0',['macros',['../group__LogMacros.html',1,'Logging Macros'],['../group__ViewportMacros.html',1,'Viewport Macros']]],
-  ['main_1',['main',['../imageParser_8c.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;imageParser.c'],['../main_8c.html#a840291bc02cba5474a4cb46a9b9566fe',1,'main(void):&#160;main.c']]],
+  ['macros_0',['Viewport Macros',['../group__ViewportMacros.html',1,'']]],
+  ['main_1',['main',['../main_8c.html#a840291bc02cba5474a4cb46a9b9566fe',1,'main(void):&#160;main.c'],['../imageParser_8c.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;imageParser.c']]],
   ['main_2ec_2',['main.c',['../main_8c.html',1,'']]],
   ['main_5fmenu_5fscene_3',['MAIN_MENU_SCENE',['../game__state_8h.html#a5788953f951921f19da68c666641fba1a02c97154989e14c7421bedfd4adf1587',1,'game_state.h']]],
   ['map_2ec_4',['map.c',['../map_8c.html',1,'']]],

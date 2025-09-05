@@ -65,8 +65,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "Tom__Engine_8h.html",
-"map_8h.html#a47eacb894c1f11f294bf192b6f4763ed",
-"trigonometry_8h_source.html"
+"map_8h.html#a5ac8e4f1d6ba14231d7831649c1e8117",
+"window__manager_8c.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

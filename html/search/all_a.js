@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['last_5ffps_0',['last_fps',['../pop__up__windows_8c.html#a98688e8cda699c789867e1d3c4de857c',1,'pop_up_windows.c']]],
+  ['last_5fframe_1',['last_frame',['../structFPS__counter__t.html#a258667b72c55806b9ec5ff6f1fcd298d',1,'FPS_counter_t::last_frame'],['../structdelta__time__counter__t.html#a0611e3a5dffaf48f40008527dc99ace4',1,'delta_time_counter_t::last_frame']]],
+  ['left_5fdir_2',['LEFT_DIR',['../trigonometry_8h.html#a748e2ff253570331d3cd8f51ccc17f03',1,'trigonometry.h']]],
+  ['level_5fcount_3',['LEVEL_COUNT',['../map_8h.html#aeab1aec6a533c4a44f5697d0b7079188',1,'map.h']]],
+  ['level_5ft_4',['level_t',['../structlevel__t.html',1,'']]],
+  ['levels_5finfo_2ec_5',['levels_info.c',['../levels__info_8c.html',1,'']]],
+  ['levels_5finfo_2eh_6',['levels_info.h',['../levels__info_8h.html',1,'']]],
+  ['lfs_3a_7',['After you installed Git LFS:',['../index.html#autotoc_md7',1,'']]],
+  ['license_8',['License',['../index.html#autotoc_md3',1,'']]],
+  ['line_9',['line',['../structmessage__info.html#a77daa33e1ce3818c17a94c6626419f8e',1,'message_info']]],
+  ['lines_5fwidth_10',['LINES_WIDTH',['../render_8c.html#ace1e4b446e867919b798288e750f9d72',1,'render.c']]],
+  ['load_5flevel_11',['load_level',['../game__state_8c.html#a22c7e09d1f28c8dd0557d88cc5737c78',1,'load_level(const int level_idx):&#160;game_state.c'],['../game__state_8h.html#a22c7e09d1f28c8dd0557d88cc5737c78',1,'load_level(const int level_idx):&#160;game_state.c']]],
+  ['load_5ftextures_12',['load_textures',['../textures_8c.html#a0c588e2ccf2ed315e2710776feac9eff',1,'load_textures(void):&#160;textures.c'],['../textures_8h.html#a0c588e2ccf2ed315e2710776feac9eff',1,'load_textures(void):&#160;textures.c']]],
+  ['log_2ec_13',['log.c',['../log_8c.html',1,'']]],
+  ['log_2eh_14',['log.h',['../log_8h.html',1,'']]],
+  ['log_5fdebug_15',['log_debug',['../group__LogMacros.html#gaa77e596ef13d2f0f75d0ac9540ed358d',1,'log.h']]],
+  ['log_5ferror_16',['log_error',['../group__LogMacros.html#ga6ae72553ea9805dd87a463d6f710364d',1,'log.h']]],
+  ['log_5finfo_17',['log_info',['../group__LogMacros.html#gaa1cfe5444875c8eca0ea6f6993977d6d',1,'log.h']]],
+  ['log_5flevels_5ft_18',['log_levels_t',['../log_8h.html#ac16bb90a13d9a744601e3872a247b8f0',1,'log.h']]],
+  ['log_5fmessage_19',['log_message',['../log_8c.html#a72d36328bf9ebb0e4f8f2bbe62f0c5f1',1,'log_message(const log_levels_t log_level, const char *file_name, const int line, const char *message,...):&#160;log.c'],['../log_8h.html#a72d36328bf9ebb0e4f8f2bbe62f0c5f1',1,'log_message(const log_levels_t log_level, const char *file_name, const int line, const char *message,...):&#160;log.c']]],
+  ['log_5fwarning_20',['log_warning',['../group__LogMacros.html#ga5f2c72e6f2dc833f040b39ee7597d944',1,'log.h']]],
+  ['logging_20macros_21',['Logging Macros',['../group__LogMacros.html',1,'']]],
+  ['low_5fresolution_22',['LOW_RESOLUTION',['../graphics_8h.html#a22480bc8d46e2558d1e5348a572bd9cca1ee8267d1884989a508685205775103b',1,'graphics.h']]]
+];

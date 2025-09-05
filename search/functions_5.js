@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['init_5fdelta_5ftime_5fcounter_0',['init_delta_time_counter',['../delta__time_8h.html#ac2e1a274f79bec998f3380fe8c587bfa',1,'init_delta_time_counter(void):&#160;delta_time.c'],['../delta__time_8c.html#ac2e1a274f79bec998f3380fe8c587bfa',1,'init_delta_time_counter(void):&#160;delta_time.c']]],
+  ['init_5fdelta_5ftime_5fcounter_0',['init_delta_time_counter',['../delta__time_8c.html#ac2e1a274f79bec998f3380fe8c587bfa',1,'init_delta_time_counter(void):&#160;delta_time.c'],['../delta__time_8h.html#ac2e1a274f79bec998f3380fe8c587bfa',1,'init_delta_time_counter(void):&#160;delta_time.c']]],
   ['init_5ffps_5fcounter_1',['init_fps_counter',['../fps__counter_8c.html#aadc1eca7bd8e9371864e51c1a1cd23a8',1,'init_fps_counter(void):&#160;fps_counter.c'],['../fps__counter_8h.html#aadc1eca7bd8e9371864e51c1a1cd23a8',1,'init_fps_counter(void):&#160;fps_counter.c']]],
   ['init_5fgame_5fstate_2',['init_game_state',['../game__state_8c.html#ac4d2f0517264a5378f986813a1e855a2',1,'init_game_state(void):&#160;game_state.c'],['../game__state_8h.html#ac4d2f0517264a5378f986813a1e855a2',1,'init_game_state(void):&#160;game_state.c']]],
   ['init_5fgl_3',['init_GL',['../window__manager_8c.html#a89352dbc8c23d9b55a1b8680cf11128c',1,'window_manager.c']]],
