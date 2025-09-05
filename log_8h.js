@@ -1,9 +1,9 @@
 var log_8h =
 [
-    [ "log_debug", "log_8h.html#aa77e596ef13d2f0f75d0ac9540ed358d", null ],
-    [ "log_error", "log_8h.html#a6ae72553ea9805dd87a463d6f710364d", null ],
-    [ "log_info", "log_8h.html#aa1cfe5444875c8eca0ea6f6993977d6d", null ],
-    [ "log_warning", "log_8h.html#a5f2c72e6f2dc833f040b39ee7597d944", null ],
+    [ "log_debug", "group__LogMacros.html#gaa77e596ef13d2f0f75d0ac9540ed358d", null ],
+    [ "log_error", "group__LogMacros.html#ga6ae72553ea9805dd87a463d6f710364d", null ],
+    [ "log_info", "group__LogMacros.html#gaa1cfe5444875c8eca0ea6f6993977d6d", null ],
+    [ "log_warning", "group__LogMacros.html#ga5f2c72e6f2dc833f040b39ee7597d944", null ],
     [ "log_levels_t", "log_8h.html#ac16bb90a13d9a744601e3872a247b8f0", [
       [ "_LOG_LEVEL_DEBUG", "log_8h.html#ac16bb90a13d9a744601e3872a247b8f0a789907de54790d182176ce073ce68e90", null ],
       [ "_LOG_LEVEL_INFO", "log_8h.html#ac16bb90a13d9a744601e3872a247b8f0abac0e9aaf25ad6cecb82fc0a951803ef", null ],
