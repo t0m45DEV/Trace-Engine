@@ -15,11 +15,12 @@ var searchData=
   ['load_5ftextures_12',['load_textures',['../textures_8c.html#a0c588e2ccf2ed315e2710776feac9eff',1,'load_textures(void):&#160;textures.c'],['../textures_8h.html#a0c588e2ccf2ed315e2710776feac9eff',1,'load_textures(void):&#160;textures.c']]],
   ['log_2ec_13',['log.c',['../log_8c.html',1,'']]],
   ['log_2eh_14',['log.h',['../log_8h.html',1,'']]],
-  ['log_5fdebug_15',['log_debug',['../log_8h.html#aa77e596ef13d2f0f75d0ac9540ed358d',1,'log.h']]],
-  ['log_5ferror_16',['log_error',['../log_8h.html#a6ae72553ea9805dd87a463d6f710364d',1,'log.h']]],
-  ['log_5finfo_17',['log_info',['../log_8h.html#aa1cfe5444875c8eca0ea6f6993977d6d',1,'log.h']]],
+  ['log_5fdebug_15',['log_debug',['../group__LogMacros.html#gaa77e596ef13d2f0f75d0ac9540ed358d',1,'log.h']]],
+  ['log_5ferror_16',['log_error',['../group__LogMacros.html#ga6ae72553ea9805dd87a463d6f710364d',1,'log.h']]],
+  ['log_5finfo_17',['log_info',['../group__LogMacros.html#gaa1cfe5444875c8eca0ea6f6993977d6d',1,'log.h']]],
   ['log_5flevels_5ft_18',['log_levels_t',['../log_8h.html#ac16bb90a13d9a744601e3872a247b8f0',1,'log.h']]],
   ['log_5fmessage_19',['log_message',['../log_8c.html#a72d36328bf9ebb0e4f8f2bbe62f0c5f1',1,'log_message(const log_levels_t log_level, const char *file_name, const int line, const char *message,...):&#160;log.c'],['../log_8h.html#a72d36328bf9ebb0e4f8f2bbe62f0c5f1',1,'log_message(const log_levels_t log_level, const char *file_name, const int line, const char *message,...):&#160;log.c']]],
-  ['log_5fwarning_20',['log_warning',['../log_8h.html#a5f2c72e6f2dc833f040b39ee7597d944',1,'log.h']]],
-  ['low_5fresolution_21',['LOW_RESOLUTION',['../graphics_8h.html#a22480bc8d46e2558d1e5348a572bd9cca1ee8267d1884989a508685205775103b',1,'graphics.h']]]
+  ['log_5fwarning_20',['log_warning',['../group__LogMacros.html#ga5f2c72e6f2dc833f040b39ee7597d944',1,'log.h']]],
+  ['logging_20macros_21',['Logging Macros',['../group__LogMacros.html',1,'']]],
+  ['low_5fresolution_22',['LOW_RESOLUTION',['../graphics_8h.html#a22480bc8d46e2558d1e5348a572bd9cca1ee8267d1884989a508685205775103b',1,'graphics.h']]]
 ];

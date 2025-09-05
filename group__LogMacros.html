@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Trace Engine: engine/inc/log.h File Reference</title>
+<title>Trace Engine: Logging Macros</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('log_8h.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('group__LogMacros.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -91,14 +91,10 @@ $(document).ready(function(){initNavTree('log_8h.html',''); initResizable(); });
 
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a> &#124;
-<a href="#enum-members">Enumerations</a> &#124;
-<a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">log.h File Reference</div></div>
+<a href="#define-members">Macros</a>  </div>
+  <div class="headertitle"><div class="title">Logging Macros</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p><a href="log_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
@@ -110,96 +106,79 @@ Macros</h2></td></tr>
 <tr class="separator:ga5f2c72e6f2dc833f040b39ee7597d944"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga6ae72553ea9805dd87a463d6f710364d" id="r_ga6ae72553ea9805dd87a463d6f710364d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__LogMacros.html#ga6ae72553ea9805dd87a463d6f710364d">log_error</a>(...)&#160;&#160;&#160;(<a class="el" href="log_8c.html#a72d36328bf9ebb0e4f8f2bbe62f0c5f1">log_message</a>(<a class="el" href="log_8h.html#ac16bb90a13d9a744601e3872a247b8f0a46fecf958df0262fb07cd3f4e236e23d">_LOG_LEVEL_ERROR</a>, __FILE__, __LINE__, __VA_ARGS__))</td></tr>
 <tr class="separator:ga6ae72553ea9805dd87a463d6f710364d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr class="memitem:ac16bb90a13d9a744601e3872a247b8f0" id="r_ac16bb90a13d9a744601e3872a247b8f0"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h.html#ac16bb90a13d9a744601e3872a247b8f0">log_levels_t</a> { <a class="el" href="log_8h.html#ac16bb90a13d9a744601e3872a247b8f0a789907de54790d182176ce073ce68e90">_LOG_LEVEL_DEBUG</a>
-, <a class="el" href="log_8h.html#ac16bb90a13d9a744601e3872a247b8f0abac0e9aaf25ad6cecb82fc0a951803ef">_LOG_LEVEL_INFO</a>
-, <a class="el" href="log_8h.html#ac16bb90a13d9a744601e3872a247b8f0a2507121f7bcd5cb6f868e2ac997f0cb9">_LOG_LEVEL_WARNING</a>
-, <a class="el" href="log_8h.html#ac16bb90a13d9a744601e3872a247b8f0a46fecf958df0262fb07cd3f4e236e23d">_LOG_LEVEL_ERROR</a>
- }</td></tr>
-<tr class="separator:ac16bb90a13d9a744601e3872a247b8f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a72d36328bf9ebb0e4f8f2bbe62f0c5f1" id="r_a72d36328bf9ebb0e4f8f2bbe62f0c5f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="log_8h.html#a72d36328bf9ebb0e4f8f2bbe62f0c5f1">log_message</a> (const <a class="el" href="log_8h.html#ac16bb90a13d9a744601e3872a247b8f0">log_levels_t</a> log_level, const char *file_name, const int line, const char *message,...)</td></tr>
-<tr class="separator:a72d36328bf9ebb0e4f8f2bbe62f0c5f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Enumeration Type Documentation</h2>
-<a id="ac16bb90a13d9a744601e3872a247b8f0" name="ac16bb90a13d9a744601e3872a247b8f0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac16bb90a13d9a744601e3872a247b8f0">&#9670;&#160;</a></span>log_levels_t</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>These macros prints the given message to the standard output, including the file and line of the caller. </p>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="gaa77e596ef13d2f0f75d0ac9540ed358d" name="gaa77e596ef13d2f0f75d0ac9540ed358d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa77e596ef13d2f0f75d0ac9540ed358d">&#9670;&#160;</a></span>log_debug</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="log_8h.html#ac16bb90a13d9a744601e3872a247b8f0">log_levels_t</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ac16bb90a13d9a744601e3872a247b8f0a789907de54790d182176ce073ce68e90" name="ac16bb90a13d9a744601e3872a247b8f0a789907de54790d182176ce073ce68e90"></a>_LOG_LEVEL_DEBUG&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="ac16bb90a13d9a744601e3872a247b8f0abac0e9aaf25ad6cecb82fc0a951803ef" name="ac16bb90a13d9a744601e3872a247b8f0abac0e9aaf25ad6cecb82fc0a951803ef"></a>_LOG_LEVEL_INFO&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="ac16bb90a13d9a744601e3872a247b8f0a2507121f7bcd5cb6f868e2ac997f0cb9" name="ac16bb90a13d9a744601e3872a247b8f0a2507121f7bcd5cb6f868e2ac997f0cb9"></a>_LOG_LEVEL_WARNING&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="ac16bb90a13d9a744601e3872a247b8f0a46fecf958df0262fb07cd3f4e236e23d" name="ac16bb90a13d9a744601e3872a247b8f0a46fecf958df0262fb07cd3f4e236e23d"></a>_LOG_LEVEL_ERROR&#160;</td><td class="fielddoc"></td></tr>
-</table>
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="a72d36328bf9ebb0e4f8f2bbe62f0c5f1" name="a72d36328bf9ebb0e4f8f2bbe62f0c5f1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a72d36328bf9ebb0e4f8f2bbe62f0c5f1">&#9670;&#160;</a></span>log_message()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void log_message </td>
+          <td class="memname">#define log_debug</td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="log_8h.html#ac16bb90a13d9a744601e3872a247b8f0">log_levels_t</a>&#160;</td>
-          <td class="paramname"><em>log_level</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>file_name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>line</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>message</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>...</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
+          <td class="paramname"><em>...</em></td><td>)</td>
+          <td>&#160;&#160;&#160;(<a class="el" href="log_8c.html#a72d36328bf9ebb0e4f8f2bbe62f0c5f1">log_message</a>(<a class="el" href="log_8h.html#ac16bb90a13d9a744601e3872a247b8f0a789907de54790d182176ce073ce68e90">_LOG_LEVEL_DEBUG</a>, __FILE__, __LINE__, __VA_ARGS__))</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Prints to the standard output the given message formated with the given parameters.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">log_level</td><td>The message importance level, this is used to include a keyword (DEBUG, INFO, WARNING and ERROR) </td></tr>
-    <tr><td class="paramname">file_name</td><td>The file name of the caller </td></tr>
-    <tr><td class="paramname">line</td><td>The line of the call </td></tr>
-    <tr><td class="paramname">message</td><td>The text to print </td></tr>
-  </table>
-  </dd>
-</dl>
+
+</div>
+</div>
+<a id="ga6ae72553ea9805dd87a463d6f710364d" name="ga6ae72553ea9805dd87a463d6f710364d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6ae72553ea9805dd87a463d6f710364d">&#9670;&#160;</a></span>log_error</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define log_error</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em></td><td>)</td>
+          <td>&#160;&#160;&#160;(<a class="el" href="log_8c.html#a72d36328bf9ebb0e4f8f2bbe62f0c5f1">log_message</a>(<a class="el" href="log_8h.html#ac16bb90a13d9a744601e3872a247b8f0a46fecf958df0262fb07cd3f4e236e23d">_LOG_LEVEL_ERROR</a>, __FILE__, __LINE__, __VA_ARGS__))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gaa1cfe5444875c8eca0ea6f6993977d6d" name="gaa1cfe5444875c8eca0ea6f6993977d6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa1cfe5444875c8eca0ea6f6993977d6d">&#9670;&#160;</a></span>log_info</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define log_info</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em></td><td>)</td>
+          <td>&#160;&#160;&#160;(<a class="el" href="log_8c.html#a72d36328bf9ebb0e4f8f2bbe62f0c5f1">log_message</a>(<a class="el" href="log_8h.html#ac16bb90a13d9a744601e3872a247b8f0abac0e9aaf25ad6cecb82fc0a951803ef">_LOG_LEVEL_INFO</a>, __FILE__, __LINE__, __VA_ARGS__))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga5f2c72e6f2dc833f040b39ee7597d944" name="ga5f2c72e6f2dc833f040b39ee7597d944"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5f2c72e6f2dc833f040b39ee7597d944">&#9670;&#160;</a></span>log_warning</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define log_warning</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em></td><td>)</td>
+          <td>&#160;&#160;&#160;(<a class="el" href="log_8c.html#a72d36328bf9ebb0e4f8f2bbe62f0c5f1">log_message</a>(<a class="el" href="log_8h.html#ac16bb90a13d9a744601e3872a247b8f0a2507121f7bcd5cb6f868e2ac997f0cb9">_LOG_LEVEL_WARNING</a>, __FILE__, __LINE__, __VA_ARGS__))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -208,7 +187,6 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_996f45160da62e1a3d7f6046fad68f51.html">engine</a></li><li class="navelem"><a class="el" href="dir_edafa26994ec1c8a4616c60cfb667ab2.html">inc</a></li><li class="navelem"><a class="el" href="log_8h.html">log.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

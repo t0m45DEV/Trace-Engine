@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['macros_0',['Viewport Macros',['../group__ViewportMacros.html',1,'']]]
+  ['logging_20macros_0',['Logging Macros',['../group__LogMacros.html',1,'']]]
 ];
