@@ -29,13 +29,13 @@ There are a ton of features in a game engine, but this will give a glimpse of wh
 
 | Feature | State |
 | --- | --- |
-| Basic raycasting | :white_check_mark: Done |
-| Renderer | :white_check_mark: Done |
-| Logging system | :white_check_mark: Done |
-| Entities | :hourglass_flowing_sand: In progress |
-| Level editor | :hourglass_flowing_sand: In progress |
-| [Documentation](https://t0m45dev.github.io/Trace-Engine/) | :white_check_mark: Done |
-| Windows export | :hourglass_flowing_sand: In progress |
+| Basic raycasting | ✅ Done |
+| Renderer | ✅ Done |
+| Logging system | ✅ Done |
+| Entities | ⏳ In progress |
+| Level editor | ⏳ In progress |
+| [Documentation](https://t0m45dev.github.io/Trace-Engine/) | ✅ Done |
+| Windows export | ⏳ In progress |
 
 \anchor license
 ## License
