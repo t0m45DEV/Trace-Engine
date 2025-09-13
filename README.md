@@ -1,9 +1,9 @@
 # Trace Engine
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]()
-![Language](https://img.shields.io/badge/Made%20with-C-blue)
-[![Graphics](https://img.shields.io/badge/Graphics-OpenGL-green)](https://www.opengl.org/)
-[![Framework](https://img.shields.io/badge/Framework-SDL2-orange)](https://www.libsdl.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/license/mit)
+[![Language : C](https://img.shields.io/badge/Made%20with-C-blue)](https://en.wikipedia.org/wiki/C_(programming_language))
+[![Graphics : OpenGL](https://img.shields.io/badge/Graphics-OpenGL-green)](https://www.opengl.org/)
+[![Framework : SDL2](https://img.shields.io/badge/Framework-SDL2-orange)](https://www.libsdl.org/)
 
 A minimal and modular Wolfenstein-style raycasting engine entirely made with C for Linux.
 
