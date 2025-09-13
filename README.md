@@ -34,7 +34,7 @@ There are a ton of features in a game engine, but this will give a glimpse of wh
 | Logging system | :white_check_mark: Done |
 | Entities | :hourglass_flowing_sand: In progress |
 | Level editor | :hourglass_flowing_sand: In progress |
-| Physics engine | :hourglass_flowing_sand: In progress |
+| [Documentation](https://t0m45dev.github.io/Trace-Engine/) | :white_check_mark: Done |
 | Windows export | :hourglass_flowing_sand: In progress |
 
 \anchor license
