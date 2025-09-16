@@ -1,4 +1,5 @@
 #include "tester.h"
+#include "trc_world_position.h"
 #include "trigonometry.h"
 
 #include <math.h>
@@ -16,7 +17,6 @@ void test_are_equals_different_numbers(void)
     ASSERT(!are_equals(PI * 2, 6.2));    
 }
 
-
 void test_normalize_vector(void)
 {
     trc_world_position_t east = (trc_world_position_t) {1, 0};
@@ -25,7 +25,7 @@ void test_normalize_vector(void)
 
     ASSERT(are_equals(vector_length(normalize_vector(east)), 1));
     ASSERT(are_equals(vector_length(normalize_vector(north_east)), 1));
-    ASSERT(are_equals(vector_length(normalize_vector(random_point)), sqrt(2)));
+    ASSERT(are_equals(vector_length(normalize_vector(random_point)), 1));
 }
 
 void test_scalar_multiplication(void)
@@ -33,10 +33,21 @@ void test_scalar_multiplication(void)
     trc_world_position_t p1 = (trc_world_position_t) {1, 1};
 
     ASSERT(are_equals(vector_length(scalar_multiplication(TRC_POS_ORIGIN, 5)), 0));
-    ASSERT(are_equals(vector_length(scalar_multiplication(p1, 2)), 8));
-    ASSERT(are_equals(vector_length(scalar_multiplication(p1, -1)), 2));
+    ASSERT(are_equals(vector_length(scalar_multiplication(p1, 1)), sqrt(2)));
+    ASSERT(are_equals(vector_length(scalar_multiplication(p1, 2)), sqrt(8)));
+    ASSERT(are_equals(vector_length(scalar_multiplication(p1, -1)), sqrt(2)));
 }
 
+void test_angle_from_vector(void)
+{
+    trc_world_position_t east       = (trc_world_position_t) {1, 0};
+    trc_world_position_t north      = (trc_world_position_t) {0, 1};
+    trc_world_position_t north_east = (trc_world_position_t) {1, 1};
+
+    ASSERT(are_equals(angle_from_vector(east), 0));
+    ASSERT(are_equals(angle_from_vector(north), PI / 2.0));
+    ASSERT(are_equals(angle_from_vector(north_east), PI / 4.0));
+}
 
 void test_adjust_angle_same_angle(void)
 {
@@ -170,6 +181,10 @@ void init_trigonometry_suites(void)
 {
     test_are_equals_trully_equal_numbers();
     test_are_equals_different_numbers();
+
+    test_normalize_vector();
+    test_scalar_multiplication();
+    test_angle_from_vector();
 
     test_adjust_angle_same_angle();
     test_adjust_angle_more_than_2pi();

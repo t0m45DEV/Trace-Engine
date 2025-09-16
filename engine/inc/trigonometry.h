@@ -63,6 +63,11 @@ trc_world_position_t normalize_vector(const trc_world_position_t vector);
 trc_world_position_t scalar_multiplication(const trc_world_position_t vector, const float scalar);
 
 /**
+ * Use the position given as a vector, and returns it's angle
+ */
+float angle_from_vector(trc_world_position_t vector);
+
+/**
  * Returns the angle so it's in the range of 0 to 2*PI
  * 
  * @param angle The angle to adjust, in radians

@@ -1,6 +1,7 @@
 #include "trigonometry.h"
 
 #include "log.h"
+#include "trc_world_position.h"
 #include <math.h>
 
 #ifndef GAME_EXPORT
@@ -50,6 +51,11 @@ trc_world_position_t scalar_multiplication(const trc_world_position_t vector, co
     new_pos.y = vector.y * scalar;
 
     return new_pos;
+}
+
+float angle_from_vector(trc_world_position_t vector)
+{
+    return atan(vector.y / vector.x);
 }
 
 float adjust_angle(const float angle)
