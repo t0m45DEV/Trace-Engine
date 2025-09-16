@@ -52,7 +52,7 @@ var NAVTREE =
       [ "File List", "files.html", "files_dup" ],
       [ "Globals", "globals.html", [
         [ "All", "globals.html", "globals_dup" ],
-        [ "Functions", "globals_func.html", null ],
+        [ "Functions", "globals_func.html", "globals_func" ],
         [ "Variables", "globals_vars.html", null ],
         [ "Enumerations", "globals_enum.html", null ],
         [ "Enumerator", "globals_eval.html", null ],
@@ -65,8 +65,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "Tom__Engine_8h.html",
-"map_8h.html#a47eacb894c1f11f294bf192b6f4763ed",
-"trigonometry_8h.html#af2c55fd73175c4e1084fa1cc4f2dc5a5"
+"map_8c.html#a2cb46ab672d657c805f1aa9ba5764f63",
+"trigonometry_8c.html#ab905f287f4df50bbca4ad8c4e40be602"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

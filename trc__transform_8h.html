@@ -107,12 +107,45 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a15c33cded3df6c4bd7f76900eebe7924" id="r_a15c33cded3df6c4bd7f76900eebe7924"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trc__transform_8h.html#a15c33cded3df6c4bd7f76900eebe7924">move_and_collide</a> (<a class="el" href="structtrc__transform__t.html">trc_transform_t</a> *transform, const <a class="el" href="structtrc__world__position__t.html">trc_world_position_t</a> velocity)</td></tr>
+<tr class="separator:a15c33cded3df6c4bd7f76900eebe7924"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a179add24344e78c927138b5f268f992d" id="r_a179add24344e78c927138b5f268f992d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trc__transform_8h.html#a179add24344e78c927138b5f268f992d">move_and_slide</a> (<a class="el" href="structtrc__transform__t.html">trc_transform_t</a> *transform, const <a class="el" href="structtrc__world__position__t.html">trc_world_position_t</a> velocity)</td></tr>
 <tr class="separator:a179add24344e78c927138b5f268f992d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf70f5b185abd37edf4b98da2fb637c1" id="r_abf70f5b185abd37edf4b98da2fb637c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trc__transform_8h.html#abf70f5b185abd37edf4b98da2fb637c1">rotate_transform</a> (<a class="el" href="structtrc__transform__t.html">trc_transform_t</a> *transform, const float rotation_delta)</td></tr>
 <tr class="separator:abf70f5b185abd37edf4b98da2fb637c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a15c33cded3df6c4bd7f76900eebe7924" name="a15c33cded3df6c4bd7f76900eebe7924"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15c33cded3df6c4bd7f76900eebe7924">&#9670;&#160;</a></span>move_and_collide()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void move_and_collide </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structtrc__transform__t.html">trc_transform_t</a> *&#160;</td>
+          <td class="paramname"><em>transform</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structtrc__world__position__t.html">trc_world_position_t</a>&#160;</td>
+          <td class="paramname"><em>velocity</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Moves the given transform in the specified direction, unless there is a wall within a distance equal to the transform's size</p>
+<p>If that occurs, the transform will stop moving entirely</p>
+<p>The velocity vector specifies both the direction and the speed of the transform </p>
+
+</div>
+</div>
 <a id="a179add24344e78c927138b5f268f992d" name="a179add24344e78c927138b5f268f992d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a179add24344e78c927138b5f268f992d">&#9670;&#160;</a></span>move_and_slide()</h2>
 
