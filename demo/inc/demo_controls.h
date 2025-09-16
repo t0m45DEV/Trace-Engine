@@ -4,5 +4,7 @@
 #define ROTATE_CLOCKWISE      'd'
 #define ROTATE_ANTI_CLOCKWISE 'a'
 
+#define CHANGE_SLIDING 'p'
+
 #define SHOW_SQUARE_KEY 'b'
 
