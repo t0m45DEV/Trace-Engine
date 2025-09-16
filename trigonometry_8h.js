@@ -11,6 +11,7 @@ var trigonometry_8h =
     [ "trc_world_position_to_string", "trigonometry_8h.html#ae6fa47637cbd6553a41e27aff1a72d80", null ],
     [ "UP_DIR", "trigonometry_8h.html#ac1cbb918809c298502bfc304a8193134", null ],
     [ "adjust_angle", "trigonometry_8h.html#afd1272f9938dca303ffa7ac3c5df48c4", null ],
+    [ "angle_from_vector", "trigonometry_8h.html#a4cb996c3bed19e3107f226bd1861812c", null ],
     [ "are_equals", "trigonometry_8h.html#abf36cc4e3087752db7fec9a549450492", null ],
     [ "distance_between", "trigonometry_8h.html#ab905f287f4df50bbca4ad8c4e40be602", null ],
     [ "normalize_vector", "trigonometry_8h.html#ac7457985684d5c9240643c229c75f4ce", null ],
