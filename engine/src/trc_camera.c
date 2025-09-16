@@ -7,6 +7,7 @@
 #include "map.h"
 #include "graphics.h"
 #include "trc_transform.h"
+#include "trc_world_position.h"
 
 /** Initial collision size for camera (check MAP_CELL_SIZE for size relation) */
 #define CAM_DEFAULT_COLLISION_SIZE 20
@@ -39,9 +40,14 @@ trc_world_position_t get_camera_direction(void)
     return direction;
 }
 
-void move_camera(const trc_world_position_t velocity)
+void move_camera_sliding(const trc_world_position_t velocity)
 {
     move_and_slide(&trc_camera, velocity);
+}
+
+void move_camera_colliding(const trc_world_position_t velocity)
+{
+    move_and_collide(&trc_camera, velocity);
 }
 
 void rotate_camera(const float rotation_delta)

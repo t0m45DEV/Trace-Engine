@@ -11,7 +11,12 @@ trc_world_position_t get_camera_position(void);
 /**
  * Moves the camera with the given velocity, will slide along the walls if a collision is detected
  */
-void move_camera(const trc_world_position_t velocity);
+void move_camera_sliding(const trc_world_position_t velocity);
+
+/**
+ * Moves the camera with the given velocity, will stop fucking moving if a collision is detected
+ */
+void move_camera_colliding(const trc_world_position_t velocity);
 
 /**
  * Rotates the camera adding the given delta to the current camera angle
