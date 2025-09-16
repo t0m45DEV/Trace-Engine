@@ -18,6 +18,16 @@ typedef struct {
  * Moves the given transform in the specified direction, unless
  * there is a wall within a distance equal to the transform's size
  * 
+ * If that occurs, the transform will stop moving entirely
+ * 
+ * The velocity vector specifies both the direction and the speed of the transform
+ */
+void move_and_collide(trc_transform_t* transform, const trc_world_position_t velocity);
+
+/**
+ * Moves the given transform in the specified direction, unless
+ * there is a wall within a distance equal to the transform's size
+ * 
  * If that occurs, the transform will slide across the wall
  * (losing velocity according with the collision angle)
  * 
