@@ -136,6 +136,9 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Utility function only visible for transform_t</p>
+<p>It returns the given velocity but masked with the current collision status</p>
+<p>For example, if a collision for the given transform is happening in the x axis, but not in the y axis, and velocity is (a, b), the returning vale will be (0, b). If no collision is detected, the function will return (a, b), and so on. </p>
 
 </div>
 </div>
