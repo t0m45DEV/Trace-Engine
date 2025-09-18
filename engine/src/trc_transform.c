@@ -3,6 +3,15 @@
 #include "trigonometry.h"
 #include "map.h"
 
+/**
+ * Utility function only visible for transform_t
+ *
+ * It returns the given velocity but masked with the current collision status
+ *
+ * For example, if a collision for the given transform is happening in the x axis, but not in the
+ * y axis, and velocity is (a, b), the returning vale will be (0, b). If no collision is detected,
+ * the function will return (a, b), and so on.
+ */
 trc_world_position_t get_collision_axis(const trc_transform_t transform, const trc_world_position_t velocity)
 {
     trc_world_position_t collision_border = normalize_vector(velocity);
