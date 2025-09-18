@@ -25,10 +25,10 @@ void move_player(const float delta_time)
 
     if (is_key_being_pressed(MOVE_FORWARD))
     {
-        move_camera(scalar_multiplication(get_camera_direction(), movement_velocity * delta_time));
+        move_camera_sliding(scalar_multiplication(get_camera_direction(), movement_velocity * delta_time));
     }
     if (is_key_being_pressed(MOVE_BACKWARD))
     {
-        move_camera(scalar_multiplication(get_camera_direction(), movement_velocity * delta_time * (-1)));
+        move_camera_sliding(scalar_multiplication(get_camera_direction(), movement_velocity * delta_time * (-1)));
     }
 }
