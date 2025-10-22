@@ -10,5 +10,5 @@ var searchData=
   ['window_5ftitle_7',['WINDOW_TITLE',['../main_8c.html#a3adf7b7b13572f2baf3379a8f2f4220a',1,'main.c']]],
   ['window_5fwidth_8',['WINDOW_WIDTH',['../main_8c.html#a498d9f026138406895e9a34b504ac6a6',1,'main.c']]],
   ['wood_9',['WOOD',['../map_8h.html#af399eeab7a97b17d02a9feda367f962da633a5aa6913d52cbd31286e8934e8df0',1,'map.h']]],
-  ['write_5fmode_10',['WRITE_MODE',['../imageParser_8c.html#aa2fe33f497c74e0b5a72f36f121b2ef0',1,'imageParser.c']]]
+  ['write_5fmode_10',['write_mode',['../trc__file__manager_8c.html#aa2fe33f497c74e0b5a72f36f121b2ef0',1,'WRITE_MODE:&#160;trc_file_manager.c'],['../imageParser_8c.html#aa2fe33f497c74e0b5a72f36f121b2ef0',1,'WRITE_MODE:&#160;imageParser.c']]]
 ];

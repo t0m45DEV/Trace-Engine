@@ -8,7 +8,7 @@ var searchData=
   ['raycaster_2ec_5',['raycaster.c',['../raycaster_8c.html',1,'']]],
   ['raycaster_2eh_6',['raycaster.h',['../raycaster_8h.html',1,'']]],
   ['rays_7',['rays',['../raycaster_8c.html#a652cf35245a78f4c3b1bcb1fe382ba02',1,'raycaster.c']]],
-  ['read_5fmode_8',['READ_MODE',['../textures_8c.html#a064cc7153fdb5596b2079d865dd9e055',1,'textures.c']]],
+  ['read_5fmode_8',['read_mode',['../textures_8c.html#a064cc7153fdb5596b2079d865dd9e055',1,'READ_MODE:&#160;textures.c'],['../trc__file__manager_8c.html#a064cc7153fdb5596b2079d865dd9e055',1,'READ_MODE:&#160;trc_file_manager.c']]],
   ['readme_2emd_9',['README.md',['../README_8md.html',1,'']]],
   ['real_5fpos_5fto_5fmap_5fpos_10',['real_pos_to_map_pos',['../map_8c.html#a6c7146a3d59f912ae2d02218fbdbfb4e',1,'map.c']]],
   ['reload_5flevel_11',['reload_level',['../game__state_8c.html#ae3a3b4183b2c652586c69d09be80f466',1,'reload_level(void):&#160;game_state.c'],['../game__state_8h.html#ae3a3b4183b2c652586c69d09be80f466',1,'reload_level(void):&#160;game_state.c']]],

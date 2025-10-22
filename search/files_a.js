@@ -6,11 +6,13 @@ var searchData=
   ['tom_5fengine_2eh_3',['Tom_Engine.h',['../Tom__Engine_8h.html',1,'']]],
   ['trc_5fcamera_2ec_4',['trc_camera.c',['../trc__camera_8c.html',1,'']]],
   ['trc_5fcamera_2eh_5',['trc_camera.h',['../trc__camera_8h.html',1,'']]],
-  ['trc_5ftimer_2ec_6',['trc_timer.c',['../trc__timer_8c.html',1,'']]],
-  ['trc_5ftimer_2eh_7',['trc_timer.h',['../trc__timer_8h.html',1,'']]],
-  ['trc_5ftransform_2ec_8',['trc_transform.c',['../trc__transform_8c.html',1,'']]],
-  ['trc_5ftransform_2eh_9',['trc_transform.h',['../trc__transform_8h.html',1,'']]],
-  ['trc_5fworld_5fposition_2eh_10',['trc_world_position.h',['../trc__world__position_8h.html',1,'']]],
-  ['trigonometry_2ec_11',['trigonometry.c',['../trigonometry_8c.html',1,'']]],
-  ['trigonometry_2eh_12',['trigonometry.h',['../trigonometry_8h.html',1,'']]]
+  ['trc_5ffile_5fmanager_2ec_6',['trc_file_manager.c',['../trc__file__manager_8c.html',1,'']]],
+  ['trc_5ffile_5fmanager_2eh_7',['trc_file_manager.h',['../trc__file__manager_8h.html',1,'']]],
+  ['trc_5ftimer_2ec_8',['trc_timer.c',['../trc__timer_8c.html',1,'']]],
+  ['trc_5ftimer_2eh_9',['trc_timer.h',['../trc__timer_8h.html',1,'']]],
+  ['trc_5ftransform_2ec_10',['trc_transform.c',['../trc__transform_8c.html',1,'']]],
+  ['trc_5ftransform_2eh_11',['trc_transform.h',['../trc__transform_8h.html',1,'']]],
+  ['trc_5fworld_5fposition_2eh_12',['trc_world_position.h',['../trc__world__position_8h.html',1,'']]],
+  ['trigonometry_2ec_13',['trigonometry.c',['../trigonometry_8c.html',1,'']]],
+  ['trigonometry_2eh_14',['trigonometry.h',['../trigonometry_8h.html',1,'']]]
 ];

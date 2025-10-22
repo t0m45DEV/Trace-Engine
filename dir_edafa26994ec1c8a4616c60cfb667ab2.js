@@ -16,6 +16,7 @@ var dir_edafa26994ec1c8a4616c60cfb667ab2 =
     [ "textures_info.h", "textures__info_8h.html", "textures__info_8h" ],
     [ "Tom_Engine.h", "Tom__Engine_8h.html", "Tom__Engine_8h" ],
     [ "trc_camera.h", "trc__camera_8h.html", "trc__camera_8h" ],
+    [ "trc_file_manager.h", "trc__file__manager_8h.html", "trc__file__manager_8h" ],
     [ "trc_timer.h", "trc__timer_8h.html", "trc__timer_8h" ],
     [ "trc_transform.h", "trc__transform_8h.html", "trc__transform_8h" ],
     [ "trc_world_position.h", "trc__world__position_8h.html", "trc__world__position_8h" ],
