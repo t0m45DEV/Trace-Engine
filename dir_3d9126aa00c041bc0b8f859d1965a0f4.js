@@ -16,6 +16,7 @@ var dir_3d9126aa00c041bc0b8f859d1965a0f4 =
     [ "textures.c", "textures_8c.html", "textures_8c" ],
     [ "trc_camera.c", "trc__camera_8c.html", "trc__camera_8c" ],
     [ "trc_file_manager.c", "trc__file__manager_8c.html", "trc__file__manager_8c" ],
+    [ "trc_random.c", "trc__random_8c.html", "trc__random_8c" ],
     [ "trc_timer.c", "trc__timer_8c.html", "trc__timer_8c" ],
     [ "trc_transform.c", "trc__transform_8c.html", "trc__transform_8c" ],
     [ "trigonometry.c", "trigonometry_8c.html", "trigonometry_8c" ],
