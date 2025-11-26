@@ -100,8 +100,10 @@ $(document).ready(function(){initNavTree('trc__random_8h.html',''); initResizabl
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aa1985092ff921d9f367ed6a540a48e4d" id="r_aa1985092ff921d9f367ed6a540a48e4d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trc__random_8h.html#aa1985092ff921d9f367ed6a540a48e4d">trc_set_random_seed</a> (int seed)</td></tr>
-<tr class="separator:aa1985092ff921d9f367ed6a540a48e4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad451481c713b4d1278393d8bbe2f73ee" id="r_ad451481c713b4d1278393d8bbe2f73ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trc__random_8h.html#ad451481c713b4d1278393d8bbe2f73ee">trc_set_RNG_seed</a> (int seed)</td></tr>
+<tr class="separator:ad451481c713b4d1278393d8bbe2f73ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33f13996d99c88237c79ff7e2d2a7658" id="r_a33f13996d99c88237c79ff7e2d2a7658"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trc__random_8h.html#a33f13996d99c88237c79ff7e2d2a7658">trc_set_RNG_random_seed</a> (void)</td></tr>
+<tr class="separator:a33f13996d99c88237c79ff7e2d2a7658"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a921c6567d2bb39c4d76b0c4abc0740ad" id="r_a921c6567d2bb39c4d76b0c4abc0740ad"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trc__random_8h.html#a921c6567d2bb39c4d76b0c4abc0740ad">trc_random_int</a> (int min, int max)</td></tr>
 <tr class="separator:a921c6567d2bb39c4d76b0c4abc0740ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -142,14 +144,32 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aa1985092ff921d9f367ed6a540a48e4d" name="aa1985092ff921d9f367ed6a540a48e4d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa1985092ff921d9f367ed6a540a48e4d">&#9670;&#160;</a></span>trc_set_random_seed()</h2>
+<a id="a33f13996d99c88237c79ff7e2d2a7658" name="a33f13996d99c88237c79ff7e2d2a7658"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33f13996d99c88237c79ff7e2d2a7658">&#9670;&#160;</a></span>trc_set_RNG_random_seed()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void trc_set_random_seed </td>
+          <td class="memname">void trc_set_RNG_random_seed </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad451481c713b4d1278393d8bbe2f73ee" name="ad451481c713b4d1278393d8bbe2f73ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad451481c713b4d1278393d8bbe2f73ee">&#9670;&#160;</a></span>trc_set_RNG_seed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void trc_set_RNG_seed </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>seed</em></td><td>)</td>
@@ -157,8 +177,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Sets the seed for the Random Number Generator</p>
-<dl class="section note"><dt>Note</dt><dd>Run only once at the start of the program </dd></dl>
+<p>Sets the seed for the Random Number Generator to the given seed, use this instead of trc_set_RNG_random_seed if you want control over what seed is being used (useful for testing and replicate states)</p>
+<dl class="section note"><dt>Note</dt><dd>Run only ONCE at the start of the program </dd></dl>
 
 </div>
 </div>
