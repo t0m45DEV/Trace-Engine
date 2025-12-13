@@ -24,6 +24,12 @@ const char* get_file_content(const char* filepath)
 
     char* content = malloc(file_len + 1);
 
+    if (content == NULL)
+    {
+        log_error("There was an error allocating the buffer for %s", filepath);
+        return NULL;
+    }
+
     size_t read_size = fread(content, 1, file_len, file);
 
     if (read_size == 0)
