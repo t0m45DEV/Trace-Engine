@@ -99,33 +99,13 @@ $(document).ready(function(){initNavTree('pop__up__windows_8c.html',''); initRes
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="pop__up__windows_8h_source.html">pop_up_windows.h</a>&quot;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
-<code>#include &quot;glad/glad.h&quot;</code><br />
-<code>#include &quot;nuklear.h&quot;</code><br />
-<code>#include &quot;nuklear_sdl_gl2.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="nuklear__includes_8h_source.html">nuklear_includes.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="log_8h_source.html">log.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="trc__timer_8h_source.html">trc_timer.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="game__state_8h_source.html">game_state.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:aae11ce91efbb99ec40b279ddc84c050f" id="r_aae11ce91efbb99ec40b279ddc84c050f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pop__up__windows_8c.html#aae11ce91efbb99ec40b279ddc84c050f">NK_IMPLEMENTATION</a></td></tr>
-<tr class="separator:aae11ce91efbb99ec40b279ddc84c050f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01f1d8f32e2ffe89754fae4b4c67f580" id="r_a01f1d8f32e2ffe89754fae4b4c67f580"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pop__up__windows_8c.html#a01f1d8f32e2ffe89754fae4b4c67f580">NK_SDL_GL2_IMPLEMENTATION</a></td></tr>
-<tr class="separator:a01f1d8f32e2ffe89754fae4b4c67f580"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e30c99b0f20f7155adebf2cb2219b03" id="r_a4e30c99b0f20f7155adebf2cb2219b03"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pop__up__windows_8c.html#a4e30c99b0f20f7155adebf2cb2219b03">NK_INCLUDE_FIXED_TYPES</a></td></tr>
-<tr class="separator:a4e30c99b0f20f7155adebf2cb2219b03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ab99de094ad4c244260062426e5caa0" id="r_a2ab99de094ad4c244260062426e5caa0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pop__up__windows_8c.html#a2ab99de094ad4c244260062426e5caa0">NK_INCLUDE_STANDARD_IO</a></td></tr>
-<tr class="separator:a2ab99de094ad4c244260062426e5caa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13b5abd58c2a82dcf6a5f7ddfcf112aa" id="r_a13b5abd58c2a82dcf6a5f7ddfcf112aa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pop__up__windows_8c.html#a13b5abd58c2a82dcf6a5f7ddfcf112aa">NK_INCLUDE_STANDARD_VARARGS</a></td></tr>
-<tr class="separator:a13b5abd58c2a82dcf6a5f7ddfcf112aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf1c808d169071b73cb46f7538bf1721" id="r_adf1c808d169071b73cb46f7538bf1721"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pop__up__windows_8c.html#adf1c808d169071b73cb46f7538bf1721">NK_INCLUDE_DEFAULT_ALLOCATOR</a></td></tr>
-<tr class="separator:adf1c808d169071b73cb46f7538bf1721"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac67be0ee8bc7f08530c891cbfa14b788" id="r_ac67be0ee8bc7f08530c891cbfa14b788"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pop__up__windows_8c.html#ac67be0ee8bc7f08530c891cbfa14b788">NK_INCLUDE_VERTEX_BUFFER_OUTPUT</a></td></tr>
-<tr class="separator:ac67be0ee8bc7f08530c891cbfa14b788"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ad0c2aa5bf98a3302a170b7ce2fb9d2" id="r_a7ad0c2aa5bf98a3302a170b7ce2fb9d2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pop__up__windows_8c.html#a7ad0c2aa5bf98a3302a170b7ce2fb9d2">NK_INCLUDE_FONT_BAKING</a></td></tr>
-<tr class="separator:a7ad0c2aa5bf98a3302a170b7ce2fb9d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0847faa9e18a4865944c2f5fb093be0" id="r_af0847faa9e18a4865944c2f5fb093be0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pop__up__windows_8c.html#af0847faa9e18a4865944c2f5fb093be0">NK_INCLUDE_DEFAULT_FONT</a></td></tr>
-<tr class="separator:af0847faa9e18a4865944c2f5fb093be0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb3e405972b22dc74e4f77a6dbe6a7bd" id="r_aeb3e405972b22dc74e4f77a6dbe6a7bd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pop__up__windows_8c.html#aeb3e405972b22dc74e4f77a6dbe6a7bd">FPS_IN_CHART</a>&#160;&#160;&#160;33 /** How many last FPS to show in the performance graph, think of it as a FPS history count */</td></tr>
 <tr class="separator:aeb3e405972b22dc74e4f77a6dbe6a7bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -170,132 +150,6 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">#define FPS_IN_CHART&#160;&#160;&#160;33 /** How many last FPS to show in the performance graph, think of it as a FPS history count */</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aae11ce91efbb99ec40b279ddc84c050f" name="aae11ce91efbb99ec40b279ddc84c050f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae11ce91efbb99ec40b279ddc84c050f">&#9670;&#160;</a></span>NK_IMPLEMENTATION</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define NK_IMPLEMENTATION</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="adf1c808d169071b73cb46f7538bf1721" name="adf1c808d169071b73cb46f7538bf1721"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adf1c808d169071b73cb46f7538bf1721">&#9670;&#160;</a></span>NK_INCLUDE_DEFAULT_ALLOCATOR</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define NK_INCLUDE_DEFAULT_ALLOCATOR</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="af0847faa9e18a4865944c2f5fb093be0" name="af0847faa9e18a4865944c2f5fb093be0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af0847faa9e18a4865944c2f5fb093be0">&#9670;&#160;</a></span>NK_INCLUDE_DEFAULT_FONT</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define NK_INCLUDE_DEFAULT_FONT</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a4e30c99b0f20f7155adebf2cb2219b03" name="a4e30c99b0f20f7155adebf2cb2219b03"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4e30c99b0f20f7155adebf2cb2219b03">&#9670;&#160;</a></span>NK_INCLUDE_FIXED_TYPES</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define NK_INCLUDE_FIXED_TYPES</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a7ad0c2aa5bf98a3302a170b7ce2fb9d2" name="a7ad0c2aa5bf98a3302a170b7ce2fb9d2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7ad0c2aa5bf98a3302a170b7ce2fb9d2">&#9670;&#160;</a></span>NK_INCLUDE_FONT_BAKING</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define NK_INCLUDE_FONT_BAKING</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a2ab99de094ad4c244260062426e5caa0" name="a2ab99de094ad4c244260062426e5caa0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2ab99de094ad4c244260062426e5caa0">&#9670;&#160;</a></span>NK_INCLUDE_STANDARD_IO</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define NK_INCLUDE_STANDARD_IO</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a13b5abd58c2a82dcf6a5f7ddfcf112aa" name="a13b5abd58c2a82dcf6a5f7ddfcf112aa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a13b5abd58c2a82dcf6a5f7ddfcf112aa">&#9670;&#160;</a></span>NK_INCLUDE_STANDARD_VARARGS</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define NK_INCLUDE_STANDARD_VARARGS</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ac67be0ee8bc7f08530c891cbfa14b788" name="ac67be0ee8bc7f08530c891cbfa14b788"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac67be0ee8bc7f08530c891cbfa14b788">&#9670;&#160;</a></span>NK_INCLUDE_VERTEX_BUFFER_OUTPUT</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define NK_INCLUDE_VERTEX_BUFFER_OUTPUT</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a01f1d8f32e2ffe89754fae4b4c67f580" name="a01f1d8f32e2ffe89754fae4b4c67f580"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a01f1d8f32e2ffe89754fae4b4c67f580">&#9670;&#160;</a></span>NK_SDL_GL2_IMPLEMENTATION</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define NK_SDL_GL2_IMPLEMENTATION</td>
         </tr>
       </table>
 </div><div class="memdoc">
